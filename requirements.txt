@@ -1,9 +1,9 @@
-dataclasses,
-typing,
-numpy,
-scipy,
-pandas,
-matplotlib,
-seaborn,
-gvar,
+dataclasses
+typing
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+gvar
 lsqfit
