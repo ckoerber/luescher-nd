@@ -1,6 +1,6 @@
 # Twisted boundaries
 
-A minimal description of how to implement twisted boundary conditions for a non-relativistc two-body quantum system following the publication [1511.06598].
+A minimal description of how to implement twisted boundary conditions for a non-relativistc two-body quantum system following the publication [[1511.06598]](https://arxiv.org/abs/1511.06598v1).
 
 ## Install
 This repository contains the jupyter notebook `two-body-twists.ipynb`.
