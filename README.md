@@ -1,4 +1,4 @@
-# Twisted boundaries
+# Lüscher n-dim test
 
 Testing lattice Hamiltonian implementation for testing Lüscher's formula in 1, 2, 3 spatial dimension.
 
