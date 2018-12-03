@@ -5,5 +5,3 @@ scipy
 pandas
 matplotlib
 seaborn
-gvar
-lsqfit
