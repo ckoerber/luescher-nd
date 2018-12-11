@@ -1,0 +1,71 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+\documentclass[aps, prl, showkeys, nofootinbib, twocolumn, floatfix]{revtex4-1}
+
+\usepackage[utf8]{inputenc} % UTF-8
+\usepackage{braket}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+\begin{document}
+
+\title{Discretization}
+
+\author{C.~Körber}
+
+\date{\today}
+
+\begin{abstract}%
+	How does the contact interaction depend on discretization effects?
+\end{abstract}
+
+\maketitle
+
+\section{No discretization}
+\subsection{1-d}
+\subsubsection{Positive energies}
+
+The momentum space Schrödinger equation
+\begin{equation}
+	\frac{p^2}{2 \mu} \psi(p) + \int \frac{d p}{2\pi} \braket{p | \hat V | p'} \psi(p') = E \psi(p')
+\end{equation}
+for contact interactions this becomes
+\begin{equation}
+	\frac{p^2}{2 \mu} \psi(p) +  c I_0 = E \psi(p') \, , \qquad I_0 = \int \frac{d p'}{2\pi} \psi(p') \, .
+\end{equation}
+Thus
+\begin{equation}
+	\psi(p) = \frac{c I_0}{E - \frac{p^2}{2\mu}}
+\end{equation}
+For scattering solutions we need $i\epsilon$ prescription
+\begin{align}
+	I_0 &= \int \frac{d p}{2\pi}  \frac{c I_0}{E - \frac{p^2}{2\mu} + i \epsilon} \\
+	&= I_0 \times \frac{\mu c }{\pi} \int\limits_{ - \infty}^{\infty} \frac{d p}{\gamma^2 - {p^2} + i \tilde\epsilon} \, , \quad \gamma^2 = 2 \mu E > 0\,.
+\end{align}
+The remaining integral can be solved by the residual theorem: the zeros of the denominator are
+\begin{align}
+	\gamma^2 - {p^2} + i \tilde\epsilon &= (\gamma + i \tilde\epsilon - p)(\gamma + i \tilde\epsilon + p) \, .
+\end{align}
+Note that the zeros are independent on the sign of $\epsilon$ (one root in upper and one root in lower plane).
+Completing the integral in the upper plane selects the residual $p_0 = \gamma + i \tilde \epsilon$ and thus
+\begin{equation}
+	\int\limits_{ - \infty}^{\infty} \frac{d p}{\gamma^2 - {p^2} + i \tilde\epsilon}
+	=
+	 \frac{2 \pi i}{2 \gamma} \, .
+\end{equation}
+and therefore
+\begin{equation}
+	1 = \frac{\mu c}{\pi} \times \frac{\pi i}{\gamma} \, ,
+\end{equation}
+or
+\begin{equation}
+	\gamma = i \mu c \, \Rightarrow  E = - \frac{\mu c^2}{2}
+\end{equation}
+In other words, you do not get positive energies for $c \in \mathbb{R}$.
+
+It seems like, you only get positive energies once you are in a box...
+
+\end{document}
