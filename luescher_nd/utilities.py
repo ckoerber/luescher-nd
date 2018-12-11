@@ -197,6 +197,31 @@ class Solver:
         )
         return lina.eigsh(H, k=1, which="SA", **kwargs)[0][0]
 
+    def get_energies(
+        self, contact_strength: float, n_energies: int = 1, **kwargs
+    ) -> float:
+        """Returns smallest algebraic eigenvalues in of Hamiltonian in `[fm]`
+
+        Arguments
+        ---------
+            contact_strength: float
+                The strength of the contact interaction in respective units.
+                This depends on the dimension of the problem, e.g., [fm]**(-1 - ndim).
+
+            n_energies: int
+                Number of energies.
+
+            kwargs:
+                Additional keyword arguments passed to `eigsh` solver.
+        """
+        H = get_full_hamiltonian(
+            self.kinetic_hamiltonian,
+            contact_strength,
+            self.ndim_max,
+            self.lattice_spacing,
+        )
+        return lina.eigsh(H, k=n_energies, which="SA", **kwargs)[0]
+
 
 def get_approx_psi0(
     particle_energy: float,
