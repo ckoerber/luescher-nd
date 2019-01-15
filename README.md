@@ -5,12 +5,22 @@ Testing lattice Hamiltonian implementation for testing Lüscher's formula in 1, 
 ## Install
 This is a `python` (preferably a new version of Python 3) project which uses `jupyter` notebooks.
 
-The utilities module can be installed via pip:
+The solver module wraps a C++ implementation of a sparse martix solver.
+This depends on the libraries [`eigen`](https://github.com/eigenteam/eigen-git-mirror)  and [`spectra`](https://github.com/yixuan/spectra).
+
+To tell the compiler where to find those libraries run
+```bash
+python setup.py configure --eigen <eigen> --spectra <spectra>
+```
+
+After configuration, the modules can be installed via pip:
 ```bash
 pip install -e .
 ```
 
 For the exact module versions see `requirements-freeze.txt`.
+
+
 
 ## Tests
 Run
