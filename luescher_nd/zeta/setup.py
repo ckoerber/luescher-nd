@@ -1,6 +1,6 @@
 """Install script for zeta function computations
 """
-from distutils.extension import Extension
+from setuptools import Extension
 from setuptools import setup
 
 from Cython.Build import cythonize

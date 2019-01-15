@@ -5,10 +5,16 @@ inline double sum_zeta2(const double xi, const ivec &sum_range){
         sum_range.begin(),
         sum_range.end(),
         0.0,
-        [&](double acc, const int n){
-            return acc + 1./(n*n - xi);
+        [&](double acc, const int n1){
+            return std::accumulate(
+                sum_range.begin(),
+                sum_range.end(),
+                acc,
+                [&](double acc2, const int n2){
+                    return acc2 + 1./(n2*n2 + n1*n1 - xi);
+                }
+            );
     });
-    return 0.;
 }
 
 dvec zeta2(const dvec &x, const long lambda){
