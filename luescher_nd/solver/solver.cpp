@@ -1,5 +1,6 @@
 #include <Eigen/Core>
 #include <vector>
+#include <algorithm>
 #include <Eigen/SparseCore>
 #include <Spectra/GenEigsSolver.h>
 #include <Spectra/MatOp/SparseGenMatProd.h>
@@ -36,6 +37,29 @@ void convert_print_mat(
     const dvec &coeffs
 ){
     std::cout << convert_matrix(n, rows, cols, coeffs) << std::endl;
+}
+
+dvec get_eigs(
+    const int nev,
+    const long nmat,
+    const ivec &rows,
+    const ivec &cols,
+    const dvec &coeffs
+){
+    const Eigen::SparseMatrix<double> M(convert_matrix(nmat, rows, cols, coeffs));
+    SparseGenMatProd<double> op(M);
+    GenEigsSolver<double, SMALLEST_MAGN, SparseGenMatProd<double>> eigs(&op, nev, std::max(2*nev, nev+2));
+
+    eigs.init();
+    eigs.compute();
+
+    Eigen::VectorXd evalues;
+    if(eigs.info() != SUCCESSFUL){}
+
+    evalues = eigs.eigenvalues().real();
+    dvec vec(evalues.data(), evalues.data() + evalues.size());
+
+    return vec;
 }
 
 int main()
