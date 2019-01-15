@@ -22,7 +22,7 @@ Eigen::SparseMatrix<double> convert_matrix(
     Eigen::SparseMatrix<double> M(n, n);
     std::vector<Triplet> triplet_list;
 
-    for(int i = 0; i < rows.size(); ++i){
+    for(size_t i = 0; i < rows.size(); ++i){
         triplet_list.push_back(Triplet(rows[i], cols[i], coeffs[i]));
     }
     M.setFromTriplets(triplet_list.begin(), triplet_list.end());

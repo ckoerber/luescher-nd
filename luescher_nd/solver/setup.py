@@ -12,8 +12,8 @@ EXTENSIONS = [
         language="c++",
         extra_compile_args=["--std=c++11"],
         include_dirs=[
-            "-I/usr/local/include/eigen3",
-            "-I/Users/christopherkorber/local/spectra/include",
+            "/usr/local/include/eigen3",
+            "/Users/christopherkorber/local/spectra/include",
         ],
     )
 ]

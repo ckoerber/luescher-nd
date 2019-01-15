@@ -1,2 +1,4 @@
 solver
 test
+*.py.cpp
+*.so
