@@ -4,3 +4,4 @@ zeta
 pyzeta.c
 build/
 pyzeta.cpython-37m-darwin.so
+pyzeta.egg-info/
