@@ -1,0 +1,6 @@
+test
+zeta
+*.o
+pyzeta.c
+build/
+pyzeta.cpython-37m-darwin.so
