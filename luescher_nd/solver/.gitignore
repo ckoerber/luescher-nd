@@ -2,3 +2,5 @@ solver
 benchmark
 *.py.cpp
 *.so
+*.dSYM
+*.out.*
