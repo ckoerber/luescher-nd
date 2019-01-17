@@ -48,7 +48,7 @@ dvec get_eigs(
 ){
     const Eigen::SparseMatrix<double> M(convert_matrix(nmat, rows, cols, coeffs));
     SparseGenMatProd<double> op(M);
-    GenEigsSolver<double, SMALLEST_MAGN, SparseGenMatProd<double>> eigs(&op, nev, std::max(2*nev, nev+2));
+    GenEigsSolver<double, SMALLEST_REAL, SparseGenMatProd<double>> eigs(&op, nev, std::max(2*nev, nev+2));
 
     eigs.init();
     eigs.compute();
