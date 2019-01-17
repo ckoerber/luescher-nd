@@ -4,7 +4,6 @@ import cProfile
 import pstats
 import argparse
 
-import numpy as np
 import scipy.sparse as sp
 
 from luescher_nd.solver import get_eigs
