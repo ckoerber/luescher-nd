@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = -Wall -g -O0
+CXXFLAGS = -Wall -g -O3
 INC = -I/usr/local/include/eigen3 -I/Users/christopherkorber/local/spectra/include
 
 OBJECTS = solver.o

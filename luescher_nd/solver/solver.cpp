@@ -1,17 +1,4 @@
-#include <Eigen/Core>
-#include <vector>
-#include <algorithm>
-#include <Eigen/SparseCore>
-#include <Spectra/GenEigsSolver.h>
-#include <Spectra/MatOp/SparseGenMatProd.h>
-#include <iostream>
-
-using namespace Spectra;
-
-typedef std::vector<double> dvec;
-typedef std::vector<long> ivec;
-
-typedef Eigen::Triplet<double> Triplet;
+#include "solver.hpp"
 
 
 Eigen::SparseMatrix<double> convert_matrix(
@@ -86,7 +73,8 @@ int main()
 
     // Initialize and compute
     eigs.init();
-    int nconv = eigs.compute();
+    // int nconv = eigs.compute();
+    eigs.compute();
 
     // Retrieve results
     Eigen::VectorXcd evalues;
