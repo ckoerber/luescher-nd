@@ -44,6 +44,7 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914
     particle_mass: float = 4.758,
     ndim_max: int = 3,
     derivative_shifts: Optional[Dict[int, float]] = None,
+    cuda: bool = False,
 ) -> sp.csr_matrix:
     r"""Computes the kinetic Hamiltonian for a relative two-body system in a 3D box.
 
@@ -146,6 +147,10 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914
 
             n1d_pow_ndim *= n1d_max
 
+    if cupy_sp and cuda:
+        LOGGER.debug("Transfering kinetic hamiltonian to gpu")
+        data = cupy_sp.scipy2cupy(data)
+
     return data.tocsr()
 
 
@@ -154,6 +159,7 @@ def get_full_hamiltonian(
     contact_strength: float,
     ndim_max: int = 3,
     lattice_spacing: float = 1.0,
+    cuda: bool = False,
 ) -> sp.csr_matrix:
     r"""Copies kinetic Hamiltonian and adds contact strength from the (0, 0) component.
 
@@ -178,7 +184,7 @@ def get_full_hamiltonian(
     LOGGER.debug("Allocating full hamiltonian")
     contact_interaction = sp.lil_matrix(kinetic_hamiltonian.shape, dtype=float)
     contact_interaction[(0, 0)] = contact_strength / lattice_spacing ** ndim_max
-    if cupy_sp:
+    if cupy_sp and cuda:
         contact_interaction = cupy_sp.scipy2cupy(contact_interaction)
 
     return (contact_interaction + kinetic_hamiltonian).tocsr()
@@ -193,12 +199,12 @@ class Solver:
     lattice_spacing: float = 1.0
     particle_mass: float = 4.758
     ndim_max: int = 3
-    derivative_shifts: Dict[int, float] = field(
-        default_factory=lambda: {-1: 1.0, 0: -2.0, 1: 1.0}, repr=False
-    )
+    derivative_shifts: Optional[Dict[int, float]] = field(default=None, repr=False)
     kinetic_hamiltonian: sp.lil_matrix = field(init=False, repr=False)
+    cuda: bool = field(default=False, repr=False)
 
     def __post_init__(self):
+        self.derivative_shifts = self.derivative_shifts or {-1: 1.0, 0: -2.0, 1: 1.0}
         LOGGER.debug("Allocating kinetic hamiltonian")
         self.kinetic_hamiltonian = get_kinetic_hamiltonian(
             self.n1d_max,
@@ -206,10 +212,8 @@ class Solver:
             self.particle_mass,
             self.ndim_max,
             self.derivative_shifts,
+            self.cuda,
         )
-        if cupy_sp:
-            LOGGER.debug("Transfering kinetic hamiltonian to gpu")
-            self.kinetic_hamiltonian = cupy_sp.scipy2cupy(self.kinetic_hamiltonian)
 
     def get_ground_state(self, contact_strength: float, **kwargs) -> float:
         """Returns smallest algebraic eigenvalue in of Hamiltonian in `[fm]`
@@ -228,9 +232,10 @@ class Solver:
             contact_strength,
             self.ndim_max,
             self.lattice_spacing,
+            self.cuda,
         )
         LOGGER.debug("Computing ground state")
-        if cupy_sp:
+        if cupy_sp and self.cuda:
             out = cupy_sp.lanczos_cp(H, n_eigs=1, **kwargs)[0]
         else:
             out = lina.eigsh(H, k=1, which="SA", **kwargs)[0][0]
@@ -261,7 +266,7 @@ class Solver:
             self.lattice_spacing,
         )
         LOGGER.debug("Computing eigenvalues")
-        if cupy_sp:
+        if cupy_sp and self.cuda:
             if "max_iter" not in kwargs:
                 kwargs["max_iter"] = n_energies + 10
             out = cupy_sp.lanczos_cp(H, n_eigs=n_energies, **kwargs)
