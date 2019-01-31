@@ -94,7 +94,7 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     author=__author__,
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", "solvers", "benchmarks"]),
     install_requires=REQUIREMENTS,
     test_suite="tests",
     cmdclass={"configure": Configure},
