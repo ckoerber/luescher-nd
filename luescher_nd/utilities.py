@@ -16,6 +16,7 @@ import scipy.sparse.linalg as lina
 
 try:
     from solvers.src import cupy_sp
+    import cupy as cp
 except ModuleNotFoundError:
     cupy_sp = None  # pylint: disable=C0103
 
@@ -218,6 +219,7 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
+        contact_strength = cp.array(contact_strength) if cupy_sp else contact_strength
         H = get_full_hamiltonian(
             self.kinetic_hamiltonian,
             contact_strength,
@@ -249,6 +251,7 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
+        contact_strength = cp.array(contact_strength) if cupy_sp else contact_strength
         H = get_full_hamiltonian(
             self.kinetic_hamiltonian,
             contact_strength,
