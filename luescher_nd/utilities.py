@@ -5,6 +5,8 @@ import itertools
 from dataclasses import dataclass
 from dataclasses import field
 
+import logging
+
 from typing import Optional
 from typing import Dict
 
@@ -16,6 +18,23 @@ try:
     from solvers.src import cupy_sp
 except ModuleNotFoundError:
     cupy_sp = None  # pylint: disable=C0103
+
+
+def get_logger(level):
+    """Creates a logger a given level
+    """
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("[%(name)s|%(asctime)s] %(message)s")
+    ch.setFormatter(formatter)
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(level)
+    logger.addHandler(ch)
+    return logger
+
+
+LOGGER = get_logger(logging.info)
 
 
 def get_kinetic_hamiltonian(  # pylint: disable=R0914
@@ -175,6 +194,7 @@ class Solver:
     kinetic_hamiltonian: sp.lil_matrix = field(init=False, repr=False)
 
     def __post_init__(self):
+        LOGGER.debug("Allocating kinetic hamiltonian")
         self.kinetic_hamiltonian = get_kinetic_hamiltonian(
             self.n1d_max,
             self.lattice_spacing,
@@ -182,6 +202,9 @@ class Solver:
             self.ndim_max,
             self.derivative_shifts,
         )
+        if cupy_sp:
+            LOGGER.debug("Transfering kinetic hamiltonian to gpu")
+            self.kinetic_hamiltonian = cupy_sp.scipy2cupy(self.kinetic_hamiltonian)
 
     def get_ground_state(self, contact_strength: float, **kwargs) -> float:
         """Returns smallest algebraic eigenvalue in of Hamiltonian in `[fm]`
@@ -201,11 +224,9 @@ class Solver:
             self.ndim_max,
             self.lattice_spacing,
         )
+        LOGGER.debug("Computing ground state")
         if cupy_sp:
-            H_cp = cupy_sp.scipy2cupy(H)
-            if "max_iter" not in kwargs:
-                kwargs["max_iter"] = 10
-            out = cupy_sp.lanczos_cp(H_cp, n_eigs=1, **kwargs)[0]
+            out = cupy_sp.lanczos_cp(H, n_eigs=1, **kwargs)[0]
         else:
             out = lina.eigsh(H, k=1, which="SA", **kwargs)[0][0]
 
@@ -234,11 +255,11 @@ class Solver:
             self.ndim_max,
             self.lattice_spacing,
         )
+        LOGGER.debug("Computing eigenvalues")
         if cupy_sp:
-            H_cp = cupy_sp.scipy2cupy(H)
             if "max_iter" not in kwargs:
                 kwargs["max_iter"] = n_energies + 10
-            out = cupy_sp.lanczos_cp(H_cp, n_eigs=1, **kwargs)
+            out = cupy_sp.lanczos_cp(H, n_eigs=n_energies, **kwargs)
         else:
             out = lina.eigsh(H, k=n_energies, which="SA", **kwargs)[0]
         return out
