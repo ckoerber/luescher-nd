@@ -1,3 +1,4 @@
+# pylint: disable=E1101
 """Module for computing expectation values of kinetic hamiltonian in n dimensions.
 """
 import itertools
@@ -10,6 +11,11 @@ from typing import Dict
 import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as lina
+
+try:
+    from solvers.src import cupy_sp
+except ModuleNotFoundError:
+    cupy_sp = None  # pylint: disable=C0103
 
 
 def get_kinetic_hamiltonian(  # pylint: disable=R0914
@@ -195,7 +201,15 @@ class Solver:
             self.ndim_max,
             self.lattice_spacing,
         )
-        return lina.eigsh(H, k=1, which="SA", **kwargs)[0][0]
+        if cupy_sp:
+            H_cp = cupy_sp.scipy2cupy(H)
+            if "max_iter" not in kwargs:
+                kwargs["max_iter"] = 10
+            out = cupy_sp.lanczos_cp(H_cp, n_eigs=1, **kwargs)[0]
+        else:
+            out = lina.eigsh(H, k=1, which="SA", **kwargs)[0][0]
+
+        return out
 
     def get_energies(
         self, contact_strength: float, n_energies: int = 1, **kwargs
@@ -220,7 +234,14 @@ class Solver:
             self.ndim_max,
             self.lattice_spacing,
         )
-        return lina.eigsh(H, k=n_energies, which="SA", **kwargs)[0]
+        if cupy_sp:
+            H_cp = cupy_sp.scipy2cupy(H)
+            if "max_iter" not in kwargs:
+                kwargs["max_iter"] = n_energies + 10
+            out = cupy_sp.lanczos_cp(H_cp, n_eigs=1, **kwargs)
+        else:
+            out = lina.eigsh(H, k=n_energies, which="SA", **kwargs)[0]
+        return out
 
 
 def get_approx_psi0(
