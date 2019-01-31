@@ -264,6 +264,7 @@ class Solver:
             contact_strength,
             self.ndim_max,
             self.lattice_spacing,
+            self.cuda,
         )
         LOGGER.debug("Computing eigenvalues")
         if cupy_sp and self.cuda:
