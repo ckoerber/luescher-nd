@@ -5,3 +5,5 @@ build/
 configure.yaml
 .env
 .luescher-nd
+*.so
+__pycache__
