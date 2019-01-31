@@ -34,7 +34,7 @@ def get_logger(level):
     return logger
 
 
-LOGGER = get_logger(logging.info)
+LOGGER = get_logger(logging.INFO)
 
 
 def get_kinetic_hamiltonian(  # pylint: disable=R0914
