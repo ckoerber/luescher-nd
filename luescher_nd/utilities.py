@@ -185,7 +185,7 @@ def get_full_hamiltonian(
     contact_interaction = sp.lil_matrix(kinetic_hamiltonian.shape, dtype=float)
     contact_interaction[(0, 0)] = contact_strength / lattice_spacing ** ndim_max
     if cupy_sp and cuda:
-        contact_interaction = cupy_sp.scipy2cupy(contact_interaction)
+        contact_interaction = cupy_sp.scipy2cupy(contact_interaction.tocsr())
 
     return (contact_interaction + kinetic_hamiltonian).tocsr()
 
