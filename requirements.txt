@@ -1,3 +1,5 @@
+pyyaml
+cython
 dataclasses
 typing
 numpy
