@@ -175,9 +175,13 @@ def get_full_hamiltonian(
             The strength of the contact interaction in respective units.
             This depends on the dimension of the problem, e.g., [fm]**(-1 - ndim).
     """
-    hamiltonian = kinetic_hamiltonian.copy()
-    hamiltonian[0, 0] += contact_strength / lattice_spacing ** ndim_max
-    return hamiltonian
+    LOGGER.debug("Allocating full hamiltonian")
+    contact_interaction = sp.lil_matrix(kinetic_hamiltonian.shape, dtype=float)
+    contact_interaction[(0, 0)] = contact_strength / lattice_spacing ** ndim_max
+    if cupy_sp:
+        contact_interaction = cupy_sp.scipy2cupy(contact_interaction)
+
+    return (contact_interaction + kinetic_hamiltonian).tocsr()
 
 
 @dataclass
@@ -219,7 +223,6 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
-        contact_strength = cp.array(contact_strength) if cupy_sp else contact_strength
         H = get_full_hamiltonian(
             self.kinetic_hamiltonian,
             contact_strength,
@@ -251,7 +254,6 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
-        contact_strength = cp.array(contact_strength) if cupy_sp else contact_strength
         H = get_full_hamiltonian(
             self.kinetic_hamiltonian,
             contact_strength,
