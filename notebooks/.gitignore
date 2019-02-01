@@ -1,1 +1,4 @@
 qm-luescher-example
+*.err
+*.out
+
