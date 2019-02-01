@@ -38,6 +38,49 @@ def get_logger(level):
 LOGGER = get_logger(logging.INFO)
 
 
+def get_laplace_coefficients(n_step: int):
+    """Implementation fo finite step laplace derivative coefficients.
+
+    See also https://en.wikipedia.org/wiki/Finite_difference_coefficient.
+
+    Arguments
+    ---------
+        n_step: int
+            Step range of derivative. Must be larger than 0.
+    """
+    out = {}
+
+    if n_step < 1:
+        raise ValueError("'n_step' must be larger than zero.")
+
+    elif n_step == 1:
+        out[0] = -2
+        out[1] = out[-1] = 1
+
+    elif n_step == 2:
+        out[0] = -5 / 2
+        out[1] = out[-1] = 4 / 3
+        out[2] = out[-2] = -1 / 12
+
+    elif n_step == 3:
+        out[0] = -49 / 18
+        out[1] = out[-1] = 3 / 2
+        out[2] = out[-2] = -3 / 20
+        out[3] = out[-3] = 1 / 90
+
+    elif n_step == 4:
+        out[0] = -205 / 72
+        out[1] = out[-1] = 8 / 5
+        out[2] = out[-2] = -1 / 5
+        out[3] = out[-3] = 8 / 315
+        out[4] = out[-4] = -1 / 560
+
+    else:
+        raise NotImplementedError("'n_step' not implemented for values larger than 6.")
+
+    return out
+
+
 def get_kinetic_hamiltonian(  # pylint: disable=R0914
     n1d_max: int,
     lattice_spacing: float = 1.0,
