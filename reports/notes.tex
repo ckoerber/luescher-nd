@@ -68,4 +68,79 @@ In other words, you do not get positive energies for $c \in \mathbb{R}$.
 
 It seems like, you only get positive energies once you are in a box...
 
+\clearpage
+\section{Understanding the unitary limit}
+
+
+From my understanding, the unitary limit appears when the total cross section is independent of microscopic parameters.
+The cross section is given by
+\begin{equation}
+	\frac{d \sigma}{d \Omega} = | f(\Omega, p) | ^ 2 \, ,
+\end{equation}
+where
+\begin{align}
+	f(\Omega, p) &= \sum_{l=0}^{\infty} f_l(\Omega, p) \, , \\ 
+	f_l(\Omega, p) &\sim g_l(\Omega) \times \left[\exp( 2 i \delta_l (p)) - 1\right]
+\end{align}
+This is generally true for all $d = 1, 2, 3$ cases modulo not important factors.
+
+In our system, for a simple contact interaction of strength $c_0$, we only find contributions to $l=0$.
+Regarding your eq. (7), one finds that
+\begin{equation}
+	\cot \delta_0 (p) = \begin{cases}
+		a_0 p &, \, d = 1 \\
+		2 / \pi \log(a_0 p) &, \, d = 2 \\
+		- 1/(a_0 p) &, \, d = 3
+	\end{cases}
+\end{equation}
+
+In other words, we are at the unitary limit if $\cot \delta_0$ is independent of $a_0$.
+This can only happen if $a_0 \rightarrow \infty$ or $a_0 \rightarrow \pm 0$ because $a_0$ must be independent of $p$.
+
+\textbf{Does this make sense?}
+
+To discriminate between infinite volume and lattice, I will label the momentum points which are extracted from lattice (as in continuum but finite volume) as $\gamma_i$.
+Here, $\gamma_i^2 = 2 \mu E_i$, $\mu$ being the reduced two-particle mass and $E_i$ being the lattice energy spectrum.
+
+Using your equations (35-37) and combining this with your eq. (7), one finds
+\begin{equation}\label{def:a0}
+	a_0 = \begin{cases}
+		\frac{L}{2\pi^2}S_1(x_i) & \, , d =1 \\
+		\frac{L}{2\pi} \exp \left\{ S_2(x_i) / (2\pi) \right\} & \, , d =2 \\
+		\frac{ \pi L}{ S_3(x_i) } & \, , d =3
+	\end{cases}
+	\qquad \forall_i \, ,
+\end{equation}
+with $S_j(x_i)$ being the Lüscher Zeta function in $j$ dimensions and $ x_i = \mu E_i L ^2 / (2 \pi^2) $.
+In other words, if your computation does the right thing, you fix your contact interaction strength $c_0$, which will give you a set of energy levels $E_i(c_0)$.
+For all of the eigenstates $E_i$, all points $S_j(x_i)$ lay on a line because, because $a_0$ is independent of the energy level and eq.~\eqref{def:a0} tells us that there is a one-to-one relation between $S_j(x_i)$ and $a_0$.
+
+So in which cases do we find that $a_0 \to 0, \pm \infty$?
+
+\begin{itemize}
+	\item For $d = 1$ find $c_0$ such that $S_1(x_i(c_0)) \to 0, \pm \infty$ $\forall_i$.
+		Regarding your plots,
+		\begin{itemize}
+			\item $S_1(x_i(c_0)) = 0$ is not possible $\forall_i$ (ground state only approaches zero).
+			\item $S_1(x_i(c_0)) \to - \infty$ is not possible $\forall_i$ (ground state $>0$).
+			\item $S_1(x_i(c_0)) \to + \infty$ is possible $\forall_i$ if $c_0 \to 0^-$.
+		\end{itemize}
+	\item For $d = 2$ find $c_0$ such that $S_2(x_i(c_0)) \to + \infty$ $\forall_i$.
+		Regarding your plots,
+		\begin{itemize}
+			\item $S_2(x_i(c_0)) \to + \infty$ is possible for $c_0 \to 0^-$.
+		\end{itemize}
+	\item For $d = 3$ find $c_0$ such that $S_3(x_i(c_0)) \to 0, \pm \infty$ $\forall_i$.
+		Regarding your plots,
+		\begin{itemize}
+			\item $S_3(x_i(c_0)) = 0$ is possible $\forall_i$.
+			\item $S_3(x_i(c_0)) \to \pm \infty$ is possible for $c_0 \to 0^\mp$.
+		\end{itemize}
+\end{itemize}
+
+Obviously, the cases for $c_0 \to 0^\pm$ make sense --- if there is no interaction, than there is only the mass scale.
+However this solution is not of interest.
+This leaves $d=3$ as the only interesting case.
+
+
 \end{document}
