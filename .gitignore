@@ -7,3 +7,4 @@ configure.yaml
 .luescher-nd
 *.so
 __pycache__
+.DS_Store
