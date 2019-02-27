@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # pylint: disable=C0103
 """Export three-dimensional fits to unitary limit
 """
@@ -32,9 +33,9 @@ class Minimizer:  # pylint: disable=R0903
 def main(L: int = 1.0):  # pylint: disable=R0914
     """Compute energy levels for different derivative implementations
     """
-    x0 = -0.096_124_05
+    x0 = -0.096
 
-    epsilons = [0.1]  # 0.08, 0.05, 0.02, 0.01]
+    epsilons = [0.1, 0.08, 0.05, 0.02, 0.01]
 
     mu = M_NUCLEON / 2
 
