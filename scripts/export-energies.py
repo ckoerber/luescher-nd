@@ -66,7 +66,7 @@ class Minimizer:  # pylint: disable=R0903
 def main(L: int = 1.0):  # pylint: disable=R0914
     """Compute energy levels for different derivative implementations
     """
-    epsilons = [L / 10, L / 15]  # , L / 20, L / 50]
+    epsilons = [L / 10, L / 15, L / 20, L / 50]
 
     mu = M_NUCLEON / 2
 
