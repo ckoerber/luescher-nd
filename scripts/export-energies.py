@@ -22,60 +22,51 @@ class Minimizer:  # pylint: disable=R0903
     """Class to simplify fitting of energy levels
     """
 
-    def __init__(self, solver, L, epsilon, mu, ymax=1.0e3):
+    def __init__(self, solver, L, epsilon, mu):
         self.solver = solver
         self.epsilon = epsilon
         self.L = L
         self.mu = mu
-        self.ymax = ymax
         self.zeta3d = Zeta3D(L, epsilon)
 
     def __call__(self, c0):
         """Compute difference of first energy level and expected energy squared.
         """
-        return self.p_cot_delta_at_0(c0) ** 2
+        return self.cost_function(c0)
 
-    def p_cot_delta_at_0(self, c0: float) -> float:
+    def effective_range(self, x):
+        """
+        """
+        p2 = x / (self.L / 2 / np.pi) ** 2
+        Lambda = np.pi / self.epsilon
+        r0 = 4 / np.pi / Lambda
+        P = -np.pi ** 2 / 96
+        return r0 / 2 * p2 - P * r0 ** 3 * p2 ** 2
+
+    def cost_function(self, c0: float, n_energies=2, weight_at_zero=10.0) -> float:
         r"""Computes $p \\cot(delta(p))$ at $p = 0$ by solving lattice Schrödinger eqn.
 
         Interpolates phase shift expansion for interacting states and returns the result
         of $p \\cot(delta(p))$ at $p = 0$.
         """
-        print("------")
-        print(c0)
-        energies = self.solver.get_energies(c0, n_energies=60)
-        all_x = energies * self.mu * self.L ** 2 / 2 / np.pi ** 2
-        unique_x = []
-        for x in all_x:
-            if unique_x:
-                if np.min(np.abs(unique_x - x)) > 1.0e-2:
-                    unique_x.append(x)
-            else:
-                unique_x.append(x)
+        energies = self.solver.get_energies(c0, n_energies=n_energies)
+        x = energies * self.mu * self.L ** 2 / 2 / np.pi ** 2
+        if not x[0] < 0:
+            raise ValueError("Smallest energy not a bound state")
 
-        unique_x = np.array(unique_x)
-        all_y = self.zeta3d(unique_x) / np.pi / self.L
+        if x[1] < 0:
+            raise ValueError("Excited state is bound state")
 
-        print(unique_x)
-        print(all_y)
+        y = self.zeta3d(x) / np.pi / self.L
+        y_intp = interp1d(x, y, kind=1)
 
-        interacting_x = []
-        interacting_y = []
-        for x, y in zip(unique_x, all_y):
-            if x < 0 or abs(y) < self.ymax:
-                interacting_x.append(x)
-                interacting_y.append(y)
-
-        print(np.array(interacting_x))
-        print(np.array(interacting_y))
-        y_intp = interp1d(np.array(interacting_x), np.array(interacting_y), kind=1)
-        return y_intp(0)
+        return np.sum(np.array([y[0], y_intp(0) * weight_at_zero, y[1]]) ** 2)
 
 
 def main(L: int = 1.0):  # pylint: disable=R0914
     """Compute energy levels for different derivative implementations
     """
-    epsilons = [L / 10, L / 15, L / 20, L / 50]
+    epsilons = [L / 10, L / 15]  # , L / 20, L / 50]
 
     mu = M_NUCLEON / 2
 
@@ -97,7 +88,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
             )
 
             minimizer = Minimizer(solver, L_eff, epsilon, mu)
-            res = opt.minimize(minimizer, -0.01, bounds=((-1.0, -1.0e-4),), method="TNC")
+            res = opt.minimize(minimizer, -1.0, bounds=((-4.0, -1.0e-4),), method="TNC")
 
             energies = solver.get_energies(res.x, n_energies=min((n1d_max - 2) ** 2, 60))
 
