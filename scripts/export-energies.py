@@ -2,6 +2,8 @@
 # pylint: disable=C0103
 """Export three-dimensional fits to unitary limit
 """
+import os
+
 # Data management
 import numpy as np
 import pandas as pd
@@ -34,15 +36,6 @@ class Minimizer:  # pylint: disable=R0903
         """
         return self.cost_function(c0)
 
-    def effective_range(self, x):
-        """
-        """
-        p2 = x / (self.L / 2 / np.pi) ** 2
-        Lambda = np.pi / self.epsilon
-        r0 = 4 / np.pi / Lambda
-        P = -np.pi ** 2 / 96
-        return r0 / 2 * p2 - P * r0 ** 3 * p2 ** 2
-
     def cost_function(self, c0: float, n_energies=2, weight_at_zero=10.0) -> float:
         r"""Computes $p \\cot(delta(p))$ at $p = 0$ by solving lattice Schrödinger eqn.
 
@@ -71,11 +64,19 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     mu = M_NUCLEON / 2
 
     data = []
-    df = pd.DataFrame()
+    if os.path.exists("luescher-3d-res.csv"):
+        df = pd.read_csv("luescher-3d-res.csv")
+    else:
+        df = pd.DataFrame(
+            columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"]
+        )
 
     for nstep in range(1, 5):
         for epsilon in epsilons:
             print(f"[+] nstep = {nstep}, epsilon = {epsilon}")
+
+            if df.query("epsilon == @epsilon and nstep == @nstep").empty:
+                print("[+] Skip")
 
             n1d_max = int(L / epsilon)
             L_eff = n1d_max * epsilon
