@@ -4,3 +4,4 @@ qm-luescher-example
 *.pdf
 *.csv
 *.png
+devel*.ipynb
