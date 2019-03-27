@@ -10,8 +10,7 @@ from scipy.sparse.linalg import eigsh
 
 from luescher_nd.utilities import Solver
 from luescher_nd.utilities import get_laplace_coefficients
-
-from luescher_nd.hamiltonian import MomentumContactHamiltonian
+from luescher_nd.utilities import MomentumContactHamiltonian
 
 
 class MomentumSpaceTest(TestCase):

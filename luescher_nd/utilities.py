@@ -14,6 +14,8 @@ import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as lina
 
+from scipy.sparse.linalg import LinearOperator
+
 try:
     from solvers.src import cupy_sp
     import cupy as cp  # pylint: disable=E0401, W0611
@@ -219,6 +221,61 @@ def get_full_hamiltonian(
     return (contact_interaction + kinetic_hamiltonian).tocsr()
 
 
+@dataclass(frozen=True)
+class MomentumContactHamiltonian:
+    """Contact interaction Hamiltonian in momentum space
+    """
+
+    n1d: int
+    epsilon: float = 1.0
+    m: float = 4.758
+    ndim: int = 3
+    nstep: int = 3
+    c0: float = -1.0
+
+    _disp_over_m: np.ndarray = field(init=False, repr=False)
+    _mat: LinearOperator = field(init=False, repr=False)
+
+    @property
+    def L(self):  # pylint: disable=C0103
+        """Lattice spacing time nodes in one direction
+        """
+        return self.epsilon * self.n1d
+
+    def __post_init__(self):
+        """Initializes the dispersion relation the matvec kernel.
+        """
+        coeffs = get_laplace_coefficients(self.nstep)
+        p1d = np.arange(self.n1d) * 2 * np.pi / self.L
+        disp1d = np.sum(
+            [
+                -cn * np.cos(n * p1d * self.epsilon) / self.epsilon ** 2
+                for n, cn in coeffs.items()
+            ],
+            axis=0,
+        )
+
+        disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
+
+        object.__setattr__(self, "_disp_over_m", disp / 2 / (self.m / 2))
+        object.__setattr__(
+            self,
+            "_mat",
+            LinearOperator(matvec=self.apply, shape=[self.n1d ** self.ndim] * 2),
+        )
+
+    @property
+    def mat(self) -> LinearOperator:
+        """The matvec kernel of the Hamiltonian
+        """
+        return self._mat
+
+    def apply(self, vec):
+        """Applies hamiltonian to vector
+        """
+        return self._disp_over_m * vec + self.c0 * np.sum(vec) / self.L ** self.ndim
+
+
 @dataclass
 class Solver:
     """Solver for fast eigenvalue access depending on contact interaction strength.
@@ -231,18 +288,30 @@ class Solver:
     derivative_shifts: Optional[Dict[int, float]] = field(default=None, repr=False)
     kinetic_hamiltonian: sp.lil_matrix = field(init=False, repr=False)
     cuda: bool = field(default=False, repr=False)
+    mom_space: bool = False
+    nstep: Optional[int] = None
 
     def __post_init__(self):
         self.derivative_shifts = self.derivative_shifts or {-1: 1.0, 0: -2.0, 1: 1.0}
         LOGGER.debug("Allocating kinetic hamiltonian")
-        self.kinetic_hamiltonian = get_kinetic_hamiltonian(
-            self.n1d_max,
-            self.lattice_spacing,
-            self.particle_mass,
-            self.ndim_max,
-            self.derivative_shifts,
-            self.cuda,
-        )
+        if not self.mom_space:
+            self.kinetic_hamiltonian = get_kinetic_hamiltonian(
+                self.n1d_max,
+                self.lattice_spacing,
+                self.particle_mass,
+                self.ndim_max,
+                self.derivative_shifts,
+                self.cuda,
+            )
+        else:
+            self.kinetic_hamiltonian = MomentumContactHamiltonian(
+                n1d=self.n1d_max,
+                epsilon=self.lattice_spacing,
+                m=self.particle_mass,
+                ndim=self.ndim_max,
+                c0=0.0,
+                nstep=self.nstep,
+            )
 
     def get_ground_state(self, contact_strength: float, **kwargs) -> float:
         """Returns smallest algebraic eigenvalue in of Hamiltonian in `[fm]`
@@ -256,13 +325,24 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
-        H = get_full_hamiltonian(
-            self.kinetic_hamiltonian,
-            contact_strength,
-            self.ndim_max,
-            self.lattice_spacing,
-            self.cuda,
-        )
+
+        if not self.mom_space:
+            H = get_full_hamiltonian(
+                self.kinetic_hamiltonian,
+                contact_strength,
+                self.ndim_max,
+                self.lattice_spacing,
+                self.cuda,
+            )
+        else:
+            H = MomentumContactHamiltonian(
+                n1d=self.n1d_max,
+                epsilon=self.lattice_spacing,
+                m=self.particle_mass,
+                ndim=self.ndim_max,
+                c0=contact_strength,
+                nstep=self.nstep,
+            ).mat
         LOGGER.debug("Computing ground state")
         if cupy_sp and self.cuda:
             out = cupy_sp.lanczos_cp(H, n_eigs=1, **kwargs)[0]
@@ -288,13 +368,23 @@ class Solver:
             kwargs:
                 Additional keyword arguments passed to `eigsh` solver.
         """
-        H = get_full_hamiltonian(
-            self.kinetic_hamiltonian,
-            contact_strength,
-            self.ndim_max,
-            self.lattice_spacing,
-            self.cuda,
-        )
+        if not self.mom_space:
+            H = get_full_hamiltonian(
+                self.kinetic_hamiltonian,
+                contact_strength,
+                self.ndim_max,
+                self.lattice_spacing,
+                self.cuda,
+            )
+        else:
+            H = MomentumContactHamiltonian(
+                n1d=self.n1d_max,
+                epsilon=self.lattice_spacing,
+                m=self.particle_mass,
+                ndim=self.ndim_max,
+                c0=contact_strength,
+                nstep=self.nstep,
+            ).mat
         LOGGER.debug("Computing eigenvalues")
         if cupy_sp and self.cuda:
             if "max_iter" not in kwargs:
