@@ -16,7 +16,7 @@ import scipy.sparse.linalg as lina
 
 try:
     from solvers.src import cupy_sp
-    import cupy as cp
+    import cupy as cp  # pylint: disable=E0401, W0611
 except ModuleNotFoundError:
     cupy_sp = None  # pylint: disable=C0103
 
@@ -67,7 +67,7 @@ def get_laplace_coefficients(n_step: int):
     return coeffs
 
 
-def get_kinetic_hamiltonian(  # pylint: disable=R0914
+def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
     n1d_max: int,
     lattice_spacing: float = 1.0,
     particle_mass: float = 4.758,
