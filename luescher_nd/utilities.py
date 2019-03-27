@@ -13,6 +13,7 @@ from typing import Dict
 import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as lina
+from scipy.special import gamma as gammafunc
 
 from scipy.sparse.linalg import LinearOperator
 
@@ -40,6 +41,12 @@ def get_logger(level):
 LOGGER = get_logger(logging.INFO)
 
 
+def factorial(n: np.ndarray) -> np.ndarray:  # pylint: disable=C0103
+    """Computes factorial of n
+    """
+    return gammafunc(n + 1)
+
+
 def get_laplace_coefficients(n_step: int):
     """Computes the derivative coefficient for lapace operator up to step range Nstep.
 
@@ -54,7 +61,7 @@ def get_laplace_coefficients(n_step: int):
     v[1] = 1
 
     nn, mm = np.meshgrid(*[np.arange(n_step + 1)] * 2)
-    A = 1 / np.vectorize(np.math.factorial)(2 * mm) * (-1) ** mm * nn ** (2 * mm)
+    A = 1 / factorial(2 * mm) * (-1) ** mm * nn ** (2 * mm)
 
     gamma = np.linalg.solve(A, v)
 
