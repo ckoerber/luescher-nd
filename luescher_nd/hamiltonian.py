@@ -37,7 +37,7 @@ class MomentumContactHamiltonian:
         p1d = np.arange(self.n1d) * 2 * np.pi / self.L
         disp1d = np.sum([-cn * np.cos(n * p1d) for n, cn in coeffs.items()], axis=0)
 
-        disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0)
+        disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
 
         object.__setattr__(self, "_disp_over_m", disp / 2 / self.m)
         object.__setattr__(
@@ -55,4 +55,4 @@ class MomentumContactHamiltonian:
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
-        return self.mat * vec + self.c0 * np.sum(vec) / self.L ** self.ndim
+        return self._disp_over_m * vec + self.c0 * np.sum(vec) / self.L ** self.ndim
