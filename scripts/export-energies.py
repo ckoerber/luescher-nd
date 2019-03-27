@@ -74,8 +74,8 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     mu = M_NUCLEON / 2
 
     data = []
-    if os.path.exists("luescher-3d-res.csv"):
-        df = pd.read_csv("luescher-3d-res.csv")
+    if os.path.exists("luescher-3d-res-mom.csv"):
+        df = pd.read_csv("luescher-3d-res-mom.csv")
     else:
         df = pd.DataFrame(
             columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"]
@@ -83,7 +83,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
 
     for epsilon in epsilons:
         initial = -1.0
-        for nstep in range(1, 5):
+        for nstep in range(5, 45, 5):
 
             print(f"[+] nstep = {nstep}, epsilon = {epsilon}")
 
@@ -98,7 +98,9 @@ def main(L: int = 1.0):  # pylint: disable=R0914
                 n1d_max=n1d_max,
                 ndim_max=3,
                 lattice_spacing=epsilon,
-                derivative_shifts=ut.get_laplace_coefficients(nstep),
+                derivative_shifts=None,
+                nstep=nstep,
+                mom_space=True,
             )
 
             minimizer = Minimizer(solver, L_eff, epsilon, mu)
@@ -126,7 +128,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
 
             tf = pd.DataFrame(data)
             df = df.append(tf, sort=False)
-            df.to_csv("luescher-3d-res.csv", index=False)
+            df.to_csv("luescher-3d-res-mom.csv", index=False)
 
 
 if __name__ == "__main__":
