@@ -25,6 +25,7 @@ class MomentumContactHamiltonian:
     _disp_over_m: np.ndarray = field(init=False, repr=False)
     _mat: LinearOperator = field(init=False, repr=False)
 
+    @property
     def L(self):  # pylint: disable=C0103
         """Lattice spacing time nodes in one direction
         """
@@ -35,11 +36,17 @@ class MomentumContactHamiltonian:
         """
         coeffs = get_laplace_coefficients(self.nstep)
         p1d = np.arange(self.n1d) * 2 * np.pi / self.L
-        disp1d = np.sum([-cn * np.cos(n * p1d) for n, cn in coeffs.items()], axis=0)
+        disp1d = np.sum(
+            [
+                -cn * np.cos(n * p1d * self.epsilon) / self.epsilon ** 2
+                for n, cn in coeffs.items()
+            ],
+            axis=0,
+        )
 
         disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
 
-        object.__setattr__(self, "_disp_over_m", disp / 2 / self.m)
+        object.__setattr__(self, "_disp_over_m", disp / 2 / (self.m / 2))
         object.__setattr__(
             self,
             "_mat",
