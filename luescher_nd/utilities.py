@@ -39,46 +39,32 @@ LOGGER = get_logger(logging.INFO)
 
 
 def get_laplace_coefficients(n_step: int):
-    """Implementation fo finite step laplace derivative coefficients.
+    """Computes the derivative coefficient for lapace operator up to step range Nstep.
 
-    See also https://en.wikipedia.org/wiki/Finite_difference_coefficient.
+    The dispersion of the related momentum squared operator is equal to `p ** 2` up to
+    order `p ** (2 * NStep)`.
 
-    Arguments
-    ---------
-        n_step: int
-            Step range of derivative. Must be larger than 0.
+    **Arguments**
+        Nstep: int
+            The number of momentum steps in each direction.
     """
-    out = {}
+    v = np.zeros(n_step + 1)
+    v[1] = 1
 
-    if n_step < 1:
-        raise ValueError("'n_step' must be larger than zero.")
+    nn, mm = np.meshgrid(*[np.arange(n_step + 1)] * 2)
+    A = 1 / np.vectorize(np.math.factorial)(2 * mm) * (-1) ** mm * nn ** (2 * mm)
 
-    elif n_step == 1:
-        out[0] = -2
-        out[1] = out[-1] = 1
+    gamma = np.linalg.solve(A, v)
 
-    elif n_step == 2:
-        out[0] = -5 / 2
-        out[1] = out[-1] = 4 / 3
-        out[2] = out[-2] = -1 / 12
+    coeffs = {}
+    for n, coeff in enumerate(gamma):
+        if n == 0:
+            coeffs[n] = -coeff
+        else:
+            coeffs[+n] = -coeff / 2
+            coeffs[-n] = -coeff / 2
 
-    elif n_step == 3:
-        out[0] = -49 / 18
-        out[1] = out[-1] = 3 / 2
-        out[2] = out[-2] = -3 / 20
-        out[3] = out[-3] = 1 / 90
-
-    elif n_step == 4:
-        out[0] = -205 / 72
-        out[1] = out[-1] = 8 / 5
-        out[2] = out[-2] = -1 / 5
-        out[3] = out[-3] = 8 / 315
-        out[4] = out[-4] = -1 / 560
-
-    else:
-        raise NotImplementedError("'n_step' not implemented for values larger than 6.")
-
-    return out
+    return coeffs
 
 
 def get_kinetic_hamiltonian(  # pylint: disable=R0914
@@ -361,7 +347,7 @@ def get_approx_psi0(
 
     kappa = np.sqrt(-2 * particle_mass * particle_energy)
 
-    psi0 = np.exp(-kappa * r) / (r + 1.e-7)
+    psi0 = np.exp(-kappa * r) / (r + 1.0e-7)
     psi0 /= np.sqrt(psi0 @ psi0 * lattice_spacing ** ndim_max)
 
     return psi0

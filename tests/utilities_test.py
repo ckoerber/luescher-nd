@@ -8,6 +8,70 @@ import numpy as np
 
 
 from luescher_nd.utilities import get_kinetic_hamiltonian
+from luescher_nd.utilities import get_laplace_coefficients
+
+
+class TestLaplaceCoefficients(TestCase):
+    """Tests coefficients for nstep derivative
+    """
+
+    n_step_max: int = 4
+
+    @staticmethod
+    def _get_laplace_coefficients(n_step: int):
+        """Implementation fo finite step laplace derivative coefficients.
+
+        See also https://en.wikipedia.org/wiki/Finite_difference_coefficient.
+
+        Arguments
+        ---------
+            n_step: int
+                Step range of derivative. Must be larger than 0.
+        """
+        out = {}
+
+        if n_step < 1:
+            raise ValueError("'n_step' must be larger than zero.")
+
+        elif n_step == 1:
+            out[0] = -2
+            out[1] = out[-1] = 1
+
+        elif n_step == 2:
+            out[0] = -5 / 2
+            out[1] = out[-1] = 4 / 3
+            out[2] = out[-2] = -1 / 12
+
+        elif n_step == 3:
+            out[0] = -49 / 18
+            out[1] = out[-1] = 3 / 2
+            out[2] = out[-2] = -3 / 20
+            out[3] = out[-3] = 1 / 90
+
+        elif n_step == 4:
+            out[0] = -205 / 72
+            out[1] = out[-1] = 8 / 5
+            out[2] = out[-2] = -1 / 5
+            out[3] = out[-3] = 8 / 315
+            out[4] = out[-4] = -1 / 560
+
+        else:
+            raise NotImplementedError(
+                "'n_step' not implemented for values larger than 6."
+            )
+
+        return out
+
+    def test_coefficients(self):
+        """Tests values for `luescher_nd.utilities.get_laplace_coefficients` coeffiencts.
+
+        Compares results against Wikipedia counterparts.
+        """
+        for n in range(1, self.n_step_max + 1):
+            with self.subTest(n_step_max=n):
+                computed = get_laplace_coefficients(n)
+                for nstep, coeff in self._get_laplace_coefficients(n).items():
+                    self.assertAlmostEqual(coeff, computed[nstep], places=12)
 
 
 class TestKineticHamiltonian(TestCase):
@@ -20,7 +84,7 @@ class TestKineticHamiltonian(TestCase):
 
         self.n1d = 4
         self.ndim = 2
-        self.shifts = {-1: 1., 0: -2., 1: 1.}
+        self.shifts = {-1: 1.0, 0: -2.0, 1: 1.0}
         self.lattice_spacing = 1.24
         self.mass = 0.356
 
