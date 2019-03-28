@@ -71,11 +71,12 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     """
     epsilons = [L / 10, L / 15, L / 20, L / 50]
 
+    file = "luescher-3d-res-mom-nstep-inf.csv"
     mu = M_NUCLEON / 2
 
     data = []
-    if os.path.exists("luescher-3d-res-mom.csv"):
-        df = pd.read_csv("luescher-3d-res-mom.csv")
+    if os.path.exists(file):
+        df = pd.read_csv(file)
     else:
         df = pd.DataFrame(
             columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"]
@@ -83,7 +84,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
 
     for epsilon in epsilons:
         initial = -1.0
-        for nstep in range(5, 45, 5):
+        for nstep in [None]:
 
             print(f"[+] nstep = {nstep}, epsilon = {epsilon}")
 
@@ -111,7 +112,9 @@ def main(L: int = 1.0):  # pylint: disable=R0914
                 method="TNC",
             )
 
-            energies = solver.get_energies(res.x, n_energies=min((n1d_max - 2) ** 2, 60))
+            energies = solver.get_energies(
+                res.x, n_energies=min((n1d_max - 2) ** 2, 200)
+            )
             initial = res.x[0]
 
             for nlevel, energy in enumerate(energies):
@@ -128,7 +131,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
 
             tf = pd.DataFrame(data)
             df = df.append(tf, sort=False)
-            df.to_csv("luescher-3d-res-mom.csv", index=False)
+            df.to_csv(file, index=False)
 
 
 if __name__ == "__main__":
