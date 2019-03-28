@@ -237,7 +237,7 @@ class MomentumContactHamiltonian:
     epsilon: float = 1.0
     m: float = 4.758
     ndim: int = 3
-    nstep: int = 3
+    nstep: Optional[int] = 3
     c0: float = -1.0
 
     _disp_over_m: np.ndarray = field(init=False, repr=False)
@@ -252,15 +252,27 @@ class MomentumContactHamiltonian:
     def __post_init__(self):
         """Initializes the dispersion relation the matvec kernel.
         """
-        coeffs = get_laplace_coefficients(self.nstep)
-        p1d = np.arange(self.n1d) * 2 * np.pi / self.L
-        disp1d = np.sum(
-            [
-                -cn * np.cos(n * p1d * self.epsilon) / self.epsilon ** 2
-                for n, cn in coeffs.items()
-            ],
-            axis=0,
-        )
+        if self.nstep is None:
+            p1d = (
+                np.array(
+                    list(range(0, (self.n1d + 1) // 2))
+                    + list(range(self.n1d // 2, 0, -1))
+                )
+                * 2
+                * np.pi
+                / self.L
+            )
+            disp1d = p1d ** 2
+        else:
+            coeffs = get_laplace_coefficients(self.nstep)
+            p1d = np.arange(self.n1d) * 2 * np.pi / self.L
+            disp1d = np.sum(
+                [
+                    -cn * np.cos(n * p1d * self.epsilon) / self.epsilon ** 2
+                    for n, cn in coeffs.items()
+                ],
+                axis=0,
+            )
 
         disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
 
