@@ -51,7 +51,7 @@ class Zeta3D:
                 axis=0,
             )
 
-        return np.sum(np.meshgrid(*[n2_disp1d] * 3), axis=0)
+        return np.sum([el.flatten() for el in np.meshgrid(*[n2_disp1d] * 3)], axis=0)
 
     def __post_init__(self):
         """Initializes the elements of the sum for the zeta function denominator
