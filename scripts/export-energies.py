@@ -71,7 +71,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     """
     epsilons = [L / 10, L / 15, L / 20, L / 50]
 
-    file = "luescher-3d-res-mom-nstep-inf.csv"
+    file = "luescher-3d-dispersion-final.csv"
     mu = M_NUCLEON / 2
 
     data = []
@@ -84,7 +84,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
 
     for epsilon in epsilons:
         initial = -1.0
-        for nstep in [None]:
+        for nstep in [1, 2, 3, 4, None]:
 
             print(f"[+] nstep = {nstep}, epsilon = {epsilon}")
 
@@ -113,7 +113,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
             )
 
             energies = solver.get_energies(
-                res.x, n_energies=min((n1d_max - 2) ** 2, 200)
+                res.x, n_energies=min((n1d_max - 2) ** 2, 1000)
             )
             initial = res.x[0]
 
