@@ -2,6 +2,8 @@
 # pylint: disable=C0103
 """Export three-dimensional fits to unitary limit
 """
+from typing import Optional
+
 import os
 
 # Data management
@@ -24,12 +26,13 @@ class Minimizer:  # pylint: disable=R0903
     """Class to simplify fitting of energy levels
     """
 
-    def __init__(self, solver, L, epsilon, mu):
+    def __init__(self, solver, L, epsilon, mu, nstep: Optional[int] = None):
         self.solver = solver
         self.epsilon = epsilon
         self.L = L
         self.mu = mu
-        self.zeta3d = Zeta3D(L, epsilon)
+        self.nstep = nstep
+        self.zeta3d = Zeta3D(L, epsilon, nstep=self.nstep)
 
     def __call__(self, c0):
         """Compute difference of first energy level and expected energy squared.
@@ -69,7 +72,7 @@ class Minimizer:  # pylint: disable=R0903
 def main(L: int = 1.0):  # pylint: disable=R0914
     """Compute energy levels for different derivative implementations
     """
-    epsilons = [L / 10, L / 15, L / 20, L / 50]
+    epsilons = [L / 10, L / 15, L / 20]  # , L / 50]
 
     file = "luescher-3d-dispersion-final.csv"
     mu = M_NUCLEON / 2
@@ -79,7 +82,8 @@ def main(L: int = 1.0):  # pylint: disable=R0914
         df = pd.read_csv(file)
     else:
         df = pd.DataFrame(
-            columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"]
+            columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"],
+            dtype={"nstep": "Int64"},
         )
 
     for epsilon in epsilons:
@@ -104,7 +108,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
                 mom_space=True,
             )
 
-            minimizer = Minimizer(solver, L_eff, epsilon, mu)
+            minimizer = Minimizer(solver, L_eff, epsilon, mu, nstep=nstep)
             res = opt.minimize(
                 minimizer.cost_function_x0,
                 initial,
