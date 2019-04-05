@@ -82,8 +82,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
         df = pd.read_csv(file)
     else:
         df = pd.DataFrame(
-            columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"],
-            dtype={"nstep": "Int64"},
+            columns=["epsilon", "n1d_max", "nstep", "c", "nlevel", "energy"]
         )
 
     for epsilon in epsilons:
@@ -134,6 +133,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
                 )
 
             tf = pd.DataFrame(data)
+            tf["nstep"] = tf["nstep"].astype("Int64")
             df = df.append(tf, sort=False)
             df.to_csv(file, index=False)
 
