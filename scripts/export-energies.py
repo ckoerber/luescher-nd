@@ -82,7 +82,7 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     dispersion_zeta = False
 
     file = (
-        "luescher-3d-" + "dispersion" if dispersion_zeta else "standard" + "-final.csv"
+        "luescher-3d-" + ("dispersion" if dispersion_zeta else "standard") + "-final.csv"
     )
     mu = M_NUCLEON / 2
 
