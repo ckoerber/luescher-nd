@@ -43,6 +43,7 @@ class Configure(Command):
     def initialize_options(self):
         """Default directories to look for install.
         """
+        data = None
         if path.exists(CONFIGURE_FILE):
             with open(CONFIGURE_FILE, "r") as inp:
                 data = yaml.load(inp)
