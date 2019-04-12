@@ -108,15 +108,16 @@ def main(L: int = 1.0):  # pylint: disable=R0914
             )
 
             minimizer = Minimizer(solver, L_eff, epsilon, mu, nstep=nstep)
-            res = opt.minimize(
+            res = opt.minimize_scalar(
                 minimizer.cost_function_x0,
-                initial,
-                bounds=((-4.0, -1.0e-4),),
-                method="TNC",
+                bracket=(-4.0, -1.0e-4),
+                method="brent",
+                tol=1.0e-12,
+                options={"xtol": 1.0e-12},
             )
 
             energies = solver.get_energies(
-                res.x, n_energies=min((n1d_max - 2) ** 2, 1000)
+                res.x, n_energies=min((n1d_max - 2) ** 2, 600)
             )
             initial = res.x[0]
 
