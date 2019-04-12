@@ -83,7 +83,13 @@ EXTENSIONS = [
         [path.join(THISDIR, "luescher_nd", "zeta", "pyzeta.pyx")],
         language="c++",
         extra_compile_args=["--std=c++11"],
-    )
+    ),
+    Extension(
+        path.join("luescher_nd", "zeta", "extern", "pyzeta").replace("/", "."),
+        [path.join(THISDIR, "luescher_nd", "zeta", "extern", "pyzeta.pyx")],
+        language="c++",
+        extra_compile_args=["--std=c++11"],
+    ),
 ]
 
 
