@@ -2,9 +2,6 @@
 from libcpp.vector cimport vector
 import numpy as np
 
-cdef vector[long] ivec
-cdef vector[double] dvec
-
 cdef extern from "zeta.cc":
     double zetaRGL_re(int l, int m, const vector[double] s, double gam, double usq)
 
