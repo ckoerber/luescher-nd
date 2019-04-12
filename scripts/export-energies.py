@@ -16,6 +16,7 @@ from scipy.interpolate import interp1d
 
 import luescher_nd.utilities as ut
 from luescher_nd.zeta.zeta3d import Zeta3D
+from luescher_nd.zeta.extern import pyzeta
 
 
 HBARC = 197.326  # MeV / fm
@@ -26,13 +27,18 @@ class Minimizer:  # pylint: disable=R0903
     """Class to simplify fitting of energy levels
     """
 
-    def __init__(self, solver, L, epsilon, mu, nstep: Optional[int] = None):
+    def __init__(
+        self, solver, L, epsilon, mu, nstep: Optional[int] = None, dispersion_zeta=True
+    ):
         self.solver = solver
         self.epsilon = epsilon
         self.L = L
         self.mu = mu
         self.nstep = nstep
-        self.zeta3d = Zeta3D(L, epsilon, nstep=self.nstep)
+        self.dispersion_zeta = dispersion_zeta
+        self.zeta3d = (
+            Zeta3D(L, epsilon, nstep=self.nstep) if dispersion_zeta else pyzeta.zeta
+        )
 
     def __call__(self, c0):
         """Compute difference of first energy level and expected energy squared.
@@ -73,8 +79,11 @@ def main(L: int = 1.0):  # pylint: disable=R0914
     """Compute energy levels for different derivative implementations
     """
     epsilons = [L / 10, L / 15, L / 20, L / 50]
+    dispersion_zeta = False
 
-    file = "luescher-3d-dispersion-final.csv"
+    file = (
+        "luescher-3d-" + "dispersion" if dispersion_zeta else "standard" + "-final.csv"
+    )
     mu = M_NUCLEON / 2
 
     data = []
@@ -86,7 +95,6 @@ def main(L: int = 1.0):  # pylint: disable=R0914
         )
 
     for epsilon in epsilons:
-        initial = -1.0
         for nstep in [1, 2, 3, 4, None]:
 
             print(f"[+] nstep = {nstep}, epsilon = {epsilon}")
@@ -107,7 +115,9 @@ def main(L: int = 1.0):  # pylint: disable=R0914
                 mom_space=True,
             )
 
-            minimizer = Minimizer(solver, L_eff, epsilon, mu, nstep=nstep)
+            minimizer = Minimizer(
+                solver, L_eff, epsilon, mu, nstep=nstep, dispersion_zeta=dispersion_zeta
+            )
             res = opt.minimize_scalar(
                 minimizer.cost_function_x0,
                 bracket=(-4.0, -1.0e-4),
@@ -119,7 +129,6 @@ def main(L: int = 1.0):  # pylint: disable=R0914
             energies = solver.get_energies(
                 res.x, n_energies=min((n1d_max - 2) ** 2, 600)
             )
-            initial = res.x[0]
 
             for nlevel, energy in enumerate(energies):
                 data.append(
