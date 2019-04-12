@@ -426,7 +426,9 @@ class Solver:
                 kwargs["max_iter"] = n_energies + 10
             out = cupy_sp.lanczos_cp(H, n_eigs=n_energies, **kwargs)
         else:
-            out = lina.eigsh(H, k=n_energies, which="SA", **kwargs)[0]
+            out = lina.eigsh(
+                H, k=n_energies, which="SA", return_eigenvectors=False, **kwargs
+            )
         return out
 
 
