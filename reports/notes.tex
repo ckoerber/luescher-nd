@@ -20,6 +20,10 @@
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
 
 
+\newcommand{\fm}{\,\mathrm{fm}}
+\newcommand{\ifm}{\,\mathrm{fm}^{-1}}
+\newcommand{\MeV}{\,\mathrm{MeV}}
+
 \begin{document}
 
 \title{Discretization}
@@ -342,6 +346,105 @@ and adjust the zeta function
 
 Let me know what you think about that.
 
+\newpage
+\section{Long Range Forces}
+Let's consider long-range forces.
+An analytically solvable potential is the best starting point to crosscheck lattice results in a finite volume.
+The potential of choice has the following form
+\begin{align}
+	V(\vec p', \vec p) &= - g^*(\vec p') g(\vec p) \, ,
+	&
+	g(\vec{p})=\overline{g} \sqrt{8 \pi} \frac{M^{3}}{\left(\vec{p}^{2}+M^{2}\right)^{2}}, \quad M, \overline{g} \in \mathbb{R}
+	\, .
+\end{align}
+For this choice, the two-nucleon binding momentum $\gamma = \sqrt{-2 \mu E}$ (where $E < 0$ is the ground state energy and $\mu$ the reduced mass of the two-nucleon system) is related to the potential parameters by
+\begin{equation}
+	\overline{g} = \frac{2M(\gamma+M)^{2}}{\sqrt{\mu M^{3}\left(\gamma^{2}+5 M^{2}+4 \gamma M\right)}} \, .
+\end{equation}
+
+To compute the phase shifts, one must know the $T$-matrix which is given by
+\begin{align}
+	T(\vec p', \vec p, E)
+	&=
+	V(\vec p'. \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	&
+	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
+	\, .
+\end{align}
+Because of the separable potential, the equation factorizes to
+\begin{align}
+	T(\vec p', \vec p, E)
+	&=
+	- g^*(\vec p') \left[ g(\vec p) + \Gamma(\vec p, E) \right] \, ,
+	&
+	\Gamma(\vec p, E)
+	&\equiv
+	\lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} g(\vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E)
+	\, .
+\end{align}
+Substituting $T$ back into the definition of $\Gamma$, one finds
+\begin{align}
+	\Gamma(\vec p, E)
+	&= - \left[ g(\vec p) + \Gamma(\vec p, E) \right] I_0(E)
+	\, , &
+	I_0(E) &= \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} g(\vec k) G(\vec k, E + i \epsilon) g^*(\vec k) 
+	\\&&&= - \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3}  G(\vec k, E + i \epsilon) V(\vec k, \vec k)
+	\, ,
+\end{align}
+or equivalently
+\begin{equation}
+	\Gamma(\vec p, E) = - \frac{I_0(E)}{1 + I_0(E)}g(\vec p) \, .
+\end{equation}
+Thus the $T$-matrix becomes
+\begin{equation}
+	T(\vec p', \vec p, E)
+	=
+	\frac{V(\vec p', \vec p)}{1 + I_0(E)}
+	\, .
+\end{equation}
+The result for the integral is
+\begin{equation}
+	I_0\left(E = - \frac{\gamma^2}{2\mu}\right)
+	=
+	- |\bar g|^2 \mu  M \frac{\gamma ^2+5 M^2+4 \gamma  M}{4(\gamma +M)^4}
+	\, .
+\end{equation}
+If one chooses $\bar g$ as above, one can verify that indeed $I_0(E = - \gamma^2/(2\mu)) = -1$ and thus forms the pole of the $T$-matrix.
+
+In general, one has
+\begin{equation}
+	I_0\left(E = \frac{k^2}{2\mu}\right)
+	=
+	-|\bar g|^2 \mu  M \frac{
+		-k^6-5 k^4 M^2+M^5 \left(5 M+16 i \sqrt{k^2}\right)-15 k^2 M^4 \sqrt{k^2}
+	}{
+		4\left(k^2+M^2\right)^4
+	}
+\end{equation}
+
+And finally using 
+\begin{equation}
+	\frac{2 \pi}{ \mu k } \frac{1}{\cot(\delta_0(k)) - i} = - T_0\left(\vec k, \vec k, \frac{k^2}{2 \mu} \right) 
+\end{equation}
+\begin{equation}
+	k \cot( \delta_0(k))
+	=
+	-\frac{5 |\bar g|^2 \mu  M-4 M^2}{16 |\bar g|^2 \mu }
+	+\frac{ \left(15 |\bar g|^2 \mu + 16 M\right)}{16 |\bar g|^2 \mu M}k^2
+	+\frac{ \left(5 |\bar g|^2 \mu + 24 M\right)}{16 |\bar g|^2\mu  M^3}k^4
+	+\frac{ \left(|\bar g|^2 \mu + 16 M\right)}{16|\bar g|^2 \mu  M^5}k^6
+	+\frac{1}{4 |\bar g|^2 \mu  M^6}k^8
+\end{equation}
+
+To bring the test close to what we would expect, let's choose
+\begin{itemize}
+	\item $\mu = \frac{m_N}{2} = 469.46 \MeV = 4.758 \ifm$
+	\item $E_D = -2.225 \MeV = 0.0113 \fm$
+	\item $\gamma = \sqrt{- 2 \mu E_D} = 45.707 \MeV = 0.2316 \ifm$
+	\item $a_0 = 0.12 \MeV^{-1} = 23.5 \fm$
+	\item $\Rightarrow \bar g = 0.8945$ and $ M = 28.383 \MeV= 0.1438 \ifm$
+\end{itemize}
+The coordinate space potential scales as $V(\vec r', \vec r) \sim \exp \left\{ - M (r + r')\right\}$. Thus one must choose $M L > 4$ which would bring us to $L \sim 28 \fm$...
 
 
 \end{document}
