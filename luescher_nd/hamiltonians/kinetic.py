@@ -160,6 +160,12 @@ class MomentumKineticHamiltonian:
         """
         return self.epsilon * self.n1d
 
+    @property
+    def p2(self):  # pylint: disable C0103
+        """Returns momentum dispersion
+        """
+        return self._disp_over_m * 2 * (self.m / 2)
+
     def __post_init__(self):
         """Initializes the dispersion relation the matvec kernel.
         """
