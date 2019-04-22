@@ -6,9 +6,8 @@ from unittest import TestCase
 
 import numpy as np
 
-
-from luescher_nd.utilities import get_kinetic_hamiltonian
 from luescher_nd.utilities import get_laplace_coefficients
+from luescher_nd.hamiltonians.kinetic import get_kinetic_hamiltonian
 
 
 class TestLaplaceCoefficients(TestCase):
