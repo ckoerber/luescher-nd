@@ -24,17 +24,24 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     gbar: float = 0.8945
 
     _H: np.ndarray = field(init=False, repr=False)
+    _V: np.ndarray = field(init=False, repr=False)
 
     def __post_init__(self):
         """Initializes potential matrix
         """
         super(PhenomLRHamiltonian, self).__post_init__()
-        p2 = self._disp_over_m * (2 * (self.m / 2))
-        gp = self.gbar * np.sqrt(8 * np.pi) * self.M ** 3 / (p2 + self.M ** 2) ** 2
+        gp = self.gbar * np.sqrt(8 * np.pi) * self.M ** 3 / (self.p2 + self.M ** 2) ** 2
         potential = -gp.reshape(-1, 1) * gp
+        object.__setattr__(self, "_V", potential)
         object.__setattr__(self, "_H", np.diag(self._disp_over_m) + potential)
 
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
         return self._H @ vec
+
+    @property
+    def potential(self) -> np.ndarray:
+        """Returns the potential part of the Hamiltonian
+        """
+        return self._V
