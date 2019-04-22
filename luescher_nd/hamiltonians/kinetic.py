@@ -152,7 +152,7 @@ class MomentumKineticHamiltonian:
     nstep: Optional[int] = 3
 
     _disp_over_m: np.ndarray = field(init=False, repr=False)
-    _mat: LinearOperator = field(init=False, repr=False)
+    _mat: LinearOperator = field(default=None, repr=False)
 
     @property
     def L(self):  # pylint: disable=C0103
@@ -188,16 +188,17 @@ class MomentumKineticHamiltonian:
         disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
 
         object.__setattr__(self, "_disp_over_m", disp / 2 / (self.m / 2))
-        object.__setattr__(
-            self,
-            "_mat",
-            LinearOperator(matvec=self.apply, shape=[self.n1d ** self.ndim] * 2),
-        )
 
     @property
     def mat(self) -> LinearOperator:
         """The matvec kernel of the Hamiltonian
         """
+        if not self._mat:
+            object.__setattr__(
+                self,
+                "_mat",
+                LinearOperator(matvec=self.apply, shape=[self.n1d ** self.ndim] * 2),
+            )
         return self._mat
 
     def apply(self, vec):
