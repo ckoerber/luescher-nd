@@ -45,6 +45,9 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
             "_gp",
             self.gbar * np.sqrt(8 * np.pi) * self.M ** 3 / (self.p2 + self.M ** 2) ** 2,
         )
+        self._H = None  # pylint: disable=C0103
+        self._V = None  # pylint: disable=C0103
+        self._H_device = None  # pylint: disable=C0103
 
     @property
     def H(self):  # pylint: disable=C0103
