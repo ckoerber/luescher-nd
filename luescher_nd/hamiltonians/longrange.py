@@ -31,10 +31,10 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     M: float = 0.1438
     gbar: float = 0.8945
 
-    _H: np.ndarray = field(init=False, repr=False)
+    _mat: np.ndarray = field(init=False, repr=False)
     _V: np.ndarray = field(init=False, repr=False)
     _gp: np.ndarray = field(init=False, repr=False)
-    _H_device: device_array = field(init=False, repr=False)
+    _mat_device: device_array = field(init=False, repr=False)
 
     def __post_init__(self):
         """Initializes potential matrix
@@ -45,35 +45,35 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
             "_gp",
             self.gbar * np.sqrt(8 * np.pi) * self.M ** 3 / (self.p2 + self.M ** 2) ** 2,
         )
-        self._H = None  # pylint: disable=C0103
+        self._mat = None  # pylint: disable=C0103
         self._V = None  # pylint: disable=C0103
-        self._H_device = None  # pylint: disable=C0103
+        self._mat_device = None  # pylint: disable=C0103
 
     @property
-    def H(self):  # pylint: disable=C0103
+    def mat(self):  # pylint: disable=C0103
         """Hamiltonian on CPU (lazyloaded).
         """
-        if self._H is None:
-            object.__setattr__(self, "_H", np.diag(self._disp_over_m) + self.potential)
-        return self.H
+        if self._mat is None:
+            object.__setattr__(self, "_mat", np.diag(self._disp_over_m) + self.potential)
+        return self._mat
 
     @property
-    def H_device(self):  # pylint: disable=C0103
+    def mat_device(self):  # pylint: disable=C0103
         """Hamiltonian on CPU (lazyloaded).
         """
-        if self._H_device is None:
+        if self._mat_device is None:
             gp_device = cp.array(self._gp)
             object.__setattr__(
                 self,
-                "_H_device",
+                "_mat_device",
                 cp.diag(self._disp_over_m) - gp_device.reshape(-1, 1) * gp_device,
             )
-        return self.H
+        return self._mat_device
 
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
-        return self.H @ vec
+        return self.mat @ vec
 
     @property
     def potential(self) -> np.ndarray:
