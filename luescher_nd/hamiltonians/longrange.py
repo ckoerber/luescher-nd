@@ -72,7 +72,9 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
-        return self.mat @ vec
+        return self._disp_over_m * vec - self._gp * (  # pylint: disable = E1130
+            self._gp @ vec
+        )
 
     @property
     def potential(self) -> np.ndarray:
