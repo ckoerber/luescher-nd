@@ -31,7 +31,7 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     M: float = 0.1438
     gbar: float = 0.8945
 
-    _mat: np.ndarray = field(init=False, repr=False)
+    _mat: np.ndarray = field(init=False, repr=False, default=None)
     _V: np.ndarray = field(init=False, repr=False, default=None)
     _gp: np.ndarray = field(init=False, repr=False, default=None)
     _mat_device: device_array = field(init=False, repr=False, default=None)
