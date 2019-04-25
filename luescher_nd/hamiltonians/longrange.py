@@ -58,6 +58,8 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     def mat_device(self):  # pylint: disable=C0103
         """Hamiltonian on CPU (lazyloaded).
         """
+        if cp is None:
+            raise ModuleNotFoundError("Could not import cupy -- cannot use GPU!")
         if self._mat_device is None:
             gp_device = cp.array(self._gp)
             object.__setattr__(
