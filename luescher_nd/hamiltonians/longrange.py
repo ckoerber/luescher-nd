@@ -32,9 +32,9 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     gbar: float = 0.8945
 
     _mat: np.ndarray = field(init=False, repr=False)
-    _V: np.ndarray = field(init=False, repr=False)
-    _gp: np.ndarray = field(init=False, repr=False)
-    _mat_device: device_array = field(init=False, repr=False)
+    _V: np.ndarray = field(init=False, repr=False, default=None)
+    _gp: np.ndarray = field(init=False, repr=False, default=None)
+    _mat_device: device_array = field(init=False, repr=False, default=None)
 
     def __post_init__(self):
         """Initializes potential matrix
@@ -45,9 +45,6 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
             "_gp",
             self.gbar * np.sqrt(8 * np.pi) * self.M ** 3 / (self.p2 + self.M ** 2) ** 2,
         )
-        self._mat = None  # pylint: disable=C0103
-        self._V = None  # pylint: disable=C0103
-        self._mat_device = None  # pylint: disable=C0103
 
     @property
     def mat(self):  # pylint: disable=C0103
