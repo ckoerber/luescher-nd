@@ -73,7 +73,7 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
         """Applies hamiltonian to vector
         """
         return self._disp_over_m * vec - self._gp * (  # pylint: disable = E1130
-            self._gp @ vec
+            self._gp @ vec / self.L ** self.ndim
         )
 
     @property
