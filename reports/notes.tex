@@ -349,11 +349,12 @@ Let me know what you think about that.
 \newpage
 \section{Long Range Forces}
 Long range potentials defined by non-zero effective range and higher ERE parameters are the next step in the direction of realistic nuclear potentials.
-Is it possible to improve lattice finite volume effective range expansion for long range forces in the same manner?
-Particularly, if length scales like a non-zero scattering length and effective range are present, how do the mix with induced length scales?
+Is it possible to improve the lattice finite volume effective range expansion for long range forces in the same manner as in the unitary case?
+Particularly, if length scales like a non-zero scattering length and effective range are present, how do they mix with induced length scales?
 Is there a power counting in terms of induced over physical quantities?
-It is desirable to choose a potential where the infinite volume continuum results can be computed analytically first, to answer the above questions in the most accurate way.
-For this reason, we choose the following separable potential
+
+It is desirable to choose a potential where the infinite volume continuum results can be computed analytically, to answer the above questions in the most accurate way.
+For this reason, I have choosen the following separable potential
 \begin{align}
 	V(\vec p', \vec p) &= - g^*(\vec p') g(\vec p) \, ,
 	&
@@ -361,7 +362,9 @@ For this reason, we choose the following separable potential
 	\, .
 \end{align}
 The factorization generally allows to extract numerical solutions for well defined functions $g(\vec p)$ (as in all integrals are convergent).
-The specific choice of $g$ mimics a pion exchange, $V(r, r') \sim \exp(- M r - M r')$, converges against a delta function for $M\to \infty$ but is well behaved in its ultraviolet parts and thus does not need a regulator.
+The specific choice of $g$ mimics a pion exchange, $V(r, r') \sim \exp(- M r - M r')$, converges against a delta function for $M\to \infty$ but is well behaved in its ultraviolet and infrared parts and thus does not need any regulator.
+
+\subsection{Analytical derivation of ERE}
 
 For this potential, the two-nucleon binding momentum $\gamma = \sqrt{-2 \mu E}$ (where $E < 0$ is the ground state energy and $\mu$ the reduced mass of the two-nucleon system) is related to the potential parameters by
 \begin{equation}\label{def:g-lr-binding}
@@ -456,18 +459,18 @@ one obtains the analytic effective range expansion
 
 The above quantities are computed in the \texttt{notebooks/long-range-ERE.nb} notebook.
 
-\section{Long range forces in finite discrete volume}
+\subsection{Long range forces in finite discrete volume}
 
-\subsection{How are discretized finite volume quantities defined?}
+\subsubsection{How are discretized finite volume quantities defined?}
 
 The mandatory requirement is the convergence against continuum infinite volume counterparts.
 For example, if we fix the finite volume lattice hamiltonian by the ground state energy (input), we expect that a second observable, e.g., the discrete finite volume phase shifts (output) converge against the continuum infinite volume phase shifts.
 A finite volume lattice implementation of an observable is better than another if it converges faster against the physical observable.
 An implementation is incorrect if no or even a wrong conversion pattern is apparent.
 
-The kinetic hamiltonian and in general finite volume lattice momenta fulfill the convergence criterium if they are implemented by their finite volume lattice dispersion (see eq.~\eqref{def:lattice-dispersion}).
+The kinetic hamiltonian, and in general all finite volume lattice momenta, fulfill the convergence criterium if they are implemented by their finite volume lattice dispersion (see eq.~\eqref{def:lattice-dispersion}).
 
-\subsection{How to estimate finite volume lattice parameters?}
+\subsubsection{How to estimate finite volume lattice parameters?}
 \begin{itemize}
 	\item You can identify if the potential is sufficiently mapped out by the FV lattice grid points (fig.~\ref{fig:potential-component})
 	\item You can verify that the expected continuum infinite volume ERE has well defined intersections with the zeta function (fig.~\ref{fig:pcotdelta-intersection})
@@ -507,14 +510,14 @@ For the chosen potential, solutions can be extracted reliably for the following 
 	\item Infinite volume continuum ground state energy $E_0 = - 2.225$ MeV.
 	\item Finite volume box length $L = 10$ fm.
 	\item Potential parameter $M = 20 m_\pi$ (this turns the potential more into a smeared delta function than into a pion exchange).
-		This parameter will be fixed in discrete finite volume (constant of "nature") and only $\bar g$ will be adjusted.
+		This parameter is also fixed in discrete finite volume ("constant of nature") and only $\bar g$ will be adjusted.
 \end{itemize}
 
 \subsection{How to pin down finite volume lattice potential parameters?}
 How does one implement the potential in a discrete finite volume?
 Or more specifically, how to estimate the potential coefficients?
-In the following content, I will present three different ideas which all take the energy as input and try to predict the effective range expansion.
-In general, the problem should be solved such that analytic relations between potential parameters and observables are unknown.
+In the following content, I will present three different ideas which take different inputs and try to predict the effective range expansion.
+Is there a well behaved way to solve the problem without knowing analytic relations between potential parameters and observables?
 
 \begin{itemize}
 	\item Use all known continuum infinite volume parameters to reproduce the result on the lattice.
@@ -530,6 +533,10 @@ In general, the problem should be solved such that analytic relations between po
 \includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-inf-cont.pdf}
 \caption{
 	\label{fig:long-range-ere-v-inf-cont}
+	Infinite volume continuum parameters were fed into the finite volume lattice potential from which the energy levels were used to compute the effective range expansion.
+	The difference between the standard Lüscher phase shift extraction (red markers) and the modified dispersion Lüscher extraction (green markers) is only visible at large normalized scattering momenta $x$.
+	For few lattice nodes (large lattice spacings), the extracted ERE does not agree well with the analytic result.
+	But for more lattice nodes (finer discretizations), the extracted ERE seemingly converges against the analytic result and the difference between original and dispersion Lüscher shrinks as well.
 }
 \end{figure*}
 
@@ -537,6 +544,15 @@ In general, the problem should be solved such that analytic relations between po
 \includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-fit.pdf}
 \caption{
 	\label{fig:long-range-ere-v-fit}
+	Infinite volume continuum energy was used to fit finite volume lattice potential.
+	ERE was extracted after fit.
+	The difference between the standard Lüscher phase shift extraction (red markers) and the modified dispersion Lüscher extraction (green markers) is small at small $x$ but increases more drastically for large $x$ as in the "known parameter case" (see fig~\ref{fig:long-range-ere-v-inf-cont}).
+	For all discretizations, the original Lüscher results agree with themselves at the smallest $x$ because the fit requires each $x$ to be the same and original Lüscher does not provide different different zeta functions for different discretizations.
+	This is different for dispersion Lüscher.
+	The $y$-values are different because one uses dispersion dependent zeta functions.
+	The standard Lüscher has a nice internal convergence pattern (the finer discretization, the smaller the changes of the ERE) but it seemingly converges against a completely wrong value.
+	The dispersion Lüscher convergence pattern seems more random (big step, small step, big step in directions of smaller lattice spacing).
+	It is not obvious if dispersion Lüscher and standard Lüscher will converge against the same dispersion relation, but it seems quite reasonable to assume that both approaches will not converge against the analytical result.
 }
 \end{figure*}
 
@@ -544,9 +560,26 @@ In general, the problem should be solved such that analytic relations between po
 \includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-lat.pdf}
 \caption{
 	\label{fig:long-range-ere-v-lat}
+	First, the finite volume continuum energy was computed using the "experimental" ERE.
+	Next the finite volume ground state used to fit the finite volume lattice potential.
+	This means that discretization effects were correlated with the potential.
+	The ERE was extracted after fit.
+	The difference between the standard Lüscher phase shift extraction (red markers) and the modified dispersion Lüscher extraction (green markers) is drastic.
+	For all discretizations, again the original Lüscher results agree with themselves at the smallest $x$.
+	The standard Lüscher has again a nice internal convergence pattern but still it seemingly converges against a completely wrong value.
+	In this case, the dispersion Lüscher results at small $x$ are on top of each other.
+	The dispersion Lüscher convergence pattern seems well behaved such that the smaller the lattice spacing, the smaller the changes.
+	Also, dispersion Lüscher results now seem to covnverge against the continuum infinite volume counterpart.
 }
 \end{figure*}
 
+\subsubsection{Questions and conclusions}
+
+\begin{itemize}
+	\item Give me a night to sleep over the results.
+	\item One big question I have is: assuming that things actually work, why do we still see a convergence pattern in fig.~\ref{fig:long-range-ere-v-lat}?
+	\item It seems to me that the best way of fixing coefficients is mapping the ERE to coefficients and computing binding energies.
+\end{itemize}
 
 
 \end{document}
