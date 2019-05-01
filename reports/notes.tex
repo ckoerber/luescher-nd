@@ -293,7 +293,7 @@ Instead of the infinitely improved dispersion relation $D^\infty(\vec p, \epsilo
     \frac{1}{\epsilon^2} \sum\limits_{i=1}^3 \sum\limits_{n_i=-n_{\mathrm{s}}}^{n_{\mathrm{s}}} c_{|n_i|}^{n_{\mathrm{s}}} \cos( p_i n_i \epsilon)
 \end{equation}
 Where the coefficients $c_i^{n_{\mathrm{s}}}$ are enforced by the constrained
-\begin{equation}
+\begin{equation}\label{def:lattice-dispersion}
     D^{n_{\mathrm{s}}}(\vec p, \epsilon)
     =
     p^2 + \mathcal O \left(\epsilon^{2 n_{\mathrm{s}}}\right)
@@ -348,17 +348,23 @@ Let me know what you think about that.
 
 \newpage
 \section{Long Range Forces}
-Let's consider long-range forces.
-An analytically solvable potential is the best starting point to crosscheck lattice results in a finite volume.
-The potential of choice has the following form
+Long range potentials defined by non-zero effective range and higher ERE parameters are the next step in the direction of realistic nuclear potentials.
+Is it possible to improve lattice finite volume effective range expansion for long range forces in the same manner?
+Particularly, if length scales like a non-zero scattering length and effective range are present, how do the mix with induced length scales?
+Is there a power counting in terms of induced over physical quantities?
+It is desirable to choose a potential where the infinite volume continuum results can be computed analytically first, to answer the above questions in the most accurate way.
+For this reason, we choose the following separable potential
 \begin{align}
 	V(\vec p', \vec p) &= - g^*(\vec p') g(\vec p) \, ,
 	&
 	g(\vec{p})=\overline{g} \sqrt{8 \pi} \frac{M^{3}}{\left(\vec{p}^{2}+M^{2}\right)^{2}}, \quad M, \overline{g} \in \mathbb{R}
 	\, .
 \end{align}
-For this choice, the two-nucleon binding momentum $\gamma = \sqrt{-2 \mu E}$ (where $E < 0$ is the ground state energy and $\mu$ the reduced mass of the two-nucleon system) is related to the potential parameters by
-\begin{equation}
+The factorization generally allows to extract numerical solutions for well defined functions $g(\vec p)$ (as in all integrals are convergent).
+The specific choice of $g$ mimics a pion exchange, $V(r, r') \sim \exp(- M r - M r')$, converges against a delta function for $M\to \infty$ but is well behaved in its ultraviolet parts and thus does not need a regulator.
+
+For this potential, the two-nucleon binding momentum $\gamma = \sqrt{-2 \mu E}$ (where $E < 0$ is the ground state energy and $\mu$ the reduced mass of the two-nucleon system) is related to the potential parameters by
+\begin{equation}\label{def:g-lr-binding}
 	\overline{g} = \frac{2M(\gamma+M)^{2}}{\sqrt{\mu M^{3}\left(\gamma^{2}+5 M^{2}+4 \gamma M\right)}} \, .
 \end{equation}
 
@@ -395,7 +401,7 @@ or equivalently
 \begin{equation}
 	\Gamma(\vec p, E) = - \frac{I_0(E)}{1 + I_0(E)}g(\vec p) \, .
 \end{equation}
-Thus the $T$-matrix becomes
+The $T$-matrix becomes
 \begin{equation}
 	T(\vec p', \vec p, E)
 	=
@@ -407,9 +413,10 @@ The result for the integral is
 	I_0\left(E = - \frac{\gamma^2}{2\mu}\right)
 	=
 	- |\bar g|^2 \mu  M \frac{\gamma ^2+5 M^2+4 \gamma  M}{4(\gamma +M)^4}
-	\, .
+	\, , \qquad
+	\gamma \in \mathbb R
 \end{equation}
-If one chooses $\bar g$ as above, one can verify that indeed $I_0(E = - \gamma^2/(2\mu)) = -1$ and thus forms the pole of the $T$-matrix.
+Indeed, for the binding energy and the choice of $\bar g$ as in eq.~\eqref{def:g-lr-binding}, $I_0(E = - \gamma^2/(2\mu)) = -1$ and therefore the $T$-matrix is singular.
 
 In general, one has
 \begin{equation}
@@ -424,27 +431,122 @@ In general, one has
 
 And finally using 
 \begin{equation}
-	\frac{2 \pi}{ \mu k } \frac{1}{\cot(\delta_0(k)) - i} = - T_0\left(\vec k, \vec k, \frac{k^2}{2 \mu} \right) 
+	\frac{2 \pi}{ \mu k } \frac{1}{\cot(\delta_0(k)) - i} = - T_0\left(\vec k, \vec k, \frac{k^2}{2 \mu} \right) \, ,
 \end{equation}
-\begin{equation}
+one obtains the analytic effective range expansion
+\begin{align}
 	k \cot( \delta_0(k))
-	=
+	&=
 	-\frac{5 |\bar g|^2 \mu  M-4 M^2}{16 |\bar g|^2 \mu }
-	+\frac{ \left(15 |\bar g|^2 \mu + 16 M\right)}{16 |\bar g|^2 \mu M}k^2
-	+\frac{ \left(5 |\bar g|^2 \mu + 24 M\right)}{16 |\bar g|^2\mu  M^3}k^4
-	+\frac{ \left(|\bar g|^2 \mu + 16 M\right)}{16|\bar g|^2 \mu  M^5}k^6
+	+\frac{15 |\bar g|^2 \mu + 16 M}{16 |\bar g|^2 \mu M}k^2
+	+\frac{5 |\bar g|^2 \mu + 24 M}{16 |\bar g|^2\mu  M^3}k^4
+	+\frac{|\bar g|^2 \mu + 16 M}{16|\bar g|^2 \mu  M^5}k^6
 	+\frac{1}{4 |\bar g|^2 \mu  M^6}k^8
-\end{equation}
+	\\
+	&=
+	-\frac{16\gamma  M^4+29 \gamma ^2 M^3+20 \gamma ^3 M^2+5 \gamma ^4 M}{16 (\gamma +M)^4}
+	+\frac{15 \gamma ^4+35 M^4+76\gamma  M^3+94 \gamma ^2 M^2+60 \gamma ^3 M}{16 M (\gamma +M)^4}k^2
+	\\\nonumber&\qquad
+	+\frac{5 \gamma ^4+35 M^4+44 \gamma  M^3+36 \gamma ^2 M^2+20\gamma ^3 M}{16 M^3 (\gamma +M)^4}k^4
+	+\frac{\gamma ^4+21 M^4+20 \gamma  M^3+10 \gamma ^2 M^2+4 \gamma ^3 M}{16 M^5(\gamma +M)^4}k^6
+	\\\nonumber&\qquad
+	+ \frac{\gamma ^2+5 M^2+4 \gamma  M}{16 M^5 (\gamma +M)^4}k^8 
+	\\&\overset{M\to\infty}{\longrightarrow}-\gamma
+\end{align}
 
-To bring the test close to what we would expect, let's choose
+The above quantities are computed in the \texttt{notebooks/long-range-ERE.nb} notebook.
+
+\section{Long range forces in finite discrete volume}
+
+\subsection{How are discretized finite volume quantities defined?}
+
+The mandatory requirement is the convergence against continuum infinite volume counterparts.
+For example, if we fix the finite volume lattice hamiltonian by the ground state energy (input), we expect that a second observable, e.g., the discrete finite volume phase shifts (output) converge against the continuum infinite volume phase shifts.
+A finite volume lattice implementation of an observable is better than another if it converges faster against the physical observable.
+An implementation is incorrect if no or even a wrong conversion pattern is apparent.
+
+The kinetic hamiltonian and in general finite volume lattice momenta fulfill the convergence criterium if they are implemented by their finite volume lattice dispersion (see eq.~\eqref{def:lattice-dispersion}).
+
+\subsection{How to estimate finite volume lattice parameters?}
 \begin{itemize}
-	\item $\mu = \frac{m_N}{2} = 469.46 \MeV = 4.758 \ifm$
-	\item $E_D = -2.225 \MeV = 0.0113 \fm$
-	\item $\gamma = \sqrt{- 2 \mu E_D} = 45.707 \MeV = 0.2316 \ifm$
-	\item $a_0 = 0.12 \MeV^{-1} = 23.5 \fm$
-	\item $\Rightarrow \bar g = 0.8945$ and $ M = 28.383 \MeV= 0.1438 \ifm$
+	\item You can identify if the potential is sufficiently mapped out by the FV lattice grid points (fig.~\ref{fig:potential-component})
+	\item You can verify that the expected continuum infinite volume ERE has well defined intersections with the zeta function (fig.~\ref{fig:pcotdelta-intersection})
+	\item You can estimate the finite volume energy shifts by the intersections of the zeta function and the ERE (fig.~\ref{fig:finite-volume-energy-difference})
 \end{itemize}
-The coordinate space potential scales as $V(\vec r', \vec r) \sim \exp \left\{ - M (r + r')\right\}$. Thus one must choose $M L > 4$ which would bring us to $L \sim 28 \fm$...
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/potential-component.pdf}
+\caption{
+	\label{fig:potential-component}
+	Separable component $g(p)$ of the potential $V(p', p) = -g(p') g(p)$ for chosen lattice parameters agrees at available lattice momenta with continuum infinite volume counterpart.
+	Ultra violet momenta part is covered up till $g(p) \sim 0.1$ fm.
+}
+\end{figure*}
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/pcotdelta-intersection.pdf}
+\caption{
+	\label{fig:pcotdelta-intersection}
+	Continuum infinite volume effective range expansion has well defined intersection with zeta function for given parameters.
+	E.g., only one intersection at negative energies is given and allows for an extraction of a unique ground state.
+}
+\end{figure*}
+
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/finite-volume-energy-difference.pdf}
+\caption{
+	\label{fig:finite-volume-energy-difference}
+	Difference of continuum infinite volume energies and continuum finite volume energies times box length, extracted from the first intersection of the zeta function and the effective range expansion (see fig.~\ref{fig:pcotdelta-intersection}), decays exponentially.
+	Numerical precision disturbs the result at $10^{-8}$.
+}
+\end{figure*}
+
+For the chosen potential, solutions can be extracted reliably for the following parameters
+\begin{itemize}
+	\item Infinite volume continuum ground state energy $E_0 = - 2.225$ MeV.
+	\item Finite volume box length $L = 10$ fm.
+	\item Potential parameter $M = 20 m_\pi$ (this turns the potential more into a smeared delta function than into a pion exchange).
+		This parameter will be fixed in discrete finite volume (constant of "nature") and only $\bar g$ will be adjusted.
+\end{itemize}
+
+\subsection{How to pin down finite volume lattice potential parameters?}
+How does one implement the potential in a discrete finite volume?
+Or more specifically, how to estimate the potential coefficients?
+In the following content, I will present three different ideas which all take the energy as input and try to predict the effective range expansion.
+In general, the problem should be solved such that analytic relations between potential parameters and observables are unknown.
+
+\begin{itemize}
+	\item Use all known continuum infinite volume parameters to reproduce the result on the lattice.
+		Technically this cannot be done for more complex potentials (see fig.~\ref{fig:long-range-ere-v-inf-cont}). 
+	\item Solve the discrete finite volume Schrödinger equation to fit $\bar g$ to the continuum infinite volume ground state for each lattice spacing and finite volume.
+		Compute phase shifts for each fitted $\bar g$ and observe the convergence pattern against "experimental" results (see fig.~\ref{fig:long-range-ere-v-fit}).
+	\item Use "experimental" phase shifts to compute continuum finite volume energies.
+		Fit $\bar g$ to the continuum finite volume ground state.
+		Compute phase shifts for each fitted $\bar g$ and observe the convergence pattern against "experimental" results (see fig.~\ref{fig:long-range-ere-v-lat}).
+\end{itemize}
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-inf-cont.pdf}
+\caption{
+	\label{fig:long-range-ere-v-inf-cont}
+}
+\end{figure*}
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-fit.pdf}
+\caption{
+	\label{fig:long-range-ere-v-fit}
+}
+\end{figure*}
+
+\begin{figure*}[!htb]
+\includegraphics[width=0.7\textwidth]{figs/long-range-ere-v-lat.pdf}
+\caption{
+	\label{fig:long-range-ere-v-lat}
+}
+\end{figure*}
+
 
 
 \end{document}
