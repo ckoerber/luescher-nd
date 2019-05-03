@@ -23,13 +23,49 @@ except ModuleNotFoundError:
     device_array = None  # pylint: disable=C0103
 
 
+def gamma2gbar(gamma, m, mu):  # pylint: disable=C0103
+    """Returns Long range potential normalization depending on binding momentum
+    """
+    return (
+        2
+        * (gamma + m) ** 2
+        / np.sqrt(mu * m ** 3 * (gamma ** 2 + 5 * m ** 2 + 4 * gamma * m))
+        * m
+    )
+
+
+HBARC = 197.327
+
+MPI = 134.98 / HBARC
+E0 = -2.225 / HBARC
+MN = 937.326 / HBARC
+MU = MN / 2
+
+M0 = 20 * MPI
+
+GAMMA0 = np.sqrt(-2 * MU * E0)
+GBAR0 = gamma2gbar(GAMMA0, M0, MU)
+
+
+def p_cot_delta(p, gbar, mu, m):  # pylint: disable=C0103
+    """Returns effecive range expansion for long range potential
+    """
+    d0 = 16 * gbar ** 2 * mu
+    res = -(5 * gbar ** 2 * mu * m - 4 * m ** 2) / d0
+    res += (15 * gbar ** 2 * mu + 16 * m) / d0 / m * p ** 2
+    res += (5 * gbar ** 2 * mu + 24 * m) / d0 / m ** 3 * p ** 4
+    res += (gbar ** 2 * mu + 16 * m) / d0 / m ** 5 * p ** 6
+    res += 4 * m / d0 / m ** 7 * p ** 8
+    return res
+
+
 @dataclass(frozen=True)
 class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     """Phenemenological long range Hamiltonian mimicing two-pion exchange.
     """
 
-    M: float = 0.1438
-    gbar: float = 0.8945
+    M: float = M0
+    gbar: float = GBAR0
 
     _mat: np.ndarray = field(init=False, repr=False, default=None)
     _V: np.ndarray = field(init=False, repr=False, default=None)
