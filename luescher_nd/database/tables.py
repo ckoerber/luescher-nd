@@ -82,6 +82,11 @@ class LongRangeEnergyEntry(BASE):
 
         return instance, created
 
+    def __str__(self):
+        """Descriptive representation"""
+        keys = ", ".join([f"{key}={getattr(self, key)}" for key in self._keys])
+        return f"LongRangeEnergyEntry({keys})"
+
 
 def create_all_tables(engine: Engine):
     """Creates all tables in the database
