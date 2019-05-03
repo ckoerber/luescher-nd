@@ -129,9 +129,9 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
         return self._V
 
 
-def export_eigs(
+def export_eigs(  # pylint: disable=C0103, R0914
     h: PhenomLRHamiltonian, db: str, overwrite: bool = False, **kwargs
-):  # pylint: disable=C0103
+):
     """Computes eigenvalues of hamiltonian and writes to db.
 
     First checks if values are already present. If true, does nothing.
