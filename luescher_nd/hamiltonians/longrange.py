@@ -155,16 +155,12 @@ def export_eigs(
     """
     kwargs["return_eigenvectors"] = False
     kwargs["which"] = "SA"
-    kwargs["k"] = 6
+    if "k" not in kwargs:
+        kwargs["k"] = 6
 
     if not os.path.exists(db):
         LOGGER.info("Creating database `%s`", db)
         create_db(db)
-
-    LOGGER.info("Exporting eigenvalues of `%s` with arguments:", h)
-    LOGGER.info("\tDatabase='%s'", db)
-    for key, val in kwargs.items():
-        LOGGER.info("\t%s=%s", key, val)
 
     h_keys = {
         "n1d": h.n1d,
@@ -177,11 +173,13 @@ def export_eigs(
     with DatabaseSession(db, commit=False) as sess:
         matches = sess.query(LongRangeEnergyEntry).filter_by(**h_keys).all()
         if matches and not overwrite:
-            match_str = "\n\t".join(map(str, matches))
-            LOGGER.info(
-                "Entries for `%s` are already present; found:\n\t %s", h, match_str
-            )
+            LOGGER.info("Found %d entries for `%s`. Skip.", len(matches), h)
             return
+
+    LOGGER.info("Exporting eigenvalues of `%s` with arguments:", h)
+    LOGGER.info("\tDatabase='%s'", db)
+    for key, val in kwargs.items():
+        LOGGER.info("\t%s=%s", key, val)
 
     eigs = np.sort(eigsh(h.op, **kwargs))
     n_created = 0
