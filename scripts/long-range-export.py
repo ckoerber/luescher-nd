@@ -17,45 +17,12 @@ from scipy.optimize import minimize_scalar
 from luescher_nd.zeta.zeta3d import Zeta3D
 from luescher_nd.zeta.extern.pyzeta import zeta  # pylint: disable=E0611
 
+from luescher_nd.hamiltonians.longrange import MU, M0, GBAR0, HBARC, E0
+from luescher_nd.hamiltonians.longrange import p_cot_delta
+
+NSTEP = None
 
 LRANGE = np.linspace(2, 40)
-
-
-def gamma2gbar(gamma, m, mu):  # pylint: disable=C0103
-    """Returns Long range potential normalization depending on binding momentum
-    """
-    return (
-        2
-        * (gamma + m) ** 2
-        / np.sqrt(mu * m ** 3 * (gamma ** 2 + 5 * m ** 2 + 4 * gamma * m))
-        * m
-    )
-
-
-HBARC = 197
-
-MPI = 134 / HBARC
-E0 = -2.225 / HBARC
-MN = 937.326 / HBARC
-MU = MN / 2
-
-M0 = 20 * MPI
-NSTEP = 3
-
-GAMMA0 = np.sqrt(-2 * MU * E0)
-GBAR0 = gamma2gbar(GAMMA0, M0, MU)
-
-
-def p_cot_delta(p, gbar, mu, m):  # pylint: disable=C0103
-    """Returns effecive range expansion for long range potential
-    """
-    d0 = 16 * gbar ** 2 * mu
-    res = -(5 * gbar ** 2 * mu * m - 4 * m ** 2) / d0
-    res += (15 * gbar ** 2 * mu + 16 * m) / d0 / m * p ** 2
-    res += (5 * gbar ** 2 * mu + 24 * m) / d0 / m ** 3 * p ** 4
-    res += (gbar ** 2 * mu + 16 * m) / d0 / m ** 5 * p ** 6
-    res += 4 * m / d0 / m ** 7 * p ** 8
-    return res
 
 
 @dataclass(frozen=True)
