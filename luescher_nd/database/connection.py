@@ -5,7 +5,7 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from opdens.utilities.logging import get_logger
+from luescher_nd.utilities import get_logger
 
 
 class DatabaseSession:
@@ -45,7 +45,7 @@ class DatabaseSession:
         self.commit = commit
 
         stream_level = logging.INFO if verbose else logging.WARNING
-        self.logger = get_logger("DatabaseSession", stream_level=stream_level)
+        self.logger = get_logger(stream_level)
 
         self.session = None
         self.logger.info("Creating engine.")
