@@ -10,7 +10,7 @@ from itertools import product
 from luescher_nd.hamiltonians.longrange import PhenomLRHamiltonian
 from luescher_nd.hamiltonians.longrange import export_eigs
 
-RANGES = {"n1d": range(10, 11, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
+RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
 PARS = {"k": 300}
 
 DBNAME = "db-lr-iv-c-fixed.sqlite"
