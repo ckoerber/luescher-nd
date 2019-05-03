@@ -3,10 +3,10 @@
 from dataclasses import dataclass
 from dataclasses import field
 
+import os
 import logging
 
 import numpy as np
-
 from scipy.sparse.linalg import eigsh
 
 from luescher_nd.utilities import get_logger
@@ -14,6 +14,8 @@ from luescher_nd.utilities import get_logger
 from luescher_nd.hamiltonians.kinetic import MomentumKineticHamiltonian
 
 from luescher_nd.database.connection import DatabaseSession
+
+from luescher_nd.database.tables import create_db
 from luescher_nd.database.tables import LongRangeEnergyEntry
 
 
@@ -154,6 +156,10 @@ def export_eigs(
     kwargs["return_eigenvectors"] = False
     kwargs["which"] = "SA"
     kwargs["k"] = 6
+
+    if not os.path.exists(db):
+        LOGGER.info("Creating database `%s`", db)
+        create_db(db)
 
     LOGGER.info("Exporting eigenvalues of `%s` with arguments:", h)
     LOGGER.info("\tDatabase='%s'", db)
