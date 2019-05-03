@@ -155,6 +155,11 @@ def export_eigs(
     kwargs["which"] = "SA"
     kwargs["k"] = 6
 
+    LOGGER.info("Exporting eigenvalues of `%s` with arguments:", h)
+    LOGGER.info("\tDatabase='%s'", db)
+    for key, val in kwargs.items():
+        LOGGER.info("\t%s=%s", key, val)
+
     h_keys = {
         "n1d": h.n1d,
         "epsilon": h.epsilon,
@@ -173,6 +178,7 @@ def export_eigs(
             return
 
     eigs = np.sort(eigsh(h.op, **kwargs))
+    n_created = 0
     with DatabaseSession(db) as sess:
         for nlevel, eig in enumerate(np.sort(eigs)):
             data = {
@@ -187,4 +193,8 @@ def export_eigs(
             }
             entry, created = LongRangeEnergyEntry.get_or_create(session=sess, **data)
             if created:
-                LOGGER.info("Created `%s`", entry)
+                LOGGER.debug("Created `%s`", entry)
+                n_created += 1
+
+    LOGGER.info("\t-----")
+    LOGGER.info("\tExported %d entries", n_created)
