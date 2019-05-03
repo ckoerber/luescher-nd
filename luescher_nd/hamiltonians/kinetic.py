@@ -196,7 +196,7 @@ class MomentumKineticHamiltonian:
         object.__setattr__(self, "_disp_over_m", disp / 2 / (self.m / 2))
 
     @property
-    def op(self) -> LinearOperator:
+    def op(self) -> LinearOperator:  # pylint: disable=C0103
         """The matvec kernel of the Hamiltonian
         """
         if not self._op:
