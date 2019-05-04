@@ -40,7 +40,7 @@ class FitKernel:
     """
 
     h: PhenomLRHamiltonian
-    _zeta: Callable[np.ndarray, np.ndarray] = field(init=False, repr=False)
+    _zeta: Callable[[np.ndarray], np.ndarray] = field(init=False, repr=False)
     _e0: float = field(init=False, repr=False)
 
     def __post_init__(self):
@@ -65,7 +65,7 @@ class FitKernel:
     def _get_ground_state(self) -> float:
         """Computes the first intersection of the zeta function and the ERE
         """
-        x0 = minimize_scalar(self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2))
+        x0 = minimize_scalar(self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2)).x
         return x0 / 2 / MU * (2 * np.pi / self.h.L) ** 2
 
     def chi2(self, gbar: float) -> float:
