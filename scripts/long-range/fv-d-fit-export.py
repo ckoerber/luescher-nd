@@ -26,7 +26,7 @@ from luescher_nd.zeta.zeta3d import Zeta3D
 RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
 PARS = {"k": 300}
 
-DBNAME = "db-lr-iv-c-fitted.sqlite"
+DBNAME = "db-lr-fv-d-fitted.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
