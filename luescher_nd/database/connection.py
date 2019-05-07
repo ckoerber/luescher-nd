@@ -48,7 +48,7 @@ class DatabaseSession:
         self.logger = get_logger(stream_level)
 
         self.session = None
-        self.logger.info("Creating engine.")
+        self.logger.debug("Creating engine.")
         self.engine = create_engine(self.connection_string, echo=self.verbose)
 
     @property
@@ -61,7 +61,7 @@ class DatabaseSession:
         """Establishes a connection to the database and returns the cursor.
         """
 
-        self.logger.info("Binding session.")
+        self.logger.debug("Binding session.")
         Session = sessionmaker()
         self.session = Session(bind=self.engine)
         return self.session
@@ -73,15 +73,15 @@ class DatabaseSession:
         Else the database is rolled back.
         """
         if traceback is None:
-            self.logger.info("Transaction without errors.")
+            self.logger.debug("Transaction without errors.")
             if self.commit:
-                self.logger.info("Committing changes.")
+                self.logger.debug("Committing changes.")
                 self.session.commit()
         else:
             self.logger.error("Transaction with errors. Roll back & closing db.")
             self.session.rollback()
 
-        self.logger.info("Closing session.")
+        self.logger.debug("Closing session.")
         self.session.close()
 
     def __str__(self):
