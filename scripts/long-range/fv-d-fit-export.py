@@ -19,16 +19,16 @@ from scipy.optimize import minimize_scalar
 from luescher_nd.hamiltonians.longrange import PhenomLRHamiltonian
 from luescher_nd.hamiltonians.longrange import export_eigs
 from luescher_nd.hamiltonians.longrange import p_cot_delta
-from luescher_nd.hamiltonians.longrange import GBAR0, M0, MU
+from luescher_nd.hamiltonians.longrange import M0
 
 from luescher_nd.zeta.zeta3d import Zeta3D
 
-RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
+RANGES = {"n1d": range(10, 51, 10), "L": [10.0, 15.0, 20.0], "nstep": [2, 3, 4, None]}
 PARS = {"k": 300}
 
-M = M0
+M = M0 * 10
 
-DBNAME = "db-lr-fv-d-fitted.sqlite"
+DBNAME = "db-lr-fv-d-fitted-10M0.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
