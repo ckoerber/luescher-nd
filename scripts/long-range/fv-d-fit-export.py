@@ -26,6 +26,8 @@ from luescher_nd.zeta.zeta3d import Zeta3D
 RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
 PARS = {"k": 300}
 
+M = M0
+
 DBNAME = "db-lr-fv-d-fitted.sqlite"
 
 ROOT = os.path.abspath(
@@ -58,7 +60,7 @@ class FitKernel:
         """
         p = np.sqrt(x + 0j) * 2 * np.pi / self.h.L
         return (
-            p_cot_delta(p, gbar=GBAR0, mu=MU, m=M0).real
+            p_cot_delta(p, gbar=self.h.gbar, mu=self.h.m / 2, m=self.h.M).real
             - self.zeta(x)[0] / np.pi / self.h.L
         ) ** 2
 
@@ -66,14 +68,19 @@ class FitKernel:
         """Computes the first intersection of the zeta function and the ERE
         """
         x0 = minimize_scalar(self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2)).x
-        return x0 / 2 / MU * (2 * np.pi / self.h.L) ** 2
+        return x0 / 2 / (self.h.m / 2) * (2 * np.pi / self.h.L) ** 2
 
     def chi2(self, gbar: float) -> float:
         """Computes the first eigenvalue and returns the squared difference between with
         expected value.
         """
         hnew = PhenomLRHamiltonian(
-            n1d=self.h.n1d, epsilon=self.h.epsilon, nstep=self.h.nstep, gbar=gbar
+            n1d=self.h.n1d,
+            epsilon=self.h.epsilon,
+            nstep=self.h.nstep,
+            gbar=gbar,
+            m=self.h.m,
+            M=self.h.M,
         )
         e0 = eigsh(hnew.op, which="SA", return_eigenvectors=False, k=1)[0]
         return (e0 - self._e0) ** 2
@@ -84,12 +91,12 @@ def main():
     """
     for n1d, L, nstep in product(RANGES["n1d"], RANGES["L"], RANGES["nstep"]):
         epsilon = L / n1d
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
+        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, M=M)
 
         kernel = FitKernel(h)
         gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
 
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar)
+        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar, M=M)
         export_eigs(h, DB, **PARS)
 
 
