@@ -8,3 +8,9 @@ configure.yaml
 *.so
 __pycache__
 .DS_Store
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+
