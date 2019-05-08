@@ -2,6 +2,14 @@
 
 Testing lattice Hamiltonian implementation for testing Lüscher's formula in 1, 2, 3 spatial dimension.
 
+## ToDo
+
+* Repeat contact computation for larger L (check Lüscher corrections)
+* Repeat contact computation for non-zero scattering length
+* Figure out which way to benchmark lattice parameters
+* Make nice plot about commuting limits from FV discrete energy levels to IV continuum scattering (groups)
+* Think about projectors
+
 ## Install
 This is a `python` (preferably a new version of Python 3) project which uses `jupyter` notebooks.
 
