@@ -9,3 +9,5 @@ matplotlib
 seaborn
 sympy
 sqlalchemy
+tqdm
+blackcellmagic
