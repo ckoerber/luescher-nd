@@ -24,6 +24,8 @@ from luescher_nd.database.tables import create_database
 
 LOGGER = get_logger(logging.INFO)
 
+HBARC = 197.327
+
 
 def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
     n1d_max: int,

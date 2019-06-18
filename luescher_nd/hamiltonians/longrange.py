@@ -10,6 +10,7 @@ import numpy as np
 from luescher_nd.utilities import get_logger
 
 from luescher_nd.hamiltonians.kinetic import MomentumKineticHamiltonian
+from luescher_nd.hamiltonians.kinetic import HBARC
 
 from luescher_nd.database.tables import LongRangeEnergyEntry
 
@@ -34,8 +35,6 @@ def gamma2gbar(gamma, m, mu):  # pylint: disable=C0103
         * m
     )
 
-
-HBARC = 197.327
 
 MPI = 134.98 / HBARC
 E0 = -2.225 / HBARC
