@@ -87,7 +87,7 @@ def main():
     """
     for n1d, L, nstep in product(RANGES["n1d"], RANGES["L"], RANGES["nstep"]):
         epsilon = L / n1d
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, M=M)
+        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
 
         kernel = FitKernel(h)
         gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
