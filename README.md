@@ -1,6 +1,6 @@
 # Lüscher n-dim test
 
-Is it possible to extend Lüschers formalism to discrete volumes? How does this affect the computation of the Bertsch parameter?
+Is it possible to extend Lüscher's formalism to discrete volumes? How does this affect the computation of the Bertsch parameter?
 
 ## ToDo
 
@@ -18,18 +18,18 @@ pip install -e .
 
 For the exact module versions see `requirements-freeze.txt`.
 
-
 ## Tests
 Run
 ```bash
 python setup.py test
 ```
 
-## Run
-Open the notebook in the `jupyter` dashboard and browse the notebooks directory.
 
 ## Authors
-* [Christopher Körber](mailto:christopher@ckoerber.com)
+* [Evan Berkowitz](https://github.com/evanberkowitz)
+* [Christopher Körber](https://github.com/ckoerber)
+* [Tom Luu](https://github.com/luutom)
+
 
 ## License
 See [`LICENSE`](LICENSE)
