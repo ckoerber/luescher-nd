@@ -8,7 +8,6 @@ import os
 from itertools import product
 
 from luescher_nd.hamiltonians.longrange import PhenomLRHamiltonian
-from luescher_nd.hamiltonians.longrange import export_eigs
 
 RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
 PARS = {"k": 300}
@@ -26,8 +25,14 @@ def main():
     """
     for n1d, L, nstep in product(RANGES["n1d"], RANGES["L"], RANGES["nstep"]):
         epsilon = L / n1d
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
-        export_eigs(h, DB, **PARS)
+
+        PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep).export_eigs(
+            DB,
+            eigsh_kwargs=PARS,
+            export_kwargs={
+                "comment": "potential fixed with Infinite Volume continuum parameters"
+            },
+        )
 
 
 if __name__ == "__main__":

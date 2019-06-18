@@ -17,18 +17,14 @@ from scipy.sparse.linalg import eigsh
 from scipy.optimize import minimize_scalar
 
 from luescher_nd.hamiltonians.longrange import PhenomLRHamiltonian
-from luescher_nd.hamiltonians.longrange import export_eigs
 from luescher_nd.hamiltonians.longrange import p_cot_delta
-from luescher_nd.hamiltonians.longrange import M0
 
 from luescher_nd.zeta.zeta3d import Zeta3D
 
 RANGES = {"n1d": range(10, 51, 10), "L": [10.0, 15.0, 20.0], "nstep": [2, 3, 4, None]}
 PARS = {"k": 300}
 
-M = M0 * 10
-
-DBNAME = "db-lr-fv-d-fitted-10M0.sqlite"
+DBNAME = "db-lr-fv-d-fitted.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -96,8 +92,15 @@ def main():
         kernel = FitKernel(h)
         gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
 
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar, M=M)
-        export_eigs(h, DB, **PARS)
+        PhenomLRHamiltonian(
+            n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar
+        ).export_eigs(
+            DB,
+            eigsh_kwargs=PARS,
+            export_kwargs={
+                "comment": "potential fitted to Finite Volume discrete ground state"
+            },
+        )
 
 
 if __name__ == "__main__":

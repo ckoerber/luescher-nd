@@ -13,7 +13,6 @@ from scipy.sparse.linalg import eigsh
 from scipy.optimize import minimize_scalar
 
 from luescher_nd.hamiltonians.longrange import PhenomLRHamiltonian
-from luescher_nd.hamiltonians.longrange import export_eigs
 from luescher_nd.hamiltonians.longrange import E0
 
 RANGES = {"n1d": range(10, 51, 5), "L": [10.0, 15.0, 20.0], "nstep": [1, 2, 3, 4, None]}
@@ -56,8 +55,15 @@ def main():
         kernel = FitKernel(h)
         gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
 
-        h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar)
-        export_eigs(h, DB, **PARS)
+        PhenomLRHamiltonian(
+            n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar
+        ).export_eigs(
+            DB,
+            eigsh_kwargs=PARS,
+            export_kwargs={
+                "comment": "potential fitted to Infinite Volume continuum ground state"
+            },
+        )
 
 
 if __name__ == "__main__":
