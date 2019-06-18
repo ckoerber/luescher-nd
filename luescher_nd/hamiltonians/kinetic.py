@@ -265,7 +265,7 @@ class MomentumKineticHamiltonian:
         with DatabaseSession(database, commit=False) as sess:
             matches = sess.query(self._table_class).filter_by(**export_kwargs).all()
             if matches and not overwrite:
-                LOGGER.info("Found %d entries for `%s`. Skip.", len(matches), self)
+                LOGGER.debug("Found %d entries for `%s`. Skip.", len(matches), self)
                 return
 
         LOGGER.info("Exporting eigenvalues of `%s` with arguments:", self)
@@ -276,7 +276,6 @@ class MomentumKineticHamiltonian:
             data = export_kwargs.copy()
             for nlevel, eig in enumerate(np.sort(eigs)):
                 data.update({"E": eig, "nlevel": nlevel})
-                print(data)
                 entry, created = self._table_class.get_or_create(session=sess, **data)
                 if created:
                     LOGGER.debug("Created `%s`", entry)
