@@ -13,4 +13,4 @@ __pycache__
 *.aux
 *.bbl
 *.blg
-
+.eggs/

@@ -1,8 +1,0 @@
-test
-zeta
-*.o
-pyzeta.c
-pyzeta.cpp
-build/
-pyzeta.cpython-37m-darwin.so
-pyzeta.egg-info/

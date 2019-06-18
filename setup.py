@@ -22,19 +22,12 @@ with open(path.join(THISDIR, "requirements.txt"), mode="r") as f:
 
 EXTENSIONS = [
     Extension(
-        path.join("luescher_nd", "zeta", "pyzeta").replace("/", "."),
-        [path.join(THISDIR, "luescher_nd", "zeta", "pyzeta.pyx")],
-        language="c++",
-        extra_compile_args=["--std=c++11"],
-    ),
-    Extension(
         path.join("luescher_nd", "zeta", "extern", "pyzeta").replace("/", "."),
         [path.join(THISDIR, "luescher_nd", "zeta", "extern", "pyzeta.pyx")],
         language="c++",
         extra_compile_args=["--std=c++11"],
-    ),
+    )
 ]
-
 
 setup(
     name="luescher_nd",
@@ -45,7 +38,7 @@ setup(
     author=__author__,
     packages=find_packages(exclude=["tests", "benchmarks"]),
     install_requires=REQUIREMENTS,
-    test_suite="tests",
     ext_modules=cythonize(EXTENSIONS),
-    setup_requires=["cython", "numpy"],
+    setup_requires=["cython", "numpy", "pytest-runner"],
+    tests_require=["pytest"],
 )
