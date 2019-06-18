@@ -56,7 +56,7 @@ class FitKernel:
         """
         p = np.sqrt(x + 0j) * 2 * np.pi / self.h.L
         return (
-            p_cot_delta(p, gbar=self.h.gbar, mu=self.h.m / 2, m=self.h.M).real
+            p_cot_delta(p, gbar=self.h.gbar, mu=self.h.mass / 2, m=self.h.M).real
             - self.zeta(x)[0] / np.pi / self.h.L
         ) ** 2
 
