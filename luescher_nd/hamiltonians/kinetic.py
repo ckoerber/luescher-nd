@@ -12,12 +12,6 @@ import numpy as np
 from scipy import sparse as sp
 from scipy.sparse.linalg import LinearOperator
 
-try:
-    from solvers.src import cupy_sp
-    import cupy as cp  # pylint: disable=E0401, W0611
-except ModuleNotFoundError:
-    cupy_sp = None  # pylint: disable=C0103
-
 from luescher_nd.utilities import get_logger
 from luescher_nd.utilities import get_laplace_coefficients
 
@@ -30,7 +24,6 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
     particle_mass: float = 4.758,
     ndim_max: int = 3,
     derivative_shifts: Optional[Dict[int, float]] = None,
-    cuda: bool = False,
 ) -> sp.csr_matrix:
     r"""Computes the kinetic Hamiltonian for a relative two-body system in a 3D box.
 
@@ -132,10 +125,6 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
                 data[(nr, nr_shift)] -= coeff
 
             n1d_pow_ndim *= n1d_max
-
-    if cupy_sp and cuda:
-        LOGGER.debug("Transfering kinetic hamiltonian to gpu")
-        data = cupy_sp.scipy2cupy(data)  # pylint: disable=E1101
 
     return data.tocsr()
 

@@ -1,3 +1,0 @@
-[submodule "solvers"]
-	path = solvers
-	url = https://github.com/ckoerber/solvers.git

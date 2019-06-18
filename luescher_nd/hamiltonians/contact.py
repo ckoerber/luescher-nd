@@ -7,12 +7,6 @@ import logging
 import numpy as np
 from scipy import sparse as sp
 
-try:
-    from solvers.src import cupy_sp
-    import cupy as cp  # pylint: disable=E0401, W0611
-except ModuleNotFoundError:
-    cupy_sp = None  # pylint: disable=C0103
-
 from luescher_nd.utilities import get_logger
 
 from luescher_nd.hamiltonians.kinetic import MomentumKineticHamiltonian
@@ -25,7 +19,6 @@ def get_full_hamiltonian(
     contact_strength: float,
     ndim_max: int = 3,
     lattice_spacing: float = 1.0,
-    cuda: bool = False,
 ) -> sp.csr_matrix:
     r"""Copies kinetic Hamiltonian and adds contact strength from the (0, 0) component.
 
@@ -50,10 +43,6 @@ def get_full_hamiltonian(
     LOGGER.debug("Allocating full hamiltonian")
     contact_interaction = sp.lil_matrix(kinetic_hamiltonian.shape, dtype=float)
     contact_interaction[(0, 0)] = contact_strength / lattice_spacing ** ndim_max
-    if cupy_sp and cuda:
-        contact_interaction = cupy_sp.scipy2cupy(  # pylint: disable=E1101
-            contact_interaction.tocsr()
-        )
 
     return (contact_interaction + kinetic_hamiltonian).tocsr()
 
