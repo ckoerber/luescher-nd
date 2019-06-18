@@ -65,7 +65,7 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     """Phenemenological long range Hamiltonian mimicing two-pion exchange.
     """
 
-    _table_class: LongRangeEnergyEntry
+    _table_class = LongRangeEnergyEntry
 
     M: float = M0
     gbar: float = GBAR0

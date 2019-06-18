@@ -145,7 +145,7 @@ class MomentumKineticHamiltonian:
 
     n1d: int
     epsilon: float = 1.0
-    m: float = 4.758
+    mass: float = 4.758
     ndim: int = 3
     nstep: Optional[int] = 3
 
@@ -162,7 +162,7 @@ class MomentumKineticHamiltonian:
     def p2(self):  # pylint: disable=C0103
         """Returns momentum dispersion
         """
-        return self._disp_over_m * 2 * (self.m / 2)
+        return self._disp_over_m * 2 * (self.mass / 2)
 
     def __post_init__(self):
         """Initializes the dispersion relation the matvec kernel.
@@ -191,7 +191,7 @@ class MomentumKineticHamiltonian:
 
         disp = np.sum(np.array(np.meshgrid(*[disp1d] * self.ndim)), axis=0).flatten()
 
-        object.__setattr__(self, "_disp_over_m", disp / 2 / (self.m / 2))
+        object.__setattr__(self, "_disp_over_m", disp / 2 / (self.mass / 2))
 
     @property
     def op(self) -> LinearOperator:  # pylint: disable=C0103
@@ -256,8 +256,8 @@ class MomentumKineticHamiltonian:
         export_kwargs = export_kwargs or {}
         export_kwargs.update(
             {
-                key: getattr(key, self)
-                for key in self._table_class.keys
+                key: getattr(self, key)
+                for key in self._table_class.keys()
                 if not key in ["E", "nlevel"]
             }
         )
@@ -273,8 +273,10 @@ class MomentumKineticHamiltonian:
         eigs = np.sort(eigsh(self.op, **eigsh_kwargs))
         n_created = 0
         with DatabaseSession(database) as sess:
+            data = export_kwargs.copy()
             for nlevel, eig in enumerate(np.sort(eigs)):
-                data = {"E": eig, "nlevel": nlevel}.update(export_kwargs)
+                data.update({"E": eig, "nlevel": nlevel})
+                print(data)
                 entry, created = self._table_class.get_or_create(session=sess, **data)
                 if created:
                     LOGGER.debug("Created `%s`", entry)

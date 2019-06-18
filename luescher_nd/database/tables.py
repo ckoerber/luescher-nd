@@ -9,11 +9,13 @@ from datetime import datetime
 import numpy as np
 
 from sqlalchemy import Column
+from sqlalchemy import ForeignKey
 
 from sqlalchemy.types import Integer
 from sqlalchemy.types import DateTime
 from sqlalchemy.types import Float
 from sqlalchemy.types import String
+
 
 from sqlalchemy.engine.base import Engine
 
@@ -22,20 +24,28 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 
-class EnergyEntry:
+BASE = declarative_base()
+
+
+class EnergyEntry(BASE):
     """Base implementation of energy table entries
     """
 
+    __tablename__ = "energy"
+
+    id = Column(Integer, primary_key=True)
     n1d = Column(Integer, nullable=False)
     epsilon = Column(Float, nullable=False)
     nstep = Column(Integer, nullable=True)
-    mu = Column(Float, nullable=False)
+    mass = Column(Float, nullable=False)
     E = Column(Float, nullable=False)
     nlevel = Column(Integer, nullable=False)
     date = Column(DateTime, default=datetime.utcnow)
     comment = Column(String, nullable=True)
+    discriminator = Column("type", String(50))
 
-    _keys: Set[str] = {"n1d", "epsilon", "nstep", "mu", "E", "nlevel"}
+    __mapper_args__ = {"polymorphic_on": discriminator}
+    _keys: Set[str] = {"n1d", "epsilon", "nstep", "mass", "E", "nlevel"}
 
     @classmethod
     def keys(cls) -> Set[str]:
@@ -48,6 +58,11 @@ class EnergyEntry:
         """Returns length of box edge
         """
         return self.n1d * self.epsilon
+
+    def mu(self) -> float:  # pylint: disable=C0103
+        """Returns the reduced mass
+        """
+        return self.mass / 2
 
     @property
     def x(self) -> float:
@@ -68,7 +83,7 @@ class EnergyEntry:
             **kwargs:
                 EnergyEntry creagion arguments.
         """
-        if cls.keys() != set(kwargs.keys()):
+        if cls.keys() != cls.keys().intersection(set(kwargs.keys())):
             raise KeyError(
                 "Did not find all keys in arguments for creating `EnergyEntry`."
                 "\nMissing keys:\n\t"
@@ -85,37 +100,42 @@ class EnergyEntry:
 
         return instance, created
 
+    def __repr__(self):
+        """Returns string of self"""
+        return str(self)
+
     def __str__(self):
         """Descriptive representation"""
         keys = ", ".join([f"{key}={getattr(self, key)}" for key in self.keys()])
         return f"{self.__class__.__name__}({keys})"
 
 
-BASE = declarative_base(EnergyEntry)
-
-
-class LongRangeEnergyEntry(BASE):
+class LongRangeEnergyEntry(EnergyEntry):
     """Table which stores information about computed energy levels for LR potential."""
 
     __tablename__ = "long-range-energy"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, ForeignKey("energy.id"), primary_key=True)
     gbar = Column(Float, nullable=False)
 
-    _keys = EnergyEntry.keys().add("gbar")
+    _keys = EnergyEntry.keys().union({"gbar"})
+
+    __mapper_args__ = {"polymorphic_identity": "long-range-energy"}
 
 
-class ContactEnergyEntry(BASE):
+class ContactEnergyEntry(EnergyEntry):
     """
     Table which stores information about computed energy levels for contact potential.
     """
 
     __tablename__ = "contact-energy"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, ForeignKey("energy.id"), primary_key=True)
     contact_strength = Column(Float, nullable=False)
 
-    _keys = EnergyEntry.keys().add("contact_strength")
+    _keys = EnergyEntry.keys().union({"contact_strength"})
+
+    __mapper_args__ = {"polymorphic_identity": "contact-energy"}
 
 
 def create_all_tables(engine: Engine):
