@@ -11,6 +11,8 @@ from luescher_nd.utilities import get_logger
 
 from luescher_nd.hamiltonians.kinetic import MomentumKineticHamiltonian
 
+from luescher_nd.database.tables import ContactEnergyEntry
+
 LOGGER = get_logger(logging.INFO)
 
 
@@ -52,9 +54,14 @@ class MomentumContactHamiltonian(MomentumKineticHamiltonian):
     """Contact interaction Hamiltonian in momentum space
     """
 
-    c0: float = -1.0
+    _table_class = ContactEnergyEntry
+
+    contact_strength: float = -1.0
 
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
-        return self._disp_over_m * vec + self.c0 * np.sum(vec) / self.L ** self.ndim
+        return (
+            self._disp_over_m * vec
+            + self.contact_strength * np.sum(vec) / self.L ** self.ndim
+        )

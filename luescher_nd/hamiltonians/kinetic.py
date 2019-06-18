@@ -2,18 +2,25 @@
 """
 from typing import Optional
 from typing import Dict
+from typing import Any
 
 from dataclasses import dataclass
 from dataclasses import field
 
 import logging
+import os
 
 import numpy as np
 from scipy import sparse as sp
 from scipy.sparse.linalg import LinearOperator
+from scipy.sparse.linalg import eigsh
 
 from luescher_nd.utilities import get_logger
 from luescher_nd.utilities import get_laplace_coefficients
+
+from luescher_nd.database.connection import DatabaseSession
+
+from luescher_nd.database.tables import create_database
 
 LOGGER = get_logger(logging.INFO)
 
@@ -134,6 +141,8 @@ class MomentumKineticHamiltonian:
     """Kinetic Hamiltonian in momentum space
     """
 
+    _table_class = None  # Must be an energy entry
+
     n1d: int
     epsilon: float = 1.0
     m: float = 4.758
@@ -200,3 +209,76 @@ class MomentumKineticHamiltonian:
         """Applies hamiltonian to vector
         """
         return self._disp_over_m * vec
+
+    def export_eigs(
+        self,
+        database: str,
+        overwrite: bool = False,
+        eigsh_kwargs: Optional[Dict[str, Any]] = None,
+        export_kwargs: Optional[Dict[str, Any]] = None,
+    ):
+        """Computes eigenvalues of hamiltonian and writes to database.
+
+        First checks if values are already present. If true, does nothing.
+        However, it does not check how many levels are present.
+        So if you want to compute more levels, set ``overwrite`` to ``True``.
+
+        **Arguments**
+            database: str
+                Database name for export / import.
+
+            overwrite: bool = False
+                Overwrite existing entries.
+
+            eigsh_kwargs: Optional[Dict[str, Any]] = None
+                Arguments fed to ``scipy.sparse.linalg.eigsh``.
+                Default are ``return_eigenvectors=False`` and ``which="SA"``.
+                These cannot be changed.
+
+            export_kwargs: Optional[Dict[str, Any]] = None
+                Arguments fed to ``table.get_or_create``.
+                This does not overwrite properties of the hamiltonian.
+        """
+        if self._table_class is None:
+            raise KeyError(f"Unkown table entry for {self}. Cannot export to database.")
+
+        eigsh_kwargs = eigsh_kwargs or {}
+
+        eigsh_kwargs["return_eigenvectors"] = False
+        eigsh_kwargs["which"] = "SA"
+        if "k" not in eigsh_kwargs:
+            eigsh_kwargs["k"] = 6
+
+        if not os.path.exists(database):
+            LOGGER.info("Creating database `%s`", database)
+            create_database(database)
+
+        export_kwargs = export_kwargs or {}
+        export_kwargs.update(
+            {
+                key: getattr(key, self)
+                for key in self._table_class.keys
+                if not key in ["E", "nlevel"]
+            }
+        )
+
+        with DatabaseSession(database, commit=False) as sess:
+            matches = sess.query(self._table_class).filter_by(**export_kwargs).all()
+            if matches and not overwrite:
+                LOGGER.info("Found %d entries for `%s`. Skip.", len(matches), self)
+                return
+
+        LOGGER.info("Exporting eigenvalues of `%s` with arguments:", self)
+
+        eigs = np.sort(eigsh(self.op, **eigsh_kwargs))
+        n_created = 0
+        with DatabaseSession(database) as sess:
+            for nlevel, eig in enumerate(np.sort(eigs)):
+                data = {"E": eig, "nlevel": nlevel}.update(export_kwargs)
+                entry, created = self._table_class.get_or_create(session=sess, **data)
+                if created:
+                    LOGGER.debug("Created `%s`", entry)
+                    n_created += 1
+
+        LOGGER.info("\t-----")
+        LOGGER.info("\tExported %d entries", n_created)

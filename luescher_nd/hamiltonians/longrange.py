@@ -3,21 +3,15 @@
 from dataclasses import dataclass
 from dataclasses import field
 
-import os
 import logging
 
 import numpy as np
-from scipy.sparse.linalg import eigsh
 
 from luescher_nd.utilities import get_logger
 
 from luescher_nd.hamiltonians.kinetic import MomentumKineticHamiltonian
 
-from luescher_nd.database.connection import DatabaseSession
-
-from luescher_nd.database.tables import create_db
 from luescher_nd.database.tables import LongRangeEnergyEntry
-
 
 LOGGER = get_logger(logging.INFO)
 
@@ -70,6 +64,8 @@ def p_cot_delta(p, gbar, mu, m):  # pylint: disable=C0103
 class PhenomLRHamiltonian(MomentumKineticHamiltonian):
     """Phenemenological long range Hamiltonian mimicing two-pion exchange.
     """
+
+    _table_class: LongRangeEnergyEntry
 
     M: float = M0
     gbar: float = GBAR0
@@ -127,78 +123,3 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
             potential = -self._gp.reshape(-1, 1) * self._gp  # pylint: disable=E1101
             object.__setattr__(self, "_V", potential)
         return self._V
-
-
-def export_eigs(  # pylint: disable=C0103, R0914
-    h: PhenomLRHamiltonian, db: str, overwrite: bool = False, **kwargs
-):
-    """Computes eigenvalues of hamiltonian and writes to db.
-
-    First checks if values are already present. If true, does nothing.
-    However, it does not check how many levels are present.
-    So if you want to compute more levels, set ``overwrite`` to ``True``.
-
-    **Arguments**
-        h: PhenomLRHamiltonian
-            Hamiltonian to solve.
-
-        db: str
-            Database name for export / import.
-
-        overwrite: bool = False
-            Overwrite existing entries.
-
-        **kwargs:
-            Arguments fed to ``scipy.sparse.linalg.eigsh``.
-            Default are ``return_eigenvectors=False`` and ``which="SA"``.
-            These cannot be changed.
-    """
-    kwargs["return_eigenvectors"] = False
-    kwargs["which"] = "SA"
-    if "k" not in kwargs:
-        kwargs["k"] = 6
-
-    if not os.path.exists(db):
-        LOGGER.info("Creating database `%s`", db)
-        create_db(db)
-
-    h_keys = {
-        "n1d": h.n1d,
-        "epsilon": h.epsilon,
-        "mu": h.m,
-        "m": h.M,
-        "gbar": h.gbar,
-        "nstep": h.nstep,
-    }
-    with DatabaseSession(db, commit=False) as sess:
-        matches = sess.query(LongRangeEnergyEntry).filter_by(**h_keys).all()
-        if matches and not overwrite:
-            LOGGER.info("Found %d entries for `%s`. Skip.", len(matches), h)
-            return
-
-    LOGGER.info("Exporting eigenvalues of `%s` with arguments:", h)
-    LOGGER.info("\tDatabase='%s'", db)
-    for key, val in kwargs.items():
-        LOGGER.info("\t%s=%s", key, val)
-
-    eigs = np.sort(eigsh(h.op, **kwargs))
-    n_created = 0
-    with DatabaseSession(db) as sess:
-        for nlevel, eig in enumerate(np.sort(eigs)):
-            data = {
-                "E": eig,
-                "n1d": h.n1d,
-                "epsilon": h.epsilon,
-                "mu": h.m,
-                "nlevel": nlevel,
-                "m": h.M,
-                "gbar": h.gbar,
-                "nstep": h.nstep,
-            }
-            entry, created = LongRangeEnergyEntry.get_or_create(session=sess, **data)
-            if created:
-                LOGGER.debug("Created `%s`", entry)
-                n_created += 1
-
-    LOGGER.info("\t-----")
-    LOGGER.info("\tExported %d entries", n_created)

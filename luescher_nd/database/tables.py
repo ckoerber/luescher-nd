@@ -2,6 +2,7 @@
 """Implementation of project tables
 """
 from typing import Tuple
+from typing import Set
 
 from datetime import datetime
 
@@ -12,6 +13,7 @@ from sqlalchemy import Column
 from sqlalchemy.types import Integer
 from sqlalchemy.types import DateTime
 from sqlalchemy.types import Float
+from sqlalchemy.types import String
 
 from sqlalchemy.engine.base import Engine
 
@@ -19,26 +21,27 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import Session
 
-BASE = declarative_base()
 
+class EnergyEntry:
+    """Base implementation of energy table entries
+    """
 
-class LongRangeEnergyEntry(BASE):
-    """Table which stores information about computed operators."""
-
-    __tablename__ = "long-range-energy"
-
-    id = Column(Integer, primary_key=True)
     n1d = Column(Integer, nullable=False)
     epsilon = Column(Float, nullable=False)
     nstep = Column(Integer, nullable=True)
     mu = Column(Float, nullable=False)
-    m = Column(Float, nullable=False)
-    gbar = Column(Float, nullable=False)
     E = Column(Float, nullable=False)
     nlevel = Column(Integer, nullable=False)
     date = Column(DateTime, default=datetime.utcnow)
+    comment = Column(String, nullable=True)
 
-    _keys = {"n1d", "epsilon", "nstep", "mu", "m", "gbar", "E", "nlevel"}
+    _keys: Set[str] = {"n1d", "epsilon", "nstep", "mu", "E", "nlevel"}
+
+    @classmethod
+    def keys(cls) -> Set[str]:
+        """Returns database keys.
+        """
+        return cls._keys
 
     @property
     def L(self) -> float:  # pylint: disable=C0103
@@ -55,21 +58,21 @@ class LongRangeEnergyEntry(BASE):
     @classmethod
     def get_or_create(  # pylint: disable=R0913, R0914
         cls, session: Session, **kwargs
-    ) -> Tuple["LongRangeEnergyEntry", bool]:
-        """Creates a ConvolutionEntry from a data frame.
+    ) -> Tuple["EnergyEntry", bool]:
+        """Creates or returns a EnergyEntry from keywords.
 
         **Arguments**
             session: Session
                 The database session for querying and adding entries.
 
             **kwargs:
-                LongRangeEnergyEntry creagion arguments.
+                EnergyEntry creagion arguments.
         """
-        if set(cls._keys) != set(kwargs.keys()):
+        if cls.keys() != set(kwargs.keys()):
             raise KeyError(
-                "Did not find all keys in arguments for creating `LongRangeEnergyEntry`."
+                "Did not find all keys in arguments for creating `EnergyEntry`."
                 "\nMissing keys:\n\t"
-                "\n\t".join(cls._keys.difference(set(kwargs.keys())))
+                "\n\t".join(cls.keys().difference(set(kwargs.keys())))
             )
 
         instance = session.query(cls).filter_by(**kwargs).first()
@@ -84,8 +87,35 @@ class LongRangeEnergyEntry(BASE):
 
     def __str__(self):
         """Descriptive representation"""
-        keys = ", ".join([f"{key}={getattr(self, key)}" for key in self._keys])
-        return f"LongRangeEnergyEntry({keys})"
+        keys = ", ".join([f"{key}={getattr(self, key)}" for key in self.keys()])
+        return f"{self.__class__.__name__}({keys})"
+
+
+BASE = declarative_base(EnergyEntry)
+
+
+class LongRangeEnergyEntry(BASE):
+    """Table which stores information about computed energy levels for LR potential."""
+
+    __tablename__ = "long-range-energy"
+
+    id = Column(Integer, primary_key=True)
+    gbar = Column(Float, nullable=False)
+
+    _keys = EnergyEntry.keys().add("gbar")
+
+
+class ContactEnergyEntry(BASE):
+    """
+    Table which stores information about computed energy levels for contact potential.
+    """
+
+    __tablename__ = "contact-energy"
+
+    id = Column(Integer, primary_key=True)
+    contact_strength = Column(Float, nullable=False)
+
+    _keys = EnergyEntry.keys().add("contact_strength")
 
 
 def create_all_tables(engine: Engine):
@@ -98,7 +128,7 @@ def create_all_tables(engine: Engine):
     BASE.metadata.create_all(engine)
 
 
-def create_db(database: str, dtype: str = "sqlite"):
+def create_database(database: str, dtype: str = "sqlite"):
     """Establishes connection to database and creates all tables
 
     **Arguments**
@@ -127,4 +157,4 @@ if __name__ == "__main__":
     )
     ARGS = PARSER.parse_args()
 
-    create_db(ARGS.database, dtype=ARGS.dtype)
+    create_database(ARGS.database, dtype=ARGS.dtype)
