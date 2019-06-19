@@ -53,7 +53,9 @@ def main():
         h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
 
         kernel = FitKernel(h)
-        gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
+        gbar = minimize_scalar(
+            kernel.chi2, bracket=(1.0e-4, 1.0e2), options={"xtol": 1.0e-12}
+        ).x
 
         PhenomLRHamiltonian(
             n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar

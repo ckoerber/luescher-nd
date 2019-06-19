@@ -64,7 +64,9 @@ class FitKernel:
     def _get_ground_state(self) -> float:
         """Computes the first intersection of the zeta function and the ERE
         """
-        x0 = minimize_scalar(self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2)).x
+        x0 = minimize_scalar(
+            self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2), options={"xtol": 1.0e-12}
+        ).x
         return x0 / 2 / MU * (2 * np.pi / self.h.L) ** 2
 
     def chi2(self, gbar: float) -> float:
@@ -86,7 +88,9 @@ def main():
         h = PhenomLRHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
 
         kernel = FitKernel(h)
-        gbar = minimize_scalar(kernel.chi2, bracket=(1.0e-4, 1.0e2)).x
+        gbar = minimize_scalar(
+            kernel.chi2, bracket=(1.0e-4, 1.0e2), options={"xtol": 1.0e-12}
+        ).x
 
         PhenomLRHamiltonian(
             n1d=n1d, epsilon=epsilon, nstep=nstep, gbar=gbar

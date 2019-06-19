@@ -58,7 +58,9 @@ class FitKernel:
     def _get_ground_state(self) -> float:
         """Computes the first intersection of the zeta function and the ERE
         """
-        x0 = minimize_scalar(self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2)).x
+        x0 = minimize_scalar(
+            self._ere_diff_sqrd, bracket=(-1.0e1, -1.0e-2), options={"xtol": 1.0e-12}
+        ).x
         return x0 / 2 / (self.h.mass / 2) * (2 * np.pi / self.h.L) ** 2
 
     def chi2(self, contact_strength: float) -> float:
@@ -84,7 +86,9 @@ def main():
         h = MomentumContactHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
 
         kernel = FitKernel(h)
-        contact_strength = minimize_scalar(kernel.chi2, bracket=(-1.0e2, -1.0e-4)).x
+        contact_strength = minimize_scalar(
+            kernel.chi2, bracket=(-1.0e2, -1.0e-4), options={"xtol": 1.0e-12}
+        ).x
 
         MomentumContactHamiltonian(
             n1d=n1d, epsilon=epsilon, nstep=nstep, contact_strength=contact_strength
