@@ -141,6 +141,31 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
 @dataclass(frozen=True)
 class MomentumKineticHamiltonian:
     """Kinetic Hamiltonian in momentum space
+
+    **Attributes**
+        n1d: int
+            Number of lattice sites in one dimension
+
+        epsilon: float = 1.0
+            Lattice spacing in inverse fermi
+
+        mass: float = 4.758
+            Particle mass in inverse fermi. Hamiltonina uses reduced mass ``mu = m /2``
+
+        ndim: int = 3
+            Number of dimensions
+
+        nstep: Optional[int] = 3
+            Number of derivative steps. None corresponds to inifinte step derivative.
+
+        filter_out: Optional[sp.csr_matrix] = None
+            Projection operator which must commute with the Hamiltonian.
+            If specified, applies ``H + cutoff * filter_out`` instead of ``H``.
+            Thus, eigenstates with ``filter_out |psi> = |psi>`` are projected to larger
+            energies.
+
+        filter_cutoff: Optional[float] = None
+            Size of the cutoff filter.
     """
 
     _table_class = None  # Must be an energy entry
@@ -150,6 +175,8 @@ class MomentumKineticHamiltonian:
     mass: float = 4.758
     ndim: int = 3
     nstep: Optional[int] = 3
+    filter_out: Optional[sp.csr_matrix] = field(default=None, repr=False)
+    filter_cutoff: Optional[float] = field(default=None, repr=False)
 
     _disp_over_m: np.ndarray = field(init=False, repr=False)
     _op: LinearOperator = field(default=None, repr=False)
@@ -203,16 +230,28 @@ class MomentumKineticHamiltonian:
             object.__setattr__(
                 self,
                 "_op",
-                LinearOperator(matvec=self.apply, shape=[self.n1d ** self.ndim] * 2),
+                LinearOperator(matvec=self._apply, shape=[self.n1d ** self.ndim] * 2),
             )
         return self._op
+
+    def _apply(self, vec):
+        """Wraps projector application with operator application
+
+        Computes ``(H + cutoff P) |psi>``. Thus states with ``P|psi> = |psi>`` are
+        shifted to larger energies while states with ``P|psi> = 0`` remain.
+        Note this only works if ``[H, P] = 0``.
+        """
+        out = self.apply(vec)
+        if self.filter_out is not None and self.filter_cutoff is not None:
+            out += self.filter_cutoff * self.filter_out @ vec
+        return out
 
     def apply(self, vec):
         """Applies hamiltonian to vector
         """
         return self._disp_over_m * vec
 
-    def export_eigs(
+    def export_eigs(  # pylint: disable=R0914
         self,
         database: str,
         overwrite: bool = False,
@@ -270,18 +309,33 @@ class MomentumKineticHamiltonian:
                 LOGGER.debug("Found %d entries for `%s`. Skip.", len(matches), self)
                 return
 
-        LOGGER.info("Exporting eigenvalues of `%s` with arguments:", self)
+        LOGGER.info("Exporting eigenvalues of `%s`", self)
 
-        eigs = np.sort(eigsh(self.op, **eigsh_kwargs))
+        if self.filter_out is not None and self.filter_cutoff is not None:
+            eigsh_kwargs["return_eigenvectors"] = True
+            eigs, vecs = eigsh(self.op, **eigsh_kwargs)
+            vecs = vecs.T
+        else:
+            eigs = np.sort(eigsh(self.op, **eigsh_kwargs))
+            vecs = None
+
         n_created = 0
         with DatabaseSession(database) as sess:
             data = export_kwargs.copy()
-            for nlevel, eig in enumerate(np.sort(eigs)):
+            for nlevel, eig in enumerate(eigs):
+
+                if vecs is not None:
+                    f_res = vecs[nlevel] @ (self.filter_out @ vecs[nlevel])
+                    LOGGER.debug("%d -> %1.3f", nlevel, 2 * f_res - 1)
+                    if abs(f_res) > 1.0e-12:
+                        # only consider states which have zero projection
+                        LOGGER.debug("Ignoring energy value E%d", nlevel)
+                        continue
+
                 data.update({"E": eig, "nlevel": nlevel})
                 entry, created = self._table_class.get_or_create(session=sess, **data)
                 if created:
                     LOGGER.debug("Created `%s`", entry)
                     n_created += 1
 
-        LOGGER.info("\t-----")
         LOGGER.info("\tExported %d entries", n_created)
