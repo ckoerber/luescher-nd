@@ -17,13 +17,14 @@ from scipy.sparse.linalg import eigsh
 from scipy.optimize import minimize_scalar
 
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
+from luescher_nd.operators import get_parity_projector
 
 from luescher_nd.zeta.zeta3d import Zeta3D
 
-RANGES = {"epsilon": [0.05, 0.1, 0.2], "L": [1.0, 2.0], "nstep": [1, 2, 3, 4, None]}
-PARS = {"k": 100}
+RANGES = {"epsilon": [0.1, 0.2, 0.25], "L": [1.0, 2.0], "nstep": [4, None]}
+PARS = {"k": 50}
 
-DBNAME = "db-contact-fv-d-fitted.sqlite"
+DBNAME = "db-contact-fv-d-fitted-parity.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -83,7 +84,14 @@ def main():
     """
     for epsilon, L, nstep in product(RANGES["epsilon"], RANGES["L"], RANGES["nstep"]):
         n1d = int(L / epsilon)
-        h = MomentumContactHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
+        p_minus = get_parity_projector(n1d, ndim=3, positive=False)
+        h = MomentumContactHamiltonian(
+            n1d=n1d,
+            epsilon=epsilon,
+            nstep=nstep,
+            filter_out=p_minus,
+            filter_cutoff=1.0e2,
+        )
 
         kernel = FitKernel(h)
         contact_strength = minimize_scalar(
@@ -91,7 +99,12 @@ def main():
         ).x
 
         MomentumContactHamiltonian(
-            n1d=n1d, epsilon=epsilon, nstep=nstep, contact_strength=contact_strength
+            n1d=n1d,
+            epsilon=epsilon,
+            nstep=nstep,
+            contact_strength=contact_strength,
+            filter_out=p_minus,
+            filter_cutoff=1.0e2,
         ).export_eigs(
             DB,
             eigsh_kwargs=PARS,
