@@ -74,7 +74,11 @@ def read_table(
     ):
         epsilon = L / n1d
         ind = (df.L == L) & (df.n1d == n1d) & (df.nstep == nstep)
-        z = DispersionZeta3d(L, epsilon, nstep if nstep > 0 else None) if dispersion_zeta else zeta
+        z = (
+            DispersionZeta3d(L, epsilon, nstep if nstep > 0 else None)
+            if dispersion_zeta
+            else zeta
+        )
         df.loc[ind, "y"] = np.abs(z(df.loc[ind, "x"].values)) / np.pi / df.loc[ind, "L"]
 
     if filter_poles:
