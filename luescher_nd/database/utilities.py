@@ -18,6 +18,7 @@ def read_table(
     round_digits: int = 2,
     dispersion_zeta: bool = True,
     filter_poles: bool = True,
+    drop_comment: bool = True,
 ) -> pd.DataFrame:
     """Reads database and returns data frame with table plus additional columns.
 
@@ -37,11 +38,24 @@ def read_table(
 
         filter_poles: bool = True
             Automatically filter out states which are close to zeta poles.
+
+        drop_comment: bool = True
+            Drops the comment column.
     """
     sess = DatabaseSession(database, commit=False)
-    df = pd.read_sql_table("energy", sess.engine, index_col="id").drop(
-        columns=["comment"]
-    )
+    df = pd.read_sql_table("energy", sess.engine, index_col="id")
+    energy_type = df["type"].unique()
+
+    if len(energy_type) == 1:
+        df = pd.merge(
+            df,
+            pd.read_sql_table(energy_type[0], sess.engine, index_col="id"),
+            left_index=True,
+            right_index=True,
+        )
+
+    if drop_comment:
+        df = df.drop(columns=["comment"])
 
     df["L"] = df["n1d"] * df["epsilon"]
     df["nstep"] = df["nstep"].fillna(-1).astype(int)
