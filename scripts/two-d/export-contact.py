@@ -30,7 +30,7 @@ RANGES = {
 PARS = {"k": 50}
 
 NDIM = 2
-LAMBDA = 40
+LAMBDA = 2 * np.pi * 100
 A0 = 1.0
 
 DBNAME = "db-contact-fv-c-parity.sqlite"
