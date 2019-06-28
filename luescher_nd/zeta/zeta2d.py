@@ -90,7 +90,37 @@ class DispersionZeta2D:
 
 @dataclass(frozen=True)
 class Zeta2D:
-    """Two dimensional dispersion Zeta function for discretized finite volume.
+    r"""Two dimensional dispersion Zeta function for discretized finite volume.
+
+    This class implements
+    $$
+    S_2^{A}(x; N)
+    =
+    \\sum_{n_i \\in M^A(N)} \\frac{1}{\\vec{n}^2 - x}
+    - 2 \\pi \\log(N)
+    + \\delta^A
+    $$
+    where $N = \\Lambda L / (2 \\pi)$ is the cutoff of the zeta function, $A$ means
+    either spherical or cartesian
+    $$
+    M^A(N) = \\begin{cases}
+        \\left{
+            (n_1, n_2) \\in \\mathbb Z^2
+        \\middle\\vert
+            -N \\leq n_i < N
+        \\right}
+        & A = \\text{cartesian} \\
+        \\left{
+            (n_1, n_2) \\in \\mathbb Z^2
+        \\middle\\vert
+            n_1^2 + n_2^2 < N
+        \\right}
+        & A = \\text{spherical}
+    \\end{cases}
+    $$
+     and
+    $\\deta^\\text{spherical} = 0$ but
+    $\\deta^\\text{cartesian} = 4G - 2\\pi\\log(2) \\approx -0.69$.
     """
 
     _ndim = 2
@@ -103,15 +133,20 @@ class Zeta2D:
     _multiplicity: np.ndarray = field(repr=False, init=False, default=None)
 
     def _get_n2(self) -> np.ndarray:
-        """Returns all normalized momentum modes allowed on the lattice.
+        r"""Returns all normalized momentum modes allowed on the lattice.
 
-        The shape is [n1d**3, 3] where the second components access nx, ny, nz.
+        This is the list of all $n^2 = n_1^2 + n_2^2$ with
+            * $\\Lambda \leq n_i < \\Lambda$ (cartesian)
+            * $ $n^2 < \\Lambda$ (spherical)
         """
-        n2_disp1d = np.arange(-self.N // 2 + 1, self.N // 2 + 1) ** 2
+        n2_disp1d = np.arange(-self.N + 1, self.N + 1) ** 2
 
-        return np.sum(
+        n2 = np.sum(
             [el.flatten() for el in np.meshgrid(*[n2_disp1d] * self._ndim)], axis=0
         )
+        if self.spherical:
+            n2 = np.array([el for el in n2 if el < self.N])
+        return n2
 
     def __post_init__(self):
         """Initializes the elements of the sum for the zeta function denominator
@@ -129,7 +164,7 @@ class Zeta2D:
             "_normalization",
             2 * np.pi * np.log(self.N)
             if self.spherical
-            else 2 * np.pi * np.log(self.N) - 4 * (CATALAN - np.pi / 8),
+            else 2 * np.pi * np.log(self.N) - 4 * (CATALAN - np.pi / 2 * np.log(2)),
         )
 
     def __call__(self, x: float):
