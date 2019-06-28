@@ -1,0 +1,18 @@
+\section{Discretized Hamiltonian}\label{sec:hamiltonian}
+
+We study the simplest interacting two-body problem, two particles interacting via a contact interaction,
+\begin{equation}
+    H = \frac{p_1^2}{2 m_1} + \frac{p_2^2}{2 m_2} + C \delta(x_1-x_2)
+\end{equation}
+where the subscripts indicate the position of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
+\begin{equation}
+    H = \frac{P^2}{2 M} + \frac{p^2}{2 m} + C \delta(x)
+\end{equation}
+where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $m$ is the reduced mass.  We henceforth specialize to the rest frame, setting $P=0$, which reduces the problem to an effective one-body problem.
+
+We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $L/\epsilon$ is an integer that counts the number of sites in one spatial direction.
+
+\begin{enumerate}
+    \item Explain different derivatives (nstep = ...), FFT
+    \item Explain how we regularize delta function (0 everywhere, 1 at 0)
+\end{enumerate}
