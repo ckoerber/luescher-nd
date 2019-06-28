@@ -145,7 +145,7 @@ class Zeta2D:
             [el.flatten() for el in np.meshgrid(*[n2_disp1d] * self._ndim)], axis=0
         )
         if self.spherical:
-            n2 = np.array([el for el in n2 if el < self.N])
+            n2 = np.array([el for el in n2 if el < self.N ** 2])
         return n2
 
     def __post_init__(self):
