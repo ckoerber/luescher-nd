@@ -30,7 +30,7 @@ RANGES = {
 PARS = {"k": 50}
 
 NDIM = 2
-NMAX = 40
+LAMBDA = 40
 A0 = 1.0
 
 DBNAME = "db-contact-fv-c-parity.sqlite"
@@ -60,24 +60,34 @@ class FitKernel:
 
         $$ \\frac{1}{\\pi^2} S_2(x) + \\frac{2}{\\pi} \\log(\\sqrt{x})$$
 
-        The variable $$x$$$ is related to $$p$$ by
+        The variable $x$ is related to $p$ by
 
         $$ x = \\right(\\frac{p L}{2 \\pi}\\left)^2$$
-        """
-        return self.zeta(x) / np.pi ** 2 + 1 / np.pi * np.log(x)
 
-    def _ere_analytic(self, x: np.ndarray) -> np.ndarray:
+        **Note**
+            $$ \\frac{1}{\\pi}  \\log(x) $$
+            is subtracted off to allow negative $x$
+            See also #_ere_analytic.
+        """
+        return self.zeta(x) / np.pi ** 2
+
+    def _ere_analytic(self, x: np.ndarray) -> np.ndarray:  # pylint: disable=W0613
         r"""Computes the FV continuum effective range expansion
 
         $$ \\frac{2}{\\pi} \\log(p a_0)$$
 
         where $a_0$ is the scattering length.
 
-        The variable $$x$$$ is related to $$p$$ by
+        The variable $x$ is related to $p$ by
 
         $$ x = \\right(\\frac{p L}{2 \\pi}\\left)^2$$
+
+        **Note**
+            $$ \\frac{1}{\\pi}  \\log(x) $$
+            is subtracted off to allow negative $x$
+            See also #_ere_zeta.
         """
-        return 1 / np.pi * np.log(x) + 2 / np.pi * np.log(2 * np.pi * self.a0 / self.h.L)
+        return 2 / np.pi * np.log(2 * np.pi * self.a0 / self.h.L)
 
     def _ere_diff_sqrd(self, x: float) -> float:
         """Computes the difference betewen ERE and zeta function
@@ -125,7 +135,7 @@ def main():
             ndim=NDIM,
         )
         for spherical in RANGES["spherical"]:
-            zeta = Zeta2D(N=NMAX, spherical=spherical)
+            zeta = Zeta2D(N=LAMBDA * L / 2 / np.pi, spherical=spherical)
 
             kernel = FitKernel(h, zeta, a0=A0)
             contact_strength = minimize_scalar(
@@ -144,7 +154,7 @@ def main():
                 DB,
                 eigsh_kwargs=PARS,
                 export_kwargs={
-                    "comment": f"spherical={spherical:b}&a0={A0:1.4f}&n={NMAX}"
+                    "comment": f"spherical={spherical:b}&a0={A0:1.4f}&Lambda={LAMBDA}"
                 },
             )
 
