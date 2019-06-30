@@ -1,8 +1,22 @@
 \section{Introduction}\label{sec:intro}
 
+\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which we can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.
 
-We construct the Hamiltonians explicitly and diagonalize them exactly.
-Typically \Luscher's finite volume formalism is thought of as a tool for analyzing Monte Carlo data (for example, in lattice QCD), but here we can escape all the complications introduced by statistical uncertainty and completely isolate the features of the formalism itself, exposing some problems and solving them.
+The usual understanding of \Luscher's formalism is that one should find the continuum finite-volume energy levels, holding the physical volume fixed, and put that continuum spectrum through \Luscher's formula to extract continuum scattering data.
+
+In practice, few results of lattice QCD calculations are continuum-extrapolated, but are nevertheless put through \Luscher's formula to get an estimate of the continuum scattering data, assuming discretization effects to be much smaller than the statistical uncertainties\todo{cite cite cite}.
+In particular, no continuum-limit study of any baryonic channel exists, even at physically heavy pion masses.
+
+Here, we construct example Hamiltonians explicitly and diagonalize them exactly.
+This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data, and lets us completely isolate the features of the formalism itself.
+We find that the usual formulation of the \Luscher zeta function and its counterterm, which are constructed by sums and integrals with a ultraviolet cutoff on the norm of the allowed momenta, induce unphysical terms in the effective range expansion, while these terms are removed if the zeta function and its counterterm are determined by sums and integrals over a box (meaning that the corners of the Brillouin zone that were truncated matter).
+
+In pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients so as to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
+However, in \Ref{Endres:2012cw} they found that even with a highly-improved construction the states ultimately deviated from a $\pi/2$ phase shift (see, for example, Figure 3).
+We introduce a new continuum-limit prescription for achieving unitarity in lattice simulations by tuning just the simplest contact operator, but taking the discretization effects into account by incorporating the lattice dispersion relation into the finite-volume zeta function, both in the tuning step and in the analysis step.
+We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum.
 
 
-Amy, Mike, David etc. found a problem, which we reproduce in \Secref{spherical}.  They tried tuning but caused themselves a headache.  What happened?  \Luscher's formula was wrong.  We fix it, and win glory.
+This paper is organized as follow.  In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study.  In \Secref{spherical} we use show that taking a fixed-volume continuum limit with the interaction strength tuned to reproduce the first zero of the traditional zeta function does not yield the expected flat effective range expansion.  In \Secref{cartesian} we show that the same procedure, using a zeta function formulated to include the corners of the Brillouin zone does produce such a flat behavior.
+In \Secref{dispersion} we explain how to incorporate the single-particle dispersion relation into the \Luscher construction, and show that we can use such a relation to circumvent the need for a continuum limit spectrum in the unitary case.
+We relegate the derivation of the various finite-volume formalisms and the appropriate counterterms to the Appendix.
