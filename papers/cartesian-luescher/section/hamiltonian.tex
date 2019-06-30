@@ -12,7 +12,6 @@ where capital letters represent center-of-mass variables, lower case implies rel
 
 We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $L/\epsilon$ is an integer that counts the number of sites in one spatial direction.
 
-\begin{enumerate}
-    \item Explain different derivatives (nstep = ...), FFT
-    \item Explain how we regularize delta function (0 everywhere, 1 at 0)
-\end{enumerate}
+On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference is a $(1+2\nstep D)$-point stencil in $D$ dimensions.  In addition, we use a nonlocal operator, denote $\nstep=\infty$ which, in momentum space amounts to multiplying by $p^2$, the Laplacian implementation of the ungauged SLAC derivative.
+
+Once constructed, we diagonalize this Hamiltonian exactly to extract eigenenergies.
