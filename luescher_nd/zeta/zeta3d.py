@@ -204,7 +204,9 @@ class Zeta3D:
             self, "_multiplicity", np.array(list(all_vecs.values())).reshape(-1, 1)
         )
         object.__setattr__(
-            self, "_normalization", 2 * np.pi * self.N * self._norm_const[self.spherical]
+            self,
+            "_normalization",
+            2 * np.pi ** 2 * self.N * self._norm_const[self.spherical],
         )
 
     def __call__(self, x: float):
