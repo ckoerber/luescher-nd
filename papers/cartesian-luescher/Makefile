@@ -9,6 +9,10 @@ ROOT:=$(shell pwd)
 MASTER=master
 TARGET?=$(MASTER)
 SECTIONS = $(shell ls -1 section/ | sed -e 's/^/section\//g')
+
+FORMALISM = $(shell ls -1 section/formalism/ | sed -e 's/^/section\/formalism\//g')
+SECTIONS+=$(FORMALISM)
+
 BIBS = $(find . -name '*.bib')
 
 
@@ -61,4 +65,4 @@ clean: tidy
 
 .PHONY: watch
 watch: $(TARGET).pdf
-	watchman-make -p '**/*.tex' '*/*.tex' '*.tex' '*.bib' -t $(TARGET).pdf 
+	watchman-make -p '**/*.tex' '*/*.tex' '*.tex' '*.bib' -t $(TARGET).pdf
