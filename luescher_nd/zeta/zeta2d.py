@@ -90,7 +90,7 @@ class DispersionZeta2D:
 
 @dataclass(frozen=True)
 class Zeta2D:
-    r"""Two dimensional dispersion Zeta function for discretized finite volume.
+    r"""Two dimensional Zeta function for discretized finite volume.
 
     This class implements
     $$
