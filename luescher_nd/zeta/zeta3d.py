@@ -163,11 +163,11 @@ class Zeta3D:
     $$
      and
     $\\mathcal L_\\text{spherical} = \\frac{2}{\\pi}$ but
-    $\\mathcal L_\\text{cartesian} = 0.777551$.
+    $\\mathcal L_\\text{cartesian} = 0.77755134963633393039$.
     """
 
     _ndim = 3
-    _norm_const = {True: 2 / np.pi, False: 0.777551}
+    _norm_const = {True: 2 / np.pi, False: 0.77755134963633393039}
 
     N: int
     spherical: bool = False
