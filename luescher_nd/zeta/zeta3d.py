@@ -130,3 +130,88 @@ class DispersionZeta3d:
         out = self._multiplicity / out
 
         return np.sum(out, axis=0) - self._normalization
+
+
+@dataclass(frozen=True)
+class Zeta3D:
+    r"""Three dimensional Zeta function for discretized finite volume.
+
+    This class implements
+    $$
+    S_3^{A}(x; N)
+    =
+    \\sum_{n_i \\in M^A(N)} \\frac{1}{\\vec{n}^2 - x}
+    - 2 \\pi^2 N \\mathcal L_A
+    $$
+    where $N = \\Lambda L / (2 \\pi)$ is the cutoff of the zeta function, $A$ means
+    either spherical or cartesian
+    $$
+    M^A(N) = \\begin{cases}
+        \\left{
+            (n_1, n_2) \\in \\mathbb Z^3
+        \\middle\\vert
+            -N \\leq n_i < N
+        \\right}
+        & A = \\text{cartesian} \\
+        \\left{
+            (n_1, n_2) \\in \\mathbb Z^3
+        \\middle\\vert
+            n_1^2 + n_2^2 < N
+        \\right}
+        & A = \\text{spherical}
+    \\end{cases}
+    $$
+     and
+    $\\mathcal L_\\text{spherical} = \\frac{2}{\\pi}$ but
+    $\\mathcal L_\\text{cartesian} = 0.777551$.
+    """
+
+    _ndim = 3
+    _norm_const = {True: 2 / np.pi, False: 0.777551}
+
+    N: int
+    spherical: bool = False
+
+    _normalization: float = field(repr=False, init=False, default=0.0)
+    _n2: np.ndarray = field(repr=False, init=False, default=None)
+    _multiplicity: np.ndarray = field(repr=False, init=False, default=None)
+
+    def _get_n2(self) -> np.ndarray:
+        r"""Returns all normalized momentum modes allowed on the lattice.
+
+        This is the list of all $n^2 = n_1^2 + n_2^2$ with
+            * $\\Lambda \leq n_i < \\Lambda$ (cartesian)
+            * $ $n^2 < \\Lambda$ (spherical)
+        """
+        n2_disp1d = np.arange(-self.N + 1, self.N + 1) ** 2
+
+        n2 = np.sum(
+            [el.flatten() for el in np.meshgrid(*[n2_disp1d] * self._ndim)], axis=0
+        )
+        if self.spherical:
+            n2 = np.array([el for el in n2 if el < self.N ** 2])
+        return n2
+
+    def __post_init__(self):
+        """Initializes the elements of the sum for the zeta function denominator
+        """
+        all_vecs = {}
+        for n2 in self._get_n2():
+            all_vecs[n2] = all_vecs.get(n2, 0) + 1
+
+        object.__setattr__(self, "_n2", np.array(list(all_vecs.keys())).reshape(-1, 1))
+        object.__setattr__(
+            self, "_multiplicity", np.array(list(all_vecs.values())).reshape(-1, 1)
+        )
+        object.__setattr__(
+            self, "_normalization", 2 * np.pi * self.N * self._norm_const[self.spherical]
+        )
+
+    def __call__(self, x: float):
+        """Computes the result of the three-d Zeta function.
+        """
+        out = self._n2 - x
+        out = np.where(np.abs(out) > 1.0e-12, out, np.NaN)
+        out = self._multiplicity / out
+
+        return np.sum(out, axis=0) - self._normalization
