@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 from luescher_nd.zeta.extern import pyzeta as pyz
-from luescher_nd.zeta.zeta3d import Zeta3D
+from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
 from luescher_nd.plotting.utilities import plot_ere_grid
 from luescher_nd.plotting.utilities import raw_data_to_plot_frame
@@ -43,7 +43,7 @@ def dispersion_luescher_grid(fout: str):  # pylint: disable=R0914
         if n1d_max != 20:
             continue
         epsilon = L / n1d_max
-        zeta = Zeta3D(L, epsilon, nstep)(x)
+        zeta = DispersionZeta3d(L, epsilon, nstep)(x)
         for imin, imax in monotonous_bounds(zeta):
             grid.axes[nrow, ncol].plot(
                 x[imin:imax], zeta[imin:imax], ls=":", lw=0.5, c="black", zorder=-1

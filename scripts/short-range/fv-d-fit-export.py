@@ -19,7 +19,7 @@ from scipy.optimize import minimize_scalar
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 from luescher_nd.operators import get_parity_projector
 
-from luescher_nd.zeta.zeta3d import Zeta3D
+from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
 RANGES = {"epsilon": [0.1, 0.2, 0.25], "L": [1.0, 2.0], "nstep": [4, None]}
 PARS = {"k": 50}
@@ -43,7 +43,7 @@ class FitKernel:
 
     def __post_init__(self):
         """Init the zeta function"""
-        self._zeta = Zeta3D(L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep)
+        self._zeta = DispersionZeta3d(L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep)
         self._e0 = self._get_ground_state()
 
     def zeta(self, x: np.ndarray) -> np.ndarray:
