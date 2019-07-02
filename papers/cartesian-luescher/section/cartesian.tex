@@ -1,8 +1,40 @@
 \section{The Cartesian Function}\label{sec:cartesian}
 
-USE A BOX, NOT A SPHERE
+In the previous section, we kept emphasizing the manner in which we cut off the sum and integral---we performed a spherical truncation, meaning we cut off based on the magnitude of $\vec{n}$, $n^2 < (\Lambda L/2\pi)^2$.
+
+In a lattice calculation, however, the cutoff is imposed by the lattice itself.
+Holding the physical volume fixed, we take the continuum limit (thereby sending the cutoff to infinity).
+However, the cutoff is not sent to infinity in a `spherical' way---it is sent to infinity in a Cartesian way: the Brillouin zone in the calculation is a box.
+We therefore consider the generalized zeta functions, but require the sums and integrals to diverge in the same way as our calculation.
+In other words, we incorporate the corners of the Brillouin zone into the definition of the zeta functions.
+
+So, by analogy with \eqref{spherical cutoff S} we define
+\begin{equation}
+        S^{\cartesian\Lambda}_D(x) = \left(\sum_n- \int_n\right) \frac{1}{x-n^2}
+\end{equation}
+where the $\cartesian$ superscript indicates that the sum is cut off independently for each component.  In other words,
+\begin{equation}
+    \text{(something clear)}.
+\end{equation}
+We similarly define the Cartesian zeta function,
+\begin{equation}
+    S^{\cartesian}_D(x)
+    =
+    \lim_{\Lambda\goesto\infty} S^{\cartesian\Lambda}_D(x)
+    =
+    \lim_{\Lambda\rightarrow\infty}\left( \sum_n^{\text{notation}} \frac{1}{x-n^2} - \counterterm_D^\cartesian \Lambda^{D-2}\right)
+\end{equation}
+and repair the quantization condition to read
+\begin{equation}\label{eq:cartesian quantization}
+    p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} S^\cartesian_D(x).
+\end{equation}
+The counterterms $\counterterm_D^\cartesian$ are evaluated in \Appref{formalism/cartesian}.
 
 \begin{itemize}
     \item Show cartesian S in 2D, 3D
     \item Do the contact interaction with a fixed C, and show we get perfect perfection if we take the continuum spectrum and shove it through cartesian S but not spherical S.
 \end{itemize}
+
+\begin{equation}
+    \counterterm_3^\cartesian =  0.7775513496363339
+\end{equation}
