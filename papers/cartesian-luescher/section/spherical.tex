@@ -21,7 +21,10 @@ This bubble sum is a geometric series and gives\cite{Kaplan:1998we,Beane:2003da}
 where $p$ is the relative momentum,  and $I_0(p,\Lambda)$ is a $D$-dependent function that arises from integrating the loop shown in \Figref{I0},
 \begin{align}
     I_0(p)
-    &=-i\int^{\Lambda/2} \frac { \mathrm {d}q_0 \mathrm { d } ^ { D } \mathbf { q } } { ( 2 \pi ) ^ { D+1 } } \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
+    &=-i\int^{\Lambda/2}
+        \frac { \mathrm {d}q_0}{2\pi}\ \frac{\mathrm { d } ^ { D } \vec{ q } } { (2\pi)^ { D } } 
+        \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
+        \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
     \nonumber\\
     &=\frac{\Omega_D}{(2\pi)^D}\int^{\Lambda/2}  \mathrm { d } q \ q^{D-1}\left[\mathcal{P} \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)
 -i\frac{\pi m}{2q}\delta(q-\sqrt{mE})\right]
