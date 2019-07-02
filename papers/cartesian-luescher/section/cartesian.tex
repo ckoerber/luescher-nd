@@ -3,32 +3,38 @@
 In the previous section, we kept emphasizing the manner in which we cut off the sum and integral---we performed a spherical truncation, meaning we cut off based on the magnitude of $\vec{n}$, $n^2 < (\Lambda L/2\pi)^2$.
 
 In a lattice calculation, however, the cutoff is imposed by the lattice itself.
-Holding the physical volume fixed, we take the continuum limit (thereby sending the cutoff to infinity).
+Holding the physical volume fixed, we take the continuum limit (thereby sending the momentum cutoff to infinity).
 However, the cutoff is not sent to infinity in a `spherical' way---it is sent to infinity in a Cartesian way: the Brillouin zone in the calculation is a box.
-We therefore consider the generalized zeta functions, but require the sums and integrals to diverge in the same way as our calculation.
-In other words, we incorporate the corners of the Brillouin zone into the definition of the zeta functions.
+We therefore consider the generalized zeta functions, but require the sums and integrals to diverge in the same way as our numerical calculation.
+In other words, we incorporate the corners of the Brillouin zone into the definition of the zeta functions, for two and more spatial dimensions (for one spatial dimension the sphere is a line segment, indistinguishable from a Cartesian volume).
 
 So, by analogy with \eqref{spherical cutoff S} we define
 \begin{equation}
-        S^{\cartesian\Lambda}_D(x) = \left(\sum_n- \int_n\right) \frac{1}{x-n^2}
+        S^{\cartesian N}_D(x)
+        = \left(
+            \sum_{\vec{n} \in (N/2, N/2]^D}
+            -
+            \int_{-N/2}^{N/2} \mathrm{d}n_x\ \mathrm{d}n_y\ \mathrm{d}n_z
+        \right) \frac{1}{x-n^2}
 \end{equation}
-where the $\cartesian$ superscript indicates that the sum is cut off independently for each component.  In other words,
-\begin{equation}
-    \text{(something clear)}.
-\end{equation}
+where the $\cartesian$ superscript indicates that the sum is cut off independently for each component.\footnote{Note that in the previous section we cut the integrals and sums off at a radius of $\Lambda/2$ or $N/2$ or, more suggestively, at a diameter of $\Lambda$ or $N$ in anticipation of comparing with a box whose edge length is $N$.}
 We similarly define the Cartesian zeta function,
 \begin{equation}
     S^{\cartesian}_D(x)
     =
-    \lim_{\Lambda\goesto\infty} S^{\cartesian\Lambda}_D(x)
+    \lim_{N\goesto\infty} S^{\cartesian N}_D(x)
     =
-    \lim_{\Lambda\rightarrow\infty}\left( \sum_n^{\text{notation}} \frac{1}{x-n^2} - \counterterm_D^\cartesian \Lambda^{D-2}\right)
+    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n} \in (N/2, N/2]^D} \frac{1}{x-n^2} - \counterterm_D^\cartesian \left(\frac{N}{2}\right)^{D-2}\right)
 \end{equation}
 and repair the quantization condition to read
 \begin{equation}\label{eq:cartesian quantization}
     p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} S^\cartesian_D(x).
 \end{equation}
 The counterterms $\counterterm_D^\cartesian$ are evaluated in \Appref{counterterm/cartesian}.
+
+On possible concern when executing this change is: what happened to the delicate cancellation between the $-i$ that accompanies $\cot\delta_0(p)$ in \eqref{cot delta} with the residue from the energy integration in \eqref{I0}.
+Note that the residue is accompanied by a delta function that, even if we do a Cartesian integral, still restricts us to a spherical surface where the delta function has support.
+Therefore, the integrated residue is independent of the choice of integration domain, so long as the domain contains the entire sphere of support.
 
 \begin{itemize}
     \item Show cartesian S in 2D, 3D
