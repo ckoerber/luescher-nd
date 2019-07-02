@@ -87,18 +87,18 @@ where we have used the on-shell condition $mE=p^2$.
 
 Combining the infinite-volume result with the finite-volume result, one finds
 \begin{equation}
-    \frac{1}{4\F_D}\left(\cot \delta_0(p) - i\right) = \frac{1}{(2\pi)^2 L^{D-2}}\left[ \left(\sum_n- \Omega_D\int_n\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - p\right) \right]
+    \frac{1}{4\F_D}\left(\cot \delta_0(p) - i\right) = \frac{1}{(2\pi)^2 L^{D-2}}\left[ \left(\sum_n- \int_n\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - p\right) \right]
 \end{equation}
-where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$.
+where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
 In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right, and we are left with
 \begin{equation}
-    p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} \left(\sum_n- \Omega_D\int_n\right) \frac{1}{x-n^2}
+    p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} \left(\sum_n-\int_n\right) \frac{1}{x-n^2}
 \end{equation}
 where $x=(pL/2\pi)^2$.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_0$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
 Defining, with a finite cutoff $\Lambda$,
 \begin{equation}\label{eq:spherical cutoff S}
-    S^{\spherical\Lambda}_D(x) = \left(\sum_n- \Omega_D\int_n\right) \frac{1}{x-n^2}
+    S^{\spherical\Lambda}_D(x) = \left(\sum_n- \int_n\right) \frac{1}{x-n^2}
 \end{equation}
 where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n$, we recover the usual \Luscher zeta functions by taking
 \begin{equation}
@@ -106,9 +106,9 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
     =
     \lim_{\Lambda\goesto\infty} S^{\spherical\Lambda}_D(x)
     =
-    \lim_{\Lambda\rightarrow\infty}\left( \sum_n^{n^2 < (\Lambda L/2\pi)^2} \frac{1}{x-n^2} - \counterterm_D^\spherical \Lambda^{D-2}\right)
+    \lim_{\Lambda\rightarrow\infty}\left( \sum_n^{n^2 < \Lambda^2} \frac{1}{x-n^2} - \counterterm_D^\spherical \Lambda^{D-2}\right)
 \end{equation}
-where the dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate said counterterms in \Appref{formalism/spherical}.
+where we rescaled $\Lambda$ by $2\pi/L$ and the dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate said counterterms in \Appref{counterterm/spherical}.
 \todo{I MUST HAVE LOST A SIGN SOMEWHERE, IT SHOULD BE $n^2-x$.}
 Finally,
 \begin{equation}\label{eq:spherical quantization}
