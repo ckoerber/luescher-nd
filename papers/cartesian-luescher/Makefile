@@ -10,8 +10,8 @@ MASTER=master
 TARGET?=$(MASTER)
 SECTIONS = $(shell ls -1 section/ | sed -e 's/^/section\//g')
 
-FORMALISM = $(shell ls -1 section/formalism/ | sed -e 's/^/section\/formalism\//g')
-SECTIONS+=$(FORMALISM)
+COUNTERTERMS = $(shell ls -1 section/counterterm/ | sed -e 's/^/section\/counterterm\//g')
+SECTIONS+=$(COUNTERTERMS)
 
 BIBS = $(find . -name '*.bib')
 
