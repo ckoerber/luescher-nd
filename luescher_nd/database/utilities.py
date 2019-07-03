@@ -79,7 +79,7 @@ def read_table(
             if dispersion_zeta
             else zeta
         )
-        df.loc[ind, "y"] = np.abs(z(df.loc[ind, "x"].values)) / np.pi / df.loc[ind, "L"]
+        df.loc[ind, "y"] = (z(df.loc[ind, "x"].values)) / np.pi / df.loc[ind, "L"]
 
     if filter_poles:
         df = df.dropna()
