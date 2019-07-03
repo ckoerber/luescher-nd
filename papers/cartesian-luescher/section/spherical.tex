@@ -10,8 +10,8 @@ The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSu
 
 \begin{figure}[ht!]
 \center
-\includegraphics[width=.8\columnwidth]{figure/bubbleSum.eps}
-\caption{Bubble sum. Each vertex represents $-iC_0(\Lambda)$ and the bubble represents $I_0$.\label{fig:bubbleSum}}
+\includegraphics[width=.8\columnwidth]{figure/bubbleSum.pdf}
+\caption{Bubble sum. Each line represents a propagator, each vertex represents $-i \sum_n C_{2n}(\Lambda) p^{2n}$, and the bubble is given by $I_0$ (see also \Figref{I0}).\label{fig:bubbleSum}}
 \end{figure}
 
 This bubble sum is a geometric series and gives\cite{Kaplan:1998we,Beane:2003da}
@@ -22,7 +22,7 @@ where $p$ is the relative momentum,  and $I_0(p,\Lambda)$ is a $D$-dependent fun
 \begin{align}
     I_0(p)
     &=-i\int^{\Lambda/2}
-        \frac { \mathrm {d}q_0}{2\pi}\ \frac{\mathrm { d } ^ { D } \vec{ q } } { (2\pi)^ { D } } 
+        \frac { \mathrm {d}q_0}{2\pi}\ \frac{\mathrm { d } ^ { D } \vec{ q } } { (2\pi)^ { D } }
         \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
         \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
     \nonumber\\
@@ -81,8 +81,7 @@ I_{0,\FV}(p,L)
     &=-i\int \frac { \mathrm {d}q_0}{2\pi} \frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda/2} \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
     \\
     &=\frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda/2} \frac { 1 } { E - \frac{\vec{q}^2}{m} }
-    \\
-    &=\frac{m}{(2\pi)^2 L^{D-2}} \sum_{\vec{n}}^{n < \frac{\Lambda L}{4\pi}} \frac{1}{x-n^2}
+    =\frac{m}{(2\pi)^2 L^{D-2}} \sum_{\vec{n}}^{n < \frac{\Lambda L}{4\pi}} \frac{1}{x-n^2}
     &
     x &= \left( \frac{pL}{2\pi}\right)^2
 \end{align}
