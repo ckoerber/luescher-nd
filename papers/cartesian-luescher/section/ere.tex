@@ -1,0 +1,36 @@
+\subsection{The Effective Range Expansion}\label{sec:ere}
+
+We can use the effective range expansion to express the scattering data as the sum of some known terms that do not vanish at low momentum and a series in $p^2$.  The expansion differs in different dimensions,
+\begin{align}
+    p\ (\cot \delta_0(p) - i)
+    &=
+    -\frac{1}{a} - ip + \frac{1}{2} r_0 p^2 \sum_j s_j (r_0^2 p^2)^j
+    &
+    (D&=3)
+    \nonumber\\
+    \cot \delta_0(p) - i
+    &=
+    \frac{2}{\pi} \log(a p) -i + \frac{1}{2} r_0^2 p^2 \sum_j s_j (r_0^2 p^2)^j
+    &
+    (D&=2)
+    \\\nonumber
+    \frac{\cot\delta_0(p)-i}{p}
+    &=
+    -\frac{i}{p} + a + \frac{1}{2} r_0^3 p^2 \sum_j s_j( r_0^2 p^2)^j
+    &
+    (D&=1)
+\end{align}
+where $a$ is the scattering length, $r_0$ the length scale called the effective range, and the $s_j$ are dimensionless shape parameters.
+We can solve for the phase shift and encapsulate the low-energy pieces of the right-hand side into
+\begin{equation}
+    \lowEnergyA(p) =
+    \begin{cases}
+        -\frac{1}{ap}           &   (D=3)\\
+        \frac{2}{\pi} \log ap   &   (D=2)\\
+        ap                      &   (D=1)
+    \end{cases}\ ,
+\end{equation}
+so that
+\begin{equation}
+    \cot \delta_0(p) - i = -i + \lowEnergyA(p) + \frac{1}{2} (r_0 p)^{4-D} \sum_j s_j \left(r_0^2p^2\right)^j
+\end{equation}
