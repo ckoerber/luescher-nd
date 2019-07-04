@@ -26,6 +26,7 @@ endif
 
 all: $(TARGET).pdf
 
+.PHONY: figures
 figures:
 	cd figure; $(MAKE)
 
