@@ -10,7 +10,7 @@ The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSu
 
 \begin{figure}[ht!]
 \center
-\includegraphics[width=.8\columnwidth]{figure/bubbleSum.pdf}
+\includegraphics[width=\columnwidth]{figure/bubbleSum.pdf}
 \caption{Bubble sum. Each line represents a propagator, each vertex represents $-i \sum_n C_{2n}(\Lambda) p^{2n}$, and the bubble is given by $I_0$ (see also \Figref{I0}).\label{fig:bubbleSum}}
 \end{figure}
 
@@ -45,7 +45,7 @@ where $\mathcal{P}$ refers to Principle (Cauchy) Value, we have used the on-shel
 
 \begin{figure}[h!]
 \center
-\includegraphics[width=.35\columnwidth]{figure/I0.eps}
+\includegraphics[width=.5\columnwidth]{figure/I0.pdf}
 \caption{Loop diagram contributing to $I_0$.\label{fig:I0} \todo{Make it a tower of interactions!  Also this figure is way too big cf the font.}}
 \end{figure}
 
@@ -98,7 +98,7 @@ Plugging our results for the integrals in, one finds
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 4\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
 In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right, and we are left with
 \begin{equation}
-    p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
+    \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
 where $x=(pL/2\pi)^2$ and we switched the sign of the sum and integral as well as the sign of the denominator.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_0$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
@@ -108,7 +108,7 @@ Then, defining, with a finite cutoff on magnitude $N/2$,
     S^{\spherical N}_D(x) = \left(\sum_{\vec{n}}- \int_{\vec{n}}\right) \frac{1}{x-n^2}
 \end{equation}
 where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$, we recover the usual \Luscher zeta functions by taking
-\begin{equation}
+\begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
     \lim_{N\goesto\infty} S^{\spherical N}_D(x)
@@ -118,12 +118,10 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
 where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate said counterterms in \Appref{counterterm/spherical}.
 Finally,
 \begin{equation}\label{eq:spherical quantization}
-    p \cot \delta_0(p) = \frac{\F_D\ p}{\pi^2 L^{D-2}} S^\spherical_D(x).
+    \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} S^\spherical_D(x).
 \end{equation}
 This is the usual \Luscher finite-volume quantization condition, and continuum-extrapolated energy levels should be fed through it to produce continuum-limit scattering data.
-We have written it in such a way that the usual three-dimensional scattering quantity appear on the left-hand side but that is just a convenience, as we will discuss in \Secref{ere}.
-
-\input{section/ere}
+In three dimensions it is common to move the momentum dependence in $\F_D$ to the other size, as $p \cot\delta_0(p)$ is what appears in the effective range expansion, as we will discuss in \Secref{ere}.
 
 \todo{STILL REMAINING:}
 \begin{itemize}
