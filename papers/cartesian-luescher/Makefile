@@ -26,12 +26,15 @@ endif
 
 all: $(TARGET).pdf
 
+figures:
+	cd figure; $(MAKE)
+
 ifndef DIFF
-%.pdf: $(SECTIONS) $(BIBS) macros.tex %.tex
+%.pdf: figures $(SECTIONS) $(BIBS) macros.tex %.tex
 	DIFF=1 SHORTCIRCUIT=1 $(MAKE) $*.pdf
 else
 ifdef SHORTCIRCUIT
-%.pdf: $(SECTIONS) $(BIBS) macros.tex %.tex
+%.pdf: figures $(SECTIONS) $(BIBS) macros.tex %.tex
 	@echo $@
 	$(TEX) -jobname=$* "$(OPTIONS)\input{$*}" $(REDIRECT)
 	-$(BIB) $* $(REDIRECT)
@@ -39,7 +42,7 @@ ifdef SHORTCIRCUIT
 	$(TEX) -jobname=$* "$(OPTIONS)\input{$*}" $(REDIRECT)
 	$(MAKE) tidy
 else
-%.pdf: $(SECTIONS) $(BIBS) macros.tex %.tex
+%.pdf: figures $(SECTIONS) $(BIBS) macros.tex %.tex
 	SHORTCIRCUIT=1 OPTIONS="$(OPTIONS)" git latexdiff --whole-tree --main $(TARGET).tex --prepare "rm -rf repo; ln -s $(ROOT)/repo" -o $(TARGET).pdf $(OLD) $(NEW)
 endif
 endif
