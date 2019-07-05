@@ -6,13 +6,47 @@ We study the simplest interacting two-body problem, two particles interacting vi
 \end{equation}
 where the subscripts indicate the position of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
 \begin{equation}
-    H = \frac{P^2}{2 M} + \frac{p^2}{2 m} + C \delta(x)
+    H = \frac{P^2}{2 M} + \frac{p^2}{2 \mu} + C \delta(x)
 \end{equation}
-where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $m$ is the reduced mass.  We henceforth specialize to the rest frame, setting $P=0$, which reduces the problem to an effective one-body problem.
+where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.  We henceforth specialize to the rest frame, setting $P=0$, which reduces the problem to an effective one-body problem.
 
-We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $L/\epsilon$ is an integer that counts the number of sites in one spatial direction.
+We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
 
-On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference is a $(1+2\nstep D)$-point stencil in $D$ dimensions.  In addition, we use a nonlocal operator, denoted $\nstep=\infty$ which, in momentum space amounts to multiplying by $p^2$, the Laplacian implementation of the ungauged SLAC derivative.
-Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system.
+On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
+\begin{equation}
+    \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
+    \rightarrow
+    H_{\vec{r}',\vec{r}}^{(L,\epsilon,\nstep)}
+    = - \frac{1}{2 \mu \epsilon^2} \sum_{d=1}^{D} \sum_{s=-\nstep}^{+\nstep} c^{(\nstep)}_{|s|} \delta_{\vec{r}',\vec{r}+\epsilon s \vec{e}_d} + C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
+\end{equation}
+where the indices are understood to be modded by the periodic boundary conditions of the lattice.
+In momentum space, this Hamiltonian may be written
+\begin{align}
+    \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
+    \rightarrow
+    H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
+    &= \delta_{\vec{p}',\vec{p}} \frac{1}{2\mu} \sum_{d=1}^{D} \omega^{(\nstep)}(p_d,\epsilon) + C(\epsilon)
+    \\
+    \omega^{(\nstep)}(p_d,\epsilon)
+    &= \frac{1}{\epsilon^2} \sum_{s=-\nstep}^{+\nstep} \gamma_{|s|}^{(\nstep)} \cos(s p_d \epsilon)
+\end{align}
+where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{|n|}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
+\begin{equation}
+    \omega^{(\nstep)}(p_d,\epsilon) \overset{!}{=} p_d^2 \left[ 1 + \order{(\epsilon^2p^2)^{\nstep}}\right].
+\end{equation}
+\todo{do we want an appendix with the various $\gamma$s in it?}
+In addition, we use a nonlocal operator, denoted by $\nstep=\infty$ which, in momentum space can be implemented to multiplying by $p^2$ directly,
+\begin{equation}
+    \omega^{\infty}(p_d,\epsilon) = p_d^2,
+\end{equation}
+including at the edge of the Brillouin zone, the Laplacian implementation of the ungauged SLAC derivative.
+Including the edge does not introduce a discontinuity at the boundary (though it does introduce a cusp).
 
 Once constructed, we diagonalize this Hamiltonian exactly to extract eigenenergies.
+Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system.
+
+\begin{figure}
+    \includegraphics{example-image-a}
+    \caption{\todo{The continuum dispersion relation $\lim_{\epsilon\goesto0}2m\omega^{(\nstep)}(p,\epsilon)$ relation for a variety of $\nstep$ stencils, as well as the quadratic $\nstep=\infty$ relation.  Or something?  There must be a smart way to show this.  Here stick the result of \issue{17}}}
+    \label{fig:dispersion relation}
+\end{figure}
