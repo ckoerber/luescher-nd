@@ -1,5 +1,67 @@
 \section{The Dispersion Function}\label{sec:dispersion}
 
+In the usual procedure leveraging \Luscher's finite volume formalism, one must take the fixed-volume continuum-limit spectrum and feed it through the $N\goesto\infty$ limit of the $S$ function.
+In practice, however, most lattice QCD calculations cannot take a continuum limit in a fixed volume---many calculations indeed do not attempt a continuum limit because it is costly and the discretization artifacts are expected to be overwhelmed by the statistical uncertainty.
+The hope is to avoid the requirement of first taking a continuum limit of the spectrum.
+
+One physical motivation is to consider formulating scattering on an infinite-volume grid.
+Scattering is perfectly well-defined there, and indeed has many physical examples in the form of quasiparticle scattering in crystals.
+The central idea is that if we exactly match the limit on the sums and integrals with the volume in which we calculate, we can extrapolate to the continuum limit (if physically required) \emph{after} converting the spectrum to the infinite-volume scattering data.
+
+What role does the $N\goesto\infty$ limit play in formulating $S$?
+It removes a momentum cutoff from the formulation of the zeta functions.
+However, a momentum cutoff is exactly what we have when we have a lattice.
+Consider a box with linear size $L$ and $N$ lattice sites in each direction so that the lattice spacing is $\epsilon=L/N$.
+Then, the required zeta function is exactly $S_D^{\cartesian N}(x)$.  That is,
+\begin{equation}\label{eq:cutoff cartesian S}
+    \cot \delta_0^N(p) = \frac{\F_D}{\pi^2 L^{D-2}} S_D^{\cartesian N}(x)
+\end{equation}
+where $\delta_0^N$ indicates that the phase shift is calculated on a lattice with $N$ sites.
+
+In \Figref{results cutoff cartesian S} we show the results of tuning to reproduce the first zero of $S_D^{\cartesian N}$ with a variety of {\nstep}s.
+Note that the quality of the results is \nstep-dependent, with $\nstep=\infty$ producing exact agreement.
+
+\begin{figure}
+    \includegraphics{example-image-a}
+    \caption{Here we show the finite-volume finite-spacing spectrum converted to scattering data through \eqref{cutoff cartesian S} for different {\nstep}s.
+    \todo{It should look good, but not great, except for $\nstep=\infty$.}}
+    \label{fig:results cutoff cartesian S}
+\end{figure}
+
+The difference comes from the fact that when $\nstep=\infty$ we have the exact dispersion relation that corresponds to the on-shell condition that we used to eliminate the energy in favor of $x=(pL/2\pi)$.
+Therefore, we return to the derivation of \Luscher's finite-volume formalism and, recognizing that we're interested in incorporating these lattice artifacts from the start, replace the continuum dispersion relation with the lattice dispersion relation in the propagators.
+That is,
+\begin{align}
+    I_0^{\dispersion}(E)
+    &=-i\int_{-\Lambda}^{+\Lambda}
+        \frac{ \mathrm {d}q_0}{2\pi}\
+        \frac{\mathrm{d}^{D} \vec{q} } { (2\pi)^ { D } }
+        \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m} + i \epsilon } \right)
+        \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m} + i \epsilon } \right)
+    \nonumber\\
+    &=\frac{1}{(2\pi)^D}
+    \int_{-\Lambda}^{+\Lambda}
+        \mathrm{d}^D \vec{q}
+        \left[
+            \mathcal{P} \left( \frac { 1 } { E - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{m} } \right)
+            -i \todo{RESIDUE}
+        \right]
+    \\
+    &=\frac{m}{L^{D-2}}
+    \int_{N/2}^{N/2}
+        \mathrm{d}^D\vec{n}
+        \left[
+            \mathcal{P} \left( \frac { 1 } { m E L^2 - N^2 \sum_{ds} \gamma_s^{\nstep} \cos \frac{2\pi s n_d}{N}} \right)
+            -i \todo{RESIDUE}
+        \right]
+    \label{eq:dispersion I0}
+\end{align}
+where we adopte a $\dispersion$ superscript to indicate the quantity is defined accounting for the lattice dispersion relation.
+Here already you can see we will be ultimately be able to define a function of $2\mu E L^2$ where $N$ but no other parameter appears anywhere.
+\todo{Usually we go on-shell now, trading $E$ for $p$, but I think that's a mistake here.}
+\todo{Does it make sense to define $S$-wave on an infinite lattice?  I think this is related to going the "other" way---we actually are getting $A_1^+$ data, but since $A_1^+$ is magically simple we can understand it as $S$-wave.}
+
+
 \begin{itemize}
     \item Show errors of putting not-continuum spectrum through continuum S.  Dispersion S even accounts for lattice spacing!
     \item If we tune to dispersion S rather than continuum S at each lattice spacing the continuum limit is much nicer, especially for low modes.
