@@ -21,15 +21,15 @@ iT = \frac{-i\sum_n C_{2n}(\Lambda) p^{2n}}{1-I_0(p,\Lambda) \sum_n C_{2n}(\Lamb
 where $p$ is the relative momentum,  and $I_0(p,\Lambda)$ is a $D$-dependent function that arises from integrating the loop shown in \Figref{I0},
 \begin{align}
     I_0(p)
-    &=-i\int^{\Lambda/2}
+    &=-i\int^{\Lambda}
         \frac { \mathrm {d}q_0}{2\pi}\ \frac{\mathrm { d } ^ { D } \vec{ q } } { (2\pi)^ { D } }
         \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
         \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
     \nonumber\\
-    &=\frac{\Omega_D}{(2\pi)^D}\int^{\Lambda/2}  \mathrm { d } q \ q^{D-1}\left[\mathcal{P} \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)
+    &=\frac{\Omega_D}{(2\pi)^D}\int^{\Lambda}  \mathrm { d } q \ q^{D-1}\left[\mathcal{P} \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)
 -i\frac{\pi m}{2q}\delta(q-\sqrt{mE})\right]
     \\
-    &=\frac{\Omega_D}{(2\pi)^2}\frac{m}{L^{D-2}}\int^{\Lambda L/4\pi}  \mathrm { d } n \ n^{D-1}\left[\mathcal{P} \left( \frac { 1 } { \left(\frac{pL}{2\pi}\right)^2 - n^2 } \right)
+    &=\frac{\Omega_D}{(2\pi)^2}\frac{m}{L^{D-2}}\int^{\Lambda L/2\pi}  \mathrm { d } n \ n^{D-1}\left[\mathcal{P} \left( \frac { 1 } { \left(\frac{pL}{2\pi}\right)^2 - n^2 } \right)
 -i\frac{\pi^2}{L n}\delta\left(\frac{2\pi}{L}n -p\right)\right]
     \label{eq:I0}
 \end{align}
@@ -82,14 +82,14 @@ In a finite volume, the energy eigenstates appear at poles of the $T$-matrix, so
 and the infinite-volume integral $I_0$ has been replaced by the matching finite-volume sum,
 \begin{align}
 I_{0,\FV}(p,L)
-    &=-i\int \frac { \mathrm {d}q_0}{2\pi} \frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda/2} \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
+    &=-i\int \frac { \mathrm {d}q_0}{2\pi} \frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda} \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m} + i \epsilon } \right)
     \\
-    &=\frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda/2} \frac { 1 } { E - \frac{\vec{q}^2}{m} }
-    =\frac{m}{(2\pi)^2 L^{D-2}} \sum_{\vec{n}}^{n < \frac{\Lambda L}{4\pi}} \frac{1}{x-n^2}
+    &=\frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda} \frac { 1 } { E - \frac{\vec{q}^2}{m} }
+    =\frac{m}{(2\pi)^2 L^{D-2}} \sum_{\vec{n}}^{n < \frac{\Lambda L}{2\pi}} \frac{1}{x-n^2}
     &
     x &= \left( \frac{pL}{2\pi}\right)^2
 \end{align}
-where we have used the on-shell condition $mE=p^2$.  Combining the infinite-volume and finite-volume relations \eqref{IV pole} and \eqref{FV pole} yields
+where we have used the on-shell condition $mE=p^2$\todo{Be very careful about whether m is the reduced mass or not.}.  Combining the infinite-volume and finite-volume relations \eqref{IV pole} and \eqref{FV pole} yields
 \begin{equation}
     \frac{m}{4\F_D}(\cot\delta_0(p)-i) = I_0(p) - I_{0,\FV}(p),
 \end{equation}
@@ -99,7 +99,7 @@ Plugging our results for the integrals in, one finds
 \begin{equation}
     \frac{1}{4\F_D}\left(\cot \delta_0(p) - i\right) = \frac{1}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - p\right) \right]
 \end{equation}
-where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 4\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
+where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
 In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right, and we are left with
 \begin{equation}
     \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}

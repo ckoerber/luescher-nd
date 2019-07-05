@@ -1,6 +1,6 @@
 \section{The Cartesian Function}\label{sec:cartesian}
 
-In the previous section, we kept emphasizing the manner in which we cut off the sum and integral---we performed a spherical truncation, meaning we cut off based on the magnitude of $\vec{n}$, $n^2 < (\Lambda L/2\pi)^2$.
+In the previous section, we kept emphasizing the manner in which we cut off the sum and integral---we performed a spherical truncation, meaning we cut off based on the magnitude of $\vec{n}$, $n^2 < (N/2)^2 = (\Lambda L/2\pi)^2$.
 
 In a lattice calculation, however, the cutoff is imposed by the lattice itself.
 Holding the physical volume fixed, we take the continuum limit (thereby sending the momentum cutoff to infinity).
@@ -36,7 +36,5 @@ On possible concern when executing this change is: what happened to the delicate
 Note that the residue is accompanied by a delta function that, even if we do a Cartesian integral, still restricts us to a spherical surface where the delta function has support.
 Therefore, the integrated residue is independent of the choice of integration domain, so long as the domain contains the entire sphere of support.
 
-\begin{itemize}
-    \item Show cartesian S in 2D, 3D
-    \item Do the contact interaction with a fixed C, and show we get perfect perfection if we take the continuum spectrum and shove it through cartesian S but not spherical S.
-\end{itemize}
+Because $S^{\cartesian}$ and $S^{\spherical}$ are formulated with different regularizations but are understood to be in the limit where the regulator is taken to infinity, these two functions are equal.
+As formulated, if they are both calculated with the same truncation in $N$, we expect the Cartesian function to be slightly improved, because the domain of the sum and integral contain the spherical domain and additionally the corners of the circumscribing cube.
