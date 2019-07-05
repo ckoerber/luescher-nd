@@ -12,7 +12,7 @@ So, by analogy with \eqref{spherical cutoff S} we define
 \begin{equation}
         S^{\cartesian N}_D(x)
         = \left(
-            \sum_{\vec{n} \in (N/2, N/2]^D}
+            \sum_{\vec{n} \in (-N/2, +N/2]^D}
             -
             \int_{-N/2}^{N/2} \mathrm{d}n_x\ \mathrm{d}n_y\ \mathrm{d}n_z
         \right) \frac{1}{x-n^2}
@@ -24,7 +24,7 @@ We similarly define the Cartesian zeta function,
     =
     \lim_{N\goesto\infty} S^{\cartesian N}_D(x)
     =
-    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n} \in (N/2, N/2]^D} \frac{1}{x-n^2} - \counterterm_D^\cartesian \left(\frac{N}{2}\right)^{D-2}\right)
+    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n} \in (-N/2, +N/2]^D} \frac{1}{x-n^2} - \counterterm_D^\cartesian \left(\frac{N}{2}\right)^{D-2}\right)
 \end{equation}
 and can change the quantization condition to read
 \begin{equation}\label{eq:cartesian quantization}
