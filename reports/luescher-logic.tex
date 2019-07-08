@@ -1,0 +1,219 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+\documentclass[
+    aps,
+    prl,
+    showkeys,
+    nofootinbib,
+    %twocolumn,
+    floatfix
+]{revtex4}
+
+\usepackage[utf8]{inputenc} % UTF-8
+\usepackage{braket}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+
+\usepackage{graphicx}
+\usepackage{color}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+
+\newcommand{\fm}{\,\mathrm{fm}}
+\newcommand{\ifm}{\,\mathrm{fm}^{-1}}
+\newcommand{\MeV}{\,\mathrm{MeV}}
+
+\begin{document}
+
+\title{Idea behind Lüscher's formalism}
+
+\author{C.~Körber}
+
+\date{\today}
+
+\begin{abstract}%
+	How is it possible to relate physical scattering data to observables in a finite volume (and discrete)?
+	I present a general derivation of the zeta function and corrections for contact interactions and separable potentials.
+	I believe this idea generalizes to FV and discrete system and thus is the reason why dispersion Lüscher works and \textbf{is a direct map from FV lattice to the physical system}.
+	While this potentially generalizes to separable potentials -- which I will test soon -- I don't believe it is easy to repeat this formalism for general potentials.
+	As a side note: if this is true, \textbf{I have strong doubts that regular Lüscher can be applied to non-contact potentials!}
+\end{abstract}
+
+\maketitle
+
+\section{Physical scattering information}
+
+Scattering of two particles in quantum mechanics are described by the $T$-matrix 
+\begin{align}
+	T(\vec p', \vec p, E)
+	&=
+	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	&
+	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
+	\, ,
+\end{align}
+Where $\mu$ is the reduced mass of the two particle system (e.g., $\mu = 2 m$ for particles of equal mass $m$).
+
+The \textbf{on-shell} $T$-matrix is related to the scattering phase shifts by
+\begin{equation}
+	T_l(p, p , E_p) = \frac{2}{\mu} \mathcal F \frac{1}{\cot (\delta_l(p)) - i} \, ,
+\end{equation}
+where $l$ denotes the partial wave, $E_p = p^2 / (2 \mu)$ and $\mathcal F$ is a factor which depends on the spatial dimension of the two particle system.
+Note that the on-shell $T$-matrix is evaluated for all momenta and energies equal to $p$ and the partial wave decomposition removed the remaining vectorial dependence
+\begin{equation}
+	\left\langle \vec{p}^{\prime}| \hat T(E) | \vec{p}\right\rangle=\frac{2}{\pi} \sum_{l, m} T_{l}\left(p^{\prime}, p, E\right) Y_{l m}^{*}\left(\Omega_{k^{\prime}}\right) Y_{l m}\left(\Omega_{k}\right)
+\end{equation}
+For scalar potentials in three spatial dimensions, this becomes
+\begin{equation}\label{eq-phase-shifts}
+	T(p) \equiv T(p, p, E_p) = \frac{2}{\mu} \frac{1}{p\cot (\delta(p)) - ip} \, .
+\end{equation}
+
+\section{Special cases}
+
+For certain potentials, the $T$-matrix has a simple analytic expression.
+
+\subsection{Contact interaction}
+\begin{equation}
+	V(\vec p', \vec p) = c(\Lambda) \, .
+\end{equation}
+
+In this case the $T$-matrix becomes
+\begin{align}\label{eq:quantization-contact-physical}
+	T(p', p, E) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_0(E, \Lambda)} \, , &
+	I_0(E) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon)
+	\, .
+\end{align}
+Note that:
+\begin{itemize}
+	\item The $T$-matrix is independent of momenta $p$ and $p'$,
+	\item The $T$-matrix is independent of the regulator $\Lambda$ if $c(\Lambda)$ renormalizes the integral
+	\item This form is generally more complicated if $V$ explicitly depends on momenta (contact derivative expansion).
+\end{itemize}
+
+\subsection{Separable interactions}
+\begin{equation}
+	V(\vec p', \vec p) = v_1(\vec p') v_2(\vec p) \, .
+\end{equation}
+
+In this case the $T$-matrix becomes
+\begin{align}\label{eq:quantization-separable-physical}
+	T(\vec p', \vec p, E) &= \frac{V(\vec p', \vec p)}{1 - I_1(E)} \, , &
+	I_1(E) = \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon) V(\vec k, \vec k)
+	\, .
+\end{align}
+
+\section{Finite Volume}
+For now I only assume finite volume and no spatial discretization.
+I thus believe that we do not need to use cartesian or dispersion Lüscher.
+
+In FV, the integral gets replaced by a sum and the $T$-matrix is evaluated at discrete momenta $\vec p = \frac{2 \pi}{L} \vec n$ with $\vec n \in \mathbb Z$
+\begin{align}
+	T_{\vec n' \vec n}(E)
+	&=
+	V_{\vec n' \vec n} + \frac{1}{L^3}\lim\limits_{\epsilon \to 0}\sum\limits_{\vec m \in \mathbb Z} V_{\vec n' \vec m} G_{\vec m}( E + i \epsilon) T_{\vec m \vec n}(E) \, ,
+	&
+	G_{\vec m}(E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{4 \pi^2 \vec m^2}{2\mu L^2 }}
+	\, ,
+\end{align}
+
+Furthermore, solutions to the Schrödinger equation
+\begin{equation}
+	\hat H \ket{\psi^i} = E^i \ket{\psi^i}
+\end{equation}
+also satisfy
+\begin{equation}
+	\lim\limits_{\epsilon \to 0}\sum\limits_{\vec n \in \mathbb Z} G_{\vec m}( E^i + i \epsilon) V_{\vec m \vec n} \psi_{\vec n}^i = \psi_{\vec m}^i \qquad \forall _i \forall _{\vec{m}} \, .
+\end{equation}
+
+This also means that, if one introduces a coordinate transformation from the momentum vectors $\vec p = \frac{2 \pi}{L} \vec m$ to the eigenvectors of the Hamiltonian $\vec \psi^i$, one finds that
+\begin{equation}
+	\left(\hat G(E^i) \hat V\right)_{ji}
+	\equiv \lim\limits_{\epsilon \to 0}
+	\sum\limits_{\vec m, \vec n \in \mathbb Z} \psi_{\vec m}^j G_{\vec m}( E^i + i \epsilon) V_{\vec m \vec n} \psi_{\vec n}^i
+	=
+	\delta_{ji}\, .
+\end{equation}
+(note the repeating $i$-index) and thus
+\begin{equation}
+	\left(\hat{\mathbbm{1}} - \hat G( E^i ) \hat V\right)_{j i} = 0 \, .
+\end{equation}
+If one picks a "wrong" energy $E^k$  with $k \neq i, j$, this is generally not true.
+But if one considers the whole space, generally
+\begin{equation}
+	\det\limits_{\vec i \vec j} \left(\hat{\mathbbm{1}} - \hat G( E^k ) \hat V\right) = 0 \, , \qquad \forall_k \, ,
+\end{equation}
+because the determinant includes the state $j = k$.
+
+Because the above equation is invariant under changes of the basis, this means that we can also evaluate the determinant in the original momentum basis
+\begin{equation}
+	\det\limits_{\vec n \vec m} \left({\mathbbm{1}} - \hat G( E^i ) \hat V\right) = 0 \, , \qquad \forall_i \, .
+\end{equation}
+
+
+\subsection{Contact interaction}
+
+Because the potential is constant dense matrix in momentum space $V = c(\Lambda) \vec 1 \vec 1^T$ and the greens function is diagonal in the momentum basis  $G(E^i) = \vec g(E^i) \mathbbm 1$, one can use the following matrix determinant lemma
+\begin{equation}\label{eq-det-sum-lemma}
+	\det\left({A}+ \vec u \vec v^T\right)=\left(1+\vec{v}^{T} {A}^{-1} \vec{u}\right) \det({A})
+\end{equation}
+with $A = \mathbbm 1$, $\vec u = \vec g(E^i)$ and $\vec v = - c(\Lambda) \vec 1$.
+
+\begin{align}\label{eq:quantization-contact-fv}
+	\Rightarrow
+	1 - c(\Lambda) \vec 1 \cdot \vec g(E^i) &= 1 - c(\Lambda) I_0^{\mathrm{FV}}(E^i) = 0 \, , &
+	I_0^{\mathrm{FV}}(E^i) = \lim\limits_{\epsilon \to 0}\sum\limits_{\vec n \in \mathbb Z} G_{\vec n}(E^i + i \epsilon) \, .
+\end{align}
+Note that this equation is only true for eigen energies of the Hamiltonian $E^i$.
+
+If one now chooses the parameter $c(\Lambda)$ exactly as in the continuum case, one can combine eq.~(\ref{eq-phase-shifts}), eq.~(\ref{eq:quantization-contact-physical}) and eq.~(\ref{eq:quantization-contact-fv}) by adding zero
+\begin{align}
+	p^i \cot(\delta(p^i)) -i p^i 
+	&= 
+	\frac{2}{\mu} \frac{1 - c(\Lambda) I_0(E^i, \Lambda) - \left[ 1 - c(\Lambda) I_0^{\mathrm{FV}}(E^i, \Lambda) \right]}{c(\Lambda)}
+	\\ &=
+	\frac{2}{\mu} \left( I_0^{\mathrm{FV}}(E^i, \Lambda) - I_0(E^i, \Lambda)\right)
+	\, ,
+\end{align}
+Which is the expected zeta function.
+{\color{red} I am getting a minus sign wrong...}
+
+
+\subsection{Separable interactions}
+
+Similar to the contact interaction case, the potential can be written as a product of two vectors $V = \vec v_1 \vec v_2^T$.
+Thus, we can use eq.~\ref{eq-det-sum-lemma} again with $A = \mathbbm 1$, $\vec u = \vec g(E^i) \vec v_1$ (component wise multiplication) and $\vec v = \vec v_2$.
+
+\begin{align}\label{eq:quantization-separable-fv}
+	\Rightarrow
+	1 - \vec v_2 \cdot ( \vec g(E^i) \vec v_1) &= 1 - I_1^{\mathrm{FV}}(E^i) = 0 \, , &
+	I_1^{\mathrm{FV}}(E^i) = \lim\limits_{\epsilon \to 0}\sum\limits_{\vec n \in \mathbb Z} V_{\vec n \vec n}G_{\vec n}(E^i + i \epsilon) \, .
+\end{align}
+Note that this equation is only true for eigen energies of the Hamiltonian $E^i$.
+
+Again one can combine eq.~(\ref{eq-phase-shifts}), eq.~(\ref{eq:quantization-separable-physical}) and eq.~(\ref{eq:quantization-separable-fv}) by adding zero
+\begin{align}
+	p^i \cot(\delta(p^i)) -i p^i 
+	&= 
+	\frac{2}{\mu} \, \frac{1 - I_1(E^i) - \left[ 1 - I_1^{\mathrm{FV}}(E^i) \right]}{V(\vec p, \vec p)}
+	\\ &=
+	\frac{2}{\mu} \, \frac{I_1^{\mathrm{FV}}(E^i) - I_1(E^i)}{V(\vec p, \vec p)}
+	\, ,
+\end{align}
+But now things don't cancel out that nicely.
+{\color{red} I am getting a minus sign wrong...}
+
+This should be the modified zeta function for separable potentials!
+
+\subsection{General potentials}
+Because there is not a general closed form for the $T$-matrix for general potentials, I do not believe that this generalizes further.
+However, in general we can only add this zero in form of a determinant which complicates things even more.
+
+\section{Remarks}
+I believe this idea generalizes to FV and discrete system and thus is the reason why dispersion Lüscher works and \textbf{is a direct map from FV lattice to the physical system}.
+While this potentially generalizes to separable potentials, -- which I will test soon -- I don't believe it is easy to repeat this for general potentials.
+As a side note: if this is true, \textbf{I have strong doubts that regular Lüscher can be applied to non-contact potentials!}
+
+\end{document}
