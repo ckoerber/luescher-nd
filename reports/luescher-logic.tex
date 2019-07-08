@@ -105,6 +105,50 @@ In this case the $T$-matrix becomes
 	\, .
 \end{align}
 
+
+\subsection{Infinite derivative contact interaction tower}
+\begin{equation}
+	V(\vec p', \vec p) = \sum_{n=0}^{\infty} \frac{c_n(\Lambda)}{2} \left( p^{2n} + p'^{2n} \right)  = v(p) + v(p') \, .
+\end{equation}
+Plugging this into the $T$-matix, one finds
+\begin{equation}
+	T(p, p', E) = v(p) + v(p') + v(p) f(p') + g(p')
+\end{equation}
+with
+\begin{align}
+	f(p', E) &= \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon) T(k, p') \, , \\
+	g(p', E) &= \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} v(k) G(\vec k, E + i \epsilon) T(k, p') \, .
+\end{align}
+Thus, recursively inserting $T$ back into the above equations, one has
+\begin{align}
+	f(p',E) &= \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon) (v(k) + v(p') + v(k) f(p',E) + g(p',E)) \, , \\
+	g(p', E) &= \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} v(k) G(\vec k, E + i \epsilon) (v(k) + v(p') + v(k) f(p',E) + g(p',E)) \, .
+\end{align}
+
+\begin{align}
+	f(p',E) &= I_v(E) [1 + f(p',E)] + I_0(E) [v(p') + g(p',E)] \, , \\
+	g(p',E) &= I_{v}(E)[v(p') + g(p')] + I_{v^2}(E) [1 + f(p')]  \, .
+\end{align}
+
+which is solved by
+\begin{align}
+	f(p',E) &= \frac{I_v(E) -  I_v(E)^2 + I_0(E) (1 + I_{v^2}(E) + I_v(E) (-1 + v(p')))}{((-1 + I_v(E))^2 - I_0(E) I_{v^2}(E))} \\
+	g(p',E) &= \frac{(1 + I_0(E)) I_{v^2}(E) - (-1 + I_v(E)) I_v(E) v(p')}{((-1 + I_v(E))^2 - I_0(E) I_{v^2}(E))}
+\end{align}
+
+\begin{align}
+	I_0(E) &= \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon) \\
+	I_v(E) &= \lim\limits_{\epsilon \to 0} \int  \frac{d \vec k^3}{(2\pi)^3} v(k) G(\vec k, E + i \epsilon) \\
+	I_{v^2}(E) &= \lim\limits_{\epsilon \to 0} \int  \frac{d \vec k^3}{(2\pi)^3} v^2(k) G(\vec k, E + i \epsilon)
+\end{align}
+
+Apparently the result for $T$ is 
+\begin{align}\label{eq:quantization-separable-physical}
+	T(p) &= \frac{\sum_{n=0}^{\infty} {c_n(\Lambda)}  p^{2n} }{1 - I_0(E)\sum_{n=0}^{\infty} {c_n(\Lambda)}  p^{2n} } \, , &
+	I_0(E) = \lim\limits_{\epsilon \to 0} \int \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon)
+	\, .
+\end{align}
+
 \section{Finite Volume}
 For now I only assume finite volume and no spatial discretization.
 I thus believe that we do not need to use cartesian or dispersion Lüscher.
