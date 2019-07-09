@@ -37,7 +37,7 @@ def nstepinf(pe):
     return pe ** 2
 
 
-DISPERSION = {-1: nstepinf, 1: nstep1, 2: nstep2, 3: nstep3, 4: nstep4}
+DISPERSION = {1: nstep1, 2: nstep2, 3: nstep3, 4: nstep4, -1: nstepinf}
 
 LABEL = {
     -1: r"$n_{\mathrm{step}}=\infty$",
