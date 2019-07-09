@@ -10,7 +10,7 @@ The central idea is that if we exactly match the limit on the sums and integrals
 
 What role does the $N\goesto\infty$ limit play in formulating $S$?
 It removes a momentum cutoff from the formulation of the zeta functions.
-However, a momentum cutoff is exactly what we have when we have a lattice.
+However, a momentum cutoff is exactly what we have when we have a finite-spacing lattice.
 Consider a box with linear size $L$ and $N$ lattice sites in each direction so that the lattice spacing is $\epsilon=L/N$.
 Then, one may intuitively reach for the zeta function $S_D^{\cartesian N}(x)$.  That is,
 \begin{equation}\label{eq:cutoff cartesian S}
@@ -39,25 +39,25 @@ Therefore, we return to the derivation of \Luscher's finite-volume formalism and
 That is,
 \begin{align}
     I_0^{\dispersion}(E)
-    &=-i\int_{-\Lambda}^{+\Lambda}
-        \frac{ \mathrm {d}q_0}{2\pi}\
-        \frac{\mathrm{d}^{D} \vec{q} } { (2\pi)^ { D } }
-        \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m} + i \epsilon } \right)
-        \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m} + i \epsilon } \right)
-    \nonumber\\
+    % &=-i\int_{-\Lambda}^{+\Lambda}
+    %     \frac{ \mathrm {d}q_0}{2\pi}\
+    %     \frac{\mathrm{d}^{D} \vec{q} } { (2\pi)^ { D } }
+    %     \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m_1} + i \epsilon } \right)
+    %     \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m_2} + i \epsilon } \right)
+    % \nonumber\\
     &=\frac{1}{(2\pi)^D}
     \int_{-\Lambda}^{+\Lambda}
         \mathrm{d}^D \vec{q}
         \left[
-            \mathcal{P} \left( \frac { 1 } { E - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{m} } \right)
+            \mathcal{P} \left( \frac { 1 } { E - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2\mu} } \right)
             -i \todo{RESIDUE}
         \right]
     \\
-    &=\frac{m}{L^{D-2}}
-    \int_{N/2}^{N/2}
+    &=\frac{2\mu}{L^{D-2}}
+    \int_{-N/2}^{+N/2}
         \mathrm{d}^D\vec{n}
         \left[
-            \mathcal{P} \left( \frac { 1 } { m E L^2 - N^2 \sum_{ds} \gamma_s^{\nstep} \cos \frac{2\pi s n_d}{N}} \right)
+            \mathcal{P} \left( \frac { 1 } { 2\mu E L^2 - N^2 \sum_{ds} \gamma_s^{(\nstep)} \cos \frac{2\pi s n_d}{N}} \right)
             -i \todo{RESIDUE}
         \right]
     \label{eq:dispersion I0}
@@ -65,14 +65,15 @@ That is,
 where we adopte a $\dispersion$ superscript to indicate the quantity is defined accounting for the lattice dispersion relation.
 Following the same procedure as before, we need to solve
 \begin{equation}
-    \frac{m}{4\F_D^N}(\cot \delta_0^N(E) - i) = I_0^{\dispersion N}(E) - I_{0,\FV}^{\dispersion N}(p)
+    \frac{\mu}{2\F_D^N}(\cot \delta_0^N(E) - i) = I_0^{\dispersion N}(E) - I_{0,\FV}^{\dispersion N}(p)
 \end{equation}
-\todo{Not sure the $-i$ is exactly right; $\F_D^N$ will be determined by the kinematics of the pole.}
+\todo{Not sure the $-i$ is exactly right; $\F_D^N$ will be determined by the kinematics of the pole.  I \emph{hope} it doesn't actually know about $N$ but only $\epsilon$, because otherwise it's hard to understand how $\F$ is an infinite-volume quantity.  Same with $\delta_0^N$.}
 
 Here already you can see we will be ultimately be able to define a function of $2\mu E L^2$ where $N$ but no other parameter appears anywhere.
 \todo{Usually we go on-shell now, trading $E$ for $p$, but I think that's a mistake here.}
 \todo{Does it make sense to define $S$-wave on an infinite lattice?  I think this is related to going the "other" way---we actually are getting $A_1^+$ data, but since $A_1^+$ is magically simple we can understand it as $S$-wave.}
 
+\todo{Arrive at the dispersion Luscher equation.}
 
 \begin{itemize}
     \item Show errors of putting not-continuum spectrum through continuum S.  Dispersion S even accounts for lattice spacing!
@@ -80,3 +81,26 @@ Here already you can see we will be ultimately be able to define a function of $
     \item 2D, 3D.
     \item Show $C(\Lambda)$.
 \end{itemize}
+
+\subsection{Numerical Results}
+
+In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the \Luscher zeta function.
+However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion N}_D$, leveraging the dispersion relation for that derivative.
+Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \todo{eqref} using the same $S$ function.
+The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
+Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
+Moreover, comparing the scale to that in, for example, \Figref{unimproved spherical}, there the deviations were of order~1, while here the results remain within $10^{-8}$ of zero, with the value entirely reflecting how well the contact interaction was tuned.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{figure/db-contact-fv-d-fitted.pdf}
+    \caption{The same as \Figref{unimporved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.}
+    \label{fig:unimproved dispersion}
+\end{figure}
+
+In \Figref{8} we show how the strength of the contact interaction runs with the lattice scale.  According to \todo{something we know} it should be \todo{some formula that depends on cutoff}.
+
+\begin{figure}
+    \includegraphics[width=\textwidth,height=2.5in]{example-image-b}
+    \caption{$C(\epsilon)$ for dispersion method.  \todo{Here put the result of \issue{14}.}}
+    \label{fig:running of strength}
+\end{figure}
