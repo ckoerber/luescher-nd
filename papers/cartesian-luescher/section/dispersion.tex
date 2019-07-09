@@ -12,11 +12,17 @@ What role does the $N\goesto\infty$ limit play in formulating $S$?
 It removes a momentum cutoff from the formulation of the zeta functions.
 However, a momentum cutoff is exactly what we have when we have a lattice.
 Consider a box with linear size $L$ and $N$ lattice sites in each direction so that the lattice spacing is $\epsilon=L/N$.
-Then, the required zeta function is exactly $S_D^{\cartesian N}(x)$.  That is,
+Then, one may intuitively reach for the zeta function $S_D^{\cartesian N}(x)$.  That is,
 \begin{equation}\label{eq:cutoff cartesian S}
     \cot \delta_0^N(p) = \frac{\F_D}{\pi^2 L^{D-2}} S_D^{\cartesian N}(x)
 \end{equation}
 where $\delta_0^N$ indicates that the phase shift is calculated on a lattice with $N$ sites.
+
+Note that on an infinite square lattice, the continuum symmetry group SO(3) is broken by the discretization.
+So, we should classify the infinite-volume scattering states not according to irreps of SO(3) but of the remaining subgroup.
+The lattice spacing and dispersion relation can introduce anisotropies in propagation speed, so that nice spherical waves distort.
+While working out the associated Clebsch-Gordan subduction coefficients is a worthwhile exercise, we here focus on a contact interaction, which is an $SO(3)$ singlet and an $A_1^+$ interaction at finite spacing, and in the continuum limit the full continuum rotational SO(3) should be restored.
+We therefore will proceed to talk as though we have direct access to the $s$-wave, even at finite spacing.
 
 In \Figref{results cutoff cartesian S} we show the results of tuning to reproduce the first zero of $S_D^{\cartesian N}$ with a variety of {\nstep}s.
 Note that the quality of the results is \nstep-dependent, with $\nstep=\infty$ producing exact agreement.
