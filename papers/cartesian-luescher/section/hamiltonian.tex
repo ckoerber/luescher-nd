@@ -27,14 +27,16 @@ In momentum space, this Hamiltonian may be written
     H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
     &= \delta_{\vec{p}',\vec{p}} \frac{1}{2\mu} \sum_{d=1}^{D} \omega^{(\nstep)}(p_d,\epsilon) + C(\epsilon)
     \\
+    \label{eq:gamma definition}
     \omega^{(\nstep)}(p_d,\epsilon)
-    &= \frac{1}{\epsilon^2} \sum_{s=-\nstep}^{+\nstep} \gamma_{|s|}^{(\nstep)} \cos(s p_d \epsilon)
+    &= \frac{1}{\epsilon^2} \sum_{s=0}^{\nstep} \gamma_{s}^{(\nstep)} \cos(s p_d \epsilon)
 \end{align}
-where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{|n|}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
+where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
 \begin{equation}
-    \omega^{(\nstep)}(p_d,\epsilon) \overset{!}{=} p_d^2 \left[ 1 + \order{(\epsilon^2p^2)^{\nstep}}\right].
+    \label{eq:gamma determination}
+    \omega^{(\nstep)}(p_d,\epsilon) \overset{!}{=} p_d^2 \left[ 1 + \order{(\epsilon p_d)^{2\nstep}}\right].
 \end{equation}
-\todo{do we want an appendix with the various $\gamma$s in it?}
+In \Appref{coefficients} we collect the required $\gamma$ coefficients for a variety of $\nstep$s.
 In addition, we use a nonlocal operator, denoted by $\nstep=\infty$ which, in momentum space can be implemented to multiplying by $p^2$ directly,
 \begin{equation}
     \omega^{\infty}(p_d,\epsilon) = p_d^2,
@@ -43,7 +45,7 @@ including at the edge of the Brillouin zone, the Laplacian implementation of the
 Including the edge does not introduce a discontinuity at the boundary (though it does introduce a cusp).
 
 Once constructed, we diagonalize this Hamiltonian exactly to extract eigenenergies.
-Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system.
+Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system, where logarithmic divergences warrant special attention.
 
 \begin{figure}
     \includegraphics[width=0.5\textwidth]{figure/dispersion.pdf}
