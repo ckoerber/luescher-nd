@@ -2,6 +2,8 @@
 """
 from itertools import product
 
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -11,6 +13,10 @@ from luescher_nd.hamiltonians.kinetic import HBARC
 
 from luescher_nd.zeta.zeta3d import Zeta3D
 from luescher_nd.zeta.extern.pyzeta import zeta  # pylint: disable=E0611
+
+DATA_FOLDER = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, "data")
+)
 
 
 def read_table(
