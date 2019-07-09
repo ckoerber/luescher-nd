@@ -100,7 +100,7 @@ Plugging our results for the integrals in, one finds
     \frac{1}{4\F_D}\left(\cot \delta_0(p) - i\right) = \frac{1}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - p\right) \right]
 \end{equation}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
-In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right, and we are left with
+In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right,\footnote{Actually, the cancellation is not \emph{so} miraculous---demanding it occur is essentially how $\F_D$ is determined.} and we are left with
 \begin{equation}
     \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
@@ -127,9 +127,35 @@ Finally,
 This is the usual \Luscher finite-volume quantization condition, and continuum-extrapolated energy levels should be fed through it to produce continuum-limit scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_D$ to the other size, as $p \cot\delta_0(p)$ is what appears in the effective range expansion, as we will discuss in \Secref{ere}.
 
-\todo{STILL REMAINING:}
-\begin{itemize}
-    \item Describe tuning
-    \item Show results in 2, 3D
-    \item Something is wrong :(?  More like :D because we are smart!
-\end{itemize}
+\subsection{Numerical Results}
+
+Now we can attempt a numerical characterization of fermions at unitarity.
+Using the Hamiltonian \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$, we tune the interaction strength $C(\epsilon)$ so that we always find the ground state to lie at the first zero of $S^{\spherical}_3$.
+Once the strength is tuned to \todo{precision} we extract, using exact diagonalization, low-lying energy levels, holding the physical volume fixed.
+In \Figref{unimproved spherical} we put those (finite-lattice-spacing) energy levels through \eqref{spherical quantization} to convert them to scattering data, and additionally perform a continuum extrapolation according to
+\begin{equation}
+    \text{\todo{Does the extrapolation depend on \nstep?}}
+\end{equation}
+with error bars given by \todo{something meaningful}.  \todo{Add continuum extrapolation as an appendix?  Collect data, provide a script?  Something!}
+
+\begin{figure}[th]
+    \includegraphics[width=\textwidth]{figure/db-contact-fv-c-fitted.pdf}
+    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.  In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}. \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
+    \label{fig:unimproved spherical}
+\end{figure}
+
+One can clearly see that without a continuum extrapolation, the finite-volume spectrum does not agree with the exactly-known flat solution that a contact interaction must provide.
+That is, by foregoing a continuum extrapolation, we induce unphysical shape parameters.
+In the remainder of this paper we improve this result markedly, so that the continuum limit towards unitarity is substantially easier.
+
+\todo{Comment on the continuum-extrapolated results, which I can't do yet since they're not there :D}
+
+In \Figref{finite a spherical} we show the result of tuning the contact interaction so that the ground state, when put through $S^{\spherical}_3$ yields a scattering length of \todo{something}.
+Again, since the interaction is a contact interaction only, we expect a completely flat behavior.
+In constrast, we see \todo{shapes that make us sad / curious}.
+
+\begin{figure}[th]
+    \includegraphics[width=\textwidth,height=2.5in]{example-image-a}
+    \caption{We results like \Figref{unimproved spherical}, but where the contact interaction was tuned so that the ground state matches yields $p\cot\delta = $\todo{some finite scattering length; part of \issue{19}} rather than to 0.  Similar deviation from completely flat behavior is apparent at any finite lattice spacing.}
+    \label{fig:finite a spherical}
+\end{figure}
