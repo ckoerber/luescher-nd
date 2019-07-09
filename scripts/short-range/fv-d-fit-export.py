@@ -19,12 +19,14 @@ from scipy.optimize import minimize_scalar
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 from luescher_nd.operators import get_parity_projector
 
-from luescher_nd.zeta.zeta3d import Zeta3D
+from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
-RANGES = {"epsilon": [0.1, 0.2, 0.25], "L": [1.0, 2.0], "nstep": [4, None]}
+RANGES = {"epsilon": [0.020, 0.025, 0.05, 0.1, 0.2, 0.25], "L": [1.0], "nstep": [1]}
 PARS = {"k": 50}
 
-DBNAME = "db-contact-fv-d-fitted-parity.sqlite"
+A_INV = -5.0
+
+DBNAME = "db-contact-fv-d-fitted-parity-a-inv.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -38,12 +40,13 @@ class FitKernel:
     """
 
     h: MomentumContactHamiltonian
+    a_inv: float = 0
     _zeta: Callable[[np.ndarray], np.ndarray] = field(init=False, repr=False)
     _e0: float = field(init=False, repr=False)
 
     def __post_init__(self):
         """Init the zeta function"""
-        self._zeta = Zeta3D(L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep)
+        self._zeta = DispersionZeta3d(L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep)
         self._e0 = self._get_ground_state()
 
     def zeta(self, x: np.ndarray) -> np.ndarray:
@@ -54,7 +57,7 @@ class FitKernel:
     def _ere_diff_sqrd(self, x: float) -> float:
         """Computes the difference betewen ERE and zeta function
         """
-        return (0 - self.zeta(x)[0] / np.pi / self.h.L) ** 2
+        return (self.a_inv - self.zeta(x)[0] / np.pi / self.h.L) ** 2
 
     def _get_ground_state(self) -> float:
         """Computes the first intersection of the zeta function and the ERE
@@ -93,7 +96,7 @@ def main():
             filter_cutoff=1.0e2,
         )
 
-        kernel = FitKernel(h)
+        kernel = FitKernel(h, a_inv=A_INV)
         contact_strength = minimize_scalar(
             kernel.chi2, bracket=(-1.0e2, -1.0e-4), options={"xtol": 1.0e-12}
         ).x
@@ -109,7 +112,8 @@ def main():
             DB,
             eigsh_kwargs=PARS,
             export_kwargs={
-                "comment": "potential fitted to Finite Volume discrete ground state"
+                "comment": "potential fitted to Finite Volume"
+                " discrete ground state (a_inv={A_INV})"
             },
         )
 
