@@ -1,5 +1,10 @@
 
-all:	I0.pdf dispersion.pdf
+FIGURES=I0.pdf	\
+ 		dispersion.pdf	\
+		db-contact-fv-c-fitted.pdf 	\
+		db-contact-fv-d-fitted.pdf
+
+all:	$(FIGURES)
 
 I0.pdf:  I0.tex
 	latex I0.tex
@@ -9,3 +14,9 @@ I0.pdf:  I0.tex
 
 dispersion.pdf: dispersion.py
 	./dispersion.py
+
+db-contact-fv-c-fitted.pdf: ERE-unitarity.py
+	./ERE-unitarity.py
+
+db-contact-fv-d-fitted.pdf: ERE-unitarity.py
+	./ERE-unitarity.py
