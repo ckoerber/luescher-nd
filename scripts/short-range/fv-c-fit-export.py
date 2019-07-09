@@ -20,10 +20,9 @@ from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 
 from luescher_nd.zeta.extern.pyzeta import zeta  # pylint: disable=E0611
 
-RANGES = {"epsilon": [0.05, 0.1, 0.2], "L": [1.0, 2.0], "nstep": [1, 2, 3, 4, None]}
+RANGES = {"epsilon": [0.05, 0.1, 0.2, 0.25], "L": [1.0, 2.0], "nstep": [1, 2, 4, None]}
 PARS = {"k": 100}
-
-DBNAME = "db-contact-fv-c-fitted.sqlite"
+DBNAME = "db-contact-fv-c-fitted-parity.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -83,8 +82,14 @@ def main():
     """
     for epsilon, L, nstep in product(RANGES["epsilon"], RANGES["L"], RANGES["nstep"]):
         n1d = int(L / epsilon)
-        h = MomentumContactHamiltonian(n1d=n1d, epsilon=epsilon, nstep=nstep)
-
+        p_minus = get_parity_projector(n1d, ndim=3, positive=False)
+        h = MomentumContactHamiltonian(
+            n1d=n1d,
+            epsilon=epsilon,
+            nstep=nstep,
+            filter_out=p_minus,
+            filter_cutoff=1.0e2,
+        )
         kernel = FitKernel(h)
         contact_strength = minimize_scalar(
             kernel.chi2, bracket=(-1.0e2, -1.0e-4), options={"xtol": 1.0e-12}
@@ -96,7 +101,8 @@ def main():
             DB,
             eigsh_kwargs=PARS,
             export_kwargs={
-                "comment": "potential fitted to Finite Volume discrete ground state"
+                "comment": "potential fitted to first intersection of RGL zeta function"
+                " for infinte scattering length (with parity filter)"
             },
         )
 
