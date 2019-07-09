@@ -1,5 +1,8 @@
 """Plotting style set up for luescher-nd plots
 """
+import re
+
+import matplotlib
 import seaborn as sns
 
 
@@ -14,6 +17,7 @@ RC = {
 EXPORT_OPTIONS = {"bbox_inches": "tight"}
 LEGEND_STYLE = {"frameon": False, "loc": "center left", "bbox_to_anchor": (1.0, 0.5)}
 LINE_STYLE = {"ls": "-", "lw": 0.5}
+MARKERS = re.findall('``"([a-z]+)"``', matplotlib.markers.__doc__)
 
 
 def setup(n_colors: int = 5):
