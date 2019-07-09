@@ -6,6 +6,7 @@ We study the simplest interacting two-body problem, two particles interacting vi
 \end{equation}
 where the subscripts indicate the position of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
 \begin{equation}
+    \label{eq:hamiltonian}
     H = \frac{P^2}{2 M} + \frac{p^2}{2 \mu} + C \delta(x)
 \end{equation}
 where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.  We henceforth specialize to the rest frame, setting $P=0$, which reduces the problem to an effective one-body problem.
@@ -22,6 +23,7 @@ On the lattice we implement the contact interaction as entirely local, vanishing
 where the indices are understood to be modded by the periodic boundary conditions of the lattice.
 In momentum space, this Hamiltonian may be written
 \begin{align}
+    \label{eq:p space hamiltonian}
     \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
     \rightarrow
     H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
