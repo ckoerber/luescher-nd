@@ -24,6 +24,7 @@ def read_table(
     round_digits: int = 2,
     dispersion_zeta: bool = True,
     filter_poles: bool = True,
+    filter_by_nstates: bool = True,
     drop_comment: bool = True,
 ) -> pd.DataFrame:
     """Reads database and returns data frame with table plus additional columns.
@@ -44,6 +45,9 @@ def read_table(
 
         filter_poles: bool = True
             Automatically filter out states which are close to zeta poles.
+
+        filter_by_nstates: bool = True
+            Automatically filter out states which are degenerate.
 
         drop_comment: bool = True
             Drops the comment column.
@@ -68,6 +72,18 @@ def read_table(
     df["E [MeV]"] = df["E"] * HBARC
     df["p2"] = df["E"] * 2 * df["mass"] / 2
     df["x"] = df["p2"] / (2 * np.pi / df["L"]) ** 2
+
+    if filter_by_nstates:
+        group = (
+            df.reset_index()
+            .round(round_digits)
+            .groupby(["epsilon", "L", "nstep", "x"])[["nlevel", "id"]]
+        )
+        grouped = group.agg({"nlevel": "count", "id": "mean"}).rename(
+            columns={"nlevel": "count"}
+        )
+        count_one = grouped[grouped["count"] == 1].astype({"id": int}).set_index("id")
+        df = pd.merge(df, count_one, how="inner", on=["id"])
 
     if filter_poles:
         integer_x = [
