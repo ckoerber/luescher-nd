@@ -28,9 +28,9 @@ RANGES = {
 }
 PARS = {"k": 200}
 
-A_INV = 0.0
+A_INV = -5.0
 
-DBNAME = "db-contact-fv-c-fitted-parity.sqlite"
+DBNAME = "db-contact-fv-c-fitted-parity-a-inv-lg.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -91,6 +91,10 @@ def main():
     """
     for epsilon, L, nstep in product(RANGES["epsilon"], RANGES["L"], RANGES["nstep"]):
         n1d = int(L / epsilon)
+
+        if n1d > 50:
+            continue
+
         p_minus = get_parity_projector(n1d, ndim=3, positive=False)
         h = MomentumContactHamiltonian(
             n1d=n1d,
