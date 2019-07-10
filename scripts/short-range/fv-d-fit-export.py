@@ -28,9 +28,9 @@ RANGES = {
 }
 PARS = {"k": 200}
 
-A_INV = -0.0
+A_INV = -5.0
 
-DBNAME = "db-contact-fv-d-fitted-parity-lg.sqlite"
+DBNAME = "db-contact-fv-d-fitted-parity-a-inv-lg.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
