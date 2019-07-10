@@ -21,12 +21,16 @@ from luescher_nd.operators import get_parity_projector
 
 from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
-RANGES = {"epsilon": [0.020, 0.025, 0.05, 0.1, 0.2, 0.25], "L": [1.0], "nstep": [1]}
-PARS = {"k": 50}
+RANGES = {
+    "epsilon": [0.020, 0.025, 0.05, 0.1, 0.2, 0.25],
+    "L": [1.0, 2.0],
+    "nstep": [1, 2, 4, None],
+}
+PARS = {"k": 200}
 
-A_INV = -5.0
+A_INV = -0.0
 
-DBNAME = "db-contact-fv-d-fitted-parity-a-inv.sqlite"
+DBNAME = "db-contact-fv-d-fitted-parity-lg.sqlite"
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir)
@@ -46,7 +50,9 @@ class FitKernel:
 
     def __post_init__(self):
         """Init the zeta function"""
-        self._zeta = DispersionZeta3d(L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep)
+        self._zeta = DispersionZeta3d(
+            L=self.h.L, epsilon=self.h.epsilon, nstep=self.h.nstep
+        )
         self._e0 = self._get_ground_state()
 
     def zeta(self, x: np.ndarray) -> np.ndarray:
@@ -87,6 +93,10 @@ def main():
     """
     for epsilon, L, nstep in product(RANGES["epsilon"], RANGES["L"], RANGES["nstep"]):
         n1d = int(L / epsilon)
+
+        if n1d > 50:
+            continue
+
         p_minus = get_parity_projector(n1d, ndim=3, positive=False)
         h = MomentumContactHamiltonian(
             n1d=n1d,
