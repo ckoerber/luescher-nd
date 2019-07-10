@@ -18,6 +18,7 @@ EXPORT_OPTIONS = {"bbox_inches": "tight"}
 LEGEND_STYLE = {"frameon": False, "loc": "center left", "bbox_to_anchor": (1.0, 0.5)}
 LINE_STYLE = {"ls": "-", "lw": 1.0}
 MARKERS = re.findall('``"([a-z]+)"``', matplotlib.markers.__doc__)
+MARKER_STYLE = {"ms": 1}
 
 
 def setup(n_colors: int = 5):

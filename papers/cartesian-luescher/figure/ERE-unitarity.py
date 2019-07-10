@@ -2,10 +2,6 @@
 """Creates grid plot of Effective range expansions for different parameters
 """
 import os
-from itertools import product
-
-import pandas as pd
-import numpy as np
 
 import seaborn as sns
 import matplotlib.pylab as plt
@@ -14,16 +10,14 @@ from luescher_nd.database.utilities import read_table
 from luescher_nd.database.utilities import DATA_FOLDER
 
 from luescher_nd.plotting.styles import setup
-from luescher_nd.plotting.styles import finalize
-from luescher_nd.plotting.styles import LEGEND_STYLE
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 from luescher_nd.plotting.styles import MARKERS
 
 
 FILE_OPTIONS = [
-    {"file_name": "db-contact-fv-d-fitted.sqlite", "dispersion_zeta": True},
-    {"file_name": "db-contact-fv-c-fitted.sqlite", "dispersion_zeta": False},
+    {"file_name": "db-contact-fv-d-fitted-parity.sqlite", "dispersion_zeta": True},
+    {"file_name": "db-contact-fv-c-fitted-parity.sqlite", "dispersion_zeta": False},
 ]
 
 
@@ -44,7 +38,7 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True):
     df = read_table(
         os.path.join(DATA_FOLDER, file_name),
         dispersion_zeta=dispersion_zeta,
-        round_digits=1,
+        round_digits=3,
     ).sort_values("x")
 
     title = "Dispersion Lüscher" if dispersion_zeta else "Spherical Lüscher"
@@ -58,24 +52,26 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True):
         sharex="row",
         sharey=True,
         legend_out=True,
-        hue_kws={"marker": MARKERS},
+        hue_kws={"marker": MARKERS, "ms": [1] * 10, "lw": [0.5] * 10, "ls": [":"] * 10},
         margin_titles=True,
-        col_order=df.nstep.unique()[::-1],
+        col_order=["1", "2", "4", "$\\infty$"],
     )
-    grid.map(plt.plot, "x", "y", **LINE_STYLE)
+    # grid.map(plt.plot, "x", "y", **LINE_STYLE, marker="None")
+    grid.map(plt.plot, "x", "y")
 
     for ax in grid.axes.flatten():
+        ax.axhline(0, color="black", lw=0.5, zorder=-1)
         if dispersion_zeta:
             ax.set_yscale("log")
         else:
-            ax.set_ylim(0, 5)
+            ax.set_ylim(-5, 5)
 
     grid.add_legend(title=r"$\epsilon$ [fm]", frameon=False)
     grid.set_xlabels(r"$x = \frac{p^2 L^2}{4 \pi^2}$")
     grid.set_ylabels(r"$p \cot(\delta_0(p))$ [fm$^{-1}$]")
     grid.set_titles(
-        row_template="${row_var} = {row_name}$ [fm]",
-        col_template="$n_{{\mathrm{{step}}}} =$ {col_name}",
+        row_template=r"${row_var} = {row_name}$ [fm]",
+        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
     )
 
     grid.fig.suptitle(title, y=1.05)
@@ -87,6 +83,8 @@ def main():
     """Export all the file options to pdf
     """
     setup()
+
+    LINE_STYLE["ls"] = "--"
 
     for options in FILE_OPTIONS:
         export_grid_plot(**options)
