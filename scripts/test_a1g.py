@@ -4,12 +4,15 @@ import numpy as np
 from luescher_nd.operators import get_A1g_operator as A1g
 from luescher_nd.operators import get_A1g_reducer as reducer
 import scipy.sparse as sp
+from scipy.sparse.linalg import eigsh
 
 import matplotlib.pyplot as plt
 
 ndim = 3
 n1d=6
 op = A1g(n1d, ndim)
+vals = eigsh(op, k=n1d**ndim / 2)
+print(vals)
 dense = op.todense()
 r = reducer(n1d, ndim)
 
