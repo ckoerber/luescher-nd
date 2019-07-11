@@ -339,3 +339,22 @@ class MomentumKineticHamiltonian:
                     n_created += 1
 
         LOGGER.info("\tExported %d entries", n_created)
+
+    @classmethod
+    def check_db_if_exists(cls, database: str, **export_kwargs) -> bool:
+        """Filters the data base table if entries are present.
+
+        **Arguments**
+            database: str
+                Address of the database.
+
+            export_kwargs: Dict[str, Any]
+                Columns to filter (equal).
+        """
+        with DatabaseSession(database, commit=False) as sess:
+            exists = (
+                sess.query(cls._table_class).filter_by(**export_kwargs).first()
+                is not None
+            )
+
+        return exists
