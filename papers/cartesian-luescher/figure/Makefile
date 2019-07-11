@@ -18,17 +18,13 @@ I0.pdf:  I0.tex
 dispersion.pdf: dispersion.py
 	./dispersion.py
 
-db-contact-fv-c-fitted-parity-lg.pdf: ere-plots.py
+ere: ere-plots.py
 	./ere-plots.py
 
-db-contact-fv-d-fitted-parity-lg.pdf: ere-plots.py
-	./ere-plots.py
-
-db-contact-fv-c-fitted-a-inv-parity-lg.pdf: ere-plots.py
-	./ere-plots.py
-
-db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere-plots.py
-	./ere-plots.py
+db-contact-fv-c-fitted-parity-lg.pdf: ere
+db-contact-fv-d-fitted-parity-lg.pdf: ere
+db-contact-fv-c-fitted-a-inv-parity-lg.pdf: ere
+db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere
 
 continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf: continuum-extrapolation.py
 	./continuum-extrapolation.py
