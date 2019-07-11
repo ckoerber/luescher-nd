@@ -20,7 +20,7 @@ from tqdm import tqdm
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 
 from luescher_nd.operators import get_projector_to_parity
-from luescher_nd.operators import get_projector_to_a1g
+from luescher_nd.operators import get_projector_to_not_a1g
 
 from luescher_nd.zeta.zeta3d import DispersionZeta3d
 from luescher_nd.zeta.zeta3d import Zeta3D
@@ -130,7 +130,7 @@ def main():
     projector_type = pars["eigenvalues"]["projector"]["type"]
     projector_cutoff = pars["eigenvalues"]["projector"]["cutoff"]
     if projector_type == "a1g":
-        get_projector = lambda n1d: get_projector_to_a1g(n1d, ndim=3)
+        get_projector = lambda n1d: get_projector_to_not_a1g(n1d, ndim=3)
     elif projector_type == "parity":
         get_projector = lambda n1d: get_projector_to_parity(n1d, ndim=3, positive=False)
     else:
