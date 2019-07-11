@@ -154,7 +154,7 @@ def get_A1g_operator(n1d: int, ndim: int, axis=0) -> sp.csr_matrix:
             # that live on the boundary of the brillouin zone correctly.
             # How this works I forget; I just do s-wave / A1g, where the answer is
             # just always sum and then norm by the number of states.
-            norm = 1/np.sqrt(len(matched))
+            norm = 1.0/float(len(matched)) # Both the bra and the ket get normed, so no sqrt!
             for j, vj in matched:
                 A1g_mat[i,j] = norm
         # print(handled)
