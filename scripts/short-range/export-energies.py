@@ -170,8 +170,6 @@ def main():
         contact_strength = kernel.fit_contact_strenth()
         h.set_contact_strength(contact_strength)
 
-        continue
-
         eigsh_kwargs = pars["eigenvalues"]["solver"]
         eigsh_kwargs["k"] = (
             eigsh_kwargs["k"] if eigsh_kwargs["k"] < n1d ** 3 - 1 else n1d ** 3 - 2
