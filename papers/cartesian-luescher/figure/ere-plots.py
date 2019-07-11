@@ -22,7 +22,7 @@ FILE_OPTIONS = [
         "a_inv": -5.0,
     },
     {
-        "file_name": "db-contact-fv-c-fitted-parity.sqlite",
+        "file_name": "db-contact-fv-c-fitted-parity-lg.sqlite",
         "dispersion_zeta": False,
         "a_inv": 0,
     },
@@ -32,7 +32,7 @@ FILE_OPTIONS = [
         "a_inv": 0,
     },
     {
-        "file_name": "db-contact-fv-d-fitted-parity-a-inv.sqlite",
+        "file_name": "db-contact-fv-d-fitted-parity-a-inv-lg.sqlite",
         "dispersion_zeta": True,
         "a_inv": -5.0,
     },
