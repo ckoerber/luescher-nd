@@ -16,12 +16,35 @@ from luescher_nd.plotting.styles import MARKERS
 
 
 FILE_OPTIONS = [
-    {"file_name": "db-contact-fv-d-fitted-parity.sqlite", "dispersion_zeta": True},
-    {"file_name": "db-contact-fv-c-fitted-parity.sqlite", "dispersion_zeta": False},
+    {
+        "file_name": "db-contact-fv-c-fitted-parity-a-inv-lg.sqlite",
+        "dispersion_zeta": False,
+        "a_inv": -5.0,
+    },
+    {
+        "file_name": "db-contact-fv-c-fitted-parity.sqlite",
+        "dispersion_zeta": False,
+        "a_inv": 0,
+    },
+    {
+        "file_name": "db-contact-fv-d-fitted-parity-lg.sqlite",
+        "dispersion_zeta": True,
+        "a_inv": 0,
+    },
+    {
+        "file_name": "db-contact-fv-d-fitted-parity-a-inv.sqlite",
+        "dispersion_zeta": True,
+        "a_inv": -5.0,
+    },
 ]
 
+ROUND_DIGITS = 3
+FILTER_POLES = True
+FILTER_BY_NSTATES = True
+Y_BOUNDS = (-5, 5)
 
-def export_grid_plot(file_name: str, dispersion_zeta: bool = True):
+
+def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float = 0.0):
     """Generates a grid plot of ERE(x)
 
     With L on the rows, nstep on the cols and epsilon as hue/markers.
@@ -34,15 +57,29 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True):
 
         dispersion_zeta: bool = True
             If ERE should be computed using dispersion Lüscher or spherical Lüscher.
+
+        a_inv: float = 0.0
+            The expected offset of the ERE
     """
-    df = read_table(
-        os.path.join(DATA_FOLDER, file_name),
-        dispersion_zeta=dispersion_zeta,
-        round_digits=3,
-    ).sort_values("x")
+    df = (
+        read_table(
+            os.path.join(DATA_FOLDER, file_name),
+            dispersion_zeta=dispersion_zeta,
+            round_digits=ROUND_DIGITS,
+            filter_poles=FILTER_POLES,
+            filter_by_nstates=FILTER_BY_NSTATES,
+        )
+        .sort_values("x")
+        .query(f"y > {a_inv + Y_BOUNDS[0]} and y < {a_inv + Y_BOUNDS[1]}")
+    )
 
     title = "Dispersion Lüscher" if dispersion_zeta else "Spherical Lüscher"
-    title += " fitted contact interaction at unitarity"
+    title += " fitted contact interaction"
+    title += (
+        " at unitarity"
+        if abs(a_inv) < 1.0e-12
+        else rf" at $-\frac{{1}}{{a_0}} = {a_inv:1.1f}$ [fm $^{{-1}}$]"
+    )
 
     grid = sns.FacetGrid(
         data=df,
@@ -56,15 +93,10 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True):
         margin_titles=True,
         col_order=["1", "2", "4", "$\\infty$"],
     )
-    # grid.map(plt.plot, "x", "y", **LINE_STYLE, marker="None")
     grid.map(plt.plot, "x", "y")
 
     for ax in grid.axes.flatten():
-        ax.axhline(0, color="black", lw=0.5, zorder=-1)
-        if dispersion_zeta:
-            ax.set_yscale("log")
-        else:
-            ax.set_ylim(-5, 5)
+        ax.axhline(a_inv, color="black", lw=0.5, zorder=-1)
 
     grid.add_legend(title=r"$\epsilon$ [fm]", frameon=False)
     grid.set_xlabels(r"$x = \frac{p^2 L^2}{4 \pi^2}$")
