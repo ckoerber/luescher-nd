@@ -1,8 +1,10 @@
 
 FIGURES=I0.pdf	\
  		dispersion.pdf	\
-		db-contact-fv-c-fitted.pdf 	\
-		db-contact-fv-d-fitted.pdf
+		db-contact-fv-c-fitted-parity-lg.pdf 	\
+		db-contact-fv-d-fitted-parity-lg.pdf	\
+		db-contact-fv-c-fitted-a-inv-parity-lg.pdf	\
+		db-contact-fv-d-fitted-a-inv-parity-lg.pdf
 
 all:	$(FIGURES)
 
@@ -15,8 +17,14 @@ I0.pdf:  I0.tex
 dispersion.pdf: dispersion.py
 	./dispersion.py
 
-db-contact-fv-c-fitted.pdf: ERE-unitarity.py
-	./ERE-unitarity.py
+db-contact-fv-c-fitted-parity-lg.pdf: ere-plots.py
+	./ere-plots.py
 
-db-contact-fv-d-fitted.pdf: ERE-unitarity.py
-	./ERE-unitarity.py
+db-contact-fv-d-fitted-parity-lg.pdf: ere-plots.py
+	./ere-plots.py
+
+db-contact-fv-c-fitted-a-inv-parity-lg.pdf: ere-plots.py
+	./ere-plots.py
+
+db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere-plots.py
+	./ere-plots.py
