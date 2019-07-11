@@ -5,7 +5,7 @@ FIGURES=I0.pdf	\
 		db-contact-fv-d-fitted-parity-lg.pdf	\
 		db-contact-fv-c-fitted-a-inv-parity-lg.pdf	\
 		db-contact-fv-d-fitted-a-inv-parity-lg.pdf	\
-		continuum-ere-db-contact-fv-c-fitted-parity.pdf
+		continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf
 
 all:	$(FIGURES)
 
@@ -30,5 +30,5 @@ db-contact-fv-c-fitted-a-inv-parity-lg.pdf: ere-plots.py
 db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere-plots.py
 	./ere-plots.py
 
-continuum-ere-db-contact-fv-c-fitted-parity.pdf: continuum-extrapolation.py
+continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf: continuum-extrapolation.py
 	./continuum-extrapolation.py
