@@ -170,8 +170,8 @@ def get_A1g_projector(n1d: int, ndim: int):
     # That will be multiplied by something large, giving non-A1g states a big boost in energy.
     a1g = get_A1g_operator(n1d, ndim)
     one = sp.eye(n1d ** ndim)
-    # return one - a1g
-    return a1g
+    return one - a1g
+    # return a1g
 
 def get_A1g_reducer(n1d: int, ndim: int, axis=0) -> sp.csr_matrix:
     """ Implements the projection operator that's schematically | A1g > < A1g |.
@@ -237,6 +237,11 @@ def get_A1g_reducer(n1d: int, ndim: int, axis=0) -> sp.csr_matrix:
             # that live on the boundary of the brillouin zone correctly.
             # How this works I forget; I just do s-wave / A1g, where the answer is
             # just always sum and then norm by the number of states.
+
+            # Here there IS a sqrt, because by assumption the A1g state that
+            # we're projecting to is already normed correctly
+            # In other words, we're calculating | a1g_in_a1g_basis > < a1g_in_p_basis | psi >
+            # and the first guy is normed, the second guy needs the norm explicit.
             norm = 1/np.sqrt(len(matched))
             vector = np.zeros(n1d**ndim)
             for j, vj in matched:
