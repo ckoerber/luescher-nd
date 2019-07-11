@@ -17,7 +17,7 @@ from scipy.sparse.linalg import eigsh
 from scipy.optimize import minimize_scalar
 
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
-from luescher_nd.operators import get_parity_projector
+from luescher_nd.operators import get_projector_to_parity
 
 from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
@@ -97,7 +97,7 @@ def main():
         if n1d > 50:
             continue
 
-        p_minus = get_parity_projector(n1d, ndim=3, positive=False)
+        p_minus = get_projector_to_parity(n1d, ndim=3, positive=False)
         h = MomentumContactHamiltonian(
             n1d=n1d,
             epsilon=epsilon,

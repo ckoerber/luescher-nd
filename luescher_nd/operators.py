@@ -1,5 +1,13 @@
 # pylint: disable=C0301
 """Operators
+
+Naming conventions for operators (projectors):
+
+The method `p = get_projector_to_{space}` returns an operator with the action
+```
+p |psi> = |psi>
+```
+if `|psi>` is contained in `{space}` and else zero.
 """
 import numpy as np
 
@@ -34,7 +42,7 @@ def get_parity_operator(n1d: int, ndim: int) -> sp.csr_matrix:
     return parity_mat.tocsr()
 
 
-def get_parity_projector(n1d: int, ndim: int, positive: bool = True):
+def get_projector_to_parity(n1d: int, ndim: int, positive: bool = True):
     """Operator which shifts parity eigenvalues of the wrong parity to large numbers.
 
     For example if ``positive=True``: ``P+ |psi+> = |psi+>`` and
@@ -96,9 +104,7 @@ def get_90_rotation_operator(n1d: int, axis=0) -> sp.csr_matrix:
     return parity_mat.tocsr()
 
 
-def get_A1g_operator(  # pylint: disable=C0103, R0914
-    n1d: int, ndim: int
-) -> sp.csr_matrix:
+def get_projector_to_a1g(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=R0914
     """ Implements the projection operator that's schematically | A1g > < A1g |.
     Because A1g is espeically simple, the procedure works in any dimension, specified by ndim.
 
@@ -170,19 +176,25 @@ def get_A1g_operator(  # pylint: disable=C0103, R0914
     return A1g_mat.tocsr()
 
 
-def get_A1g_projector(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=C0103
-    """Computes one minus `get_A1g_operator`
+def get_projector_to_not_a1g(n1d: int, ndim: int) -> sp.csr_matrix:
+    """Computes one minus `get_projector_to_a1g`
+
+    ** Arguments **
+        n1d: int
+            Number of points in one direction.
+        ndim: int
+            Number of spatial dimensions.
     """
     # The A1g_operator should have eigenvalues 1 on A1g states and 0 on non-A1g states.
     # Therefore, to project the other guys out, we need 1-A1g.
     # That will be multiplied by something large, giving non-A1g states a big boost in energy.
-    a1g = get_A1g_operator(n1d, ndim)
+    a1g = get_projector_to_a1g(n1d, ndim)
     one = sp.eye(n1d ** ndim)
     return one - a1g
     # return a1g
 
 
-def get_A1g_reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=C0103, R0914
+def get_a1g_reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=R0914
     """ Implements the projection operator that's schematically | A1g > < A1g |.
     Because A1g is espeically simple, the procedure works in any dimension, specified by ndim.
 
