@@ -351,10 +351,13 @@ class MomentumKineticHamiltonian:
             export_kwargs: Dict[str, Any]
                 Columns to filter (equal).
         """
-        with DatabaseSession(database, commit=False) as sess:
-            exists = (
-                sess.query(cls._table_class).filter_by(**export_kwargs).first()
-                is not None
-            )
+        if not os.path.exists(database):
+            exists = False
+        else:
+            with DatabaseSession(database, commit=False) as sess:
+                exists = (
+                    sess.query(cls._table_class).filter_by(**export_kwargs).first()
+                    is not None
+                )
 
         return exists
