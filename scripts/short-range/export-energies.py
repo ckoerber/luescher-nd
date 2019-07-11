@@ -7,6 +7,8 @@ import os
 
 from argparse import ArgumentParser
 
+import logging
+
 from itertools import product
 
 from yaml import load
@@ -41,6 +43,8 @@ ROOT = os.path.abspath(
     )
 )
 
+LOGGER = logging.getLogger("export-contact-energies")
+
 PARSER = ArgumentParser(
     description="Script which exports contact interaction energy levels"
     " fitted to effective range expansion to database"
@@ -57,6 +61,7 @@ def get_input():
     with open(args.input, "r") as fin:
         pars = load(fin.read())
 
+    LOGGER.info("Input parameters:\n%s", pars)
     return pars
 
 
@@ -83,7 +88,7 @@ def main():
         ),
     )
 
-    print(database_address)
+    LOGGER.info("Exporting energies to %s", database_address)
 
     if pars["zeta"] == "spherical":
         zeta = lambda n1d, epsilon, nstep: spherical_zeta
@@ -110,6 +115,16 @@ def main():
         if n1d > 50:
             continue
 
+        LOGGER.info(
+            "Computing eigenvalues for n1d=%d, epsilon=%f, nstep=%s", n1d, epsilon, nstep
+        )
+
+        if MomentumContactHamiltonian.exists_in_db(
+            database_address, n1d=n1d, epsilon=epsilon, nstep=nstep
+        ):
+            LOGGER.info("Skipp [entry already exists in db]")
+            continue
+
         h = MomentumContactHamiltonian(
             n1d=n1d,
             epsilon=epsilon,
@@ -124,11 +139,15 @@ def main():
         contact_strength = kernel.fit_contact_strenth()
         h.set_contact_strength(contact_strength)
 
-        # h.export_eigs(
-        #     database_address,
-        #     eigsh_kwargs=pars["eigenvalues"]["solver"],
-        #     export_kwargs=export_kwargs,
-        # )
+        continue
+
+        eigsh_kwargs = pars["eigenvalues"]["solver"]
+        eigsh_kwargs["k"] = (
+            eigsh_kwargs["k"] if eigsh_kwargs["k"] < n1d ** 3 - 1 else n1d ** 3 - 2
+        )
+        h.export_eigs(
+            database_address, eigsh_kwargs=eigsh_kwargs, export_kwargs=export_kwargs
+        )
 
 
 if __name__ == "__main__":
