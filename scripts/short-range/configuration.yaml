@@ -1,0 +1,25 @@
+basis:
+    epsilon:
+        - 0.250
+        - 0.200
+        - 0.100
+        - 0.050
+        - 0.025
+        - 0.020
+    L:
+        - 1.0
+        - 2.0
+    nstep:
+        - 1
+        - 2
+        - 4
+        - null
+eigenvalues:
+    solver:
+        k: 200
+    projector:
+        type: a1g
+        cutoff: 3.0e2
+physics:
+    a_inv: -5.0
+zeta: spherical
