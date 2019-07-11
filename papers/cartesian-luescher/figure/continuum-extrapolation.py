@@ -20,7 +20,7 @@ from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import MARKERS
 
 
-FILES = ["db-contact-fv-c-fitted-parity.sqlite"]
+FILES = ["db-contact-fv-c-fitted-parity-lg.sqlite"]
 
 FILTER = "nlevel < 90"
 ROUND_DIGITS = 3
