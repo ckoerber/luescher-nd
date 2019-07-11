@@ -7,7 +7,9 @@ import os
 
 from argparse import ArgumentParser
 
+from json import dumps
 import logging
+from datetime import datetime
 
 from itertools import product
 
@@ -43,7 +45,33 @@ ROOT = os.path.abspath(
     )
 )
 
-LOGGER = logging.getLogger("export-contact-energies")
+
+def get_logger() -> logging.Logger:
+    """Returns file logger
+    """
+    logger = logging.getLogger("export-contact-energies")
+    logger.setLevel(logging.INFO)
+
+    fh = logging.FileHandler(
+        "export-contact-energies-%s.log" % datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
+        "a",
+    )
+    fh.setLevel(logging.DEBUG)
+
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+
+    formatter = logging.Formatter("[%(name)s|%(asctime)s] %(message)s")
+    fh.setFormatter(formatter)
+    ch.setFormatter(formatter)
+
+    logger.addHandler(fh)
+    logger.addHandler(ch)
+
+    return logger
+
+
+LOGGER = get_logger()
 
 PARSER = ArgumentParser(
     description="Script which exports contact interaction energy levels"
@@ -61,7 +89,7 @@ def get_input():
     with open(args.input, "r") as fin:
         pars = load(fin.read())
 
-    LOGGER.info("Input parameters:\n%s", pars)
+    LOGGER.info("Input parameters:\n%s", str(dumps(pars, indent=4)))
     return pars
 
 
@@ -116,7 +144,10 @@ def main():
             continue
 
         LOGGER.info(
-            "Computing eigenvalues for n1d=%d, epsilon=%f, nstep=%s", n1d, epsilon, nstep
+            "Computing eigenvalues for n1d=%02d, epsilon=%1.4f, nstep=%s",
+            n1d,
+            epsilon,
+            nstep,
         )
 
         if MomentumContactHamiltonian.exists_in_db(
