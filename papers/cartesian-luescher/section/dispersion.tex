@@ -14,15 +14,15 @@ However, a momentum cutoff is exactly what we have when we have a finite-spacing
 Consider a box with linear size $L$ and $N$ lattice sites in each direction so that the lattice spacing is $\epsilon=L/N$.
 Then, one may intuitively reach for the zeta function $S_D^{\cartesian N}(x)$.  That is,
 \begin{equation}\label{eq:cutoff cartesian S}
-    \cot \delta_0^N(p) = \frac{\F_D}{\pi^2 L^{D-2}} S_D^{\cartesian N}(x)
+    \cot \delta_0^\epsilon(p) = \frac{\F_D}{\pi^2 L^{D-2}} S_D^{\cartesian N}(x)
 \end{equation}
-where $\delta_0^N$ indicates that the phase shift is calculated on a lattice with $N$ sites.
+where $\delta_0^\epsilon$ indicates that the phase shift is calculated on a lattice with lattice spacing $\epsilon$ sites.
 
 Note that on an infinite square lattice, the continuum symmetry group SO(3) is broken by the discretization.
-So, we should classify the infinite-volume scattering states not according to irreps of SO(3) but of the remaining subgroup.
+So, we should classify the infinite-volume scattering states not according to irreps of SO(3) but of the remaining discrete subgroup.
 The lattice spacing and dispersion relation can introduce anisotropies in propagation speed, so that nice spherical waves distort.
-While working out the associated Clebsch-Gordan subduction coefficients is a worthwhile exercise, we here focus on a contact interaction, which is an $SO(3)$ singlet and an $A_1^+$ interaction at finite spacing, and in the continuum limit the full continuum rotational SO(3) should be restored.
-We therefore will proceed to talk as though we have direct access to the $s$-wave, even at finite spacing.
+While working out the associated Clebsch-Gordan subduction coefficients is a worthwhile exercise, we here focus on a contact interaction, which is an SO(3) singlet and an $A_1^+$ interaction at finite spacing, and in the continuum limit the full continuum rotational SO(3) should be restored.
+We therefore will often proceed to talk as though we have direct access to the $s$-wave, even at finite spacing.
 
 In \Figref{results cutoff cartesian S} we show the results of tuning to reproduce the first zero of $S_D^{\cartesian N}$ with a variety of {\nstep}s.
 Note that the quality of the results is \nstep-dependent, with $\nstep=\infty$ producing exact agreement.
@@ -39,41 +39,68 @@ Therefore, we return to the derivation of \Luscher's finite-volume formalism and
 That is,
 \begin{align}
     I_0^{\dispersion}(E)
-    % &=-i\int_{-\Lambda}^{+\Lambda}
-    %     \frac{ \mathrm {d}q_0}{2\pi}\
-    %     \frac{\mathrm{d}^{D} \vec{q} } { (2\pi)^ { D } }
-    %     \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m_1} + i \epsilon } \right)
-    %     \left( \frac { i } { \frac{E}{2} + q_{ 0 } - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2m_2} + i \epsilon } \right)
-    % \nonumber\\
     &=\frac{1}{(2\pi)^D}
     \int_{-\Lambda}^{+\Lambda}
         \mathrm{d}^D \vec{q}
         \left[
             \mathcal{P} \left( \frac { 1 } { E - \frac{\sum_d \omega^{(\nstep)}(q_d,\epsilon)}{2\mu} } \right)
-            -i \todo{RESIDUE}
+            -i \pi \delta\left(E - \frac{\sum_d \omega^{(\nstep)}(q_d, \epsilon)}{2\mu}\right)
         \right]
-    \\
-    &=\frac{2\mu}{L^{D-2}}
-    \int_{-N/2}^{+N/2}
-        \mathrm{d}^D\vec{n}
-        \left[
-            \mathcal{P} \left( \frac { 1 } { 2\mu E L^2 - N^2 \sum_{ds} \gamma_s^{(\nstep)} \cos \frac{2\pi s n_d}{N}} \right)
-            -i \todo{RESIDUE}
-        \right]
-    \label{eq:dispersion I0}
 \end{align}
-where we adopte a $\dispersion$ superscript to indicate the quantity is defined accounting for the lattice dispersion relation.
-Following the same procedure as before, we need to solve
+%     \\
+%     &=\frac{2\mu}{L^{D-2}}
+%     \int_{-N/2}^{+N/2}
+%         \mathrm{d}^D\vec{n}
+%         \left[
+%             \mathcal{P} \left( \frac { 1 } { 2\mu E L^2 - N^2 \sum_{ds} \gamma_s^{(\nstep)} \cos \frac{2\pi s n_d}{N}} \right)
+%             -i \delta\left( 2\mu E L^2 - N^2 \sum_{ds} \gamma_s^{(\nstep)} \cos \frac{2\pi s n_d}{N} \right)
+%         \right]
+%     \label{eq:dispersion I0}
+% \end{align}
+where we adopt a $\dispersion$ superscript to indicate the quantity is defined accounting for the lattice dispersion relation.
+Assuming the T-matrix takes the same form as \eqref{cot delta} with a lattice-spacing sensitivity and following the same procedure as before, we need to solve
 \begin{equation}
-    \frac{\mu}{2\F_D^N}(\cot \delta_0^N(E) - i) = I_0^{\dispersion N}(E) - I_{0,\FV}^{\dispersion N}(p)
+    \frac{\mu}{2\F_D^\epsilon}(\cot \delta_0^\epsilon(E) - i) = I_0^{\dispersion \epsilon}(E) - I_{0,\FV}^{\dispersion \epsilon}(E),
 \end{equation}
-\todo{Not sure the $-i$ is exactly right; $\F_D^N$ will be determined by the kinematics of the pole.  I \emph{hope} it doesn't actually know about $N$ but only $\epsilon$, because otherwise it's hard to understand how $\F$ is an infinite-volume quantity.  Same with $\delta_0^N$.}
+where we have suppressed an $\nstep$ label on each quantity.
+Demanding the seemingly-miraculous cancellation of the imaginary parts, one finds
+\begin{align}
+    \frac{1}{\F_D^\epsilon(2\mu E)} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D} \delta\left(2\mu E - \sum_d \omega^{(\nstep)}(q_d,\epsilon)\right)
+\end{align}
+and we see that $\F_D^\epsilon(2\mu E)$ depends on the energy, the discretization \nstep, and the lattice spacing, but not, for example, the size of the finite volume, which is encouraging because it is appears in the infinite-volume T-matrix.
+It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
+Unfortunately, achieving a closed-form expression for $\F_D^\epsilon$ is quite challenging.
 
-Here already you can see we will be ultimately be able to define a function of $2\mu E L^2$ where $N$ but no other parameter appears anywhere.
-\todo{Usually we go on-shell now, trading $E$ for $p$, but I think that's a mistake here.}
-\todo{Does it make sense to define $S$-wave on an infinite lattice?  I think this is related to going the "other" way---we actually are getting $A_1^+$ data, but since $A_1^+$ is magically simple we can understand it as $S$-wave.}
+With $\F_D^\epsilon$ so determined, we solve the quantization condition for the finite-spacing phase shift,
+\begin{align}
+    \cot \delta_0^\epsilon(2\mu E)
+    =
+    \frac{4\F_D^\epsilon(2\mu E)}{L^{D-2}}
+    \left(\sum_n - \int \mathrm{d}^D n\; \mathcal{P} \right)_{-N/2}^{+N/2}\  \frac{1}{2\mu E L^2 - N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N}}
+\end{align}
+where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to \eqref{spherical quantization} and \eqref{cartesian quantization}.  The seemingly-mismatched numerical coefficients are due to the fact that there is a $2\pi$ in the cosine in the denominator of the dispersion function.
+Were we to expand the denominator around large $N$ the quadratic term in $n_d$ would have an extra $(2\pi)^2$ compared to the integers that appear in $S^\spherical_D$ \eqref{spherical S} or $S^\cartesian_D$ \eqref{cartesian S}.  We can force superficial similarity, putting those factors in by hand, to arrive at
+\begin{align}
+    \label{eq:dispersion quantization}
+    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}(2\mu E L^2)
+    \\
+    \label{eq:dispersion S}
+    S^{\dispersion N}_{D}( x )
+    &=
+    4\pi^2
+    \left(\sum_n - \int \mathrm{d}^D n\; \mathcal{P} \right)_{-N/2}^{+N/2}\  \frac{1}{x - N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N}}.
+\end{align}
+The dispersion zeta function $S^{\dispersion N}_{D}$ knows about the dispersion relation as well as the discretization of the box into $N$ sites.
+In contrast, in the usual finite-volume procedure, no details of the box infect the zeta function.
+On the left-hand side of the quantization condition \eqref{dispersion quantization} we get the infinite-volume $A_1^+$ phase shift at energy $E$ while on the right-hand size we need knowledge of the box size $L$, its discretization $N$ (and therefore the lattice spacing $\epsilon=L/N$), as well as the finite-volume spectrum.
 
-\todo{Arrive at the dispersion Luscher equation.}
+In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the momentum $p$.  However, with a finite lattice spacing the on-shell condition is not so simple to invert.
+Moreover, the energy is not a monotonic function of the momentum---it begins decreasing once the momentum is high enough that it leaves the lattice's first Brillouin zone, repeating indefinitely.
+The dependence on energy alone and not true momentum allows us to account, for example, for Umklapp scattering process and the violation of crystal momentum conservation in the infinite volume.
+
+The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's finite-volume formula non-perturbatively improved in the lattice spacing. \todo{IS THAT FAIR?}
+
+In the next section we leverage the dispersion quantization condition to tune a lattice finite-volume interaction to unitarity, and show that we get a completely flat $p \cot \delta$ which remains zero as well as we can tune.
 
 \begin{itemize}
     \item Show errors of putting not-continuum spectrum through continuum S.  Dispersion S even accounts for lattice spacing!
