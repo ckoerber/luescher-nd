@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # pylint: disable=C0103
 """Scripts which export eigenvalues of potential fitted to Finite Volume discrete
 ground state to database
