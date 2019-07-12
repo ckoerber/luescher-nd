@@ -99,7 +99,7 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float 
         ax.axhline(a_inv, color="black", lw=0.5, zorder=-1)
 
     grid.add_legend(title=r"$\epsilon$ [fm]", frameon=False)
-    grid.set_xlabels(r"$x = \frac{p^2 L^2}{4 \pi^2}$")
+    grid.set_xlabels(r"$x = \left(\frac{p L}{2 \pi}\right)^2$")
     grid.set_ylabels(r"$p \cot(\delta_0(p))$ [fm$^{-1}$]")
     grid.set_titles(
         row_template=r"${row_var} = {row_name}$ [fm]",
