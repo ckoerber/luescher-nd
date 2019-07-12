@@ -39,6 +39,7 @@ The difference comes from the fact that when $\nstep=\infty$ we have the exact d
 Therefore, we return to the derivation of \Luscher's finite-volume formalism and, recognizing that we're interested in incorporating these lattice artifacts from the start, replace the continuum dispersion relation with the lattice dispersion relation in the propagators.
 That is,
 \begin{align}
+    \label{eq:dispersion I0}
     I_0^{\dispersion}(E)
     &=\frac{1}{(2\pi)^D}
     \int_{-\Lambda}^{+\Lambda}
@@ -102,7 +103,12 @@ In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the
 In fact, there are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
 Leaving the dependence on energy alone and not the momentum allows us express naturally, for example, for Umklapp scattering processes and the violation of crystal momentum conservation in the infinite volume.
 
-The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's finite-volume formula non-perturbatively improved in the lattice spacing. \todo{IS THAT FAIR?}
+The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects.
+To arrive at formulas for nonzero center of mass momentum is substantially more complicated, because only at zero center of mass momentum does the change from single-particle coordinates in \eqref{particle hamiltonian} to center-of-mass coordinates in \eqref{hamiltonian} commute with performing the spatial discretization, yielding the same dispersion relation in the effective one-body problem as in the two-body problem.
+The ordering matters, as in a realistic many-body calculation, each individual particle sees the lattice discretization.\footnote{
+We note in passing that when $\nstep=\infty$ and the dispersion relation is exactly $p^2$ all the way to the edge of the Brillouin zone, the change to Jacobi coordinates seems to again commute with the discretization.}
+To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than \eqref{dispersion I0}, to an equation more like \eqref{I0 in two particle language} before the energy integral is performed, replacing the dispersion relations there and changing the domain of integration to match the Brillouin zone.
+We leave such a construction to future work.
 
 In the next section we leverage the dispersion quantization condition to tune a lattice finite-volume interaction to unitarity, and show that we get a completely flat $p \cot \delta$ which remains zero as well as we can tune.
 
