@@ -16,16 +16,17 @@ Then, one may intuitively reach for the zeta function $S_D^{\cartesian N}(x)$.  
 \begin{equation}\label{eq:cutoff cartesian S}
     \cot \delta_0^\epsilon(p) = \frac{\F_D}{\pi^2 L^{D-2}} S_D^{\cartesian N}(x)
 \end{equation}
-where $\delta_0^\epsilon$ indicates that the phase shift is calculated on a lattice with lattice spacing $\epsilon$ sites.
+where $\delta_0^\epsilon$ indicates that the phase shift is calculated on a lattice with lattice spacing $\epsilon$.
 
-Note that on an infinite square lattice, the continuum symmetry group SO(3) is broken by the discretization.
-So, we should classify the infinite-volume scattering states not according to irreps of SO(3) but of the remaining discrete subgroup.
+Note that on an infinite square lattice, the continuum symmetry group SO(3) is broken by the discretization, an ultraviolet effect.
+So, we should classify the infinite-volume scattering states not according to irreps of SO(3) but of the remaining discrete subgroup, the octahedral group $O_h$ in the case of an isotropic lattice.
 The lattice spacing and dispersion relation can introduce anisotropies in propagation speed, so that nice spherical waves distort.
+In the continuum limit, the infinite-volume $O_h$ scattering data should converge to the SO(3) scattering data.
 While working out the associated Clebsch-Gordan subduction coefficients is a worthwhile exercise, we here focus on a contact interaction, which is an SO(3) singlet and an $A_1^+$ interaction at finite spacing, and in the continuum limit the full continuum rotational SO(3) should be restored.
 We therefore will often proceed to talk as though we have direct access to the $s$-wave, even at finite spacing.
 
 In \Figref{results cutoff cartesian S} we show the results of tuning to reproduce the first zero of $S_D^{\cartesian N}$ with a variety of {\nstep}s.
-Note that the quality of the results is \nstep-dependent, with $\nstep=\infty$ producing exact agreement.
+Note that the quality of the results is \nstep-dependent, with $\nstep=\infty$ producing essentially exact agreement.
 
 \begin{figure}
     \includegraphics{example-image-a}
@@ -63,9 +64,10 @@ Assuming the T-matrix takes the same form as \eqref{cot delta} with a lattice-sp
     \frac{\mu}{2\F_D^\epsilon}(\cot \delta_0^\epsilon(E) - i) = I_0^{\dispersion \epsilon}(E) - I_{0,\FV}^{\dispersion \epsilon}(E),
 \end{equation}
 where we have suppressed an $\nstep$ label on each quantity.
-Demanding the seemingly-miraculous cancellation of the imaginary parts, one finds
+Demanding the seemingly-miraculous cancellation of the imaginary parts, one finds, identifying the cutoff $\Lambda$ with $\pi/\epsilon$,
 \begin{align}
-    \frac{1}{\F_D^\epsilon(2\mu E)} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D} \delta\left(2\mu E - \sum_d \omega^{(\nstep)}(q_d,\epsilon)\right)
+    \frac{1}{\F_D^\epsilon(2\mu E)} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D}\
+    \delta\left(2\mu E - \sum_d \omega^{(\nstep)}(q_d,\epsilon)\right)
 \end{align}
 and we see that $\F_D^\epsilon(2\mu E)$ depends on the energy, the discretization \nstep, and the lattice spacing, but not, for example, the size of the finite volume, which is encouraging because it is appears in the infinite-volume T-matrix.
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
@@ -93,10 +95,12 @@ Were we to expand the denominator around large $N$ the quadratic term in $n_d$ w
 The dispersion zeta function $S^{\dispersion N}_{D}$ knows about the dispersion relation as well as the discretization of the box into $N$ sites.
 In contrast, in the usual finite-volume procedure, no details of the box infect the zeta function.
 On the left-hand side of the quantization condition \eqref{dispersion quantization} we get the infinite-volume $A_1^+$ phase shift at energy $E$ while on the right-hand size we need knowledge of the box size $L$, its discretization $N$ (and therefore the lattice spacing $\epsilon=L/N$), as well as the finite-volume spectrum.
+Also, there is no divergence in the zeta function, strictly speaking, because we are always interested in a real calculation performed with finite $N$.
+However, as the number of sites grows, we can approximate the integral by its terms leading in $N$, which we \todo{study in an appendix}.
 
-In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the momentum $p$.  However, with a finite lattice spacing the on-shell condition is not so simple to invert.
-Moreover, the energy is not a monotonic function of the momentum---it begins decreasing once the momentum is high enough that it leaves the lattice's first Brillouin zone, repeating indefinitely.
-The dependence on energy alone and not true momentum allows us to account, for example, for Umklapp scattering process and the violation of crystal momentum conservation in the infinite volume.
+In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the scattering momentum $p$.  However, with a finite lattice spacing the on-shell condition is not so simple to invert.
+In fact, there are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
+Leaving the dependence on energy alone and not the momentum allows us express naturally, for example, for Umklapp scattering processes and the violation of crystal momentum conservation in the infinite volume.
 
 The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's finite-volume formula non-perturbatively improved in the lattice spacing. \todo{IS THAT FAIR?}
 
