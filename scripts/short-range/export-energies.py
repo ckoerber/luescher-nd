@@ -32,10 +32,10 @@ from luescher_nd.solvers.contact import FitKernel
 
 DB_NAME = (
     "contact-fitted"
-    "&a_inv={a_inv:+1.1f}"
-    "&zeta={zeta}"
-    "&projector={projector}"
-    "&n_eigs={n_eigs}"
+    "_a_inv={a_inv:+1.1f}"
+    "_zeta={zeta}"
+    "_projector={projector}"
+    "_n_eigs={n_eigs}"
     ".sqlite"
 )
 
