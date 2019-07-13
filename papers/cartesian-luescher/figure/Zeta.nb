@@ -1,0 +1,356 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13280,        348]
+NotebookOptionsPosition[     11504,        319]
+NotebookOutlinePosition[     11840,        334]
+CellTagsIndexPosition[     11797,        331]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "This generates a list of \[OpenCurlyDoubleQuote]basic\
+\[CloseCurlyDoubleQuote] vectors, whose entries are sorted, and whose \
+degeneracy (number of images under ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["O", "h"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "ddb091d2-484a-4925-a53c-f425f8ced32b"],
+ ") can then be counted."
+}], "Text",
+ CellChangeTimes->{{3.772005552911098*^9, 
+  3.772005639585823*^9}},ExpressionUUID->"5c580515-6892-45de-bf9f-\
+25ed03e18acc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"vectors", "[", "d_", "]"}], "[", "nsq_", "]"}], ":=", 
+  RowBox[{"\[Sqrt]", 
+   RowBox[{"Union", "[", 
+    RowBox[{"Sort", "/@", 
+     RowBox[{
+      RowBox[{"Select", "[", 
+       RowBox[{
+        RowBox[{"EqualTo", "[", "nsq", "]"}], "@*", "Total"}], "]"}], "@", 
+      RowBox[{"Tuples", "[", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"Ceiling", "@", 
+            SqrtBox["nsq"]}]}], "]"}], "2"], ",", 
+        RowBox[{"{", "d", "}"}]}], "]"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.77200310784674*^9, 3.772003238468451*^9}, 
+   3.7720033026589603`*^9, {3.772003382350717*^9, 3.772003391954686*^9}, 
+   3.7720042190520983`*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"3d30bbb3-1391-4740-b371-216257b75845"],
+
+Cell["For example,", "Text",
+ CellChangeTimes->{{3.772005569750917*^9, 
+  3.77200557198958*^9}},ExpressionUUID->"a30e261d-affb-414c-9374-\
+eba9ad742bb9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"vectors", "[", "3", "]"}], "[", "9", "]"}]], "Input",
+ CellChangeTimes->{{3.772005573010005*^9, 3.772005575036831*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"eed44595-d4ca-43a7-8b6b-203c423ff784"],
+
+Cell[TextData[{
+ "Under ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["O", "h"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "1cd881c4-8c99-4d70-a6da-868346aff184"],
+ " we have the following degeneracy patterns:"
+}], "Text",
+ CellChangeTimes->{{3.772005611805706*^9, 
+  3.772005652060008*^9}},ExpressionUUID->"c80be917-6756-4887-af0b-\
+c5769d7da240"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"degeneracy3D", "[", "v_", "]"}], ":=", 
+  RowBox[{"Switch", "[", 
+   RowBox[{"v", ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "a_"}], "}"}], ",", "6", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "a_", ",", "a_"}], "}"}], ",", "12", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "a_", ",", "b_"}], "}"}], ",", "24", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "a_", ",", "a_"}], "}"}], ",", "8", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "a_", ",", "b_"}], "}"}], ",", "24", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "b_", ",", "b_"}], "}"}], ",", "24", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"a_", ",", "b_", ",", "c_"}], "}"}], ",", "48"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.772003399831464*^9, 3.77200341560821*^9}, {
+  3.77200347040532*^9, 3.7720035738702993`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"23e586ef-f384-4e88-a96f-4a9df9821763"],
+
+Cell["\<\
+Here we implement the full definition of the zeta function, including the \
+arctahn piece that (when the cutoff is sent to infinity) vanishes.\
+\>", "Text",
+ CellChangeTimes->{{3.772005702644464*^9, 
+  3.772005726918613*^9}},ExpressionUUID->"ce32dff0-10a4-4bd2-b396-\
+c52273946444"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "SphericalZeta3D", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SphericalZeta3D", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"SphericalZeta3D", "[", "n", "]"}], "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{"x", ",", 
+     RowBox[{"Evaluate", "@", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Total", "[", 
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             FractionBox[
+              RowBox[{"degeneracy3D", "[", "#", "]"}], 
+              RowBox[{"x", "-", 
+               RowBox[{"#", ".", "#"}]}]], "&"}], ",", 
+            RowBox[{"Join", "@@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"vectors", "[", "3", "]"}], "/@", 
+               RowBox[{"Range", "[", 
+                RowBox[{"0", ",", 
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   FractionBox["n", "2"], ")"}], "2"]}], "]"}]}], ")"}]}]}], 
+           "]"}], "]"}]}], "+", 
+        RowBox[{"4", "\[Pi]", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["n", "2"]}], "+", 
+           RowBox[{
+            SqrtBox["x"], 
+            RowBox[{"ArcTanh", "[", 
+             FractionBox[
+              SqrtBox["x"], 
+              RowBox[{"n", "/", "2"}]], "]"}]}]}], ")"}]}]}], ")"}]}]}], 
+    "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.772002681460321*^9, 3.772002719755679*^9}, {
+  3.7720035813441877`*^9, 3.7720035885919313`*^9}, {3.772003648799061*^9, 
+  3.772003745754305*^9}, {3.7720038558106747`*^9, 3.772003859052302*^9}, {
+  3.7720040734639807`*^9, 3.772004073683959*^9}, {3.772004119527067*^9, 
+  3.772004142555069*^9}, {3.7720042325780077`*^9, 3.772004232935738*^9}, {
+  3.772004294062337*^9, 3.7720042943161697`*^9}, {3.772004331713995*^9, 
+  3.7720043804355783`*^9}, {3.772004414780654*^9, 3.772004420532714*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"e429310b-a80a-4e55-87d3-e83316337639"],
+
+Cell["CTO = CounterTerm Only.  We drop the arctanh piece.", "Text",
+ CellChangeTimes->{{3.772005674695217*^9, 3.772005678625602*^9}, {
+  3.772005733175397*^9, 
+  3.772005738235445*^9}},ExpressionUUID->"6e8b008b-84d5-4bc7-8351-\
+444255704a78"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "SphericalZeta3DCTO", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SphericalZeta3DCTO", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"SphericalZeta3DCTO", "[", "n", "]"}], "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{"x", ",", 
+     RowBox[{"Evaluate", "@", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Total", "[", 
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             FractionBox[
+              RowBox[{"degeneracy3D", "[", "#", "]"}], 
+              RowBox[{"x", "-", 
+               RowBox[{"#", ".", "#"}]}]], "&"}], ",", 
+            RowBox[{"Join", "@@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"vectors", "[", "3", "]"}], "/@", 
+               RowBox[{"Range", "[", 
+                RowBox[{"0", ",", 
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   FractionBox["n", "2"], ")"}], "2"]}], "]"}]}], ")"}]}]}], 
+           "]"}], "]"}]}], "+", 
+        RowBox[{"4", "\[Pi]", 
+         RowBox[{"(", 
+          RowBox[{"-", 
+           FractionBox["n", "2"]}], ")"}]}]}], ")"}]}]}], "]"}]}]}]}], "Input",\
+
+ CellChangeTimes->{{3.7720046759220247`*^9, 3.772004701570133*^9}, {
+  3.7720056835505133`*^9, 3.772005691971889*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"9c02cafe-b8d5-4dc5-9d95-8b49da656bfd"],
+
+Cell["Let\[CloseCurlyQuote]s evaluate some of these functions.", "Text",
+ CellChangeTimes->{{3.77200574485548*^9, 
+  3.772005750694899*^9}},ExpressionUUID->"f420b179-11d5-4c1c-8d3a-\
+ce55ba9b5510"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"finiteN", "=", 
+   RowBox[{"SphericalZeta3D", "/@", 
+    SuperscriptBox["2", 
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", "6"}], "]"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.772004478839633*^9, 3.7720045222303953`*^9}, 
+   3.772004752981168*^9},
+ CellLabel->"In[10]:=",ExpressionUUID->"211592a4-cfa9-4488-9a78-5155c5e7bb69"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"finiteNCTO", "=", 
+   RowBox[{"SphericalZeta3DCTO", "/@", 
+    SuperscriptBox["2", 
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", "6"}], "]"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.77200471497291*^9, 3.772004718474813*^9}, 
+   3.772004751489915*^9, {3.7720056956691313`*^9, 3.772005695767844*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"8a8832ea-c68f-471e-903a-c040d46ff4d5"],
+
+Cell["... and plot them!", "Text",
+ CellChangeTimes->{{3.77200575631629*^9, 
+  3.7720057595805273`*^9}},ExpressionUUID->"ed0857d4-0432-4c51-b2e7-\
+5645b32f96a7"],
+
+Cell[BoxData[{
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "@", 
+    RowBox[{"Through", "[", 
+     RowBox[{"finiteN", "[", "x", "]"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "4"}], ",", "64"}], "}"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "@", 
+    RowBox[{"Through", "[", 
+     RowBox[{"finiteNCTO", "[", "x", "]"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "4"}], ",", "64"}], "}"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.772003758741287*^9, 3.7720037689164047`*^9}, {
+   3.772003799667309*^9, 3.772003799743442*^9}, {3.7720038701569767`*^9, 
+   3.772003870217102*^9}, {3.7720040299662733`*^9, 3.772004030665279*^9}, {
+   3.7720041520246143`*^9, 3.772004152124114*^9}, {3.772004188138941*^9, 
+   3.7720041982921257`*^9}, {3.7720042764797163`*^9, 3.77200427703024*^9}, {
+   3.77200436988936*^9, 3.7720044064634027`*^9}, 3.772004437542006*^9, {
+   3.772004538368246*^9, 3.7720045906165953`*^9}, {3.772004722872395*^9, 
+   3.772004727642706*^9}, {3.772004979875087*^9, 3.772004983423231*^9}, {
+   3.772005030082988*^9, 3.772005038019651*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"fe3de14d-a1ad-4ac4-b9ff-7af7c1233d43"],
+
+Cell["\<\
+The differences in the CTO and \[OpenCurlyDoubleQuote]full\
+\[CloseCurlyDoubleQuote] zeta is given by the piece that\[CloseCurlyQuote]s \
+not the counterterm:\
+\>", "Text",
+ CellChangeTimes->{{3.772005520044323*^9, 3.772005543036875*^9}, {
+  3.772005762002544*^9, 
+  3.772005762976651*^9}},ExpressionUUID->"891316b3-abd3-4880-99d6-\
+7a8c4dc72824"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"4", "\[Pi]", " ", 
+       SqrtBox["x"], 
+       RowBox[{"ArcTanh", "[", 
+        FractionBox[
+         SqrtBox["x"], 
+         RowBox[{"n", "/", "2"}]], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", 
+        SuperscriptBox["2", 
+         RowBox[{"Range", "[", 
+          RowBox[{"1", ",", "6"}], "]"}]]}], "}"}]}], "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "4"}], ",", "64"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7720053036241302`*^9, 3.7720053360986023`*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"d6a3f5fb-fac6-41f4-a9d1-0875057d814a"]
+},
+WindowSize->{1440, 855},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 510, 13, 35, "Text",ExpressionUUID->"5c580515-6892-45de-bf9f-25ed03e18acc"],
+Cell[1071, 35, 842, 22, 41, "Input",ExpressionUUID->"3d30bbb3-1391-4740-b371-216257b75845"],
+Cell[1916, 59, 153, 3, 35, "Text",ExpressionUUID->"a30e261d-affb-414c-9374-eba9ad742bb9"],
+Cell[2072, 64, 232, 4, 30, "Input",ExpressionUUID->"eed44595-d4ca-43a7-8b6b-203c423ff784"],
+Cell[2307, 70, 375, 11, 35, "Text",ExpressionUUID->"c80be917-6756-4887-af0b-c5769d7da240"],
+Cell[2685, 83, 1223, 31, 199, "Input",ExpressionUUID->"23e586ef-f384-4e88-a96f-4a9df9821763"],
+Cell[3911, 116, 292, 6, 35, "Text",ExpressionUUID->"ce32dff0-10a4-4bd2-b396-c52273946444"],
+Cell[4206, 124, 2014, 51, 79, "Input",ExpressionUUID->"e429310b-a80a-4e55-87d3-e83316337639"],
+Cell[6223, 177, 242, 4, 35, "Text",ExpressionUUID->"6e8b008b-84d5-4bc7-8351-444255704a78"],
+Cell[6468, 183, 1410, 39, 70, "Input",ExpressionUUID->"9c02cafe-b8d5-4dc5-9d95-8b49da656bfd"],
+Cell[7881, 224, 197, 3, 35, "Text",ExpressionUUID->"f420b179-11d5-4c1c-8d3a-ce55ba9b5510"],
+Cell[8081, 229, 373, 9, 30, "Input",ExpressionUUID->"211592a4-cfa9-4488-9a78-5155c5e7bb69"],
+Cell[8457, 240, 424, 9, 30, "Input",ExpressionUUID->"8a8832ea-c68f-471e-903a-c040d46ff4d5"],
+Cell[8884, 251, 161, 3, 35, "Text",ExpressionUUID->"ed0857d4-0432-4c51-b2e7-5645b32f96a7"],
+Cell[9048, 256, 1355, 28, 52, "Input",ExpressionUUID->"fe3de14d-a1ad-4ac4-b9ff-7af7c1233d43"],
+Cell[10406, 286, 357, 8, 35, "Text",ExpressionUUID->"891316b3-abd3-4880-99d6-7a8c4dc72824"],
+Cell[10766, 296, 734, 21, 53, "Input",ExpressionUUID->"d6a3f5fb-fac6-41f4-a9d1-0875057d814a"]
+}
+]
+*)
+
