@@ -33,7 +33,7 @@ where $p$ is the relative momentum,  and $I_0(p,\Lambda)$ is a $D$-dependent fun
 -i\frac{\pi^2}{L n}\delta\left(\frac{2\pi}{L}n -p\right)\right]
     \label{eq:I0}
 \end{align}
-where $\mathcal{P}$ refers to Principal (Cauchy) Value, we have used the on-shell condition $mE=p^2$, and the geometric factor
+where $\mathcal{P}$ refers to Principal (Cauchy) Value, we have used the on-shell condition $2\mu E=p^2$, and the geometric factor
 \begin{equation}
 \Omega_D=\frac{2\pi^{D/2}}{\Gamma(D/2)}=
     \begin{cases}
@@ -42,6 +42,7 @@ where $\mathcal{P}$ refers to Principal (Cauchy) Value, we have used the on-shel
         2       &   (D=1)
     \end{cases}\ ,
 \end{equation}
+accounts for the angular integration in $D$ dimensions.
 
 \begin{figure}[h!]
     \center
@@ -119,7 +120,7 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
     =
     \lim_{N\rightarrow\infty}\left( \sum_{\vec{n}}^{n < N/2} \frac{1}{x-n^2} - \counterterm_D^\spherical \left(\frac{N}{2}\right)^{D-2}\right)
 \end{equation}
-where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate said counterterms in \Appref{counterterm/spherical}.
+where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate the spherical-cutoff integrals and extract said counterterms in \Appref{counterterm/spherical}.
 Finally,
 \begin{equation}\label{eq:spherical quantization}
     \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} S^\spherical_D(x).
@@ -151,7 +152,7 @@ with error bars given by \todo{something meaningful}.  \todo{Add continuum extra
 \end{figure}
 
 One can clearly see that without a continuum extrapolation, the finite-volume spectrum does not agree with the exactly-known flat solution that a contact interaction must provide.
-That is, by foregoing a continuum extrapolation, we induce unphysical shape parameters.
+That is, by foregoing a continuum extrapolation, we induce unphysical effects in the phase shift.
 In the remainder of this paper we improve this result markedly, so that the continuum limit towards unitarity is substantially easier.
 
 \todo{Comment on the continuum-extrapolated results, which I can't do yet since they're not there :D}
