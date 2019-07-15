@@ -14,7 +14,7 @@ So, by analogy with \eqref{spherical cutoff S} we define
         = \left(
             \sum_{\vec{n} \in (-N/2, +N/2]^D}
             -
-            \int_{-N/2}^{N/2} \mathrm{d}^Dn\ 
+            \int_{-N/2}^{N/2} \mathrm{d}^Dn\
         \right) \frac{1}{x-n^2}
 \end{equation}
 where the $\cartesian$ superscript indicates that the sum is cut off independently for each component.\footnote{Note that in the previous section we cut the integrals and sums off at a radius of $\Lambda L / 2\pi = N/2$ or, more suggestively, at a diameter of $N$ in anticipation of comparing with a box whose edge length is $N$.}
@@ -38,3 +38,4 @@ Therefore, the integrated residue is independent of the choice of integration do
 
 Because $S^{\cartesian}$ and $S^{\spherical}$ are formulated with different regularizations but are understood to be in the limit where the regulator is taken to infinity, these two functions are equal.
 As formulated, if they are both calculated with the same truncation in $N$, we expect the Cartesian function to be slightly improved, because the domain of the sum and integral contain the spherical domain and additionally the corners of the circumscribing cube.
+Note that it is important that in a numerical implementation that goes to a large but finite cutoff one must subtract the counterterm appropriate to how the cutoff is implemented.
