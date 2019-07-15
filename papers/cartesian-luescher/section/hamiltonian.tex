@@ -5,7 +5,7 @@ We study the simplest interacting two-body problem, two particles interacting vi
     \label{eq:particle hamiltonian}
     H = \frac{p_1^2}{2 m_1} + \frac{p_2^2}{2 m_2} + C \delta(x_1-x_2)
 \end{equation}
-where the subscripts indicate the position of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
+where the subscripts indicate the particle of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
 \begin{equation}
     \label{eq:hamiltonian}
     H = \frac{P^2}{2 M} + \frac{p^2}{2 \mu} + C \delta(x)
@@ -14,7 +14,7 @@ where capital letters represent center-of-mass variables, lower case implies rel
 
 We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
 
-On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
+On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference Laplacian $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference Laplacian is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
 \begin{equation}
     \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
     \rightarrow
