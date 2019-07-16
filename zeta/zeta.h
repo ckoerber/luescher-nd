@@ -8,13 +8,12 @@
 #include <complex>
 #include <algorithm>
 #include <functional>
+#include <iostream> // Debugging
 
-// struct domain {
-//     std::function<bool(const std::vector<int>&)>        filter;
-//     // std::function<int(const std::vector<int>&)>         degeneracy;
-//     std::function<double(const int&, const double&)>    counterterm;
-//     bool improved;
-// };
+#ifdef CUBATURE
+#include <cubature.h>
+#endif
+
 
 inline unsigned int nSquared(std::vector<unsigned int> v){
     unsigned int total=0;
@@ -34,7 +33,6 @@ protected:
     unsigned int D; // Number of dimensions
     unsigned int N; // Diameter of each dimension
     bool improved;  // Improved?
-    unsigned int radius; // What should the cutoff be?
 
     std::vector< std::vector<unsigned int> > enumerator();
     std::vector< std::vector<unsigned int> > vecs;
@@ -53,6 +51,8 @@ public:
     bool            filter(std::vector<unsigned int> &v);
     unsigned int    degeneracy(std::vector<unsigned int> &v);
     double          counterterm(const double &x);
+protected:
+    unsigned int radius; // What should the cutoff be?
 };
 
 class cartesian:public domain{
@@ -62,16 +62,30 @@ public:
     bool            filter(std::vector<unsigned int> &v);
     unsigned int    degeneracy(std::vector<unsigned int> &v);
     double          counterterm(const double &x);
+
+    // int integrator(unsigned ndim, const double *x, void *fdata, unsigned fdim, double *fval);
+    // A stand-alone function in the .cc provides this functionality instead,
+    // because I was getting an annoying error to do with cubature being unhappy getting
+    // a non-static function pointer.
 };
 
-// To be implemented:
-// class dispersion:public domain{
-// public:
-//     dispersion(const unsigned int D, const unsigned int N, bool improved=true);
-//     ~dispersion() override = default;
-//     bool            filter(std::vector<unsigned int> &v);
-//     unsigned int    degeneracy(std::vector<unsigned int> &v);
-//     double          counterterm(const double &x);
-// }
+// The dispersion domain is the same as the cartesian, except for the counterterm.
+class dispersion:public cartesian{
+public:
+    dispersion(const unsigned int D, const unsigned int N, const double L, const unsigned int nstep=1, bool improved=false);
+    ~dispersion() override = default;
+    double          counterterm(const double &x);
+
+protected:
+    double  L;
+    unsigned int nstep;
+    double  omega();
+
+// private:     // In these I will implement different dispersion relations.
+//     double  omega_1();
+//     double  omega_2();
+//     double  omega_3();
+//     double  omega_4();
+};
 
 #endif
