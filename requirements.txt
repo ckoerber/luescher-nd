@@ -11,3 +11,6 @@ sympy
 sqlalchemy
 tqdm
 blackcellmagic
+yaml
+lsqfit
+gvar

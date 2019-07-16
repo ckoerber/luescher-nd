@@ -17,7 +17,7 @@ from scipy.sparse.linalg import eigsh
 from scipy.optimize import minimize_scalar
 
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
-from luescher_nd.operators import get_parity_projector
+from luescher_nd.operators import get_projector_to_parity
 
 from luescher_nd.zeta.zeta3d import Zeta3D  # pylint: disable=E0611
 
@@ -94,7 +94,7 @@ def main():
     """
     for epsilon, L, nstep in product(RANGES["epsilon"], RANGES["L"], RANGES["nstep"]):
         n1d = int(L / epsilon)
-        p_minus = get_parity_projector(n1d, ndim=3, positive=False)
+        p_minus = get_projector_to_parity(n1d, ndim=3, positive=False)
         h = MomentumContactHamiltonian(
             n1d=n1d,
             epsilon=epsilon,

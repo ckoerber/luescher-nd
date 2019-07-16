@@ -30,8 +30,8 @@ def read_table(  # pylint: disable=R0913, R0914
     database: str,
     round_digits: int = 2,
     dispersion_zeta: bool = True,
-    filter_poles: bool = True,
-    filter_by_nstates: bool = True,
+    filter_poles: bool = False,
+    filter_by_nstates: bool = False,
     drop_comment: bool = True,
 ) -> pd.DataFrame:
     """Reads database and returns data frame with table plus additional columns.
@@ -50,10 +50,10 @@ def read_table(  # pylint: disable=R0913, R0914
             Use dispersion zeta function to compute the ``y`` column.
             Else use regular zeta.
 
-        filter_poles: bool = True
+        filter_poles: bool = False
             Automatically filter out states which are close to zeta poles.
 
-        filter_by_nstates: bool = True
+        filter_by_nstates: bool = False
             Automatically filter out states which are degenerate.
 
         drop_comment: bool = True

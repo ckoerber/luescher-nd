@@ -1,6 +1,7 @@
 """Implementation of contact Hamiltonians
 """
 from dataclasses import dataclass
+from dataclasses import field
 
 import logging
 
@@ -57,6 +58,11 @@ class MomentumContactHamiltonian(MomentumKineticHamiltonian):
     _table_class = ContactEnergyEntry
 
     contact_strength: float = -1.0
+
+    def set_contact_strength(self, contact_strength: int):
+        """Sets the value of the contact strength
+        """
+        object.__setattr__(self, "contact_strength", contact_strength)
 
     def apply(self, vec):
         """Applies hamiltonian to vector
