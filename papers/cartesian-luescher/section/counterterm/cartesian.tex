@@ -1,18 +1,18 @@
 \section{The Cartesian \Luscher Finite-Volume Counterterm}\label{sec:counterterm/cartesian}
 
 To determine the counterterm in the three-dimensional Cartesian volume we need to evaluate the large-$N$ limit of the integral
-\begin{equation}
-	I^{\cartesian N}_0(x=0) = \int_{-N/2}^{+N/2} \mathrm{d}n_x\ \mathrm{d}n_y\ \mathrm{d}n_z \frac{1}{n^2}
+\begin{equation}\label{eq:cartesian integral}
+	\left(\frac{2\mu}{(2\pi)^2 L}\right)\inverse I^{\cartesian N}_0(x=0) = \int_{-N/2}^{+N/2} \mathrm{d}n_x\ \mathrm{d}n_y\ \mathrm{d}n_z \frac{1}{n^2}
 \end{equation}
 where $n^2 = n_x^2+n_y^2+n_z^2$ and we henceforth suppress the $(x=0)$ argument.
 We can evaluate it as follows.  Consider the integral
 \begin{equation}
 	J^{\cartesian N}_0(x, m) = \int_{-N/2}^{+N/2} dn_x\ dn_y\ dn_z\ \frac{e^{-m n^2}}{n^2}.
 \end{equation}
-Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(m) = 0$ and $J^{\cartesian N}_0(0) = I^{\cartesian N}_0$.
+Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(m) = 0$ and $J^{\cartesian N}_0(0)$ is the integral on the right-hand-side of \eqref{cartesian integral}.
 We can take advantage of the fundamental theorem of calculus,
 \begin{align}
-	I^{\cartesian N}_0 = J^{\cartesian N}_0(0) - J^{\cartesian N}_0(\infty)
+	\left(\frac{2\mu}{(2\pi)^2 L}\right)\inverse I^{\cartesian N}_0 = J^{\cartesian N}_0(0) - J^{\cartesian N}_0(\infty)
 		&= 	\int_{\infty}^{0} dm\ \partial_m J^{\cartesian N}_0(m)
 		% \\
 		&&=	\int_{\infty}^{0} dm\ \int_{-N/2}^{+N/2} dn_x\ dn_y\ dn_z\ -e^{-m n^2}
@@ -22,15 +22,16 @@ We can take advantage of the fundamental theorem of calculus,
 		&&=	\int_0^\infty dm\ \left(\sqrt{\frac{\pi}{m}} \erf(\sqrt{m N^2/4})\right)^3
 \end{align}
 where we exchanged the order of partial differentiation by $m$ and momenta integration, recognize the resulting integral as three identical copies of the same integral (as long as the volume is a cube), and evaluate it, yielding the error function.
-Changing variables to isolate the dependence on $N$, $\mu^2 = m N^2/4$, we find
+Changing variables to isolate the dependence on $N$, $n^2 = m N^2/4$, we find
 \begin{align}
+    \left(\frac{2\mu}{(2\pi)^2 L}\right)\inverse
     I^{\cartesian N}_0
     &=
-    \pi^{3/2}\ \frac{N}{2} \int_{0}^\infty 2\mu\ \mathrm{d}\mu\ \left(\frac{\erf(\mu)}{\mu}\right)^3
+    \pi^{3/2}\ \frac{N}{2} \int_{0}^\infty 2n\ \mathrm{d}n\ \left(\frac{\erf(n)}{n}\right)^3
 \end{align}
 and the integral can be easily evaluated numerically, yielding $2.75634$ so that
 \begin{equation}
-    \counterterm^\cartesian_3 \left(\frac{N}{2}\right) = \lim_{N\goesto\infty}I^{\cartesian N}_0(x=0) = 15.34824844488746404710\ \left(\frac{N}{2}\right)
+    \counterterm^\cartesian_3 \left(\frac{N}{2}\right) = \lim_{N\goesto\infty}\left(\frac{2\mu}{(2\pi)^2 L}\right)\inverse I^{\cartesian N}_0(x=0) = 15.34824844488746404710\ \left(\frac{N}{2}\right)
 \end{equation}
 and more digits are readily available; this constant appears in \eqref{cartesian S}.
 This can be compared to the spherical counterterm, which we can read off from \eqref{improved spherical S}, where the counter term can be seen to be $4\pi \approx 12.6 $; that the Cartesian result is larger reflects the fact that more of the momentum space is included in the integration domain for a fixed $N$, as discussed in \Secref{cartesian}.
