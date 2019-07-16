@@ -41,10 +41,24 @@ protected:
     std::vector< unsigned int > degens;
 };
 
+// THE WHOLE POINT:
+double Zeta(domain &dom, double x);
+
+
+// And now, details about particular domains:
 class spherical:public domain{
 public:
     spherical(const unsigned int D, const unsigned int N, bool improved=true);
     ~spherical() override = default;
+    bool            filter(std::vector<unsigned int> &v);
+    unsigned int    degeneracy(std::vector<unsigned int> &v);
+    double          counterterm(const double &x);
+};
+
+class cartesian:public domain{
+public:
+    cartesian(const unsigned int D, const unsigned int N, bool improved=false);
+    ~cartesian() override = default;
     bool            filter(std::vector<unsigned int> &v);
     unsigned int    degeneracy(std::vector<unsigned int> &v);
     double          counterterm(const double &x);
@@ -59,8 +73,5 @@ public:
 //     unsigned int    degeneracy(std::vector<unsigned int> &v);
 //     double          counterterm(const double &x);
 // }
-
-
-double Zeta(domain &dom, double x);
 
 #endif
