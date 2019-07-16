@@ -110,7 +110,7 @@ Because we cut off the sum and the integral in exactly the same way, in dimensio
 Let $N=\Lambda L/2\pi$.
 Then, defining, with a finite cutoff on magnitude $N/2$,
 \begin{equation}\label{eq:spherical cutoff S}
-    S^{\spherical N}_D(x) = \left(\sum_{\vec{n}}- \int_{\vec{n}}\right) \frac{1}{x-n^2}
+    S^{\spherical N}_D(x) = \left(\sum_{\vec{n}}- \int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
 where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$, we recover the usual \Luscher zeta functions by taking
 \begin{equation}\label{eq:spherical S}
@@ -118,7 +118,7 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
     =
     \lim_{N\goesto\infty} S^{\spherical N}_D(x)
     =
-    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n}}^{n < N/2} \frac{1}{x-n^2} - \counterterm_D^\spherical \left(\frac{N}{2}\right)^{D-2}\right)
+    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n}}^{n < N/2} \frac{1}{n^2-x} - \counterterm_D^\spherical \left(\frac{N}{2}\right)^{D-2}\right)
 \end{equation}
 where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate the spherical-cutoff integrals and extract said counterterms in \Appref{counterterm/spherical}.
 Finally,
