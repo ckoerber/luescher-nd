@@ -15,7 +15,7 @@ So, by analogy with \eqref{spherical cutoff S} we define
             \sum_{\vec{n} \in (-N/2, +N/2]^D}
             -
             \int_{-N/2}^{N/2} \mathrm{d}^Dn\
-        \right) \frac{1}{x-n^2}
+        \right) \frac{1}{n^2-x}
 \end{equation}
 where the $\cartesian$ superscript indicates that the sum is cut off independently for each component.\footnote{Note that in the previous section we cut the integrals and sums off at a radius of $\Lambda L / 2\pi = N/2$ or, more suggestively, at a diameter of $N$ in anticipation of comparing with a box whose edge length is $N$.}
 We similarly define the Cartesian zeta function,
@@ -24,7 +24,7 @@ We similarly define the Cartesian zeta function,
     =
     \lim_{N\goesto\infty} S^{\cartesian N}_D(x)
     =
-    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n} \in (-N/2, +N/2]^D} \frac{1}{x-n^2} - \counterterm_D^\cartesian \left(\frac{N}{2}\right)^{D-2}\right)
+    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n} \in (-N/2, +N/2]^D} \frac{1}{n^2-x} - \counterterm_D^\cartesian \left(\frac{N}{2}\right)^{D-2}\right)
 \end{equation}
 and can change the quantization condition to read
 \begin{equation}\label{eq:cartesian quantization}
