@@ -33,4 +33,14 @@ The regulating behavior needed to cancel the divergence in the sum in $S_D^\sphe
             &   (D=1)
     \end{cases}
 \end{equation}
-However, rather than include only the leading behavior, one can improve $S_D^\spherical$ as shown in \eqref{improved spherical S} or simply use the exact integral values in \eqref{spherical S improved regulator}, accelerating the convergence to the large-$N$ limit.
+However, rather than include only the leading divergent behavior, one can improve $S_D^\spherical$ as shown in \eqref{improved spherical S} or simply use the exact integral values in \eqref{spherical S improved regulator}, accelerating the convergence to the large-$N$ limit.
+
+In two dimensions, we can rewrite separate the large-$N$ behavior of the infinite-volume integral
+\begin{align}
+    \int_0^{N/2} \frac{\Omega_D n^{D-1} \mathrm{d}n}{n^2-x}
+    &=
+    \pi \log \left(\frac{(N/2)^2}{x}\right) + \pi \log\left(1-\frac{x}{(N/2)^2}\right)
+    &
+    (D&=2)
+\end{align}
+but cannot separate out an $x$-independent counterterm.
