@@ -10,11 +10,7 @@ from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 
 plt.rc('text', usetex=True)
-plt.rc('text.latex', preamble=r'''
-    \usepackage{amsmath}
-    \usepackage{amssymb}
-    \usepackage{bbm} '''
-    )
+plt.rc('text.latex')
 
 psq = 15.34824844488746404710 # Counterterm for the FFT method, from Mathematica.
 
@@ -62,7 +58,9 @@ ax[1].plot(counterterms[:,0], counterterms[:,1]/psq-1, '.')
 ax[1].set_xscale('log')
 ax[1].set_yscale('log')
 ax[1].set_xlabel(r'$n_{\mathrm{step}}$')
-ax[1].set_ylabel(r'$\frac{\mathcal{L}^{\boxplus (n_{\mathrm{step}})}_3}{\mathcal{L}^{\boxplus (\infty)}_3} - 1$')
+# Annoyingly, can't get \box or \square to work, even when using latex preamble.
+# But I can use direct unicode input.  compare □ and ▫.
+ax[1].set_ylabel(r'$\frac{\mathcal{L}^{\boxplus (n_{\mathrm{step}})}_3}{\mathcal{L}^{▫}_3} - 1$')
 
 pow2=[1,2,4,8,16,32,64,128]
 for a in ax:
