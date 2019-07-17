@@ -34,7 +34,7 @@ cdef class PySphericalZeta:
         return self.c_ptr[0](x)
 
 cdef class PyCartesianZeta:
-    cdef SphericalZeta *c_ptr
+    cdef CartesianZeta *c_ptr
 
     def __cinit__(self, unsigned int D, unsigned int N, bool improved=True):
         self.c_ptr = new CartesianZeta(D, N, improved)
@@ -43,7 +43,7 @@ cdef class PyCartesianZeta:
         return self.c_ptr[0](x)
 
 cdef class PyDispersionZeta:
-    cdef SphericalZeta *c_ptr
+    cdef DispersionZeta *c_ptr
 
     def __cinit__(
         self,
