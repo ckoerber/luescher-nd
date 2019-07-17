@@ -5,17 +5,17 @@ from libcpp cimport bool
 import numpy as np
 
 
-cdef extern from "zeta_flat.h":
-    cdef cppclass SphericalZeta:
-        SphericalZeta(unsigned int, unsigned int, bool) except +
+cdef extern from "zeta_wrapper.h":
+    cdef cppclass SphericalZeta_CC:
+        SphericalZeta_CC(unsigned int, unsigned int, bool) except +
         vector[double] operator()(const vector[double])
 
-    cdef cppclass CartesianZeta:
-        CartesianZeta(unsigned int, unsigned int, bool) except +
+    cdef cppclass CartesianZeta_CC:
+        CartesianZeta_CC(unsigned int, unsigned int, bool) except +
         vector[double] operator()(const vector[double])
 
-    cdef cppclass DispersionZeta:
-        DispersionZeta(
+    cdef cppclass DispersionZeta_CC:
+        DispersionZeta_CC(
             unsigned int,
             unsigned int,
             double,
@@ -24,26 +24,26 @@ cdef extern from "zeta_flat.h":
         ) except +
         vector[double] operator()(const vector[double])
 
-cdef class PySphericalZeta:
-    cdef SphericalZeta *c_ptr
+cdef class SphericalZeta:
+    cdef SphericalZeta_CC *c_ptr
 
     def __cinit__(self, unsigned int D, unsigned int N, bool improved=True):
-        self.c_ptr = new SphericalZeta(D, N, improved)
+        self.c_ptr = new SphericalZeta_CC(D, N, improved)
 
     def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)
 
-cdef class PyCartesianZeta:
-    cdef CartesianZeta *c_ptr
+cdef class CartesianZeta:
+    cdef CartesianZeta_CC *c_ptr
 
     def __cinit__(self, unsigned int D, unsigned int N, bool improved=True):
-        self.c_ptr = new CartesianZeta(D, N, improved)
+        self.c_ptr = new CartesianZeta_CC(D, N, improved)
 
     def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)
 
-cdef class PyDispersionZeta:
-    cdef DispersionZeta *c_ptr
+cdef class DispersionZeta:
+    cdef DispersionZeta_CC *c_ptr
 
     def __cinit__(
         self,
@@ -53,7 +53,7 @@ cdef class PyDispersionZeta:
         unsigned int nstep=1,
         bool improved=True
     ):
-        self.c_ptr = new DispersionZeta(D, N, L, nstep, improved)
+        self.c_ptr = new DispersionZeta_CC(D, N, L, nstep, improved)
 
     def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)
