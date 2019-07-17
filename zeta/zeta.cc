@@ -238,7 +238,7 @@ double cartesian::counterterm(const double &x){
     double ct = 0;
     double error = 0;
     double tolerance = 1e-2;
-    error_norm e = ERROR_L1; // ERROR_{L1,L2,LINF,INDIVIDUAL,PAIRED}
+    // error_code e = ERROR_L1; // ERROR_{L1,L2,LINF,INDIVIDUAL,PAIRED}
 
     // We have to take a detour through the complex plane.
     // Miraculously, the imaginary parts cancel!
