@@ -1,4 +1,5 @@
 #include "zeta.h"
+#include "zeta_flat.h"
 #include <stdio.h>
 #include <algorithm>
 #include <iostream>
@@ -16,6 +17,10 @@ int main(){
 
     double x = 1.234;
     double s = Zeta(sphere, x);
+    printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
+
+    auto spherical_zeta = SphericalZeta(D, N);
+    s = spherical_zeta(x);
     printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
 
     auto box = cartesian(D, N, false);
