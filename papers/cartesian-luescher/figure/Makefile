@@ -1,6 +1,7 @@
 
 FIGURES=I0.pdf	\
  		dispersion.pdf	\
+		counterterm-nstep.pdf					\
 		db-contact-fv-c-fitted-parity-lg.pdf 	\
 		db-contact-fv-d-fitted-parity-lg.pdf	\
 		db-contact-fv-c-fitted-a-inv-parity-lg.pdf	\
@@ -17,6 +18,9 @@ I0.pdf:  I0.tex
 
 dispersion.pdf: dispersion.py
 	./dispersion.py
+
+counterterm-nstep.pdf: counterterm-nstep.py
+	./counterterm-nstep.py
 
 ere: ere-plots.py
 	./ere-plots.py
