@@ -1,2 +1,4 @@
 zeta
 zeta.o
+zeta_wrapper.cpp
+build/
