@@ -1,4 +1,4 @@
-pyyaml
+PyYAML
 cython
 dataclasses
 typing
@@ -11,6 +11,5 @@ sympy
 sqlalchemy
 tqdm
 blackcellmagic
-yaml
 lsqfit
 gvar
