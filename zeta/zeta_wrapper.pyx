@@ -8,11 +8,11 @@ import numpy as np
 cdef extern from "zeta_flat.h":
     cdef cppclass SphericalZeta:
         SphericalZeta(unsigned int, unsigned int, bool) except +
-        double operator()(const double)
+        vector[double] operator()(const vector[double])
 
     cdef cppclass CartesianZeta:
         CartesianZeta(unsigned int, unsigned int, bool) except +
-        double operator()(const double)
+        vector[double] operator()(const vector[double])
 
     cdef cppclass DispersionZeta:
         DispersionZeta(
@@ -22,7 +22,7 @@ cdef extern from "zeta_flat.h":
             unsigned int,
             bool
         ) except +
-        double operator()(const double)
+        vector[double] operator()(const vector[double])
 
 cdef class PySphericalZeta:
     cdef SphericalZeta *c_ptr
@@ -30,7 +30,7 @@ cdef class PySphericalZeta:
     def __cinit__(self, unsigned int D, unsigned int N, bool improved=True):
         self.c_ptr = new SphericalZeta(D, N, improved)
 
-    def __call__(self, const double x):
+    def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)
 
 cdef class PyCartesianZeta:
@@ -39,7 +39,7 @@ cdef class PyCartesianZeta:
     def __cinit__(self, unsigned int D, unsigned int N, bool improved=True):
         self.c_ptr = new CartesianZeta(D, N, improved)
 
-    def __call__(self, const double x):
+    def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)
 
 cdef class PyDispersionZeta:
@@ -55,5 +55,5 @@ cdef class PyDispersionZeta:
     ):
         self.c_ptr = new DispersionZeta(D, N, L, nstep, improved)
 
-    def __call__(self, const double x):
+    def __call__(self, const vector[double] x):
         return self.c_ptr[0](x)

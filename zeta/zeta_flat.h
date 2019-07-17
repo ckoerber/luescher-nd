@@ -7,7 +7,7 @@ public:
         const unsigned int D, const unsigned int N, bool improved=true
     ) : dom(spherical(D, N, improved)) {};
     ~SphericalZeta() = default;
-    double operator()(const double x){return Zeta(this->dom, x);};
+    std::vector<double> operator()(const std::vector<double> &x){return ZetaVectorized(this->dom, x);};
 
 private:
     spherical dom;
@@ -19,7 +19,7 @@ public:
         const unsigned int D, const unsigned int N, bool improved=true
     ) : dom(cartesian(D, N, improved)) {};
     ~CartesianZeta() = default;
-    double operator()(const double x){return Zeta(this->dom, x);};
+    std::vector<double> operator()(const std::vector<double> &x){return ZetaVectorized(this->dom, x);};
 
 private:
     cartesian dom;
@@ -35,7 +35,7 @@ public:
         bool improved=false
     ) : dom(dispersion(D, N, L, nstep, improved)) {};
     ~DispersionZeta() = default;
-    double operator()(const double x){return Zeta(this->dom, x);};
+    std::vector<double> operator()(const std::vector<double> &x){return ZetaVectorized(this->dom, x);};
 
 private:
     dispersion dom;
