@@ -22,6 +22,27 @@ double Zeta(domain &dom, double x){
     return sum - dom.counterterm(x);
 }
 
+std::vector<double> ZetaVectorized(domain &dom, const std::vector<double> &x){
+    std::vector<double> res(x.size(), 0.0);
+    const auto vector = dom.vectors();
+    const auto degeneracy = dom.degeneracies();
+
+    std::transform(
+        x.begin(),
+        x.end(),
+        res.begin(),
+        [&](double xj){
+            double sum = 0.0;
+            for(unsigned int i=0; i<vector.size(); i++){
+                sum += degeneracy[i] / (nSquared(vector[i]) - xj);
+            }
+            return sum - dom.counterterm(xj);
+        }
+    );
+    return res;
+}
+
+
 inline unsigned int square(unsigned int x){
     return x*x;
 }

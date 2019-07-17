@@ -41,6 +41,7 @@ protected:
 
 // THE WHOLE POINT:
 double Zeta(domain &dom, double x);
+std::vector<double> ZetaVectorized(domain &dom, const std::vector<double> &x);
 
 
 // And now, details about particular domains:

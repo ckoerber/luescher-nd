@@ -19,6 +19,12 @@ int main(){
     double s = Zeta(sphere, x);
     printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
 
+    std::vector<double> xv(2, 1.234);
+    std::vector<double> sv = ZetaVectorized(sphere, xv);
+    for(auto si : sv){
+        printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, si);
+    }
+
     auto spherical_zeta = SphericalZeta(D, N);
     s = spherical_zeta(x);
     printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
