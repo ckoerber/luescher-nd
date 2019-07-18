@@ -1,5 +1,5 @@
-#CC=g++
-CC=clang++ --std=c++17
+CC=g++-9
+# CC=clang++ --std=c++17
 
 CXXFLAGS += -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wpedantic \
             -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual \
@@ -18,7 +18,7 @@ CUBATURE_INCLUDE=-I$(CUBATURE)
 CUBATURE_FLAG=-DCUBATURE
 endif
 
-zeta: main.cc zeta.o zeta_flat.h
+zeta: main.cc zeta.o zeta_wrapper.h
 	$(CC) $(CXXFLAGS) $(CUBATURE_FLAG) main.cc -o zeta zeta.o $(CUBATURE_FILE) $(CUBATURE_INCLUDE)
 
 zeta.o: zeta.h zeta.cc

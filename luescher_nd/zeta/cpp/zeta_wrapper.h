@@ -9,6 +9,7 @@ public:
         const unsigned int D, const unsigned int N, bool improved=true
     ) : dom(spherical(D, N, improved)) {};
     ~SphericalZeta_CC() = default;
+    double operator()(const double &x){return Zeta(this->dom, x); };
     std::vector<double> operator()(const std::vector<double> &x){return ZetaVectorized(this->dom, x);};
 
 private:

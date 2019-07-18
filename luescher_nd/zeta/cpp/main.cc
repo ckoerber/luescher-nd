@@ -1,5 +1,5 @@
 #include "zeta.h"
-#include "zeta_flat.h"
+#include "zeta_wrapper.h"
 #include <stdio.h>
 #include <algorithm>
 #include <iostream>
@@ -25,7 +25,7 @@ int main(){
         printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, si);
     }
 
-    auto spherical_zeta = SphericalZeta(D, N);
+    auto spherical_zeta = SphericalZeta_CC(D, N);
     s = spherical_zeta(x);
     printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
 
