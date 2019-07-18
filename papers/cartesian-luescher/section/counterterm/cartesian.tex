@@ -9,37 +9,34 @@ The regulation of the sum in \eqref{cartesian S} is provided by
 \end{equation}
 where we rescaled and $\tilde{x}=x/(N/2)$, and we can numerically evaluate the right-hand side with ease to achieve a complete improvement of the $S_D^{\cartesian N}$ function.
 
-We can determine the counterterm in the three-dimensional Cartesian volume,evaluating the large-$N$ limit of the integral
+We can determine the counterterm in the three-dimensional Cartesian volume, evaluating the large-$N$ limit of the integral
 \begin{equation}\label{eq:cartesian integral}
-    \int_{-N/2}^{+N/2} \mathrm{d}n_x\ \mathrm{d}n_y\ \mathrm{d}n_z \frac{1}{n^2}
+    \int_{-1}^{+1} \mathrm{d}^D\nu \frac{1}{\nu^2 - \xtilde}
 \end{equation}
-where $n^2 = n_x^2+n_y^2+n_z^2$ and we henceforth suppress the $(x=0)$ argument.
+where $\nu^2 = \sum_d \nu_d^2$ summed on dimensions.
 We can evaluate it as follows.  Consider the integral
 \begin{equation}
-	J^{\cartesian N}_0(x, m) = \int_{-N/2}^{+N/2} dn_x\ dn_y\ dn_z\ \frac{e^{-m n^2}}{n^2}.
+	J^{\cartesian N}_0(\xtilde, m) = \int_{-1}^{+1} \mathrm{d}^D\nu \frac{e^{-m (\nu^2-\xtilde)}}{\nu^2-\xtilde}.
 \end{equation}
-Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(m) = 0$ and $J^{\cartesian N}_0(0)$ is the integral on the right-hand-side of \eqref{cartesian integral}.
+Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(\xtilde, m) = 0$ and $J^{\cartesian N}_0(\xtilde, 0)$ is the integral in \eqref{cartesian integral} we wish to evaluate.
 We can take advantage of the fundamental theorem of calculus,
 \begin{align}
-	\int_{-N/2}^{+N/2} \mathrm{d}^3n \frac{1}{n^2}
+	\int_{-1}^{+1} \mathrm{d}^D\nu \frac{1}{\nu^2-\xtilde}
     &=
-    J^{\cartesian N}_0(0) - J^{\cartesian N}_0(\infty)
-		&&= 	\int_{\infty}^{0} dm\ \partial_m J^{\cartesian N}_0(m)
+    J^{\cartesian N}_0(\xtilde,0) - J^{\cartesian N}_0(\xtilde,\infty)
+		&&= 	\int_{\infty}^{0} dm\ \partial_m J^{\cartesian N}_0(\xtilde,m)
 		% \\
-		&&=	\int_{\infty}^{0} dm\ \int_{-N/2}^{+N/2} \mathrm{d}^3n -e^{-m n^2}
+		&&=	\int_{\infty}^{0} dm\ \int_{-1}^{+1} \mathrm{d}^D\nu -e^{-m (\nu^2-\xtilde)}
 		\nonumber\\
-		&&&=	\int_0^\infty dm\ \left(\int_{-N/2}^{+N/2} dn\ e^{-m n^2}\right)^3
+		&&&=	\int_0^\infty dm\ e^{m \xtilde^2}\left(\int_{-1}^{+1} d\nu\ e^{-m \nu^2}\right)^D
 		% \\
-		&&=	\int_0^\infty dm\ \left(\sqrt{\frac{\pi}{m}} \erf(\sqrt{m N^2/4})\right)^3
+		&&=	\int_0^\infty dm\ e^{m\xtilde}\left(\sqrt{\frac{\pi}{m}} \erf(\sqrt{m})\right)^D
+        \nonumber\\
+    &&&=
+    \pi^{D/2} \int_{0}^{\infty} 2\mu\; \mathrm{d}\mu\; e^{\xtilde \mu^2} \left(\frac{\erf(\mu)}{\mu}\right)^D
 \end{align}
-where we exchanged the order of partial differentiation by $m$ and momenta integration, recognize the resulting integral as three identical copies of the same integral (as long as the volume is a cube), and evaluate it, yielding the error function.
-Changing variables to isolate the dependence on $N$, $n^2 = m N^2/4$, we find
-\begin{align}
-    \int_{-N/2}^{+N/2} \mathrm{d}^3n \frac{1}{n^2}
-    &=
-    \pi^{3/2}\ \frac{N}{2} \int_{0}^\infty 2n\ \mathrm{d}n\ \left(\frac{\erf(n)}{n}\right)^3
-\end{align}
-and the integral can be easily evaluated numerically, yielding $2.75634$ so that
+where we exchange the order of partial differentiation by $m$ and momenta integration, recognize the resulting integral as three identical copies of the same integral (as long as the volume is a cube), and evaluate it, yielding the error function, and finally change variables $m\goesto\mu^2$, easing the numerical integration.
+When $\xtilde\leq0$ our procedure is legitimate, and for $\xtilde=0$ in three dimensions one finds $2.75634$ so that
 \begin{equation}
     \label{eq:cartesian counterterm}
     \counterterm^\cartesian_3 \left(\frac{N}{2}\right) = \lim_{N\goesto\infty}\int_{-N/2}^{+N/2} \mathrm{d}^3n \frac{1}{n^2} = 15.34824844488746404710\ \left(\frac{N}{2}\right)
@@ -47,12 +44,8 @@ and the integral can be easily evaluated numerically, yielding $2.75634$ so that
 and more digits are readily available; this constant appears in \eqref{cartesian S}.
 This can be compared to the spherical counterterm, which we can read off from \eqref{improved spherical S}, where the counter term can be seen to be $4\pi \approx 12.6 $; that the Cartesian result is larger reflects the fact that more of the momentum space is included in the integration domain for a fixed $N$, as discussed in \Secref{cartesian}.
 
-This method of evaluation can be repeated for higher spatial dimensions.
-For $D\geq3$ spatial dimensions one finds
-\begin{equation}
-    \pi^{D/2} \left(\frac{N}{2}\right)^{D-2} \int_0^\infty 2\mu\ \mathrm{d}\mu\ \left(\frac{\erf(\mu)}{\mu}\right)^D
-\end{equation}
-For four dimensions one finds $17.14741624920737 (N/2)^2$, $24.49922817921121 (N/2)^3$ for five dimensions, for six dimensions $38.50096808074375 (N/2)^4$, and so on.  However, in these higher dimensions we must also subtract subleading divergences, which requires the determination of counterterms we do not here compute.
+For $D\geq3$ spatial dimensions one can immediately use the same method to find the leading divergences.
+For four dimensions one finds $17.14741624920737 (N/2)^2$, $24.49922817921121 (N/2)^3$ for five dimensions, for six dimensions $38.50096808074375 (N/2)^4$, and so on.  However, in these higher dimensions we must also subtract subleading divergences, which requires the determination of additional counterterms we do not here compute.
 
 The logarithmic divergence in two dimensions must be handled especially carefully.
 \todo{TOM'S MAGIC INTEGRAL AND CATALAN'S CONSTANT}.
