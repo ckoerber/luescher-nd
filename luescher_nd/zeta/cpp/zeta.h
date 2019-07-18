@@ -15,7 +15,7 @@
 #endif
 
 
-inline unsigned int nSquared(std::vector<unsigned int> v){
+inline unsigned int nSquared(const std::vector<unsigned int> &v){
     unsigned int total=0;
     for(auto i:v) total+=i*i;
     return total;
