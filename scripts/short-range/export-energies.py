@@ -144,14 +144,14 @@ def main():
         + "\n\tphysics: {0}".format(pars["physics"])
         + "\n\tzeta: {0}".format(pars["zeta"])
         + "\n\teigenvalues: {0}".format(pars["eigenvalues"])
-        + ("\n\tN: {0}".format(pars["zeta"]["N"]) if pars["zeta"]["new"] else "")
     }
 
     database_address = os.path.join(
         ROOT,
         DB_NAME.format(
             zeta=pars["zeta"]["kind"]
-            + ("new_N=%d" % pars["zeta"]["N"] if pars["zeta"]["new"] else ""),
+            + ("new_N=%d" % pars["zeta"]["N"] if pars["zeta"]["new"] else "")
+            + ("_improved" if pars["zeta"]["new"] and pars["zeta"]["improved"] else ""),
             a_inv=pars["physics"]["a_inv"],
             projector=pars["eigenvalues"]["projector"]["type"],
             n_eigs=pars["eigenvalues"]["solver"]["k"],
