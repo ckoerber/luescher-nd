@@ -123,7 +123,7 @@ def main():
     elif pars["zeta"] == "dispersion":
         zeta = DispersionZeta3d
     elif pars["zeta"] == "cartesian":
-        zeta = lambda n1d, epsilon, nstep: Zeta3D(n1d, epsilon)
+        zeta = lambda n1d, epsilon, nstep: Zeta3D(n1d, spherical=False)
     else:
         raise KeyError("Recieved unkwon parater for zeta function (`{zeta_key}`)")
 
