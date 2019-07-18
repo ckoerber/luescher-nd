@@ -31,7 +31,7 @@ cdef class SphericalZeta:
         self.c_ptr = new SphericalZeta_CC(D, N, improved)
 
     def __call__(self, const vector[double] x):
-        return self.c_ptr[0](x)
+        return np.array(self.c_ptr[0](x))
 
 cdef class CartesianZeta:
     cdef CartesianZeta_CC *c_ptr
@@ -40,7 +40,7 @@ cdef class CartesianZeta:
         self.c_ptr = new CartesianZeta_CC(D, N, improved)
 
     def __call__(self, const vector[double] x):
-        return self.c_ptr[0](x)
+        return np.array(self.c_ptr[0](x))
 
 cdef class DispersionZeta:
     cdef DispersionZeta_CC *c_ptr
@@ -53,7 +53,8 @@ cdef class DispersionZeta:
         unsigned int nstep=1,
         bool improved=True
     ):
+        raise NotImplementedError("Dispersion Zeta not yet implemented.")
         self.c_ptr = new DispersionZeta_CC(D, N, L, nstep, improved)
 
     def __call__(self, const vector[double] x):
-        return self.c_ptr[0](x)
+        return np.array(self.c_ptr[0](x))
