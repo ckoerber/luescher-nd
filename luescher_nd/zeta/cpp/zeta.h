@@ -49,9 +49,9 @@ class spherical:public domain{
 public:
     spherical(const unsigned int D, const unsigned int N, bool improved=true);
     ~spherical() override = default;
-    bool            filter(std::vector<unsigned int> &v);
-    unsigned int    degeneracy(std::vector<unsigned int> &v);
-    double          counterterm(const double &x);
+    bool            filter(std::vector<unsigned int> &v) override;
+    unsigned int    degeneracy(std::vector<unsigned int> &v) override;
+    double          counterterm(const double &x) override;
 protected:
     unsigned int radius; // What should the cutoff be?
 };
@@ -60,9 +60,9 @@ class cartesian:public domain{
 public:
     cartesian(const unsigned int D, const unsigned int N, bool improved=false);
     ~cartesian() override = default;
-    bool            filter(std::vector<unsigned int> &v);
-    unsigned int    degeneracy(std::vector<unsigned int> &v);
-    double          counterterm(const double &x);
+    bool            filter(std::vector<unsigned int> &v) override;
+    unsigned int    degeneracy(std::vector<unsigned int> &v) override;
+    double          counterterm(const double &x) override;
 
     // int integrator(unsigned ndim, const double *x, void *fdata, unsigned fdim, double *fval);
     // A stand-alone function in the .cc provides this functionality instead,
@@ -75,7 +75,7 @@ class dispersion:public cartesian{
 public:
     dispersion(const unsigned int D, const unsigned int N, const double L, const unsigned int nstep=1, bool improved=false);
     ~dispersion() override = default;
-    double          counterterm(const double &x);
+    double          counterterm(const double &x) override;
 
 protected:
     double  L;
