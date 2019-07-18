@@ -22,4 +22,8 @@ eigenvalues:
         cutoff: 3.0E+02
 physics:
     a_inv: -5.0
-zeta: cartesian
+zeta:
+    kind: cartesian
+    new: True
+    N: 100
+    improved: False

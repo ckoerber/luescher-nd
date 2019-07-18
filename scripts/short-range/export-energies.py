@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-# pylint: disable=C0103
+# pylint: disable=C0103, E0611
 """Scripts which export eigenvalues of potential fitted to Finite Volume discrete
 ground state to database
 """
+from typing import Callable
+from typing import Optional
+
 import os
 
 from argparse import ArgumentParser
@@ -15,18 +18,14 @@ from itertools import product
 
 from yaml import load
 
+import numpy as np
+
 from tqdm import tqdm
 
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 
 from luescher_nd.operators import get_projector_to_parity
 from luescher_nd.operators import get_projector_to_not_a1g
-
-from luescher_nd.zeta.zeta3d import DispersionZeta3d
-from luescher_nd.zeta.zeta3d import Zeta3D
-from luescher_nd.zeta.extern.pyzeta import (  # pylint: disable=W0611, E0611
-    zeta as spherical_zeta,
-)
 
 from luescher_nd.solvers.contact import FitKernel
 
@@ -93,6 +92,47 @@ def get_input():
     return pars
 
 
+def get_zeta(
+    kind: str, new: bool = False, N: Optional[int] = None, improved: bool = False
+) -> Callable[[int, float, int], [np.ndarray, np.ndarray]]:
+    """Returns zeta function of given kind which takes `x` as an argument.
+    """
+    if not new:
+        if kind == "spherical":
+            from luescher_nd.zeta.extern.pyzeta import zeta as spherical_zeta
+
+            zeta = lambda n1d, epsilon, nstep: spherical_zeta
+        elif kind == "dispersion":
+            from luescher_nd.zeta.zeta3d import DispersionZeta3d
+
+            zeta = DispersionZeta3d
+        elif kind == "cartesian":
+            from luescher_nd.zeta.zeta3d import Zeta3D
+
+            zeta = lambda n1d, epsilon, nstep: Zeta3D(n1d, spherical=False)
+        else:
+            raise KeyError("Recieved unkwon parater for zeta function (`{kind}`)")
+    else:
+        if kind == "spherical":
+            from luescher_nd.zeta.cpp.pyzeta import SphericalZeta
+
+            zeta = lambda n1d, epsilon, nstep: SphericalZeta(3, N, improved)
+        elif kind == "dispersion":
+            from luescher_nd.zeta.cpp.pyzeta import DispersionZeta3d
+
+            zeta = lambda n1d, epsilon, nstep: DispersionZeta3d(
+                3, n1d, epsilon * n1d, nstep, improved
+            )
+        elif kind == "cartesian":
+            from luescher_nd.zeta.cpp.pyzeta import DispersionZeta3d
+
+            zeta = lambda n1d, epsilon, nstep: Zeta3D(3, N, improved)
+        else:
+            raise KeyError("Recieved unkwon parater for zeta function (`{kind}`)")
+
+    return zeta
+
+
 def main():
     """Runs the export script
     """
@@ -118,14 +158,7 @@ def main():
 
     LOGGER.info("Exporting energies to %s", database_address)
 
-    if pars["zeta"] == "spherical":
-        zeta = lambda n1d, epsilon, nstep: spherical_zeta
-    elif pars["zeta"] == "dispersion":
-        zeta = DispersionZeta3d
-    elif pars["zeta"] == "cartesian":
-        zeta = lambda n1d, epsilon, nstep: Zeta3D(n1d, spherical=False)
-    else:
-        raise KeyError("Recieved unkwon parater for zeta function (`{zeta_key}`)")
+    zeta = get_zeta(**pars["zeta"])
 
     projector_type = pars["eigenvalues"]["projector"]["type"]
     projector_cutoff = pars["eigenvalues"]["projector"]["cutoff"]
