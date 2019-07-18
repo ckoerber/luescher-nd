@@ -18,7 +18,7 @@ We can evaluate it as follows.  Consider the integral
 \begin{equation}
 	J^{\cartesian N}_0(\xtilde, m) = \int_{-1}^{+1} \mathrm{d}^D\nu\; \frac{e^{-m (\nu^2-\xtilde)}}{\nu^2-\xtilde}.
 \end{equation}
-Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(\xtilde, m) = 0$ and $J^{\cartesian N}_0(\xtilde, 0)$ is the integral in \eqref{cartesian integral} we wish to evaluate.
+Then, we know $\lim_{m\goesto\infty} J^{\cartesian N}_0(\xtilde\leq0, m) = 0$ and $J^{\cartesian N}_0(\xtilde, 0)$ is the integral in \eqref{cartesian integral} we wish to evaluate.
 We can take advantage of the fundamental theorem of calculus,
 \begin{align}
 	\int_{-1}^{+1} \mathrm{d}^D\nu\; \frac{1}{\nu^2-\xtilde}
@@ -46,6 +46,8 @@ This can be compared to the spherical counterterm, which we can read off from \e
 
 For $D\geq3$ spatial dimensions one can immediately use the same method to find the leading divergences.
 For four dimensions one finds $17.14741624920737 (N/2)^2$, $24.49922817921121 (N/2)^3$ for five dimensions, for six dimensions $38.50096808074375 (N/2)^4$, and so on.  However, in these higher dimensions we must also subtract subleading divergences, which requires the determination of additional counterterms we do not here compute.
+
+\todo{Tell story for $\xtilde > D$, where it also converges if you integrate the other way.}
 
 The logarithmic divergence in two dimensions must be handled especially carefully.
 \todo{TOM'S MAGIC INTEGRAL AND CATALAN'S CONSTANT}.
