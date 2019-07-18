@@ -94,7 +94,7 @@ def get_input():
 
 def get_zeta(
     kind: str, new: bool = False, N: Optional[int] = None, improved: bool = False
-) -> Callable[[int, float, int], [np.ndarray, np.ndarray]]:
+) -> Callable[[int, float, int], Callable[[np.ndarray], np.ndarray]]:
     """Returns zeta function of given kind which takes `x` as an argument.
     """
     if not new:
@@ -143,9 +143,8 @@ def main():
         "Parameters:"
         + "\n\tphysics: {0}".format(pars["physics"])
         + "\n\tzeta: {0}".format(pars["zeta"])
-        + "\n\teigenvalues: {0}".format(pars["eigenvalues"])(
-            +"\n\tN: {0}".format(pars["zeta"]["N"]) if pars["zeta"]["new"] else ""
-        )
+        + "\n\teigenvalues: {0}".format(pars["eigenvalues"])
+        + ("\n\tN: {0}".format(pars["zeta"]["N"]) if pars["zeta"]["new"] else "")
     }
 
     database_address = os.path.join(
