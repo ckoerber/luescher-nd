@@ -5,6 +5,10 @@ using namespace std;
 #define PI 3.141592653589793238463
 #define RANGE(x, start, end) unsigned int x=start; x<end; x++
 
+bool compareVectors(const vector<unsigned int> &a, const vector<unsigned int> &b){
+    return nSquared(a) < nSquared(b);
+}
+
 double Zeta(domain &dom, double x){
     double sum = 0.;
     auto vector = dom.vectors();
@@ -51,8 +55,8 @@ inline unsigned int square_root(unsigned int x){
     return static_cast<unsigned int>(sqrt(x)) ; // Lossy!
 }
 
-int total(vector<int> v){
-    int t=0;
+unsigned int total(const vector<unsigned int> &v){
+    unsigned int t=0;
     for(auto i:v) t+=i;
     return t;
 }
@@ -92,17 +96,20 @@ std::vector< std::vector<unsigned int> > domain::enumerator(){
         vs = next;
     }
 
-    // De-square-root:
+    // Vectors are currently squares.
+    // Sort them by magnitude, by taking sums (no need to re-square).
+    vector<vector<unsigned int> > vv(begin(vs), end(vs));
+    sort(begin(vv), end(vv), [](const vector<unsigned int> &a, const vector<unsigned int> &b){
+        return accumulate(begin(a), end(a), 0) < accumulate(begin(b), end(b), 0);
+    });
+
+    // Now, de-square:
     auto no_sqrt = vector<vector<unsigned int> >();
-    for(auto v:vs){
+    for(auto v:vv){
         vector<unsigned int> temp;
         for(auto i:v) temp.push_back(square_root(i));
         no_sqrt.push_back(temp);
     }
-    sort(no_sqrt.begin(), no_sqrt.end(),
-        [](vector<unsigned int> &a, vector<unsigned int> &b){
-            return nSquared(a) <= nSquared(b);
-        });
 
     return no_sqrt;
 }

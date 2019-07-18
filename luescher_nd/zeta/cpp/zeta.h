@@ -7,6 +7,7 @@
 #include <math.h>
 #include <complex>
 #include <algorithm>
+#include <numeric>
 #include <functional>
 #include <iostream> // Debugging
 
@@ -20,6 +21,13 @@ inline unsigned int nSquared(const std::vector<unsigned int> &v){
     for(auto i:v) total+=i*i;
     return total;
 }
+
+inline int nSquared(const std::vector<int> &v){
+    int total=0;
+    for(auto i:v) total+=i*i;
+    return total;
+}
+
 
 class domain {
 public:

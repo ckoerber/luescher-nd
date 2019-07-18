@@ -1,5 +1,5 @@
-CC=g++-9
-# CC=clang++ --std=c++17
+# CC=g++-9
+CC=clang++ --std=c++17
 
 CXXFLAGS += -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wpedantic \
             -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual \
@@ -10,6 +10,8 @@ CXXFLAGS += -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wpedantic \
 CXXFLAGS += -Wmisleading-indentation \
             -Wduplicated-cond -Wduplicated-branches -Wlogical-op \
             -Wuseless-cast -Wdouble-promotion -Wformat=2
+
+CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer
 
 # make CUBATURE=path/to/cubature
 ifdef CUBATURE
