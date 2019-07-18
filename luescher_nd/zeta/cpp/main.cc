@@ -8,8 +8,11 @@ int main(){
 
     unsigned int D=3;
     unsigned int N = 10;
-    auto sphere = spherical(D, N);
 
+    printf("Setting up..."); fflush(stdout);
+    auto sphere = spherical(D, N);
+    auto sphere_unimproved = spherical(D, N, false);
+    printf("done!\n");  fflush(stdout);
 
     // for(auto v:sphere.vectors()){
     //     printf("[%d %d %d] n^2= %d #= %d\n", v[0], v[1], v[2], nSquared(v), sphere.degeneracy(v));
@@ -18,16 +21,19 @@ int main(){
     double x = 1.234;
     double s = Zeta(sphere, x);
     printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
+    s = Zeta(sphere_unimproved, x);
+    printf("spherical(D=%d, N=%d, %f) = %.16f unimproved\n", D, N, x, s);
 
-    std::vector<double> xv(2, 1.234);
+    std::vector<double> xv(4);
+    xv[0] = -8.901; xv[1] = 9.012; xv[2] = 0.123; xv[3] = 1.234;
     std::vector<double> sv = ZetaVectorized(sphere, xv);
-    for(auto si : sv){
-        printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, si);
+    for(unsigned int i=0; i<sv.size(); i++){
+        printf("spherical(D=%d, N=%d, %f) = %.16f vectorized\n", D, N, xv[i], sv[i]);
     }
 
     auto spherical_zeta = SphericalZeta_CC(D, N);
     s = spherical_zeta(x);
-    printf("spherical(D=%d, N=%d, %f) = %.16f\n", D, N, x, s);
+    printf("spherical(D=%d, N=%d, %f) = %.16f wrapped\n", D, N, x, s);
 
     auto box = cartesian(D, N, false);
     s = Zeta(box, x);
