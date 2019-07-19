@@ -2,19 +2,14 @@
 
 The regulation of the sum in \eqref{cartesian S} is provided by
 \begin{equation}
-    \label{eq:cartesian S counterterm}
-    \int_{-N/2}^{N/2} \mathrm{d}^Dn\; \frac{1}{n^2-x}
+    \label{eq:cartesian integral}
+    \int_{-N/2}^{N/2} \mathrm{d}^Dn\; \PV\; \frac{1}{n^2-x}
     =
-    \left(\frac{N}{2}\right)^{D-2} \int_{-1}^{+1} \mathrm{d}^D\nu\; \frac{1}{\nu^2 - \xtilde}
+    \left(\frac{N}{2}\right)^{D-2} \int_{-1}^{+1} \mathrm{d}^D\nu\; \PV\; \frac{1}{\nu^2 - \xtilde}
 \end{equation}
 where we rescaled and $\xtilde=x/(N/2)^2$, and we can numerically evaluate the right-hand side with ease to achieve a complete improvement of the $S_D^{\cartesian N}$ function.
 
-We can determine the counterterm in the three-dimensional Cartesian volume, evaluating the large-$N$ limit of the integral
-\begin{equation}\label{eq:cartesian integral}
-    \int_{-1}^{+1} \mathrm{d}^D\nu\; \frac{1}{\nu^2 - \xtilde}
-\end{equation}
-where $\nu^2 = \sum_d \nu_d^2$ summed on dimensions.
-We can evaluate it as follows.  Consider the integral
+We can determine the counterterm in the three-dimensional Cartesian volume, evaluating the large-$N$ limit of the integral on the right-hand side of \eqref{cartesian integral} as follows.  Consider the integral
 \begin{equation}
 	J^{\cartesian N}_0(\xtilde, m) = \int_{-1}^{+1} \mathrm{d}^D\nu\; \frac{e^{-m (\nu^2-\xtilde)}}{\nu^2-\xtilde}.
 \end{equation}
@@ -34,6 +29,7 @@ We can take advantage of the fundamental theorem of calculus,
         \nonumber\\
     &&&=
     \pi^{D/2} \int_{0}^{\infty} 2\mu\; \mathrm{d}\mu\; e^{\xtilde \mu^2} \left(\frac{\erf(\mu)}{\mu}\right)^D
+    &&(\xtilde<0)
 \end{align}
 where we exchange the order of partial differentiation by $m$ and momenta integration, recognize the resulting integral as three identical copies of the same integral (as long as the volume is a cube), evaluate it, yielding the error function, and finally change variables $m\goesto\mu^2$, easing the numerical integration.
 When $\xtilde\leq0$ our procedure is legitimate, and for $\xtilde=0$ in three dimensions one finds $2.75634$ so that
@@ -47,7 +43,13 @@ This can be compared to the spherical counterterm, which we can read off from \e
 For $D\geq3$ spatial dimensions one can immediately use the same method to find the leading divergences.
 For four dimensions one finds $17.14741624920737 (N/2)^2$, $24.49922817921121 (N/2)^3$ for five dimensions, for six dimensions $38.50096808074375 (N/2)^4$, and so on.  However, in these higher dimensions we must also subtract subleading divergences, which requires the determination of additional counterterms we do not here compute.
 
-\todo{Tell story for $\xtilde > D$, where it also converges if you integrate the other way.}
+When $\xtilde > D$ essentially the same game may be played to evaluate the integral, though one must then consider the opposite sign $m$.  Ultimately one finds, letting $\erfi$ be the imaginary error function,
+\begin{align}
+    \int_{-1}^{+1} \mathrm{d}^D\nu\; \PV \frac{1}{\nu^2-\xtilde} &= -\pi^{D/2} \int_0^{\infty} 2\mu\; \mathrm{d}\mu\; e^{-\mu^2 x} \left(\frac{\erfi \mu}{\mu}\right)^D
+    &
+    (\xtilde&>D)
+\end{align}
+though when $N\goesto\infty$ $\xtilde$ vanishes for fixed $x$ and the value here is not physically valuable.  \todo{And at intermediate $\xtilde$, evaluate along some other curve?}
 
 The logarithmic divergence in two dimensions must be handled especially carefully.
 \todo{TOM'S MAGIC INTEGRAL AND CATALAN'S CONSTANT}.
