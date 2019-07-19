@@ -30,7 +30,7 @@ We consider further stencils which extend on-axis steps so that the finite diffe
     - \frac{1}{2 \mu \epsilon^2}
         \sum_{d=1}^{D} \sum_{s=-\nstep}^{+\nstep}
             \gamma^{(\nstep)}_{|s|} \delta_{\vec{r}',\vec{r}+\epsilon s \vec{e}_d}
-    + C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
+    + \frac{1}{\epsilon^3}C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
 \end{equation}
 where the spatial indices are understood to be modulo the periodic boundary conditions of the lattice.
 In momentum space, this Hamiltonian may be written as
@@ -39,7 +39,9 @@ In momentum space, this Hamiltonian may be written as
     \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
     \rightarrow
     H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
-    &= \delta_{\vec{p}',\vec{p}} \frac{1}{2\mu} \sum_{d=1}^{D} \omega^{(\nstep)}(p_d,\epsilon) + C(\epsilon)
+    &=
+    \delta_{\vec{p}',\vec{p}} \frac{1}{2\mu} \sum_{d=1}^{D} \omega^{(\nstep)}(p_d,\epsilon)
+    +\frac{1}{L^3}C(\epsilon)
     \\
     \label{eq:gamma definition}
     \omega^{(\nstep)}(p_d,\epsilon)
