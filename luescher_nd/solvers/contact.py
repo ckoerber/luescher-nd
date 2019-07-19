@@ -21,7 +21,7 @@ class FitKernel:
     h: MomentumContactHamiltonian
     zeta: Callable[[np.ndarray], np.ndarray]
     a_inv: float = 0
-    xtol: float = 1.0e-12
+    xtol: float = 1.0e-16
     _e0: float = field(init=False, repr=False)
 
     def __post_init__(self):
