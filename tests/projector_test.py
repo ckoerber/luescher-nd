@@ -23,6 +23,14 @@ def matrix_norm(mat: "Matrix") -> float:
     """
     return np.sqrt(np.diag(mat.T @ mat).sum())
 
+def matrix_abs_sum(mat: "Matrix") -> float:
+    """Return the element-wise sum of the absolute values of the entries of mat.
+    """
+    return np.abs(mat).sum()
+
+# Here you can pick which norm to use:
+NORM=matrix_norm
+# NORM=matrix_abs_sum
 
 class ProjectorTest(TestCase):
     """Compares momentum space computations to coordinate space results
@@ -32,9 +40,9 @@ class ProjectorTest(TestCase):
     longMessage = True
 
     ranges = {
-        "n1d": [3, 4],
-        "nstep": [1, 2, None],
-        "epsilon": [1.0, 0.1],
+        "n1d": [3, 4, 6],
+        "nstep": [1, 2, 4, None],
+        "epsilon": [1.0, 0.1, 0.05],
         "mass": [1.0, 0.5],
         "ndim": [1, 3],
         "contact_strength": [0.0, -1.0],
@@ -65,8 +73,10 @@ class ProjectorTest(TestCase):
                 p = get_parity_operator(h.n1d, h.ndim)
                 p2 = np.diag(h._disp_over_m)  # pylint: disable=W0212
                 commu = p @ p2 - p2 @ p
+                norm = NORM(commu)
+                print(f"Norm={norm} [dispersion ns={h.nstep}, parity] D={h.ndim}, epsilon={h.epsilon}, mass={h.mass}")
                 self.assertAlmostEqual(
-                    matrix_norm(commu),
+                    norm,
                     0,
                     places=self.places,
                     msg=f"Failed test for hamiltonian: {h}",
@@ -80,8 +90,10 @@ class ProjectorTest(TestCase):
                 p = get_projector_to_a1g(h.n1d, h.ndim)
                 p2 = np.diag(h._disp_over_m)  # pylint: disable=W0212
                 commu = p @ p2 - p2 @ p
+                norm = NORM(commu)
+                print(f"Norm={norm} [dispersion ns={h.nstep}, A1g] D={h.ndim}, epsilon={h.epsilon}, mass={h.mass}")
                 self.assertAlmostEqual(
-                    matrix_norm(commu),
+                    norm,
                     0,
                     places=self.places,
                     msg=f"Failed test for hamiltonian: {h}",
@@ -94,8 +106,10 @@ class ProjectorTest(TestCase):
             with self.subTest(h=h):
                 p = get_parity_operator(h.n1d, h.ndim)
                 commu = commutator(h.op, p)
+                norm = NORM(commu)
+                print(f"Norm={norm} [contact={h.contact_strength}, parity] D={h.ndim}, epsilon={h.epsilon}, mass={h.mass}")
                 self.assertAlmostEqual(
-                    matrix_norm(commu),
+                    norm,
                     0,
                     places=self.places,
                     msg=f"Failed test for hamiltonian: {h}",
@@ -108,8 +122,10 @@ class ProjectorTest(TestCase):
             with self.subTest(h=h):
                 p = get_projector_to_a1g(h.n1d, h.ndim)
                 commu = commutator(h.op, p)
+                norm = NORM(commu)
+                print(f"Norm={norm} [contact={h.contact_strength}, a1g] D={h.ndim}, epsilon={h.epsilon}, mass={h.mass}")
                 self.assertAlmostEqual(
-                    matrix_norm(commu),
+                    norm,
                     0,
                     places=self.places,
                     msg=f"Failed test for hamiltonian: {h}",
