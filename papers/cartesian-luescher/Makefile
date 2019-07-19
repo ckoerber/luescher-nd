@@ -66,7 +66,7 @@ tidy:
 clean: tidy
 	$(RM) $(TARGET).bbl
 	$(RM) $(TARGET).pdf
-	cd figures; $(MAKE) clean
+	cd figure; $(MAKE) clean
 
 .PHONY: watch
 watch: $(TARGET).pdf
