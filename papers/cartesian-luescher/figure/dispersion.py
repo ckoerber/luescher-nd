@@ -52,14 +52,14 @@ def main():
     setup(n_colors=len(LABEL))
     fig, ax = plt.subplots()
 
-    ax.set_title("Lattice Dispersion Relations")
+    fig.set_figwidth(fig.get_figwidth() / 2)
+    fig.set_figheight(fig.get_figheight() / 2)
+
+    # ax.set_title("Lattice Dispersion Relations")
     ax.set_xlabel(r"$p\epsilon$")
     ax.set_ylabel(r"$2 \mu E \epsilon^2$")
-
-    # ticks = 9
-    # divisions = np.arange(-ticks//2,1+ticks//2)
-    # xticks = 2*np.pi*divisions/(ticks-1)
-    # xticklabels = [r'$\frac{{ {n} \pi}}{{{denom}}}$'.format(n=2*n, denom=ticks-1) for n in divisions]
+    ax.set_ylim(0, 10)
+    ax.set_xlim(-np.pi, np.pi)
 
     xticks = np.pi * np.array([-1, -1 / 2, 0, 1 / 2, 1])
     xticklabels = np.array(
