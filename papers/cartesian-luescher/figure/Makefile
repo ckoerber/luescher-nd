@@ -34,6 +34,9 @@ db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere
 continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf: continuum-extrapolation.py
 	./continuum-extrapolation.py
 
-clean:
+tidy:
 	$(RM) I0.dvi I0.ps I0.aux I0.log
 	$(RM) ere
+
+clean: tidy
+	$(RM) $(FIGURES)
