@@ -6,9 +6,9 @@ basis:
         - 0.050
         - 0.025
         - 0.020
+        - 0.010
     L:
         - 1.0
-        - 2.0
     nstep:
         - 1
         - 2
@@ -21,9 +21,9 @@ eigenvalues:
         type: a1g
         cutoff: 3.0E+02
 physics:
-    a_inv: -5.0
+    a_inv: 0.0
 zeta:
-    kind: cartesian
-    new: True
+    kind: spherical
+    new: False
     N: 100
     improved: False
