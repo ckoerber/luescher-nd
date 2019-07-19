@@ -104,6 +104,30 @@ def get_90_rotation_operator(n1d: int, axis=0) -> sp.csr_matrix:
     return parity_mat.tocsr()
 
 
+oneByDegeneracy = {
+    1:  1.00000000000000000,
+    2:  0.50000000000000000,
+    3:  0.33333333333333333,
+    4:  0.25000000000000000,
+    6:  0.16666666666666667,
+    8:  0.12500000000000000,
+    12: 8.33333333333333333e-2,
+    24: 4.16666666666666667e-2,
+    48: 2.08333333333333333e-2,
+}
+
+oneBySqrtDegeneracy = {
+    1:  1.0000000000000000,
+    2:  0.70710678118654752,
+    3:  0.57735026918962576,
+    4:  0.50000000000000000,
+    6:  0.40824829046386302,
+    8:  0.35355339059327376,
+    12: 0.28867513459481288,
+    24: 0.20412414523193151,
+    48: 0.14433756729740644,
+}
+
 def get_projector_to_a1g(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=R0914
     """ Implements the projection operator that's schematically | A1g > < A1g |.
     Because A1g is espeically simple, the procedure works in any dimension, specified by ndim.
@@ -163,9 +187,7 @@ def get_projector_to_a1g(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disab
             # that live on the boundary of the brillouin zone correctly.
             # How this works I forget; I just do s-wave / A1g, where the answer is
             # just always sum and then norm by the number of states.
-            norm = 1.0 / float(
-                len(matched)
-            )  # Both the bra and the ket get normed, so no sqrt!
+            norm = oneByDegeneracy[len(matched)] # Both the bra and the ket get normed, so no sqrt!
             for j, vj in matched:
                 A1g_mat[i, j] = norm
         # print(handled)
@@ -262,7 +284,7 @@ def get_a1g_reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=R0914
             # we're projecting to is already normed correctly
             # In other words, we're calculating | a1g_in_a1g_basis > < a1g_in_p_basis | psi >
             # and the first guy is normed, the second guy needs the norm explicit.
-            norm = 1 / np.sqrt(len(matched))
+            norm = oneBySqrtDegeneracy[len(matched)]
             vector = np.zeros(n1d ** ndim)
             for j, vj in matched:
                 vector[j] = norm
