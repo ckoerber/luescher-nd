@@ -71,3 +71,13 @@ class MomentumContactHamiltonian(MomentumKineticHamiltonian):
             self._disp_over_m * vec
             + self.contact_strength * np.sum(vec) / self.L ** self.ndim
         )
+
+    def apply_mat(self, mat):
+        """Applies hamiltonian to matrix
+        """
+        ntot, _ = mat.shape
+        kinetic_mul = super().apply_mat(mat)
+        potential_mul = (self.contact_strength / self.L ** self.ndim) * np.repeat(
+            mat.sum(axis=1), ntot
+        ).reshape((ntot, ntot)).T
+        return kinetic_mul + potential_mul

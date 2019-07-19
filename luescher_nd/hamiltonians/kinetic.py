@@ -230,7 +230,11 @@ class MomentumKineticHamiltonian:
             object.__setattr__(
                 self,
                 "_op",
-                LinearOperator(matvec=self._apply, shape=[self.n1d ** self.ndim] * 2),
+                LinearOperator(
+                    matvec=self._apply,
+                    matmat=self.apply_mat,
+                    shape=[self.n1d ** self.ndim] * 2,
+                ),
             )
         return self._op
 
@@ -245,6 +249,11 @@ class MomentumKineticHamiltonian:
         if self.filter_out is not None and self.filter_cutoff is not None:
             out += self.filter_cutoff * self.filter_out @ vec
         return out
+
+    def apply_mat(self, mat):
+        """Applies hamiltonian to matrix
+        """
+        return np.diag(self._disp_over_m) @ mat
 
     def apply(self, vec):
         """Applies hamiltonian to vector
