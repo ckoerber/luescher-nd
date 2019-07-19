@@ -1,28 +1,39 @@
 \section{Discretized Hamiltonian}\label{sec:hamiltonian}
 
-We study the simplest interacting two-body problem, two particles interacting via a contact interaction,
+The simplest interacting two-body problem, two particles interacting via a contact interaction, is the focus of our study
 \begin{equation}
     \label{eq:particle hamiltonian}
     H = \frac{p_1^2}{2 m_1} + \frac{p_2^2}{2 m_2} + C \delta(x_1-x_2)
+    \, .
 \end{equation}
-where the subscripts indicate the particle of the position and momenta.  Moving to center-of-mass and relative coordinates, this becomes
+The subscripts indicate the particle of the position and momentum operators.
+This hamiltonian becomes, moving to center-of-mass and relative coordinates,
 \begin{equation}
     \label{eq:hamiltonian}
     H = \frac{P^2}{2 M} + \frac{p^2}{2 \mu} + C \delta(x)
 \end{equation}
-where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.  We henceforth specialize to the rest frame, setting $P=0$, which reduces the problem to an effective one-body problem.
+where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.
+The problem is reducded to an effective one-body problem once we specialize to the rest frame, setting $P=0$.
 
-We consider a finite cubic volume of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
+We consider a finite cubic volume (FV) of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
 
-On the lattice we implement the contact interaction as entirely local, vanishing everywhere except at the origin where it is of strength $C$.  We study a variety of kinetic operators, in contrast.  We denote the symmetric nearest-neighbor finite difference Laplacian $\nstep=1$.  We consider additional stencils which extend on-axis additional steps so that the finite difference Laplacian is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
+The contact interaction is implemented on the lattice as an entirely local operator, vanishing everywhere except at the origin where it is of strength $C$.
+
+In contrast, we study a variety of kinetic operators which we distinguish by the $\nstep$ label.
+For example, $\nstep=1$ denotes the symmetric nearest-neighbor finite difference Laplacian.
+We consider further stencils which extend on-axis steps so that the finite difference Laplacian is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
 \begin{equation}
     \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
     \rightarrow
     H_{\vec{r}',\vec{r}}^{(L,\epsilon,\nstep)}
-    = - \frac{1}{2 \mu \epsilon^2} \sum_{d=1}^{D} \sum_{s=-\nstep}^{+\nstep} c^{(\nstep)}_{|s|} \delta_{\vec{r}',\vec{r}+\epsilon s \vec{e}_d} + C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
+    =
+    - \frac{1}{2 \mu \epsilon^2}
+        \sum_{d=1}^{D} \sum_{s=-\nstep}^{+\nstep}
+            \gamma^{(\nstep)}_{|s|} \delta_{\vec{r}',\vec{r}+\epsilon s \vec{e}_d}
+    + C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
 \end{equation}
 where the spatial indices are understood to be modulo the periodic boundary conditions of the lattice.
-In momentum space, this Hamiltonian may be written
+In momentum space, this Hamiltonian may be written as
 \begin{align}
     \label{eq:p space hamiltonian}
     \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
@@ -39,7 +50,8 @@ where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, 
     \label{eq:gamma determination}
     \omega^{(\nstep)}(p_d,\epsilon) \overset{!}{=} p_d^2 \left[ 1 + \order{(\epsilon p_d)^{2\nstep}}\right].
 \end{equation}
-In \Appref{coefficients} we collect the required $\gamma$ coefficients for a variety of $\nstep$s, and we show the resulting dispersion relations in \Figref{dispersion relation}.
+The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and
+in \Appref{coefficients} we collect the required $\gamma$ coefficients.
 In addition, we use a nonlocal operator, denoted by $\nstep=\infty$ which, in momentum space can be implemented to multiplying by $p^2$ directly,
 \begin{equation}
     \omega^{\infty}(p_d,\epsilon) = p_d^2,
@@ -47,11 +59,19 @@ In addition, we use a nonlocal operator, denoted by $\nstep=\infty$ which, in mo
 including at the edge of the Brillouin zone, the Laplacian implementation of the ungauged SLAC derivative.
 Including the edge does not introduce a discontinuity at the boundary (though it does introduce a cusp).
 
-Once constructed, we add to this Hamiltonian a term proportional to $\one-P_{\Aoneg}$, where $P_{\Aoneg}$ is a projector to the \Aoneg irrep, dramatically raising the energies of all non-\Aoneg states, and diagonalize exactly to extract \Aoneg eigenenergies.
+Once constructed, a projection operator, is added to this Hamiltonian
+\begin{equation}
+    H_{P_{\Aoneg}}(\alpha) = H + \alpha (\one - P_{\Aoneg}) \, ,
+\end{equation}
+where $P_{\Aoneg}$ is a projector to the \Aoneg irrep (needed for extracting S-wave information in the infinite volume limit) $P \ket{\Aoneg} = \ket{\Aoneg}$ and  $P \ket{\text{not-} \Aoneg} = 0$.
+Because $P_{\Aoneg}$ commutes with $H$, $H$ and $H_{P_{\Aoneg}}(\alpha)$ have the same spectrum within the $\Aoneg$ irrep.
+If $\alpha$ is much larger than the expected energies of the Hamiltonian, all not-\Aoneg states are shifted to higher energies.
+THus, diagonalizing exactly to $H_{P_{\Aoneg}}(\alpha)$ instead of $H$ allows to more easily extract \Aoneg eigenenergies.
+
 Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system, where logarithmic divergences warrant special attention.
 
 \begin{figure}
-    \includegraphics[width=0.5\textwidth]{figure/dispersion.pdf}
+    \includegraphics{figure/dispersion.pdf}
     \caption{We show the continuum dispersion relation of energy as a function of momentum for different one-dimensional $\nstep$ derivatives.  For a finite number of lattice points $N$, the allowed momenta are evenly-spaced in steps of $2\pi/N$.
     As additional steps are incorporated into the finite difference, the dispersion relation more and more faithfully reproduces the desired $p^2$~behavior of $\nstep=\infty$.
     }
