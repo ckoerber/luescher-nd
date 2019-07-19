@@ -1,11 +1,13 @@
 \section{The Usual, Spherical \Luscher's Formula}\label{sec:spherical}
 
 
-Here we present a $D$-dimensional derivation of \Luscher's formula that roughly follows \Ref{Beane:2003da}, although the technology and sophistication of the finite-volume formalism has grown substantially \todo{cite cite cite}.  Assuming an interaction given by an tower of derivative contact operators
+Here we present a $D$-dimensional derivation of \Luscher's formula that roughly follows \Ref{Beane:2003da}, although the technology and sophistication of the finite-volume formalism has grown substantially \todo{cite cite cite}.
+
+The starting point are interactions given by a tower of derivative contact operators such that the tree amplitude in the center of mass frame is given by
 \begin{equation}
-    V(p) = +\sum_n C_{2n}(\Lambda) p^{2n}
+    V(p) = + i\sum_n C_{2n}(\Lambda) p^{2n}
 \end{equation}
-where the interaction strengths depend on the regulator and carry spatial-dimension-dependent units.
+where $p$ denotes the relative momentum of incoming nucleons and the interaction strengths $ C_{2n}(\Lambda)$ depend on the regulator $\Lambda$ and carry spatial-dimension-dependent units.
 The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSum}.
 
 \begin{figure}[ht!]
@@ -16,7 +18,7 @@ The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSu
 
 This bubble sum is a geometric series and gives, for the standard $T$-matrix, \cite{Kaplan:1998we,Beane:2003da}
 \begin{equation}\label{eq:T matrix}
-iT = \frac{-i\sum_n C_{2n}(\Lambda) p^{2n}}{1-I_0(p,\Lambda) \sum_n C_{2n}(\Lambda) p^{2n}},
+iT(p) = \frac{-i\sum_n C_{2n}(\Lambda) p^{2n}}{1-I_0(p,\Lambda) \sum_n C_{2n}(\Lambda) p^{2n}},
 \end{equation}
 where $p$ is the relative momentum,  and $I_0(p,\Lambda)$ is a $D$-dependent function that arises from integrating the loop shown in \Figref{I0},
 \begin{align}
@@ -49,7 +51,6 @@ accounts for the angular integration in $D$ dimensions.
     \includegraphics[width=.5\columnwidth]{figure/I0.pdf}
     \caption{
         Loop diagram contributing to the bubble sum.
-        Because the potential is separable it factors out of the integral and $I_0$ is simply given by the loop of the two propagators.
     }
     \label{fig:I0}
 \end{figure}
@@ -76,36 +77,40 @@ This fixes the coefficients $C(\Lambda)$ as a function of the scattering data,
     I_0(p) - \frac{\mu}{2 \F_D}\left(\cot \delta_0(p) - i\right)
 \end{equation}
 
-In a finite volume, the energy eigenstates appear at poles of the $T$-matrix, so that
+In a finite volume, the energy eigenstates $E$ appear at poles of the $T$-matrix, so that
 \begin{equation}\label{eq:FV pole}
-    \frac{1}{\sum_n C_{2n}(\Lambda) p^{2n}} - I_{0,\FV}(p,L) = 0
+    \frac{1}{\sum_n C_{2n}(\Lambda) \gamma^{2n}} - I_{0,\FV}(\gamma,L) = 0 \, ,
+    \qquad
+    \gamma^2 = 2 \mu E\, ,
 \end{equation}
 and the infinite-volume integral $I_0$ has been replaced by the matching finite-volume sum,
 \begin{align}
-I_{0,\FV}(p,L)
+I_{0,\FV}(\gamma,L)
     &=-i\int \frac { \mathrm {d}q_0}{2\pi} \frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda} \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m_1} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m_2} + i \epsilon } \right)
     \\
     &=\frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda} \frac { 1 } { E - \frac{\vec{q}^2}{2\mu} }
     =\frac{2\mu}{(2\pi)^2 L^{D-2}} \sum_{\vec{n}}^{n < \frac{\Lambda L}{2\pi}} \frac{1}{x-n^2}
     &
-    x &= \left( \frac{pL}{2\pi}\right)^2
+    x &= \left( \frac{\gamma L}{2\pi}\right)^2
+    \, .
 \end{align}
-where we have used the on-shell condition $2\mu E=p^2$.  Combining the infinite-volume and finite-volume relations \eqref{IV pole} and \eqref{FV pole} yields
-\begin{equation}
-    \frac{\mu}{2\F_D}(\cot\delta_0(p)-i) = I_0(p) - I_{0,\FV}(p),
+Combining the infinite-volume and finite-volume relations \eqref{IV pole} and \eqref{FV pole} yields
+\begin{equation}\label{eq:spherical zeta}
+    \frac{\mu}{2\F_D}(\cot\delta_0(\gamma)-i) = I_0(\gamma) - I_{0,\FV}(\gamma),
 \end{equation}
 the finite-volume quantization condition.
+Note that both equations are explicitly evaluated for the same interactions using the same regulator and furthermore \eqref{spherical zeta} is only valid if evaluated at momenta $\gamma$ corresponding to FV eigenenergies $E$.
 
 Plugging our results for the integrals in, one finds
 \begin{equation}
-    \frac{1}{2\F_D}\left(\cot \delta_0(p) - i\right) = \frac{2}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - p\right) \right]
+    \frac{1}{2\F_D}\left(\cot \delta_0(\gamma) - i\right) = \frac{2}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - \gamma\right) \right]
 \end{equation}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
 In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right,\footnote{Actually, the cancellation is not \emph{so} miraculous---demanding it occur is essentially how $\F_D$ is determined.} and we are left with
 \begin{equation}
     \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
-where $x=(pL/2\pi)^2$ and we switched the sign of the sum and integral as well as the sign of the denominator.
+where $x=(\gamma L/2\pi)^2$ and we switched the sign of the sum and integral as well as the sign of the denominator.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_0$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
 Let $N=\Lambda L/\pi$.
 Then, defining, with a finite cutoff on magnitude $N/2$,
@@ -123,7 +128,7 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
 where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate the spherical-cutoff integrals and extract said counterterms in \Appref{counterterm/spherical}.
 Finally,
 \begin{equation}\label{eq:spherical quantization}
-    \cot \delta_0(p) = \frac{\F_D}{\pi^2 L^{D-2}} S^\spherical_D(x).
+    \cot \delta_0(\gamma) = \frac{\F_D}{\pi^2 L^{D-2}} S^\spherical_D(x).
 \end{equation}
 This is the usual \Luscher finite-volume quantization condition, and continuum-extrapolated energy levels should be fed through it to produce continuum-limit scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_D$ to the other size, as $p \cot\delta_0(p)$ is what appears in the effective range expansion, as we will discuss in \Secref{ere}.
