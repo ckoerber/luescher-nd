@@ -1,7 +1,5 @@
 PyYAML
 cython
-dataclasses
-typing
 numpy
 scipy
 pandas

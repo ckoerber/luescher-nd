@@ -4,6 +4,8 @@
 """
 from os import path
 
+import sys
+
 from setuptools import setup
 from setuptools import Extension
 from setuptools import find_packages
@@ -12,6 +14,12 @@ from Cython.Build import cythonize
 
 __version__ = "1.0.0"
 __author__ = "Christopher Körber"
+
+if sys.version_info[0] < 3:
+    raise Exception("luescher_nd requires python version 3.6 or later")
+else:
+    if sys.version_info[1] < 6:
+        raise Exception("luescher_nd requires python version 3.6 or later")
 
 THISDIR = path.abspath(path.dirname(__file__))
 with open(path.join(THISDIR, "README.md"), encoding="utf-8", mode="r") as f:
