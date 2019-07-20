@@ -20,8 +20,6 @@ def setup(n_colors: int = 5):
     )
     sns.set_palette("cubehelix", n_colors=n_colors, desat=None, color_codes=False)
 
-    print(sns.axes_style())
-
 
 def finalize():
     """Finalizes the plot (before exporting)

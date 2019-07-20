@@ -15,6 +15,8 @@ from luescher_nd.plotting.styles import LINE_STYLE
 from luescher_nd.plotting.styles import MARKERS
 
 
+DATA_FOLDER = os.path.join(DATA_FOLDER, "three-d")
+
 FILE_OPTIONS = [
     {
         "file_name": "db-contact-fv-c-fitted-parity-a-inv-lg.sqlite",
