@@ -1,19 +1,22 @@
 
+TARBALL=figure-package.tar.gz
+
 FIGURES=I0.pdf	\
  		dispersion.pdf	\
 		counterterm-nstep.pdf					\
 		db-contact-fv-c-fitted-parity-lg.pdf 	\
 		db-contact-fv-d-fitted-parity-lg.pdf	\
-		db-contact-fv-c-fitted-a-inv-parity-lg.pdf	\
-		db-contact-fv-d-fitted-a-inv-parity-lg.pdf	\
-		continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf
+		db-contact-fv-c-fitted-parity-a-inv-lg.pdf	\
+		db-contact-fv-d-fitted-parity-a-inv-lg.pdf	\
+		continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf	\
+		continuum-spectrum-db-contact-fv-c-fitted-parity-lg.pdf
 
 all:	$(FIGURES)
 
 I0.pdf:  I0.tex
-	latex I0.tex
-	dvips I0.dvi
-	ps2pdf I0.ps
+	latex I0.tex 1>/dev/null 2>/dev/null
+	dvips I0.dvi 1>/dev/null 2>/dev/null
+	ps2pdf I0.ps 1>/dev/null 2>/dev/null
 	$(RM) I0.dvi I0.ps I0.aux I0.log
 
 dispersion.pdf: dispersion.py
@@ -40,3 +43,8 @@ tidy:
 
 clean: tidy
 	$(RM) $(FIGURES)
+	$(RM) $(TARBALL)
+
+package: $(TARBALL)
+$(TARBALL): all
+	tar -cvzf $(TARBALL) $(FIGURES)
