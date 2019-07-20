@@ -19,8 +19,8 @@ We consider a finite cubic volume (FV) of linear size $L$ with periodic boundary
 
 The contact interaction is implemented on the lattice as an entirely local operator, vanishing everywhere except at the origin where it is of strength $C$.
 
-In contrast, we study a variety of kinetic operators which we distinguish by the $\nstep$ label.
-For example, $\nstep=1$ denotes the symmetric nearest-neighbor finite difference Laplacian.
+In contrast, we study a variety of kinetic operators which we distinguish by the $\nstep$ label, which indicates how many nearest neighbors in each direction go into the finite-difference Laplacian.
+For example, $\nstep=1$ denotes the symmetric nearest-neighbor finite-difference Laplacian.
 We consider further stencils which extend on-axis steps so that the finite difference Laplacian is a $(1+2\nstep D)$-point stencil in $D$ dimensions,
 \begin{equation}
     \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
@@ -32,7 +32,7 @@ We consider further stencils which extend on-axis steps so that the finite diffe
             \gamma^{(\nstep)}_{|s|} \delta_{\vec{r}',\vec{r}+\epsilon s \vec{e}_d}
     + \frac{1}{\epsilon^3}C(\epsilon) \delta_{\vec{r}',\vec{r}}\delta_{\vec{r},\vec{0}}
 \end{equation}
-where the spatial indices are understood to be modulo the periodic boundary conditions of the lattice.
+where the spatial indices are understood modulo the periodic boundary conditions of the lattice.
 In momentum space, this Hamiltonian may be written as
 \begin{align}
     \label{eq:p space hamiltonian}
@@ -63,12 +63,12 @@ Including the edge does not introduce a discontinuity at the boundary (though it
 
 Once constructed, a projection operator, is added to this Hamiltonian
 \begin{equation}
-    H_{P_{\Aoneg}}(\alpha) = H + \alpha (\one - P_{\Aoneg}) \, ,
+    H(\alpha) = H + \alpha (\one - P_{\Aoneg}) \, ,
 \end{equation}
-where $P_{\Aoneg}$ is a projector to the \Aoneg irrep (needed for extracting S-wave information in the infinite volume limit) $P \ket{\Aoneg} = \ket{\Aoneg}$ and  $P \ket{\text{not-} \Aoneg} = 0$.
-Because $P_{\Aoneg}$ commutes with $H$, $H$ and $H_{P_{\Aoneg}}(\alpha)$ have the same spectrum within the $\Aoneg$ irrep.
-If $\alpha$ is much larger than the expected energies of the Hamiltonian, all not-\Aoneg states are shifted to higher energies.
-THus, diagonalizing exactly to $H_{P_{\Aoneg}}(\alpha)$ instead of $H$ allows to more easily extract \Aoneg eigenenergies.
+where $P_{\Aoneg}$ is a projector to the \Aoneg irrep (needed for extracting S-wave information in the infinite volume).
+Because $P_{\Aoneg}$ commutes with $H$, $H$ and $H(\alpha)$ have the same spectrum within the $\Aoneg$ irrep.
+If $\alpha$ is much larger than the expected energies of the Hamiltonian, the \Aoneg states remain low-lying and all other states are shifted to much higher energies.
+Then, exactly diagonalizing $H(\alpha)$ instead of $H$ provides an easier extraction of \Aoneg eigenenergies.
 
 Throughout we focus on a three-dimensional system, though in \Appref{two-d} we study a two-dimensional system, where logarithmic divergences warrant special attention.
 
