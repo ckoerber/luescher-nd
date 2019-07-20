@@ -9,60 +9,63 @@ from luescher_nd.plotting.styles import LEGEND_STYLE
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 
-plt.rc('text', usetex=True)
-plt.rc('text.latex')
+plt.rc("text", usetex=True)
+plt.rc("text.latex")
 
-psq = 15.34824844488746404710 # Counterterm for the FFT method, from Mathematica.
+psq = 15.34824844488746404710  # Counterterm for the FFT method, from Mathematica.
 
 # Data, from dispersion.nb
-counterterms = np.array([
-    [1,   19.953112135459566],
-    [2,   17.292009589188943],
-    [3,   16.52764526114633],
-    [4,   16.180080105565406],
-    [6,   15.8613372773524],
-    [8,   15.714730988261573],
-    [12,  15.57818596398218],
-    [16,  15.514255072974349],
-    [24,  15.453701476619367],
-    [32,  15.424877298562093],
-    [48,  15.397185274010763],
-    [64,  15.38382809082002],
-    [96,  15.370854042506616],
-    [128, 15.36453292608324],
-    [192, 15.358342876873563],
-    ])
+counterterms = np.array(
+    [
+        [1, 19.953112135459566],
+        [2, 17.292009589188943],
+        [3, 16.52764526114633],
+        [4, 16.180080105565406],
+        [6, 15.8613372773524],
+        [8, 15.714730988261573],
+        [12, 15.57818596398218],
+        [16, 15.514255072974349],
+        [24, 15.453701476619367],
+        [32, 15.424877298562093],
+        [48, 15.397185274010763],
+        [64, 15.38382809082002],
+        [96, 15.370854042506616],
+        [128, 15.36453292608324],
+        [192, 15.358342876873563],
+    ]
+)
 
 from matplotlib import rc
-rc('font', **{'serif':['Times New Roman']})
-rc('text', usetex=True)
+
+rc("font", **{"serif": ["Times New Roman"]})
+rc("text", usetex=True)
 
 setup(n_colors=1)
 
-fig = plt.figure(figsize=(6,4))
+fig = plt.figure(figsize=(6, 4))
 plt.minorticks_off()
 
 fig, ax = plt.subplots(2)
 
 DASHED = dict(LINE_STYLE)
-DASHED['ls'] = 'dashed'
+DASHED["ls"] = "dashed"
 
 ax[0].set_title("Dispersion Counterterm in 3D")
-ax[0].axhline(y=psq, color='k', **DASHED)
-ax[0].plot(*counterterms.T, '.')
-ax[0].set_xscale('log')
+ax[0].axhline(y=psq, color="k", **DASHED)
+ax[0].plot(*counterterms.T, ".")
+ax[0].set_xscale("log")
 # ax[0].set_xlabel(r'$n_{\mathrm{step}}$')
-ax[0].set_ylabel(r'$\mathcal{L}^{\boxplus }_3$')
+ax[0].set_ylabel(r"$\mathcal{L}^{B^+}_3$")
 
-ax[1].plot(counterterms[:,0], counterterms[:,1]/psq-1, '.')
-ax[1].set_xscale('log')
-ax[1].set_yscale('log')
-ax[1].set_xlabel(r'$n_{\mathrm{step}}$')
+ax[1].plot(counterterms[:, 0], counterterms[:, 1] / psq - 1, ".")
+ax[1].set_xscale("log")
+ax[1].set_yscale("log")
+ax[1].set_xlabel(r"$n_{\mathrm{step}}$")
 # Annoyingly, can't get \box or \square to work, even when using latex preamble.
 # But I can use direct unicode input.  compare □ and ▫.
-ax[1].set_ylabel(r'$\frac{\mathcal{L}^{\boxplus }_3}{\mathcal{L}^{▫}_3} - 1$')
+ax[1].set_ylabel(r"$\frac{\mathcal{L}^{B^+}_3}{\mathcal{L}^{B}_3} - 1$")
 
-pow2=[1,2,4,8,16,32,64,128]
+pow2 = [1, 2, 4, 8, 16, 32, 64, 128]
 for a in ax:
     a.set_xticks(pow2)
     a.set_xticklabels(pow2)
