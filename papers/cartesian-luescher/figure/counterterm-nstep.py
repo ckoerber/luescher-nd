@@ -9,9 +9,6 @@ from luescher_nd.plotting.styles import LEGEND_STYLE
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 
-plt.rc("text", usetex=True)
-plt.rc("text.latex")
-
 psq = 15.34824844488746404710  # Counterterm for the FFT method, from Mathematica.
 
 # Data, from dispersion.nb
