@@ -39,6 +39,10 @@ from matplotlib import rc
 
 rc("font", **{"serif": ["Times New Roman"]})
 rc("text", usetex=True)
+rc('text.latex', preamble=r'''\usepackage{amsmath}
+\usepackage{amssymb}
+''')
+
 
 setup(n_colors=1)
 
@@ -55,7 +59,7 @@ ax[0].axhline(y=psq, color="k", **DASHED)
 ax[0].plot(*counterterms.T, ".")
 ax[0].set_xscale("log")
 # ax[0].set_xlabel(r'$n_{\mathrm{step}}$')
-ax[0].set_ylabel(r"$\mathcal{L}^{B^+}_3$")
+ax[0].set_ylabel(r"$\mathcal{L}^{\boxplus}_3$")
 
 ax[1].plot(counterterms[:, 0], counterterms[:, 1] / psq - 1, ".")
 ax[1].set_xscale("log")
@@ -63,7 +67,8 @@ ax[1].set_yscale("log")
 ax[1].set_xlabel(r"$n_{\mathrm{step}}$")
 # Annoyingly, can't get \box or \square to work, even when using latex preamble.
 # But I can use direct unicode input.  compare □ and ▫.
-ax[1].set_ylabel(r"$\frac{\mathcal{L}^{B^+}_3}{\mathcal{L}^{B}_3} - 1$")
+ax[1].set_ylabel(r"$\frac{\mathcal{L}^{\boxplus}_3}{\mathcal{L}^{\Box}_3} - 1$")
+# ax[1].set_ylabel(r"$\frac{\mathcal{L}^{B^+}_3}{\mathcal{L}^{B}_3} - 1$")
 
 pow2 = [1, 2, 4, 8, 16, 32, 64, 128]
 for a in ax:
