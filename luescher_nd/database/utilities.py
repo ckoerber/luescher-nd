@@ -1,8 +1,7 @@
 """Utility functions for database submodule
 """
 from typing import Dict
-
-from itertools import product
+from typing import Optional
 
 import os
 
@@ -16,8 +15,11 @@ from luescher_nd.database.connection import DatabaseSession
 
 from luescher_nd.hamiltonians.kinetic import HBARC
 
-from luescher_nd.zeta.zeta3d import DispersionZeta3d
-from luescher_nd.zeta.extern.pyzeta import zeta  # pylint: disable=E0611
+from luescher_nd.zeta.zeta3d import DispersionZeta3D
+from luescher_nd.zeta.zeta3d import Zeta3D
+from luescher_nd.zeta.extern.pyzeta import (  # pylint: disable=E0611
+    zeta as spherical_zeta,
+)
 
 DATA_FOLDER = os.path.abspath(
     os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, "data")
@@ -29,7 +31,7 @@ np.random.seed(42)
 def read_table(  # pylint: disable=R0913, R0914
     database: str,
     round_digits: int = 2,
-    dispersion_zeta: bool = True,
+    zeta: Optional[str] = None,
     filter_poles: bool = False,
     filter_by_nstates: bool = False,
     drop_comment: bool = True,
@@ -98,17 +100,8 @@ def read_table(  # pylint: disable=R0913, R0914
         ]
         df = df[~df.x.round(round_digits).isin(integer_x)]
 
-    for L, n1d, nstep in list(
-        product(df.L.unique(), df.n1d.unique(), df.nstep.unique())
-    ):
-        epsilon = L / n1d
-        ind = (df.L == L) & (df.n1d == n1d) & (df.nstep == nstep)
-        z = (
-            DispersionZeta3d(L, epsilon, nstep if nstep > 0 else None)
-            if dispersion_zeta
-            else zeta
-        )
-        df.loc[ind, "y"] = z(df.loc[ind, "x"].values) / np.pi / df.loc[ind, "L"]
+    if zeta is not None:
+        df["y"] = get_ere(df, zeta=zeta)
 
     if filter_poles:
         df = df.dropna()
@@ -117,6 +110,52 @@ def read_table(  # pylint: disable=R0913, R0914
     df["nstep"] = df["nstep"].astype(str)
 
     return df
+
+
+def get_ere(df: pd.DataFrame, zeta: str = "spherical") -> pd.Series:
+    """Converts data frame of box levels to effective range expansion.
+    """
+    if zeta == "spherical":
+        s = spherical_zeta(df["x"].values) / df["L"]
+    elif zeta == "dispersion":
+        g = df.groupby(["L", "epsilon", "nstep"], as_index=False)
+        s = (
+            g.apply(
+                lambda frame: pd.Series(
+                    DispersionZeta3D(
+                        frame["L"].mean(),
+                        frame["epsilon"].mean(),
+                        (
+                            frame["nstep"].unique()[0]
+                            if frame["nstep"].unique()[0] > 0
+                            else None
+                        ),
+                    )(frame["x"].values)
+                    / frame["L"],
+                    index=frame.index,
+                )
+            )
+            .reset_index(0)
+            .drop(columns="level_0")
+            .rename(columns={0: "y"})
+        )
+    elif zeta == "cartesian":
+        g = df.groupby(["n1d"], as_index=False)
+        s = (
+            g.apply(
+                lambda frame: pd.Series(
+                    Zeta3D(frame["n1d"].mean())(frame["x"].values) / frame["L"],
+                    index=frame.index,
+                )
+            )
+            .reset_index(0)
+            .drop(columns="level_0")
+            .rename(columns={0: "y"})
+        )
+    else:
+        raise KeyError("Recieved unkwon parater for zeta function (`{zeta}`)")
+
+    return s / np.pi
 
 
 def _even_poly(epsilon: np.ndarray, p: Dict[str, gv.GVar]):  # pylint: disable=E1101
