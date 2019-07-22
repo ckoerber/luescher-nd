@@ -20,22 +20,22 @@ DATA_FOLDER = os.path.join(DATA_FOLDER, "three-d")
 FILE_OPTIONS = [
     {
         "file_name": "db-contact-fv-c-fitted-parity-a-inv-lg.sqlite",
-        "dispersion_zeta": False,
+        "zeta": "spherical",
         "a_inv": -5.0,
     },
     {
         "file_name": "db-contact-fv-c-fitted-parity-lg.sqlite",
-        "dispersion_zeta": False,
+        "zeta": "spherical",
         "a_inv": 0,
     },
     {
         "file_name": "db-contact-fv-d-fitted-parity-lg.sqlite",
-        "dispersion_zeta": True,
+        "zeta": "dispersion",
         "a_inv": 0,
     },
     {
         "file_name": "db-contact-fv-d-fitted-parity-a-inv-lg.sqlite",
-        "dispersion_zeta": True,
+        "zeta": "dispersion",
         "a_inv": -5.0,
     },
 ]
@@ -46,7 +46,7 @@ FILTER_BY_NSTATES = True
 Y_BOUNDS = (-5, 5)
 
 
-def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float = 0.0):
+def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0):
     """Generates a grid plot of ERE(x)
 
     With L on the rows, nstep on the cols and epsilon as hue/markers.
@@ -57,8 +57,8 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float 
         file_name: str
             The database to read from
 
-        dispersion_zeta: bool = True
-            If ERE should be computed using dispersion Lüscher or spherical Lüscher.
+        zeta: str = "spherical"
+            If ERE should be computed using dispersion, cartesian or spherical Lüscher.
 
         a_inv: float = 0.0
             The expected offset of the ERE
@@ -66,7 +66,7 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float 
     df = (
         read_table(
             os.path.join(DATA_FOLDER, file_name),
-            dispersion_zeta=dispersion_zeta,
+            zeta=zeta,
             round_digits=ROUND_DIGITS,
             filter_poles=FILTER_POLES,
             filter_by_nstates=FILTER_BY_NSTATES,
@@ -75,7 +75,7 @@ def export_grid_plot(file_name: str, dispersion_zeta: bool = True, a_inv: float 
         .query(f"y > {a_inv + Y_BOUNDS[0]} and y < {a_inv + Y_BOUNDS[1]}")
     )
 
-    title = "Dispersion Lüscher" if dispersion_zeta else "Spherical Lüscher"
+    title = f"{zeta.capitalize()} Lüscher"
     title += " fitted contact interaction"
     title += (
         " at unitarity"

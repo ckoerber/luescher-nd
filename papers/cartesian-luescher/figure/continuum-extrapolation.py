@@ -132,7 +132,7 @@ def export_grid_plot(file_name: str):
     """
     df = read_table(
         os.path.join(DATA_FOLDER, file_name),
-        dispersion_zeta=False,
+        zeta="spherical",
         round_digits=ROUND_DIGITS,
         filter_poles=FILTER_POLES,
         filter_by_nstates=FILTER_BY_NSTATES,
