@@ -105,7 +105,9 @@ def get_zeta(
         elif kind == "dispersion":
             from luescher_nd.zeta.zeta3d import DispersionZeta3d
 
-            zeta = DispersionZeta3d
+            zeta = lambda n1d, epsilon, nstep: DispersionZeta3d(
+                n1d * epsilon, epsilon, nstep
+            )
         elif kind == "cartesian":
             from luescher_nd.zeta.zeta3d import Zeta3D
 
