@@ -11,14 +11,17 @@ While alternatives, including the potential method (see, for example \Refs{Ishii
 
 Here, we construct example Hamiltonians explicitly and diagonalize them exactly.
 This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data, and lets us completely isolate the features of the formalism itself, removing, for example, any finite-temperature effects that should in principle be extrapolated away in any finite-temperature method like Lattice QCD.
-We find that the usual formulation of the \Luscher zeta function and its counterterm, which are constructed by sums and integrals with a ultraviolet cutoff on the norm of the allowed momenta, induce unphysical terms in the effective range expansion, while these terms are removed if the zeta function and its counterterm are determined by sums and integrals over a box (meaning that the corners of the Brillouin zone that were truncated matter).
 
+We find that it is actually quite difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts seems to produce a more reliable result.
+We also explain how to incorporate lattice artifacts into \Luscher's formula, accounting both for the Brillouin zone of the cubic lattice and the lattice-induced dispersion relation.
+
+This lattice improvement can be quite useful.
 In pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients so as to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
 However, in \Ref{Endres:2012cw} they found that even with a highly-improved construction the states ultimately deviated from a $\pi/2$ phase shift (see, for example, Figure 3).
 We introduce a new continuum-limit prescription for achieving unitarity in lattice simulations by tuning just the simplest contact operator, but taking the discretization effects into account by incorporating the lattice dispersion relation into the finite-volume zeta function, both in the tuning step and in the analysis step.
-We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum.
+By re-tuning the interaction at each lattice spacing we can very easily and smoothly take the continuum limit after applying the lattice-aware finite-volume formula.
+We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum\todo{, in some cases covering as many \Aoneg states exist in the lattice of interest?}
 
-
-This paper is organized as follow.  In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study.  In \Secref{spherical} we use show that taking a fixed-volume continuum limit with the interaction strength tuned to reproduce the first zero of the traditional zeta function does not yield the expected flat effective range expansion.  In \Secref{cartesian} we show that the same procedure, using a zeta function formulated to include the corners of the Brillouin zone does produce such a flat behavior.
+This paper is organized as follow.  In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study.  In \Secref{spherical} we use show that taking a fixed-volume continuum limit with the interaction strength tuned to reproduce the first zero of the traditional zeta function does not yield the expected flat effective range expansion.  In \Secref{cartesian} we reformulate the standard generalized zeta function with integrals defined over the (cubic) Brillouin zone of the lattice.
 In \Secref{dispersion} we explain how to incorporate the single-particle dispersion relation into the \Luscher construction, and show that we can use such a relation to circumvent the need for a continuum limit spectrum in the unitary case.
 We relegate the computation of the various finite-volume counterterms to the Appendix.
