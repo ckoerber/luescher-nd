@@ -12,7 +12,7 @@ from luescher_nd.utilities import get_laplace_coefficients
 
 
 @dataclass(frozen=True)
-class DispersionZeta3d:
+class DispersionZeta3D:
     """Three dimensional Zeta function for discretized finite volume.
     """
 

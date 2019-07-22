@@ -19,7 +19,7 @@ from scipy.optimize import minimize_scalar
 from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 from luescher_nd.operators import get_projector_to_parity
 
-from luescher_nd.zeta.zeta3d import DispersionZeta3d
+from luescher_nd.zeta.zeta3d import DispersionZeta3D
 
 RANGES = {
     "epsilon": [0.020, 0.025, 0.05, 0.1, 0.2, 0.25],
