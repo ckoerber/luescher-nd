@@ -85,13 +85,12 @@ where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatia
 Were we to expand the denominator around large $N$ the quadratic term in $n_d$ would have an extra $(2\pi)^2$ compared to the integers that appear in $S^\spherical_D$ \eqref{spherical S} or $S^\cartesian_D$ \eqref{cartesian S}.  We can force superficial similarity, putting those factors in by hand, to arrive at
 \begin{align}
     \label{eq:dispersion quantization}
-    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}(2\mu E L^2)
+    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
     \\
     \label{eq:dispersion S}
     S^{\dispersion N}_{D}( x )
     &=
-    4\pi^2
-    \left(\sum_n - \int \mathrm{d}^D n\; \PV \right)_{-N/2}^{+N/2}\  \frac{1}{N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N} - x}.
+    \left(\sum_n - \int \mathrm{d}^D n\; \PV \right)_{-N/2}^{+N/2}\  \frac{1}{\left(\frac{N}{2\pi}\right)^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N} - x}.
 \end{align}
 The dispersion zeta function $S^{\dispersion N}_{D}$ knows about the dispersion relation as well as the discretization of the box into $N$ sites.
 In contrast, in the usual finite-volume procedure, no details of the box infect the zeta function.
