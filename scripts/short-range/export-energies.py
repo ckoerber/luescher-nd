@@ -200,10 +200,10 @@ def main():
             filter_out=get_projector(n1d),
             filter_cutoff=projector_cutoff,
         )
+        z = zeta(n1d, epsilon, nstep)
+        LOGGER.info("Using zeta function %s", z)
 
-        kernel = FitKernel(
-            h, zeta=zeta(n1d, epsilon, nstep), a_inv=pars["physics"]["a_inv"]
-        )
+        kernel = FitKernel(h, zeta=z, a_inv=pars["physics"]["a_inv"])
         contact_strength = kernel.fit_contact_strenth()
         h.set_contact_strength(contact_strength)
 
