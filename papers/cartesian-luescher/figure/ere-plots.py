@@ -136,7 +136,9 @@ def export_grid_plot(
 
     grid.fig.suptitle(title, y=1.05)
 
-    grid.savefig("ere-" + file_name.replace(".sqlite", ".pdf"), **EXPORT_OPTIONS)
+    grid.savefig(
+        "ere-" + file_name.replace(".sqlite", ".pdf").replace("=", "_"), **EXPORT_OPTIONS
+    )
 
 
 def main():

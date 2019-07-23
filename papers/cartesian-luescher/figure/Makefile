@@ -4,10 +4,12 @@ TARBALL=figure-package.tar.gz
 FIGURES=I0.pdf	\
  		dispersion.pdf	\
 		counterterm-nstep.pdf					\
-		db-contact-fv-c-fitted-parity-lg.pdf 	\
-		db-contact-fv-d-fitted-parity-lg.pdf	\
-		db-contact-fv-c-fitted-parity-a-inv-lg.pdf	\
-		db-contact-fv-d-fitted-parity-a-inv-lg.pdf	\
+		ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf	 \
+		ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	 \
+		ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pdf	 \
+		ere-contact-fitted_a-inv_-5.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf	 \
+		ere-contact-fitted_a-inv_-5.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	 \
+		ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pdf	 \
 		continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf	\
 		continuum-spectrum-db-contact-fv-c-fitted-parity-lg.pdf
 
@@ -29,10 +31,12 @@ ere: ere-plots.py
 	./ere-plots.py
 	touch ere
 
-db-contact-fv-c-fitted-parity-lg.pdf: ere
-db-contact-fv-d-fitted-parity-lg.pdf: ere
-db-contact-fv-c-fitted-a-inv-parity-lg.pdf: ere
-db-contact-fv-d-fitted-a-inv-parity-lg.pdf: ere
+ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf: ere
+ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf: ere
+ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf: ere
+ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pdf: ere
+ere-contact-fitted_a-inv_-5.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf: ere
+ere-contact-fitted_a-inv_-5.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf: ere
 
 continuum-ere-db-contact-fv-c-fitted-parity-lg.pdf: continuum-extrapolation.py
 	./continuum-extrapolation.py
