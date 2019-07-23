@@ -15,38 +15,60 @@ from luescher_nd.plotting.styles import LINE_STYLE
 from luescher_nd.plotting.styles import MARKERS
 
 
-DATA_FOLDER = os.path.join(DATA_FOLDER, "three-d")
+# DATA_FOLDER = os.path.join(DATA_FOLDER, "three-d")
 
 FILE_OPTIONS = [
     {
-        "file_name": "db-contact-fv-c-fitted-parity-a-inv-lg.sqlite",
+        "file_name": "contact-fitted_a-inv=-5.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite",
         "zeta": "spherical",
         "a_inv": -5.0,
+        "y_lim": (-10, 15),
     },
     {
-        "file_name": "db-contact-fv-c-fitted-parity-lg.sqlite",
+        "file_name": "contact-fitted_a-inv=+0.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite",
         "zeta": "spherical",
         "a_inv": 0,
+        "y_lim": (-5, 10),
     },
     {
-        "file_name": "db-contact-fv-d-fitted-parity-lg.sqlite",
-        "zeta": "dispersion",
+        "file_name": "contact-fitted_a-inv=-5.0_zeta=cartesian_projector=a1g_n-eigs=200.sqlite",
+        "zeta": "cartesian",
+        "a_inv": -5.0,
+        "y_lim": (-10, 15),
+    },
+    {
+        "file_name": "contact-fitted_a-inv=+0.0_zeta=cartesian_projector=a1g_n-eigs=200.sqlite",
+        "zeta": "cartesian",
         "a_inv": 0,
+        "y_lim": (-5, 10),
     },
     {
-        "file_name": "db-contact-fv-d-fitted-parity-a-inv-lg.sqlite",
+        "file_name": "contact-fitted_a-inv=-5.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
         "zeta": "dispersion",
         "a_inv": -5.0,
+        "y_lim": (-5 - 1.0e-9, -5 + 1.0e-9),
+    },
+    {
+        "file_name": "contact-fitted_a-inv=+0.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
+        "zeta": "dispersion",
+        "a_inv": 0,
+        "y_lim": (-1.0e-9, 1.0e-9),
     },
 ]
 
-ROUND_DIGITS = 3
-FILTER_POLES = True
-FILTER_BY_NSTATES = True
-Y_BOUNDS = (-5, 5)
+ROUND_DIGITS = None
+FILTER_POLES = False
+FILTER_BY_NSTATES = False
+Y_BOUNDS = (-500, 500)
 
 
-def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0):
+def nstep_label(nstep) -> str:
+    return str(nstep) if nstep > 0 else r"\infty"
+
+
+def export_grid_plot(
+    file_name: str, zeta: str = "spherical", a_inv: float = 0.0, y_lim=None
+):
     """Generates a grid plot of ERE(x)
 
     With L on the rows, nstep on the cols and epsilon as hue/markers.
@@ -70,9 +92,8 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
             round_digits=ROUND_DIGITS,
             filter_poles=FILTER_POLES,
             filter_by_nstates=FILTER_BY_NSTATES,
-        )
-        .sort_values("x")
-        .query(f"y > {a_inv + Y_BOUNDS[0]} and y < {a_inv + Y_BOUNDS[1]}")
+        ).sort_values("x")
+        # .query(f"y > {a_inv + Y_BOUNDS[0]} and y < {a_inv + Y_BOUNDS[1]}")
     )
 
     title = f"{zeta.capitalize()} Lüscher"
@@ -80,8 +101,10 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
     title += (
         " at unitarity"
         if abs(a_inv) < 1.0e-12
-        else rf" at $-\frac{{1}}{{a_0}} = {a_inv:1.1f}$ [fm $^{{-1}}$]"
+        else rf" at $-\frac{{1}}{{a_0}} = {a_inv:1.1f} [\mathrm{{fm}}^{{-1}}]$"
     )
+
+    df["nstep"] = df.nstep.apply(nstep_label)
 
     grid = sns.FacetGrid(
         data=df,
@@ -93,24 +116,27 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
         legend_out=True,
         hue_kws={"marker": MARKERS, "ms": [1] * 10, "lw": [0.5] * 10, "ls": [":"] * 10},
         margin_titles=True,
-        col_order=["1", "2", "4", "$\\infty$"],
+        col_order=[nstep_label(nstep) for nstep in [1, 2, 4, -1]],
     )
     grid.map(plt.plot, "x", "y")
 
     for ax in grid.axes.flatten():
         ax.axhline(a_inv, color="black", lw=0.5, zorder=-1)
+        ax.set_xlim(-1, 30)
+        if y_lim is not None:
+            ax.set_ylim(*y_lim)
 
-    grid.add_legend(title=r"$\epsilon$ [fm]", frameon=False)
-    grid.set_xlabels(r"$x = \left(\frac{p L}{2 \pi}\right)^2$")
-    grid.set_ylabels(r"$p \cot(\delta_0(p))$ [fm$^{-1}$]")
+    grid.add_legend(title=r"$\epsilon [\mathrm{fm}]$", frameon=False)
+    grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
+    grid.set_ylabels(r"$p \cot(\delta_0(p)) [\mathrm{fm}^{-1}]$")
     grid.set_titles(
-        row_template=r"${row_var} = {row_name}$ [fm]",
-        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
+        row_template=r"${row_var} = {row_name} [\mathrm{{fm}}]$",
+        col_template=r"$n_{{\mathrm{{step}}}} = {col_name}$",
     )
 
     grid.fig.suptitle(title, y=1.05)
 
-    grid.savefig(file_name.replace(".sqlite", ".pdf"), **EXPORT_OPTIONS)
+    grid.savefig("ere-" + file_name.replace(".sqlite", ".pdf"), **EXPORT_OPTIONS)
 
 
 def main():
