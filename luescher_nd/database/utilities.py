@@ -106,9 +106,6 @@ def read_table(  # pylint: disable=R0913, R0914
     if filter_poles:
         df = df.dropna()
 
-    df.loc[df.nstep == -1, "nstep"] = r"$\infty$"
-    df["nstep"] = df["nstep"].astype(str)
-
     return df
 
 
@@ -123,8 +120,8 @@ def get_ere(df: pd.DataFrame, zeta: str = "spherical") -> pd.Series:
             g.apply(
                 lambda frame: pd.Series(
                     DispersionZeta3D(
-                        frame["L"].mean(),
-                        frame["epsilon"].mean(),
+                        frame["L"].unique()[0],
+                        frame["epsilon"].unique()[0],
                         (
                             frame["nstep"].unique()[0]
                             if frame["nstep"].unique()[0] > 0
