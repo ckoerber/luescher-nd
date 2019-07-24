@@ -22,13 +22,13 @@ FILE_OPTIONS = [
         "file_name": "contact-fitted_a-inv=-5.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite",
         "zeta": "spherical",
         "a_inv": -5.0,
-        "y_lim": (-10, 15),
+        "y_lim": (-15, 15),
     },
     {
         "file_name": "contact-fitted_a-inv=+0.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite",
         "zeta": "spherical",
         "a_inv": 0,
-        "y_lim": (-5, 10),
+        "y_lim": (-10, 20),
     },
     {
         "file_name": "contact-fitted_a-inv=-5.0_zeta=cartesian_projector=a1g_n-eigs=200.sqlite",
@@ -40,26 +40,28 @@ FILE_OPTIONS = [
         "file_name": "contact-fitted_a-inv=+0.0_zeta=cartesian_projector=a1g_n-eigs=200.sqlite",
         "zeta": "cartesian",
         "a_inv": 0,
-        "y_lim": (-5, 10),
+        "y_lim": (-5, 20),
     },
     {
         "file_name": "contact-fitted_a-inv=-5.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
         "zeta": "dispersion",
         "a_inv": -5.0,
-        "y_lim": (-5 - 1.0e-9, -5 + 1.0e-9),
+        "y_lim": (-6, -4),
     },
     {
         "file_name": "contact-fitted_a-inv=+0.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
         "zeta": "dispersion",
         "a_inv": 0,
-        "y_lim": (-1.0e-9, 1.0e-9),
+        "y_lim": (-6, 4),
     },
 ]
 
-ROUND_DIGITS = None
+ROUND_DIGITS = 1
 FILTER_POLES = False
 FILTER_BY_NSTATES = False
+FILTER_DEGENERACY = True
 Y_BOUNDS = (-500, 500)
+FILTER = "n1d >= 10 and nstep != 1"
 
 
 def nstep_label(nstep) -> str:
@@ -92,8 +94,10 @@ def export_grid_plot(
             round_digits=ROUND_DIGITS,
             filter_poles=FILTER_POLES,
             filter_by_nstates=FILTER_BY_NSTATES,
-        ).sort_values("x")
-        # .query(f"y > {a_inv + Y_BOUNDS[0]} and y < {a_inv + Y_BOUNDS[1]}")
+            filter_degeneracy=FILTER_DEGENERACY,
+        )
+        .sort_values("x")
+        .query(FILTER)
     )
 
     title = f"{zeta.capitalize()} Lüscher"
@@ -116,7 +120,7 @@ def export_grid_plot(
         legend_out=True,
         hue_kws={"marker": MARKERS, "ms": [1] * 10, "lw": [0.5] * 10, "ls": [":"] * 10},
         margin_titles=True,
-        col_order=[nstep_label(nstep) for nstep in [1, 2, 4, -1]],
+        col_order=[nstep_label(nstep) for nstep in [2, 4, -1]],
     )
     grid.map(plt.plot, "x", "y")
 

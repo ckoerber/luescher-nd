@@ -2,6 +2,8 @@
 """
 from typing import Dict
 from typing import Optional
+from typing import List
+from typing import Tuple
 
 import os
 
@@ -28,12 +30,40 @@ DATA_FOLDER = os.path.abspath(
 np.random.seed(42)
 
 
+def get_degeneracy(n1d: int, ndim: int = 3) -> Dict[int, List[Tuple[int, int, int]]]:
+    """Computes n@n from lattice vectors in [-n1d//2, n1d//2) and counts degeneracy.
+
+    Vectors are gegenerate if there is no permutation such that abs(v1) == abs(v2) but
+    still v1@v1 == v2@v2.
+
+    The dictionary contains equivalency classes for each v@v value.
+
+    **Arguments**
+        n1d: int
+            Number of lattice sides in on dimension.
+
+        ndim: int = 3
+            Number of dimensions.
+    """
+    n1d = np.arange(-n1d // 2, n1d // 2)
+
+    tmp = {}
+    for n in np.transpose([el.flatten() for el in np.meshgrid(*[n1d] * ndim)]):
+        n2 = n @ n
+        tmp.setdefault(n2, set()).add(tuple(sorted(np.abs(n))))
+
+    n_squared = {key: tmp[key] for key in np.sort(list(tmp.keys()))}
+
+    return n_squared
+
+
 def read_table(  # pylint: disable=R0913, R0914
     database: str,
     round_digits: int = 2,
     zeta: Optional[str] = None,
     filter_poles: bool = False,
     filter_by_nstates: bool = False,
+    filter_degeneracy: bool = False,
     drop_comment: bool = True,
 ) -> pd.DataFrame:
     """Reads database and returns data frame with table plus additional columns.
@@ -100,11 +130,14 @@ def read_table(  # pylint: disable=R0913, R0914
         ]
         df = df[~df.x.round(round_digits).isin(integer_x)]
 
+    if filter_degeneracy:
+        degenerate_nums = [n2 for n2, vec in get_degeneracy(20).items() if len(vec) > 1]
+        df = df[~df.x.round(round_digits).isin(degenerate_nums)]
+
     if zeta is not None:
         df["y"] = get_ere(df, zeta=zeta)
 
-    if filter_poles:
-        df = df.dropna()
+    df = df.dropna()
 
     return df
 
