@@ -323,3 +323,24 @@ def a1g_list(n1d, ndim, max_nsq=None):
             nsq[n2] += [[i, p]]
 
     return nsq
+
+def a1g_degeneracy(n1d, ndim, max_nsq=None):
+    degeneracies = dict()
+    a1g_states = a1g_list(n1d, ndim, max_nsq)
+    for n2 in a1g_states:
+        degeneracies[n2] = 0
+        handled = []
+        for i, vi in a1g_states[n2]:
+            if i in handled:
+                continue
+            handled += [i]
+            degeneracies[n2] +=1
+
+            for j, vj in a1g_states[n2]:
+                if j in handled:
+                    continue
+                match = np.sort(np.abs(vi, dtype=int)) == np.sort(np.abs(vj, dtype=int))
+                if match.all():
+                    handled += [j]
+
+    return degeneracies
