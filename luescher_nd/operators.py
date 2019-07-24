@@ -145,14 +145,8 @@ def get_projector_to_a1g(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disab
     ntot = n1d ** ndim
     A1g_mat = sp.dok_matrix((ntot, ntot), dtype=float)
 
-    # One-dimensional momenta, with signs.
-    p1d = np.array(
-        list(np.arange(0, (n1d + 1) // 2)) + list(-np.arange(n1d // 2, 0, -1))
-    )
-
-    # A list of coordinates:
-    momenta = np.transpose([el.flatten() for el in np.meshgrid(*[p1d] * ndim)])
-
+    momenta = lattice.momenta(n1d, ndim)
+    
     # Group momenta by norm^2, keeping index
     nsq = dict()
     for i, p in enumerate(momenta):
@@ -232,13 +226,7 @@ def get_a1g_reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=R0914
     """
     A1g_mat = []
 
-    # One-dimensional momenta, with signs.
-    p1d = np.array(
-        list(np.arange(0, (n1d + 1) // 2)) + list(-np.arange(n1d // 2, 0, -1))
-    )
-
-    # A list of coordinates:
-    momenta = np.transpose([el.flatten() for el in np.meshgrid(*[p1d] * ndim)])
+    lattice.momenta(n1d, ndim)
 
     # Group momenta by norm^2, keeping index
     nsq = dict()
