@@ -3,19 +3,33 @@
 import numpy as np
 from luescher_nd.operators import get_projector_to_a1g as A1g
 from luescher_nd.operators import get_a1g_reducer as reducer
-from luescher_nd.operators import a1g_list as states
+import luescher_nd.operators.a1g as a1g
+import luescher_nd.lattice as lattice
 import scipy.sparse as sp
 from scipy.sparse.linalg import eigsh
 
 import matplotlib.pyplot as plt
 
-ndim=3
-n1d=4
+import itertools, functools
 
-s = states(n1d, ndim, 9)
-for k in iter(sorted(s.keys())):
-    print(f"{k} {s[k][0][1]}")
-exit()
+
+ndim=3
+n1d=6
+
+nsq_max = None
+for n1d in [4,6]:#20,50]:
+    print(f"\n\n\n\nn1d = {n1d}")
+    s = lattice.all_nsq_primitives(n1d, ndim)
+    print("States:")
+    for k in iter(sorted(s.keys())):
+        result=""
+        for vector in s[k]:
+            result+=f"{vector} "
+        print(f"    {k} {result}")
+    print("Degeneracies:")
+    d = a1g.nsq_degeneracy(n1d, ndim)
+    for k in iter(sorted(d.keys())):
+        print(f"    {k} {d[k]}")
 
 ndim = 3
 n1d=6
