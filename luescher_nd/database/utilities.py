@@ -57,6 +57,24 @@ def get_degeneracy(n1d: int, ndim: int = 3) -> Dict[int, List[Tuple[int, int, in
     return n_squared
 
 
+def get_degeneracy_list(n1d: int, ndim: int = 3) -> List[int]:
+    """Computes n@n from lattice vectors in [-n1d//2, n1d//2) and counts degeneracy.
+
+    Vectors are gegenerate if there is no permutation such that abs(v1) == abs(v2) but
+    still v1@v1 == v2@v2.
+
+    The returned list returns the n**2 values which are degenerate.
+
+    **Arguments**
+        n1d: int
+            Number of lattice sides in on dimension.
+
+        ndim: int = 3
+            Number of dimensions.
+    """
+    return [n2 for n2, vecs in get_degeneracy(n1d, ndim=ndim).items() if len(vecs) > 1]
+
+
 def read_table(  # pylint: disable=R0913, R0914
     database: str,
     round_digits: int = 2,
