@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from luescher_nd.operators import get_A1g_operator as A1g
-from luescher_nd.operators import get_A1g_reducer as reducer
+from luescher_nd.operators import get_projector_to_a1g as A1g
+from luescher_nd.operators import get_a1g_reducer as reducer
+from luescher_nd.operators import a1g_list as states
 import scipy.sparse as sp
 from scipy.sparse.linalg import eigsh
 
 import matplotlib.pyplot as plt
+
+ndim=3
+n1d=4
+
+s = states(n1d, ndim, 9)
+for k in iter(sorted(s.keys())):
+    print(f"{k} {s[k][0][1]}")
+exit()
 
 ndim = 3
 n1d=6

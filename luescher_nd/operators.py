@@ -10,7 +10,7 @@ p |psi> = |psi>
 if `|psi>` is contained in `{space}` and else zero.
 """
 import numpy as np
-
+import luescher_nd.lattice as lattice
 import scipy.sparse as sp
 
 
@@ -297,3 +297,29 @@ def get_a1g_reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=R0914
         # That'd make the Hamiltonian much much much smaller, and therefore (presumably) easier to diagonalize.
         # However, it requires sparse-dense-sparse mat-mat-mat multiply.
     return np.array(A1g_mat)
+
+def a1g_list(n1d, ndim, max_nsq=None):
+    if max_nsq is None:
+        p_max = (n1d/2)
+        n2_max = p_max**2
+    else:
+        p_max = int(np.sqrt(max_nsq))
+        n2_max = max_nsq
+
+    # A list of coordinates:
+    momenta = lattice.momenta(n1d, ndim)
+
+    # Group momenta by norm^2, keeping index
+    nsq = dict()
+    for i, p in enumerate(momenta):
+        if np.any(p>p_max):
+            continue
+        n2 = np.dot(p, p)
+        if n2 > n2_max:
+            continue
+        if n2 not in nsq:
+            nsq[n2] = [[i, p]]
+        else:
+            nsq[n2] += [[i, p]]
+
+    return nsq
