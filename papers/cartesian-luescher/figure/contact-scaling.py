@@ -65,7 +65,8 @@ def prop_df() -> pd.DataFrame:
     tf["analytic"] = tf.apply(
         lambda row: 4 * row["epsilon"] / m / COUNTER_TERMS[row["nstep"]], axis=1
     )
-    tf["diff"] = 100 * ((tf["analytic"] - tf["contact_strength"]) / tf["analytic"]).abs()
+    # tf["diff"] = 100 * ((tf["analytic"] - tf["contact_strength"]) / tf["analytic"]).abs()
+    tf["diff"] = ((tf["analytic"] - tf["contact_strength"])).abs()
     tf["log2_eps"] = np.log2(tf["epsilon"])  # pylint: disable=E1111
 
     return (
@@ -123,7 +124,7 @@ def plot(x_label, y_label, **kwargs):
 
 
 def export_grid_plot(df: pd.DataFrame, m: float):
-    """
+    """Plot a grid with values as first row and errors as second.
     """
     grid = sns.FacetGrid(
         data=df,
@@ -137,6 +138,7 @@ def export_grid_plot(df: pd.DataFrame, m: float):
         gridspec_kws={"height_ratios": [1.5, 1]},
         hue_order=[1, 2, 4, -1],
         xlim=(-6, -1.5),
+        ylim=(1.0e-16, 5.0e-11),
         aspect=1.5,
     )
 
@@ -170,7 +172,7 @@ def export_grid_plot(df: pd.DataFrame, m: float):
         ax.set_yscale("log")
 
     grid.axes[0, 0].set_ylabel(r"$-c(\epsilon) \, [\mathrm{fm}^{-2}]$")
-    grid.axes[1, 0].set_ylabel(r"$|\Delta c(\epsilon)| \, [\%]$")
+    grid.axes[1, 0].set_ylabel(r"$|\Delta c(\epsilon)| \, [\mathrm{fm}^{-2}]$")
 
     for ax in grid.axes[1]:
         ax.set_xticks(range(-6, -1))
