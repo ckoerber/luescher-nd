@@ -113,12 +113,12 @@ def plot(x_label, y_label, **kwargs):
             )
     else:
         width = 0.05
-        plt.bar(
+        plt.errorbar(
             df[x_label] + x_shift[nstep] * width,
+            [1.0e-16] * len(df[x_label]),
             df[y_label],
-            width=width,
-            linewidth=1,
-            facecolor=kwargs["color"],
+            linewidth=2,
+            color=kwargs["color"],
             alpha=0.9,
         )
 
