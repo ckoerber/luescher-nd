@@ -81,7 +81,6 @@ def projector(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=R0914
     for nsq in primitives:
         for primitive in primitives[nsq]:
             prtners = partners(n1d, ndim, primitive)
-            print(f"nsq={nsq}, {prtners}")
             indices = [lookup[p] for p in prtners]
             norm = oneByDegeneracy[len(indices)]
             for i, j in itertools.product(indices, repeat=2):
