@@ -37,7 +37,7 @@ def partners(n1d, ndim, vector):
         for signs in itertools.product(sign, repeat=ndim):
             vector = tuple([p * s for p, s in zip(permutation, signs)])
             if vector in momenta:
-                prtners.add(tuple([p * s for p, s in zip(permutation, signs)]))
+                prtners.add(vector)
 
     return prtners
 
