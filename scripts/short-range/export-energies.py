@@ -173,6 +173,11 @@ def main():
     else:
         get_projector = lambda n1d: None
 
+    if not "epsilon" in pars["basis"] and len(pars["basis"]["L"]) == 1:
+        pars["basis"]["epsilon"] = []
+        for n1d in pars["basis"]["n1d"]:
+            pars["basis"]["epsilon"].append(pars["basis"]["L"] / n1d)
+
     for nstep, L, epsilon in tqdm(
         list(product(*[pars["basis"][key] for key in ["nstep", "L", "epsilon"]]))
     ):
