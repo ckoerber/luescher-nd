@@ -211,7 +211,7 @@ def get_ere(df: pd.DataFrame, zeta: str = "spherical") -> pd.Series:
     return s / np.pi
 
 
-def _even_poly(epsilon: np.ndarray, p: Dict[str, gv.GVar]):  # pylint: disable=E1101
+def _even_poly(epsilon: np.ndarray, p: Dict[str, "GVar"]):  # pylint: disable=E1101
     """Even polynomial used for fit.
 
     `y = sum(x_n epsilon**(2n), n=0, n_max)`.
