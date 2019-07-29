@@ -13,8 +13,10 @@ import matplotlib.pylab as plt
 
 from luescher_nd.zeta.extern.pyzeta import zeta  # pylint: disable=E0611
 
-from luescher_nd.database.utilities import read_table, get_continuum_extrapolation
+from luescher_nd.database.utilities import read_table
+from luescher_nd.database.utilities import get_continuum_extrapolation
 from luescher_nd.database.utilities import DATA_FOLDER
+from luescher_nd.database.utilities import get_degeneracy
 
 from luescher_nd.plotting.styles import setup
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
@@ -26,15 +28,15 @@ FILES = [
     "contact-fitted_a-inv=-5.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite",
 ]
 
-FILTER = "nlevel < 20"
-ROUND_DIGITS = None
+FILTER = "nlevel < 20 and n1d > 5"
+ROUND_DIGITS = 0
 FILTER_POLES = False
 FILTER_BY_NSTATES = False
 Y_BOUNDS = (-3, 3)
 
 
 def nstep_label(nstep) -> str:
-    return str(nstep) if nstep > 0 else r"\infty"
+    return "$" + (str(nstep) if nstep > 0 else r"\infty") + "$"
 
 
 def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
@@ -52,7 +54,7 @@ def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
 
     grid = sns.FacetGrid(
         data=df,
-        col="nstep",
+        col="nstep_label",
         hue="nlevel",
         row="L",
         sharex="row",
@@ -73,15 +75,23 @@ def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
     grid.set_xlabels(r"$\epsilon [\mathrm{fm}]$")
     grid.set_titles(
         row_template=r"${row_var} = {row_name} [\mathrm{{fm}}]$",
-        col_template=r"$n_{{\mathrm{{step}}}} = {col_name}$",
+        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
     )
 
-    grid.fig.suptitle(title, y=1.05)
+    degs = [n2 for n2 in get_degeneracy(20) if n2 < 20]
+    for ax in grid.axes.flatten():
+        ax.set_yticks(degs)
+        for d in set(degs):
+            ax.axhline(d, ls="-", color="grey", lw=0.5, zorder=-10, alpha=0.5)
+
+    # grid.fig.suptitle(title, y=1.05)
 
     grid.savefig(file_name.replace("=", "_"), **EXPORT_OPTIONS)
 
 
-def export_ere(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
+def export_ere(
+    input_df: pd.DataFrame, file_name: str, filter_degeneracy: bool = True
+):  # pylint: disable=C0103
     """Exports effective range expansion to file.
 
     **Arguments**
@@ -91,6 +101,11 @@ def export_ere(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
         file_name: str
             Name used for the export.
     """
+    df = input_df.copy()
+    if filter_degeneracy:
+        degenerate_nums = [n2 for n2, vec in get_degeneracy(20).items() if len(vec) > 1]
+        df = df[~df.x.round(ROUND_DIGITS).isin(degenerate_nums)]
+
     df["y"] = zeta(df["x"]) / np.pi / df["L"]
     # df = df.query("y > @Y_BOUNDS[0] and y < @Y_BOUNDS[1]")
 
@@ -101,7 +116,7 @@ def export_ere(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
     grid = sns.FacetGrid(
         data=df,
         col="L",
-        hue="nstep",
+        hue="nstep_label",
         sharex=False,
         sharey=True,
         legend_out=True,
@@ -124,7 +139,7 @@ def export_ere(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
     grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
     grid.set_ylabels(r"$p \cot (\delta(p)) [\mathrm{fm}^{-1}]$")
     grid.set_titles(col_template=r"${col_var} = {col_name} [\mathrm{{fm}}]$")
-    grid.fig.suptitle(title, y=1.05)
+    # grid.fig.suptitle(title, y=1.05)
 
     grid.savefig(file_name.replace("=", "_"), **EXPORT_OPTIONS)
 
@@ -146,11 +161,13 @@ def export_grid_plot(file_name: str):
         filter_poles=FILTER_POLES,
         filter_by_nstates=FILTER_BY_NSTATES,
     ).query(FILTER)[["L", "epsilon", "nstep", "nlevel", "x"]]
+    df["L"] = df["L"].round(14)
 
-    df["nstep"] = df.nstep.apply(nstep_label)
+    df["nstep_label"] = df.nstep.apply(nstep_label)
 
     fit_df = get_continuum_extrapolation(df, include_statistics=False)
     tf = df.append(fit_df, sort=True).sort_values(["nlevel", "L", "nstep", "epsilon"])
+    fit_df["nstep_label"] = fit_df.nstep.apply(nstep_label)
 
     export_spectrum(tf, f"continuum-spectrum-{file_name}".replace(".sqlite", ".pdf"))
     export_ere(fit_df, f"continuum-ere-{file_name}".replace(".sqlite", ".pdf"))
