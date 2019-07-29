@@ -324,7 +324,7 @@ def get_continuum_extrapolation(  # pylint: disable=C0103
         include_statistics: bool = True
             Includes fit statistics like chi2/dof or logGBF.
     """
-    if lsqfit is None or gvar is None:
+    if lsqfit is None or gv is None:
         raise ImportError(
             "Cannort load `lsqfit` and `gvar`." " Thus fitting is not possible."
         )
