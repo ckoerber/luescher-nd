@@ -211,10 +211,12 @@ def get_ere(df: pd.DataFrame, zeta: str = "spherical") -> pd.Series:
     return s / np.pi
 
 
-def _even_poly(epsilon: np.ndarray, p: Dict[str, "GVar"]):  # pylint: disable=E1101
+def _poly(
+    epsilon: np.ndarray, p: Dict[str, "GVar"], even: bool = True
+):  # pylint: disable=E1101
     """Even polynomial used for fit.
 
-    `y = sum(x_n epsilon**(2n), n=0, n_max)`.
+    `y = sum(x_n epsilon**(2n), n=0, n_max)` if even else also sum over `epsilon**n`.
 
     **Arguments**
         epsilon: np.ndarray
@@ -222,9 +224,12 @@ def _even_poly(epsilon: np.ndarray, p: Dict[str, "GVar"]):  # pylint: disable=E1
 
         p: Dict[str, gv.GVar]
             The prior. Must contain key "x"
+
+        even: bool = True
+            Compute only even polynomial.
     """
     nexp = len(p["x"])
-    exps = np.arange(0, nexp * 2, 2)
+    exps = np.arange(0, nexp * 2 if even else nexp, 2 if even else 1)
     out = 0
     for exp, x in zip(exps, p["x"]):
         out += epsilon ** exp * x
@@ -233,7 +238,11 @@ def _even_poly(epsilon: np.ndarray, p: Dict[str, "GVar"]):  # pylint: disable=E1
 
 
 def _group_wise_fit(  # pylint: disable=R0914
-    row: pd.Series, n_poly_max: int = 4, delta_x=1.0e-8, include_statistics: bool = True
+    row: pd.Series,
+    n_poly_max: int = 4,
+    delta_x=1.25e-13,
+    include_statistics: bool = True,
+    odd_poly: bool = False,
 ):
     """Runs a bayesian fit to extrapolate x(epsilon) to zero.
 
@@ -257,10 +266,15 @@ def _group_wise_fit(  # pylint: disable=R0914
 
         include_statistics: bool = True
             Includes fit statistics like chi2/dof or logGBF.
+
+        odd_poly: bool = False
+            Allow fits of odd polynomials.
     """
     epsilon, x = row["epsilon"].values, row["x"].values
-    error = [delta_x * np.random.uniform(0.5, 2, size=1)[0] for _ in x]
+    error = [delta_x * np.random.uniform(0.8, 1.2, size=1)[0] for _ in x]
     data = (epsilon, gv.gvar(x, error))
+
+    poly = lambda x, p: _poly(x, p, even=not odd_poly)
 
     if len(x) > 2:
 
@@ -272,24 +286,30 @@ def _group_wise_fit(  # pylint: disable=R0914
             x_error = [10 * np.random.uniform(0.5, 2, size=1)[0] for _ in x_init]
             prior = {"x": gv.gvar(x_init, x_error)}
 
-            fit = lsqfit.nonlinear_fit(data, fcn=_even_poly, prior=prior)
+            fit = lsqfit.nonlinear_fit(data, fcn=poly, prior=prior)
             fits.append(fit)
             log_gbf.append(fit.logGBF)
 
-        idx = np.argmax(log_gbf)
-        fit = fits[idx]
-
         if include_statistics:
-            out = pd.Series(
-                {
+            data = []
+            for fit in fits:
+                tmp = {
                     "x": fit.p["x"][0].mean,
-                    "sdev": fit.p["x"][0].mean,
+                    "sdev": fit.p["x"][0].sdev,
                     "chi2/dof": fit.chi2 / fit.dof,
                     "logGBF": fit.logGBF,
-                    "n_poly_max": range(1, n_poly_max + 1)[idx],
+                    "n_poly_max": len(fit.p["x"]) - 1
+                    if odd_poly
+                    else 2 * (len(fit.p["x"]) - 1),
+                    "even": not odd_poly,
                 }
-            )
+                for n, x in enumerate(fit.p["x"]):
+                    tmp[f"x{n if odd_poly else 2*(n)}"] = x
+                data.append(tmp)
+            out = pd.DataFrame(data)
         else:
+            idx = np.argmax(log_gbf)
+            fit = fits[idx]
             out = pd.Series({"x": fit.p["x"][0].mean})
     else:
         out = None
@@ -300,8 +320,9 @@ def _group_wise_fit(  # pylint: disable=R0914
 def get_continuum_extrapolation(  # pylint: disable=C0103
     df: pd.DataFrame,
     n_poly_max: int = 4,
-    delta_x: float = 1.0e-8,
+    delta_x: float = 1.25e-13,
     include_statistics: bool = True,
+    odd_poly: bool = False,
 ) -> pd.DataFrame:
     """Takes a data frame read in by read tables and runs a continuum extrapolation
     for the spectrum.
@@ -323,6 +344,9 @@ def get_continuum_extrapolation(  # pylint: disable=C0103
 
         include_statistics: bool = True
             Includes fit statistics like chi2/dof or logGBF.
+
+        odd_poly: bool = False
+            Allow fits of odd polynomials.
     """
     if lsqfit is None or gv is None:
         raise ImportError(
@@ -334,7 +358,11 @@ def get_continuum_extrapolation(  # pylint: disable=C0103
         n_poly_max=n_poly_max,
         delta_x=delta_x,
         include_statistics=include_statistics,
+        odd_poly=odd_poly,
     ).reset_index()
     fit_df["epsilon"] = 0
+
+    if "level_3" in fit_df.columns:
+        fit_df = fit_df.drop(columns=["level_3"])
 
     return fit_df
