@@ -10,8 +10,13 @@ import os
 import numpy as np
 import pandas as pd
 
-import lsqfit
-import gvar as gv
+try:
+    import lsqfit
+    import gvar as gv
+except:
+    lsqfit = None
+    gv = None
+    print("Failed to import `lsqfit` and `gvar`. Fitting not possible.")
 
 from luescher_nd.database.connection import DatabaseSession
 
@@ -319,6 +324,10 @@ def get_continuum_extrapolation(  # pylint: disable=C0103
         include_statistics: bool = True
             Includes fit statistics like chi2/dof or logGBF.
     """
+    if lsqfit is None or gvar is None:
+        raise ImportError(
+            "Cannort load `lsqfit` and `gvar`." " Thus fitting is not possible."
+        )
     group = df.groupby(["L", "nstep", "nlevel"])[["epsilon", "x"]]
     fit_df = group.apply(
         _group_wise_fit,
