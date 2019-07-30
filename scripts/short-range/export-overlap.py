@@ -26,9 +26,14 @@ from luescher_nd.hamiltonians.contact import MomentumContactHamiltonian
 
 
 FILE_NAME = "contact-fitted_a-inv=+0.0_zeta=spherical_projector=a1g_n-eigs=200.sqlite"
-OUT_NAME = FILE_NAME.replace("contact-fitted", "eigs-overlap").replace(".sqlite", ".h5")
+OUT_NAME = FILE_NAME.replace("contact-fitted", "eigs-overlap-nstep={nstep:+d}").replace(
+    ".sqlite", ".h5"
+)
 
 NDIM = 3
+NSTEP_RANGE = [1, 4]
+N1D_RANGE = [4, 10, 20, 30, 40, 50]
+NLEVEL_MAX = 20
 
 
 def get_a1g_basis(n1d: int, ndim: int = 3) -> Dict[Tuple[int, int, int], np.ndarray]:
@@ -65,66 +70,73 @@ def main():  # pylint: disable=R0914
     Results are exported ot hdf5 file.
     """
 
-    df = ut.read_table(
-        os.path.join(DATA_FOLDER, FILE_NAME),
-        zeta=None,
-        round_digits=2,
-        filter_poles=False,
-        filter_by_nstates=False,
-        filter_degeneracy=False,
-    ).query("nlevel == 0 and nstep == -1 and L == 1")[
-        ["n1d", "epsilon", "nstep", "L", "x", "nlevel", "contact_strength", "E"]
-    ]
-
-    interactions = {
-        (n1d, epsilon): c0
-        for (n1d, epsilon), c0 in df.set_index(["n1d", "epsilon"])["contact_strength"]
-        .to_dict()
-        .items()
-        if n1d % 2 == 0
-    }
-
     data = []
-    for (n1d, epsilon), c0 in tqdm(interactions.items()):
+    for nstep in NSTEP_RANGE:
+        file_name = os.path.join(DATA_FOLDER, OUT_NAME.format(nstep=nstep))
+        print(f"[+] exporting nstep = {nstep} data to {file_name}")
 
-        pnot = get_projector_to_not_a1g(n1d, NDIM)
+        df = ut.read_table(
+            os.path.join(DATA_FOLDER, FILE_NAME),
+            zeta=None,
+            round_digits=2,
+            filter_poles=False,
+            filter_by_nstates=False,
+            filter_degeneracy=False,
+        ).query("nlevel == 0 and nstep == @nstep and L == 1")[
+            ["n1d", "epsilon", "nstep", "L", "x", "nlevel", "contact_strength", "E"]
+        ]
 
-        basis = get_a1g_basis(n1d, ndim=NDIM)
+        interactions = {
+            (n1d, epsilon): c0
+            for (n1d, epsilon), c0 in df.set_index(["n1d", "epsilon"])[
+                "contact_strength"
+            ]
+            .to_dict()
+            .items()
+            if n1d % 2 == 0 and n1d in N1D_RANGE
+        }
 
-        h = MomentumContactHamiltonian(
-            n1d,
-            epsilon=epsilon,
-            ndim=NDIM,
-            nstep=None,
-            contact_strength=c0,
-            filter_out=pnot,
-            filter_cutoff=3.0e2,
-        )
-        E, v = eigsh(h.op, k=20, which="SA", tol=1.0e-16)
-        x = 2 * h.mass / 2 * E * h.L ** 2 / 4 / np.pi ** 2
+        data = []
+        for (n1d, epsilon), c0 in tqdm(interactions.items()):
 
-        for nlevel, (xx, vv) in enumerate(zip(x, v.T)):
-            for key, bv in basis.items():
-                coeff = bv @ vv
-                overlap = coeff ** 2
+            pnot = get_projector_to_not_a1g(n1d, NDIM)
 
-                if overlap > 1.0e-4:
-                    data.append(
-                        {
-                            "n1d": n1d,
-                            "epsilon": epsilon,
-                            "L": epsilon * n1d,
-                            "x": xx,
-                            "nlevel": nlevel,
-                            "overlap": overlap,
-                            "coeff": coeff,
-                            "a1g": str(key),
-                            "nstep": -1,
-                            "contact_strength": c0,
-                        }
-                    )
+            basis = get_a1g_basis(n1d, ndim=NDIM)
 
-        pd.DataFrame(data).to_hdf(os.path.join(DATA_FOLDER, OUT_NAME), key="overlap")
+            h = MomentumContactHamiltonian(
+                n1d,
+                epsilon=epsilon,
+                ndim=NDIM,
+                nstep=None,
+                contact_strength=c0,
+                filter_out=pnot,
+                filter_cutoff=3.0e2,
+            )
+            E, v = eigsh(h.op, k=NLEVEL_MAX, which="SA", tol=1.0e-16)
+            x = 2 * h.mass / 2 * E * h.L ** 2 / 4 / np.pi ** 2
+
+            for nlevel, (xx, vv) in enumerate(zip(x, v.T)):
+                for key, bv in basis.items():
+                    coeff = bv @ vv
+                    overlap = coeff ** 2
+
+                    if overlap > 1.0e-4:
+                        data.append(
+                            {
+                                "n1d": n1d,
+                                "epsilon": epsilon,
+                                "L": epsilon * n1d,
+                                "x": xx,
+                                "nlevel": nlevel,
+                                "overlap": overlap,
+                                "coeff": coeff,
+                                "a1g": str(key),
+                                "nstep": nstep,
+                                "contact_strength": c0,
+                            }
+                        )
+
+            pd.DataFrame(data).to_hdf(file_name, key="overlap")
 
 
 if __name__ == "__main__":
