@@ -79,7 +79,7 @@ One finds, truncating our improvement scheme at order $J$,
 \begin{align}
     S_3^\spherical(x)  = \lim_{N\goesto\infty} S^{\spherical N}_3(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{x-n^2}{\color{red}-}2\pi N
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{n^2-x}-2\pi N
         + 4\pi \sum_{j=1}^{J} \frac{x^j}{2j-1} \left(\frac{N}{2}\right)^{-(2j-1)}
     \right]
     &
@@ -87,7 +87,7 @@ One finds, truncating our improvement scheme at order $J$,
     \nonumber\\
     S_2^\spherical(x)  = \lim_{N\goesto\infty} S^{\spherical N}_2(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{x-n^2}
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{n^2-x}
         + \pi \log \frac{x}{(N/2)^2}
         + \pi \sum_{j=1}^{J} \frac{x^j}{j} \left(\frac{N}{2}\right)^{-2j}
     \right]
@@ -96,40 +96,40 @@ One finds, truncating our improvement scheme at order $J$,
     \label{eq:improved spherical S}\\\nonumber
     S_1^\spherical(x)  = \lim_{N\goesto\infty} S^{\spherical N}_1(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{x-n^2}
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{n^2-x}
         + 2 \sum_{j=0}^{J} \frac{x^j}{2j+1}\left(\frac{N}{2}\right)^{-(2j+1)}
         \right]
     &
     (D&=1)
 \end{align}
 Note that the subleading terms are all powers of $x/(N/2)^2$.
-Since $x=(pL/2\pi)$, this implies that if one calculates the $S$ function with a finite (albeit very large) $N$, one will see a momentum-dependent deviation from the true $\cot\delta$.
-This shows up, for example, as a truncation-induced effective range and higher-order shape parameters.
+Since $x=(pL/2\pi)^2$, this implies that if one calculates the $S$ function with a finite (albeit very large) $N$, one will see a momentum-dependent deviation from the true $\cot\delta$.
+This shows up, for example, as a truncation-induced effective range and higher-order shape parameters \todo{cite Amy's and David's paper here?}.
 
-Similar expressions can be obtained for the cartesian case in $D=3$ and $D=2$ (in $D=1$ the results are identical), though in this case we are not able to determine a nice analytic expression for general order $J$ and therefore only express the terms up to $J=2$,
+Similar expressions can be obtained for the cartesian case in $D=3$ and $D=2$ (in $D=1$ the results are identical to the spherical case), though in this case we are not able to determine a nice analytic expression for general order $J$ and therefore only express the terms up to $J=2$,
 \begin{align}
     S_3^\cartesian(x)  = \lim_{N\goesto\infty} S^{\cartesian N}_3(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^3} \frac{1}{x-n^2}
-        + ???
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^3} \frac{1}{n^2-x}
+        -\pi^2 \mathcal{L}^\square_3 N+ ???
     \right]
     &
     (D&=3)
     \nonumber\\
     S_2^\cartesian(x)  = \lim_{N\goesto\infty} S^{\cartesian N}_2(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^2}^{n<N/2} \frac{1}{x-n^2}
-        + \pi \log \frac{x}{(N/2)^2}
-        +4\left(G-\frac{\pi }{2}\log(2)\right)\right.\\
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^2}^{n<N/2} \frac{1}{n^2-x}
+        + \pi \log\left( \frac{x}{\left(\mathcal{L}^\square_2N/2\right)^2}\right)+%+4\left(G-\frac{\pi }{2}\log(2)\right)
+        \right. \\
         &\hspace{5cm}\left.+\left(1+\frac{\pi}{2}\right)\frac{x}{\left(N/2\right)^2}+\left(\frac{1}{2}+\frac{3 \pi }{16}\right)\frac{x^2}{\left(N/2\right)^4}
     \right]
     &
-    (D&=2)
+    (D&=2)\nonumber
 \end{align}
+where the coefficients $\mathcal{L}^\square_D$ are given in  \Appref{counterterm/cartesian}. %$G=0.915965594177219\ldots$ is Catalan's constant.
 
+%\begin{center}
+%    \boxed{\textrm{{\color{red}REALLY TOUGH CHALLENGE: TELL THE ABOVE STORY WITH A CARTESIAN CUTOFF?}}}
+%\end{center}
 
-\begin{center}
-    \boxed{\textrm{{\color{red}REALLY TOUGH CHALLENGE: TELL THE ABOVE STORY WITH A CARTESIAN CUTOFF?}}}
-\end{center}
-
-\todo{I'm no longer convinced that (assuming you take the cutoff to infinity) spherical and cartesian should be different.  I think they should come out the same.}
+%\todo{I'm no longer convinced that (assuming you take the cutoff to infinity) spherical and cartesian should be different.  I think they should come out the same.}
