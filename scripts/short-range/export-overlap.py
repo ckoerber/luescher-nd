@@ -107,7 +107,7 @@ def main():  # pylint: disable=R0914
                 n1d,
                 epsilon=epsilon,
                 ndim=NDIM,
-                nstep=None,
+                nstep=nstep,
                 contact_strength=c0,
                 filter_out=pnot,
                 filter_cutoff=3.0e2,
