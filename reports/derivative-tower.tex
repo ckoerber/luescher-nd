@@ -1,0 +1,149 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+\documentclass[
+    aps,
+    prl,
+    showkeys,
+    nofootinbib,
+    %twocolumn,
+    floatfix
+]{revtex4}
+
+\usepackage[utf8]{inputenc} % UTF-8
+\usepackage{braket}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+
+\usepackage{graphicx}
+\usepackage{color}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+
+\newcommand{\fm}{\,\mathrm{fm}}
+\newcommand{\ifm}{\,\mathrm{fm}^{-1}}
+\newcommand{\MeV}{\,\mathrm{MeV}}
+
+\begin{document}
+
+\title{Idea behind Lüscher's formalism}
+
+\author{C.~Körber}
+
+\date{\today}
+
+\begin{abstract}%
+	I try to derive the on shell $T$-matrix expression KSW used in their paper
+	$$
+		T =-\frac{\sum C_{2 n} p^{2 n}}{1+i(M p / 4 \pi) \sum C_{2 n} p^{2 n}} \, .
+	$$
+\end{abstract}
+
+\maketitle
+
+\section{Physical scattering information}
+
+Scattering of two particles in quantum mechanics are described by the $T$-matrix 
+\begin{align}
+	T(\vec p', \vec p, E)
+	&=
+	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	&
+	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
+	\, ,
+\end{align}
+Where $\mu$ is the reduced mass of the two particle system (e.g., $\mu = 2 m$ for particles of equal mass $m$).
+
+The \textbf{on-shell} $T$-matrix is related to the scattering phase shifts by
+\begin{equation}
+	T_l(p, p , E_p) = \frac{2}{\mu} \mathcal F \frac{1}{\cot (\delta_l(p)) - i} \, ,
+\end{equation}
+where $l$ denotes the partial wave, $E_p = p^2 / (2 \mu)$ and $\mathcal F$ is a factor which depends on the spatial dimension of the two particle system.
+Note that the on-shell $T$-matrix is evaluated for all momenta and energies equal to $p$ and the partial wave decomposition removed the remaining vectorial dependence
+\begin{equation}
+	\left\langle \vec{p}^{\prime}| \hat T(E) | \vec{p}\right\rangle=\frac{2}{\pi} \sum_{l, m} T_{l}\left(p^{\prime}, p, E\right) Y_{l m}^{*}\left(\Omega_{k^{\prime}}\right) Y_{l m}\left(\Omega_{k}\right)
+\end{equation}
+For scalar potentials in three spatial dimensions, this becomes
+\begin{equation}\label{eq-phase-shifts}
+	T(p) \equiv T(p, p, E_p) = \frac{2}{\mu} \frac{1}{p\cot (\delta(p)) - ip} \, .
+\end{equation}
+
+\section{Special cases}
+
+For certain potentials, the $T$-matrix has a simple analytic expression.
+
+\subsection{Contact interaction}
+\begin{equation}
+	V(\vec p', \vec p) = c(\Lambda) \, .
+\end{equation}
+
+Because the potential is independent of $p$ and $p'$, the T-matrix becomes
+
+\begin{align}
+	T(p', p, E) 
+	= c(\Lambda) + c(\Lambda) \lim\limits_{\epsilon \to 0}\int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G( k, E + i \epsilon) T( k,  p, E) 
+	= c(\Lambda) + c(\Lambda) \Gamma(E , p)
+	\, .
+\end{align}
+with
+\begin{equation}
+	\Gamma(E, p)
+	=
+	\lim\limits_{\epsilon \to 0}\int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G( k, E + i \epsilon) T( k,  p, E)
+	=
+	\left[c(\Lambda) + c(\Lambda) \Gamma(E, \epsilon , p)\right]\lim\limits_{\epsilon \to 0}
+	\int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G( k, E + i \epsilon)
+\end{equation}
+
+
+
+In this case the $T$-matrix becomes
+\begin{align}\label{eq:quantization-contact-physical}
+	T(p', p, E) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_0(E, \Lambda)} \, , &
+	I_0(E) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon)
+	\, .
+\end{align}
+
+So the expected form is as in the KSW case.
+
+\subsection{Contact Tower}
+I know specifically look at the on-shell $T$-matrix because I do not know how $V$ is defined in detail
+\begin{equation}
+	V(p, p) = \sum_n c_n (\Lambda) p^{2n} \, .
+\end{equation}
+
+In this case, the loop integral becomes
+
+\begin{align}
+	\lim\limits_{\epsilon \to 0}\int\limits_{|\vec k| < \Lambda}  \frac{d \vec k^3}{(2\pi)^3} V(\vec k, \vec k) G(\vec k, E + i \epsilon)
+	&= \sum_n c_n (\Lambda) I_n(E) \, 
+	&
+	I_n(E) &= \lim\limits_{\epsilon \to 0}\int\limits_{|\vec k| < \Lambda}  \frac{d \vec k^3}{(2\pi)^3} k^{2 n} G(\vec k, E + i \epsilon)
+\end{align}
+I am not sure why I look at $V(k, k)$ here...
+
+Mathematica tells me that this is for $\gamma = 2 \mu |E|$
+\begin{align}
+	I_n(E)
+	&=
+	-\frac{i\mu}{2\pi}\gamma^{2n + 1} 
+		- \frac{2}{2n+1} \frac{\mu}{2 \pi^2}\Lambda^{2n+1}\left[1 - \frac{2n+1}{2n-1} \frac{\gamma^2}{\Lambda^2} + \mathcal O \left( \frac{\gamma^4}{\Lambda^4}\right)\right]
+\end{align}
+
+which agrees quite nicely with the KSW result (which used a MS scheme) [$M = 2 \mu$]
+\begin{equation}
+	I_{n}^{M S}=(M E)^{n}\left(\frac{M}{4 \pi}\right) \sqrt{-M E-i \epsilon}=-i\left(\frac{M}{4 \pi}\right) p^{2 n+1}
+\end{equation}
+
+Thus we have 
+\begin{equation}
+	\sum_n c_n (\Lambda) I_n(E)
+	=
+	-I_0(E) V(\gamma, \gamma)
+	- \sum_n c_n(\Lambda) F_n(\Lambda) \left[ 1 + \mathcal O \left( \frac{\gamma^2}{\Lambda^2}\right) \right] \, .
+\end{equation}
+
+
+\end{document}

@@ -99,6 +99,7 @@ def export_grid_plot(
         .sort_values("x")
         .query(FILTER)
     )
+    df = df[df.epsilon * 1.0e4 % 2 == 0]
 
     title = f"{zeta.capitalize()} Lüscher"
     title += " fitted contact interaction"
