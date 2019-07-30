@@ -69,8 +69,8 @@ Using the spherical $I_0(p)$, one finds
 where $N/2$ is the cutoff on the integral, the first term in each relation comes from expanding $1/\sum_n C_{2n} p^{2n}$, the second from the effective range expansion \eqref{ERE}, and the third from expanding $I_0$ as a function of $p$, holding a fixed cutoff.  These equations can be solved order-by-order for the coefficients in the potential, or, if we know the coefficients, we can read these equations as determining the scattering data ($r_0$ and $s_j$) and how to correct for a finite cutoff.
 \todo{Using $L=N\epsilon$ and $\epsilon=\pi/\Lambda$ I have checked that setting $C_{>0}=0$ reproduces 3-2-1-blastoff's (16), (17), (18) for D=3, (25) for D=2, and, when the cutoff is infinite, (28) for D=1.}
 
-Of special note is the matching condition for $C_0$ when $D=2$, where the momentum dependence at small $p$ is logarithmic, and we cannot take an independent continuum and finite-volume limit.
-\todo{What are we supposed again?  I used to understand this.  There's some dimensional transmutation magic going on here.}
+Of special note is the matching condition for $C_0$ when $D=2$, where the momentum dependence at small $p$ is logarithmic and the scattering length is only defined for $a\ge 0$\cite{???}.  Here we cannot take independent continuum and infinite-volume limits; rather, such limits are intricately intertwined and care must be taken in extracting observables that are independent of lattice spacing $a$ and finite-size $L$.  We return to this subject in a later publication\cite{???}.
+%\todo{What are we supposed again?  I used to understand this.  There's some dimensional transmutation magic going on here.}
 
 We can also use this understanding to construct an improved \Luscher's formula.
 Note that when passing from the cut off \eqref{spherical cutoff S} to \eqref{spherical S} we replaced the integral with its limiting value, the divergence-cancelling counterterm.
@@ -79,8 +79,8 @@ One finds, truncating our improvement scheme at order $J$,
 \begin{align}
     S_3^\spherical(x)  = \lim_{N\goesto\infty} S^{\spherical N}_3(x)
     &=
-    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{x-n^2}
-        + 4\pi \sum_{j=0}^{J} \frac{x^j}{2j-1} \left(\frac{N}{2}\right)^{-(2j-1)}
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n}}^{n<N/2} \frac{1}{x-n^2}{\color{red}-}2\pi N
+        + 4\pi \sum_{j=1}^{J} \frac{x^j}{2j-1} \left(\frac{N}{2}\right)^{-(2j-1)}
     \right]
     &
     (D&=3)
@@ -105,6 +105,28 @@ One finds, truncating our improvement scheme at order $J$,
 Note that the subleading terms are all powers of $x/(N/2)^2$.
 Since $x=(pL/2\pi)$, this implies that if one calculates the $S$ function with a finite (albeit very large) $N$, one will see a momentum-dependent deviation from the true $\cot\delta$.
 This shows up, for example, as a truncation-induced effective range and higher-order shape parameters.
+
+Similar expressions can be obtained for the cartesian case in $D=3$ and $D=2$ (in $D=1$ the results are identical), though in this case we are not able to determine a nice analytic expression for general order $J$ and therefore only express the terms up to $J=2$,
+\begin{align}
+    S_3^\cartesian(x)  = \lim_{N\goesto\infty} S^{\cartesian N}_3(x)
+    &=
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^3} \frac{1}{x-n^2}
+        + ???
+    \right]
+    &
+    (D&=3)
+    \nonumber\\
+    S_2^\cartesian(x)  = \lim_{N\goesto\infty} S^{\cartesian N}_2(x)
+    &=
+    \lim_{N\goesto\infty}\left[\sum_{\vec{n} \in (-N/2, +N/2]^2}^{n<N/2} \frac{1}{x-n^2}
+        + \pi \log \frac{x}{(N/2)^2}
+        +4\left(G-\frac{\pi }{2}\log(2)\right)\right.\\
+        &\hspace{5cm}\left.+\left(1+\frac{\pi}{2}\right)\frac{x}{\left(N/2\right)^2}+\left(\frac{1}{2}+\frac{3 \pi }{16}\right)\frac{x^2}{\left(N/2\right)^4}
+    \right]
+    &
+    (D&=2)
+\end{align}
+
 
 \begin{center}
     \boxed{\textrm{{\color{red}REALLY TOUGH CHALLENGE: TELL THE ABOVE STORY WITH A CARTESIAN CUTOFF?}}}
