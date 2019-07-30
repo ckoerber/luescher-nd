@@ -124,7 +124,7 @@ def main():  # pylint: disable=R0914
                         }
                     )
 
-    pd.DataFrame(data).to_hdf(os.path.join(DATA_FOLDER, OUT_NAME), key="overlap")
+        pd.DataFrame(data).to_hdf(os.path.join(DATA_FOLDER, OUT_NAME), key="overlap")
 
 
 if __name__ == "__main__":
