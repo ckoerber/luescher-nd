@@ -3,7 +3,7 @@ TARBALL=figure-package.tar.gz
 
 FIGURES=I0.pdf	\
  		dispersion.pgf	\
-		counterterm-nstep.pdf					\
+		counterterm-nstep.pgf					\
 		ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf	 \
 		ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	 \
 		ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pdf	 \
@@ -25,7 +25,7 @@ I0.pdf:  I0.tex
 dispersion.pgf: dispersion.py
 	./dispersion.py
 
-counterterm-nstep.pdf: counterterm-nstep.py
+counterterm-nstep.pgf: counterterm-nstep.py
 	./counterterm-nstep.py
 
 ere: ere-plots.py

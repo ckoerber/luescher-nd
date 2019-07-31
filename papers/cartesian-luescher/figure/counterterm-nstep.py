@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 from luescher_nd.plotting.styles import setup
 from luescher_nd.plotting.styles import finalize
-from luescher_nd.plotting.styles import LEGEND_STYLE
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 
@@ -32,40 +31,31 @@ counterterms = np.array(
     ]
 )
 
-from matplotlib import rc
 
-rc("font", **{"serif": ["Times New Roman"]})
-rc("text", usetex=True)
-rc('text.latex', preamble=r'''\usepackage{amsmath}
-\usepackage{amssymb}
-''')
-
-
-setup(n_colors=1)
+setup(n_colors=1, pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"})
 
 fig = plt.figure(figsize=(6, 4))
 plt.minorticks_off()
 
-fig, ax = plt.subplots(2)
+fig, ax = plt.subplots(2, sharex=True)
 
 DASHED = dict(LINE_STYLE)
 DASHED["ls"] = "dashed"
 
-ax[0].set_title("Dispersion Counterterm in 3D")
 ax[0].axhline(y=psq, color="k", **DASHED)
 ax[0].plot(*counterterms.T, ".")
 ax[0].set_xscale("log")
-# ax[0].set_xlabel(r'$n_{\mathrm{step}}$')
 ax[0].set_ylabel(r"$\mathcal{L}^{\boxplus}_3$")
 
-ax[1].plot(counterterms[:, 0], counterterms[:, 1] / psq - 1, ".")
+ax[1].errorbar(
+    counterterms[:, 0], [1.0e-3] * len(counterterms[:, 0]), counterterms[:, 1] / psq - 1
+)
+ax[1].set_ylim(1.0e-3, 5.0e-1)
 ax[1].set_xscale("log")
 ax[1].set_yscale("log")
 ax[1].set_xlabel(r"$n_{\mathrm{step}}$")
-# Annoyingly, can't get \box or \square to work, even when using latex preamble.
-# But I can use direct unicode input.  compare □ and ▫.
 ax[1].set_ylabel(r"$\frac{\mathcal{L}^{\boxplus}_3}{\mathcal{L}^{\Box}_3} - 1$")
-# ax[1].set_ylabel(r"$\frac{\mathcal{L}^{B^+}_3}{\mathcal{L}^{B}_3} - 1$")
+
 
 pow2 = [1, 2, 4, 8, 16, 32, 64, 128]
 for a in ax:
@@ -73,8 +63,8 @@ for a in ax:
     a.set_xticklabels(pow2)
     a.minorticks_off()
 
-finalize()
+finalize(fig)
 
 # plt.savefig('./counterterm-nstep.png', bbox_inches='tight', dpi=300)
 # plt.show()
-fig.savefig("./counterterm-nstep.pdf", **EXPORT_OPTIONS)
+fig.savefig("./counterterm-nstep.pgf", **EXPORT_OPTIONS)
