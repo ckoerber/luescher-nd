@@ -21,6 +21,7 @@ from luescher_nd.database.utilities import get_degeneracy
 from luescher_nd.plotting.styles import setup
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import MARKERS
+from luescher_nd.plotting.styles import finalize
 
 
 FILES = [
@@ -39,7 +40,7 @@ def nstep_label(nstep) -> str:
     return "$" + (str(nstep) if nstep > 0 else r"\infty") + "$"
 
 
-def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
+def get_spectrum(df: pd.DataFrame) -> "figure":  # pylint: disable=C0103
     """Exports effective spectrum to file.
 
     **Arguments**
@@ -49,8 +50,6 @@ def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
         file_name: str
             Name used for the export.
     """
-
-    title = "Continuum extrapolation of spectrum at unitarity"
 
     grid = sns.FacetGrid(
         data=df,
@@ -84,13 +83,11 @@ def export_spectrum(df: pd.DataFrame, file_name: str):  # pylint: disable=C0103
         for d in set(degs):
             ax.axhline(d, ls="-", color="grey", lw=0.5, zorder=-10, alpha=0.5)
 
-    # grid.fig.suptitle(title, y=1.05)
-
-    grid.savefig(file_name.replace("=", "_"), **EXPORT_OPTIONS)
+    return grid.fig
 
 
-def export_ere(
-    input_df: pd.DataFrame, file_name: str, filter_degeneracy: bool = True
+def get_ere(
+    input_df: pd.DataFrame, a_inv: float, filter_degeneracy: bool = True
 ):  # pylint: disable=C0103
     """Exports effective range expansion to file.
 
@@ -107,11 +104,6 @@ def export_ere(
         df = df[~df.x.round(ROUND_DIGITS).isin(degenerate_nums)]
 
     df["y"] = zeta(df["x"]) / np.pi / df["L"]
-    # df = df.query("y > @Y_BOUNDS[0] and y < @Y_BOUNDS[1]")
-
-    a_inv = float(re.findall(r"a-inv=([\-\+\.0-9]+)", file_name)[0])
-
-    title = "Spherical Lüscher from continuum extrapolated spectrum at unitarity"
 
     grid = sns.FacetGrid(
         data=df,
@@ -139,9 +131,8 @@ def export_ere(
     grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
     grid.set_ylabels(r"$p \cot (\delta(p)) [\mathrm{fm}^{-1}]$")
     grid.set_titles(col_template=r"${col_var} = {col_name} [\mathrm{{fm}}]$")
-    # grid.fig.suptitle(title, y=1.05)
 
-    grid.savefig(file_name.replace("=", "_"), **EXPORT_OPTIONS)
+    return grid.fig
 
 
 def export_grid_plot(file_name: str):
@@ -169,14 +160,26 @@ def export_grid_plot(file_name: str):
     tf = df.append(fit_df, sort=True).sort_values(["nlevel", "L", "nstep", "epsilon"])
     fit_df["nstep_label"] = fit_df.nstep.apply(nstep_label)
 
-    export_spectrum(tf, f"continuum-spectrum-{file_name}".replace(".sqlite", ".pdf"))
-    export_ere(fit_df, f"continuum-ere-{file_name}".replace(".sqlite", ".pdf"))
+    a_inv = float(re.findall(r"a-inv=([\-\+\.0-9]+)", file_name)[0])
+
+    fig = get_spectrum(tf)
+    finalize(fig)
+    fig.savefig(
+        f"continuum-spectrum-{file_name}".replace(".sqlite", ".pgf").replace("=", "_"),
+        **EXPORT_OPTIONS,
+    )
+    fig = get_ere(fit_df, a_inv)
+    finalize(fig)
+    fig.savefig(
+        f"continuum-ere-{file_name}".replace(".sqlite", ".pgf").replace("=", "_"),
+        **EXPORT_OPTIONS,
+    )
 
 
 def main():
     """Export all the file options to pdf
     """
-    setup()
+    setup(pgf=True)
 
     for file_name in FILES:
         export_grid_plot(file_name)
