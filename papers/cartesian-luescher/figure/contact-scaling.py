@@ -18,6 +18,7 @@ from luescher_nd.database.utilities import DATA_FOLDER
 from luescher_nd.plotting.styles import setup
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import MARKERS
+from luescher_nd.plotting.styles import finalize
 
 FILE_NAME = "contact-fitted_a-inv=+0.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite"
 ROUND_DIGITS = 1
@@ -117,13 +118,13 @@ def plot(x_label, y_label, **kwargs):
             df[x_label] + x_shift[nstep] * width,
             [1.0e-16] * len(df[x_label]),
             df[y_label],
-            linewidth=2,
+            linewidth=1,
             color=kwargs["color"],
             alpha=0.9,
         )
 
 
-def export_grid_plot(df: pd.DataFrame, m: float):
+def get_grid_plot(df: pd.DataFrame, m: float):
     """Plot a grid with values as first row and errors as second.
     """
     grid = sns.FacetGrid(
@@ -178,25 +179,31 @@ def export_grid_plot(df: pd.DataFrame, m: float):
         ax.set_xticks(range(-6, -1))
         ax.set_xticklabels([f"$2^{{{tick}}}$" for tick in ax.get_xticks()])
 
-    grid.set_titles(
-        col_template=r"${col_var} = {col_name} \, [\mathrm{{fm}}]$",
-        row_template=" " * 100,
-    )
+    grid.set_titles(col_template=r"${col_var} = {col_name} \, [\mathrm{{fm}}]$")
+
+    for ax in grid.axes[:, -1]:
+        for text in ax.texts:
+            if "type" in text.get_text():
+                text.set_text("")
 
     grid.set_xlabels(r"$ \epsilon \, [\mathrm{fm}]$")
 
-    grid.savefig(
-        f"contact-scaling-{FILE_NAME}".replace(".sqlite", ".pdf").replace("=", "_"),
-        **EXPORT_OPTIONS,
-    )
+    return grid.fig
 
 
 def main():
     """Export all the file options to pdf
     """
-    setup()
     df, m = prop_df()
-    export_grid_plot(df, m)
+
+    setup(pgf=True)
+    fig = get_grid_plot(df, m)
+    finalize(fig)
+
+    fig.savefig(
+        f"contact-scaling-{FILE_NAME}".replace(".sqlite", ".pgf").replace("=", "_"),
+        **EXPORT_OPTIONS,
+    )
 
 
 if __name__ == "__main__":

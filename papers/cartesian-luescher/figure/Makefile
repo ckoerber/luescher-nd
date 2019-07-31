@@ -11,7 +11,7 @@ FIGURES=I0.pdf	\
 		ere-contact-fitted_a-inv_-5.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	 \
 		ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pdf	 \
 		continuum-ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pdf	\
-		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	\
+		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
 		a1g-state-overlap.pgf
 
 all:	$(FIGURES)
@@ -43,7 +43,7 @@ ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pdf: ere
 ere-contact-fitted_a-inv_-5.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf: ere
 ere-contact-fitted_a-inv_-5.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf: ere
 
-contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf: contact-scaling.py
+contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf: contact-scaling.py
 	./contact-scaling.py
 
 continuum-ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pdf: continuum-extrapolation.py
