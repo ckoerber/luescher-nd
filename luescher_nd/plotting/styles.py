@@ -1,6 +1,8 @@
 """Plotting style set up for luescher-nd plots
 """
 from typing import Optional
+from typing import Dict
+from typing import Any
 
 import re
 
@@ -15,30 +17,31 @@ MARKER_STYLE = {"ms": 3}
 WIDTH = 6.0
 
 
-def setup(n_colors: int = 5, pgf: bool = False, font_scale: float = 1.0):
+def setup(
+    n_colors: int = 5,
+    pgf: bool = False,
+    font_scale: float = 1.0,
+    rc_kwargs: Optional[Dict[str, Any]] = None,
+):
     """Sets up the font and colors
     """
+    rc_kwargs = rc_kwargs or {}
     sns.set_palette("cubehelix", n_colors=n_colors, desat=None, color_codes=False)
+
     if pgf:
         matplotlib.use("pgf")
-        sns.set(
-            context="paper",
-            style="ticks",
-            font_scale=font_scale,
-            rc={
-                "pgf.rcfonts": False,
-                "axes.unicode_minus": False,
-                "font.serif": [],
-                "font.sans-serif": [],
-            },
-        )
+        rc = {
+            "pgf.rcfonts": False,
+            "axes.unicode_minus": False,
+            "font.serif": [],
+            "font.sans-serif": [],
+        }
+        rc.update(rc_kwargs)
     else:
-        sns.set(
-            context="paper",
-            style="ticks",
-            font_scale=font_scale,
-            rc={"mathtext.fontset": "cm"},
-        )
+        rc = {"mathtext.fontset": "cm"}
+        rc.update(rc_kwargs)
+
+    sns.set(context="paper", style="ticks", font_scale=font_scale, rc=rc)
 
 
 def finalize(fig: Optional[matplotlib.figure.Figure] = None, width: float = 1.0):
@@ -56,5 +59,6 @@ def finalize(fig: Optional[matplotlib.figure.Figure] = None, width: float = 1.0)
             all_texts += [t for t in ax.xaxis.get_ticklabels()]
             all_texts += [t for t in ax.yaxis.get_ticklabels()]
             for text in all_texts:
-                if not "$" in text.get_text():
-                    text.set_text(f"${text.get_text()}$")
+                string = text.get_text()
+                if string and not "$" in string:
+                    text.set_text(f"${string}$")
