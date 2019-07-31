@@ -2,7 +2,7 @@
 TARBALL=figure-package.tar.gz
 
 FIGURES=I0.pdf	\
- 		dispersion.pdf	\
+ 		dispersion.pgf	\
 		counterterm-nstep.pdf					\
 		ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pdf	 \
 		ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pdf	 \
@@ -22,7 +22,7 @@ I0.pdf:  I0.tex
 	ps2pdf I0.ps 1>/dev/null 2>/dev/null
 	$(RM) I0.dvi I0.ps I0.aux I0.log
 
-dispersion.pdf: dispersion.py
+dispersion.pgf: dispersion.py
 	./dispersion.py
 
 counterterm-nstep.pdf: counterterm-nstep.py

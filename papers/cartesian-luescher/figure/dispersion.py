@@ -49,12 +49,8 @@ LABEL = {
 
 
 def main():
-    setup(n_colors=len(LABEL))
+    setup(n_colors=len(LABEL), pgf=True)
     fig, ax = plt.subplots()
-
-    fig.set_figwidth(fig.get_figwidth() / 2)
-    fig.set_figheight(fig.get_figheight() / 2)
-
     # ax.set_title("Lattice Dispersion Relations")
     ax.set_xlabel(r"$p\epsilon$")
     ax.set_ylabel(r"$2 \mu E \epsilon^2$")
@@ -76,9 +72,9 @@ def main():
 
     ax.legend(**LEGEND_STYLE)
 
-    finalize()
+    finalize(fig, width=0.5)
 
-    fig.savefig("./dispersion.pdf", **EXPORT_OPTIONS)
+    fig.savefig("./dispersion.pgf", **EXPORT_OPTIONS)
 
 
 if __name__ == "__main__":
