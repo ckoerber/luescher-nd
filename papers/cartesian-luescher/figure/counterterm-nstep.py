@@ -37,15 +37,16 @@ setup(n_colors=1, pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, am
 fig = plt.figure(figsize=(6, 4))
 plt.minorticks_off()
 
-fig, ax = plt.subplots(2, sharex=True)
+fig, ax = plt.subplots(2, sharex=True, sharey=False)
 
 DASHED = dict(LINE_STYLE)
 DASHED["ls"] = "dashed"
 
 ax[0].axhline(y=psq, color="k", **DASHED)
-ax[0].plot(*counterterms.T, ".")
+ax[0].plot(*counterterms.T, "o", ms=2)
 ax[0].set_xscale("log")
 ax[0].set_ylabel(r"$\mathcal{L}^{\boxplus}_3$")
+ax[0].set_ylim(15, 21)
 
 ax[1].errorbar(
     counterterms[:, 0], [1.0e-3] * len(counterterms[:, 0]), counterterms[:, 1] / psq - 1
