@@ -61,7 +61,7 @@ def get_spectrum(df: pd.DataFrame) -> "figure":  # pylint: disable=C0103
         legend_out=True,
         hue_kws={
             "marker": MARKERS * 5,
-            "ms": [1] * 40,
+            "ms": [2] * 40,
             "lw": [0.5] * 40,
             "ls": ["--"] * 40,
         },
@@ -76,6 +76,8 @@ def get_spectrum(df: pd.DataFrame) -> "figure":  # pylint: disable=C0103
         row_template=r"${row_var} = {row_name} [\mathrm{{fm}}]$",
         col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
     )
+
+    plt.subplots_adjust(wspace=0.2, hspace=0.2)
 
     degs = [n2 for n2 in get_degeneracy(20) if n2 < 20]
     for ax in grid.axes.flatten():
@@ -162,16 +164,23 @@ def export_grid_plot(file_name: str):
 
     a_inv = float(re.findall(r"a-inv=([\-\+\.0-9]+)", file_name)[0])
 
+    setup(pgf=True, font_scale=0.5)
     fig = get_spectrum(tf)
     finalize(fig)
     fig.savefig(
-        f"continuum-spectrum-{file_name}".replace(".sqlite", ".pgf").replace("=", "_"),
+        file_name.replace("contact-fitted", "continuum-spectrum")
+        .replace(".sqlite", ".pgf")
+        .replace("=", "_"),
         **EXPORT_OPTIONS,
     )
+
+    setup(pgf=True, font_scale=1.0)
     fig = get_ere(fit_df, a_inv)
     finalize(fig)
     fig.savefig(
-        f"continuum-ere-{file_name}".replace(".sqlite", ".pgf").replace("=", "_"),
+        file_name.replace("contact-fitted", "continuum-ere")
+        .replace(".sqlite", ".pgf")
+        .replace("=", "_"),
         **EXPORT_OPTIONS,
     )
 
@@ -179,7 +188,6 @@ def export_grid_plot(file_name: str):
 def main():
     """Export all the file options to pdf
     """
-    setup(pgf=True)
 
     for file_name in FILES:
         export_grid_plot(file_name)
