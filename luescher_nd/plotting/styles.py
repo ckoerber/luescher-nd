@@ -33,6 +33,7 @@ def setup(
         rc = {
             "pgf.rcfonts": False,
             "axes.unicode_minus": False,
+            "font.family": "serif",
             "font.serif": [],
             "font.sans-serif": [],
         }
@@ -44,6 +45,16 @@ def setup(
     sns.set(context="paper", style="ticks", font_scale=font_scale, rc=rc)
 
 
+def mathify(text: "Text") -> "Text":
+    """Wraps text instance in latex math envorinment if not already in env.
+    """
+    string = text.get_text()
+    if string != "" and not "$" in string:
+        text.set_text(f"${string}$")
+
+    return text
+
+
 def finalize(fig: Optional[matplotlib.figure.Figure] = None, width: float = 1.0):
     """Finalizes the plot (before exporting)
     """
@@ -52,13 +63,3 @@ def finalize(fig: Optional[matplotlib.figure.Figure] = None, width: float = 1.0)
         ratio = fig.get_figheight() / fig.get_figwidth()
         fig.set_figwidth(WIDTH * width)
         fig.set_figheight(ratio * WIDTH * width)
-
-        for ax in fig.axes:
-            all_texts = [text for text in ax.texts]
-            all_texts += [ax.title]
-            all_texts += [t for t in ax.xaxis.get_ticklabels()]
-            all_texts += [t for t in ax.yaxis.get_ticklabels()]
-            for text in all_texts:
-                string = text.get_text()
-                if string and not "$" in string:
-                    text.set_text(f"${string}$")
