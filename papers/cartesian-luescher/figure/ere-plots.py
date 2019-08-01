@@ -13,6 +13,7 @@ from luescher_nd.plotting.styles import setup
 from luescher_nd.plotting.styles import EXPORT_OPTIONS
 from luescher_nd.plotting.styles import LINE_STYLE
 from luescher_nd.plotting.styles import MARKERS
+from luescher_nd.plotting.styles import finalize
 
 
 # DATA_FOLDER = os.path.join(DATA_FOLDER, "three-d")
@@ -46,13 +47,13 @@ FILE_OPTIONS = [
         "file_name": "contact-fitted_a-inv=-5.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
         "zeta": "dispersion",
         "a_inv": -5.0,
-        "y_lim": (-6, -4),
+        "y_lim": None,
     },
     {
         "file_name": "contact-fitted_a-inv=+0.0_zeta=dispersion_projector=a1g_n-eigs=200.sqlite",
         "zeta": "dispersion",
         "a_inv": 0,
-        "y_lim": (-6, 4),
+        "y_lim": None,
     },
 ]
 
@@ -65,7 +66,7 @@ FILTER = "n1d >= 10 and nstep != 1"
 
 
 def nstep_label(nstep) -> str:
-    return str(nstep) if nstep > 0 else r"\infty"
+    return f"${nstep}$" if nstep > 0 else r"$\infty$"
 
 
 def export_grid_plot(
@@ -106,17 +107,25 @@ def export_grid_plot(
     title += (
         " at unitarity"
         if abs(a_inv) < 1.0e-12
-        else rf" at $-\frac{{1}}{{a_0}} = {a_inv:1.1f} [\mathrm{{fm}}^{{-1}}]$"
+        else rf" at $-\frac{{1}}{{a_0}} = {a_inv:1.1f} \, [\mathrm{{fm}}^{{-1}}]$"
     )
 
+    if y_lim:
+        df.loc[df.y < y_lim[0], "y"] = y_lim[0] - 1
+        df.loc[df.y > y_lim[1], "y"] = y_lim[1] + 1
+    else:
+        df["y"] = (df["y"] - a_inv).abs()
+
     df["nstep"] = df.nstep.apply(nstep_label)
+
+    df["epsilon"] = df.epsilon.apply(lambda eps: f"{eps:0.3f}")
 
     grid = sns.FacetGrid(
         data=df,
         col="nstep",
         hue="epsilon",
         row="L",
-        sharex="row",
+        sharex=True,
         sharey=True,
         legend_out=True,
         hue_kws={"marker": MARKERS, "ms": [1] * 10, "lw": [0.5] * 10, "ls": [":"] * 10},
@@ -126,30 +135,42 @@ def export_grid_plot(
     grid.map(plt.plot, "x", "y")
 
     for ax in grid.axes.flatten():
-        ax.axhline(a_inv, color="black", lw=0.5, zorder=-1)
         ax.set_xlim(-1, 30)
         if y_lim is not None:
+            ax.axhline(a_inv, color="black", lw=0.5, zorder=-1)
             ax.set_ylim(*y_lim)
+        else:
+            ax.set_yscale("log")
+            ax.tick_params(axis="y", which="minor")
 
-    grid.add_legend(title=r"$\epsilon [\mathrm{fm}]$", frameon=False)
     grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
-    grid.set_ylabels(r"$p \cot(\delta_0(p)) [\mathrm{fm}^{-1}]$")
+    if y_lim is not None:
+        ylabels = r"$p \cot(\delta_0(p)) \,[\mathrm{fm}^{-1}]$"
+    else:
+        ylabels = (
+            r"$\left| p \cot(\delta_0(p)) + \frac{1}{a_0} \right|\,[\mathrm{fm}^{-1}]$"
+        )
+    grid.set_ylabels()
     grid.set_titles(
-        row_template=r"${row_var} = {row_name} [\mathrm{{fm}}]$",
-        col_template=r"$n_{{\mathrm{{step}}}} = {col_name}$",
+        row_template=r"${row_var} = {row_name}\, [\mathrm{{fm}}]$",
+        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
     )
 
-    grid.fig.suptitle(title, y=1.05)
+    # grid.fig.suptitle(title, y=1.05)
+
+    plt.subplots_adjust(hspace=0.1)
+    finalize(grid.fig)
+    grid.add_legend(title=r"$\epsilon \,[\mathrm{fm}]$", frameon=False)
 
     grid.savefig(
-        "ere-" + file_name.replace(".sqlite", ".pdf").replace("=", "_"), **EXPORT_OPTIONS
+        "ere-" + file_name.replace(".sqlite", ".pgf").replace("=", "_"), **EXPORT_OPTIONS
     )
 
 
 def main():
     """Export all the file options to pdf
     """
-    setup()
+    setup(pgf=True)
 
     LINE_STYLE["ls"] = "--"
 
