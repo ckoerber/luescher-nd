@@ -97,6 +97,7 @@ def plot(x_label, y_label, **kwargs):
             LOG_EPS_RANGE,
             4 * 2 ** LOG_EPS_RANGE / m / COUNTER_TERMS[nstep],
             lw=1,
+            ms=2,
             ls="-",
             color=kwargs["color"],
             zorder=-1,
