@@ -55,11 +55,36 @@ def mathify(text: "Text") -> "Text":
     return text
 
 
-def finalize(fig: Optional[matplotlib.figure.Figure] = None, width: float = 1.0):
+def beautify(text: "Text") -> "Text":
+    patterns = {
+        r"nlevel = ([0-9]+)": r"$n_\\mathrm{level} = \g<1>$",
+        r"nstep = -1": r"$n_\\mathrm{step} = \\infty$",
+        r"nstep = ([0-9]+)": r"$n_\\mathrm{step} = \g<1>$",
+    }
+    string = text.get_text()
+    for pattern, replacement in patterns.items():
+        string = re.sub(pattern, replacement, string)
+
+    text.set_text(string)
+
+    return text
+
+
+def finalize(
+    fig: Optional[matplotlib.figure.Figure] = None, width: Optional[float] = 1.0
+):
     """Finalizes the plot (before exporting)
     """
     sns.despine()
+
     if fig:
-        ratio = fig.get_figheight() / fig.get_figwidth()
-        fig.set_figwidth(WIDTH * width)
-        fig.set_figheight(ratio * WIDTH * width)
+        if width:
+            ratio = fig.get_figheight() / fig.get_figwidth()
+            fig.set_figwidth(WIDTH * width)
+            fig.set_figheight(ratio * WIDTH * width)
+
+        for ax in fig.axes:
+            for text in ax.texts:
+                beautify(text)
+
+            beautify(ax.title)
