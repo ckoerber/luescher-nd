@@ -210,14 +210,14 @@ $N$ & $\mathcal{J}_1^N$ & $\mathcal{J}_2^N$ &$\mathcal{J}_3^N$ \\
 100 & -8.94844775523651 & 16.3233951468942 & 8.40190389063797
 \end{tabular}
 \end{table}
-These numbers allow us to determine the coefficients of the $x$ and $x^2$ terms.  For example, with $N=100$, I find
+The numbers in \autoref{tab:I coefficients} and \autoref{tab:J coefficients} allow us to determine the coefficients of the $x$ and $x^2$ terms.  For example, with $N=100$, I find
 \begin{multline}
 S^\bigcirc_3(x)=\frac{-\pi L}{a_0}\\
 +0.03481483765136+0.2089208128674 x+0.00002008418957 x^2+\ldots
 \end{multline}
 \autoref{tab:slopes} gives the coefficients of the $x$ and $x^2$ terms for other values of $N$.
 \begin{table}
-\caption{Coefficients of $x$ and $x^2$ terms as a function of $N$\label{tab:slopes}}
+\caption{Coefficients of $x$ and $x^2$ terms for select values of $N$\label{tab:slopes}}
 \center
 \begin{tabular}{c|c}
 $N$ & $S^\bigcirc_3(x)+\frac{\pi L}{a_0}$ \\
@@ -233,7 +233,8 @@ $N$ & $S^\bigcirc_3(x)+\frac{\pi L}{a_0}$ \\
 
 In \autoref{fig:S3 figure} I show the resulting function for $S^\bigcirc_3(x)/\pi$ for $N=10,20,40,50,80,100$.  Here I assume that $|a_0|=\infty$\footnote{When comparing with fig.4 of our manuscript, the scales look familiar, but I do not understand how the y-axis is defined in fig.4.}.
 \begin{figure}
-\includegraphics[width=\textwidth]{figs/S3_figure.pdf}
+\center
+\includegraphics[width=.8\textwidth]{figs/S3_figure.pdf}
 \caption{Plot of spherical L\"uscher as a function of $x$ for $N=10,20,40,50,80,100$.  \label{fig:S3 figure}}
 \end{figure}
 I also provide numerical calculations (black dots) that were determined in the following manner:
