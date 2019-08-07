@@ -142,7 +142,7 @@ Plugging this expression into eq.~\eqref{eqn:really almost there} gives the desi
 \end{equation}
 I stress again:  for the coefficient of the delta function interaction given by eq.~\eqref{eqn:C0(N)}, the eigenvalues $x$ of the Schr\"odinger equation with this interaction will exactly satisfy the relation in eq.~\eqref{eqn:finally there}, which is our dispersion L\"uscher formula.  
 
-\section{Corrections to the spherical L\"uscher formula}
+\section{Corrections to the spherical L\"uscher formula (with contact interaction)}
 What happens when one takes values of $x$, calculated with a delta function interaction in a box of side length $L$ with $N$ points per side, and plugs it instead into the spherical L\"uscher formula\footnote{Here I must constrain myself to an $n_{step}=\infty$ analysis.  Maybe there's a way to do this with finite $n_{step}$?},
 \begin{equation}\label{eqn:spherical luscher}
 \frac{1}{\pi L}S^\bigcirc_3(x)=\lim_{\eta \to\infty}\frac{1}{\pi L}\left(\sum_{\bm n}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)\ \ ?
@@ -172,19 +172,17 @@ To evaluate these sums, I first replace all summations by the following,
 \end{equation}
 This is an equivalent replacement.  I now define
 \begin{align}
-\mathcal{I}_1&\equiv \lim_{\eta \to\infty}\left(\sum_{|\bm n|\ne 0}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)&;  &\quad
-\mathcal{J}_1^N=\sum_{\bm n \in \mathrm{B.Z.}\ \&\ 
- |\bm n|\ne 0} \frac{1}{\bm n^{2}}-\mathcal{L}^\square_3\frac{N}{2}\label{eqn:1}\\
-\mathcal{I}_{\alpha>1}&\equiv\lim_{\eta \to\infty}\sum_{|\bm n|\ne 0}^{|\bm n|<\eta / 2} \frac{1}{\left(\bm n^{2}\right)^\alpha}&;&\quad
-\mathcal{J}_{\alpha>1}^N=\sum_{\bm n \in \mathrm{B.Z.}\ \&\ 
- |\bm n|\ne 0} \frac{1}{\left(\bm n^{2}\right)^\alpha}\label{eqn:alpha}
+&\mathcal{I}_1(x)\equiv \lim_{\eta \to\infty}\left(\sum_{\bm n}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)&,\  
+\mathcal{J}_1^N(x)=\sum_{\bm n \in \mathrm{B.Z.}} \frac{1}{\bm n^{2}-x}-\mathcal{L}^\square_3\frac{N}{2}\label{eqn:1}\\
+&\mathcal{I}_{\alpha>1}(x)\equiv\lim_{\eta \to\infty}\sum_{\bm n}^{|\bm n|<\eta / 2} \frac{1}{\left(\bm n^{2}-x\right)^\alpha}&,\ 
+\mathcal{J}_{\alpha>1}^N(x)=\sum_{\bm n \in \mathrm{B.Z.}} \frac{1}{\left(\bm n^{2}-x\right)^\alpha}\label{eqn:alpha}
 \end{align}
- The $\mathcal{I}_\alpha$ terms (particularly $\mathcal{I}_1$) require acceleration techniques for their numerical determination.  \autoref{tab:I coefficients} provides the numerical values of these coefficients.
+ The $\mathcal{I}_\alpha(x)$ terms (particularly $\mathcal{I}_1(x)$) require acceleration techniques for their numerical determination.  \autoref{tab:I coefficients} provides the numerical values of these coefficients.
 \begin{table}
-\caption{The coefficients $\mathcal{I}_\alpha$ obtained via acceleration techniques.  Results are good to the number of decimal points shown. \label{tab:I coefficients}}
+\caption{The coefficients $\mathcal{I}_\alpha(0)$ obtained via acceleration techniques.  Results are good to the number of decimal points shown. \label{tab:I coefficients}}
 \center
 \begin{tabular}{c|c|c}
-$\mathcal{I}_1$ & $\mathcal{I}_2$ &$\mathcal{I}_3$\\
+$\mathcal{I}_1(0)$ & $\mathcal{I}_2(0)$ &$\mathcal{I}_3(0)$\\
 \hline
 -8.91363291758515127269 & 16.532315959761669643893 & 8.4019239748275399931461\\
 \end{tabular}
@@ -192,15 +190,16 @@ $\mathcal{I}_1$ & $\mathcal{I}_2$ &$\mathcal{I}_3$\\
 All the $N$ dependence is now in the $\mathcal{J}_\alpha^N$ coefficients which can be numerically calculated directly to arbitrary precision.  In \autoref{tab:J coefficients} I provide numerical values of $\mathcal{J}_\alpha^N$ for select values of $N$.
 
 With the definitions in eqs.~\eqref{eqn:1} and~\eqref{eqn:alpha} the spherical L\"uscher formula evaluated using $x$ (from a discretized box calculation) can be expressed as
-\begin{equation}
-S^\bigcirc_3(x)=\frac{-\pi L}{a_0}+\left(\mathcal{I}_1-\mathcal{J}_1^N\right)+x\left(\mathcal{I}_2-\mathcal{J}_2^N\right)+x^2\left(\mathcal{I}_3-\mathcal{J}_3^N\right)+\ldots
-\end{equation}
-Note that even if $|a_0|\to\infty$, there is still a constant shift due to $\left(\mathcal{I}_1-\mathcal{J}_1^N\right)$.   
+\begin{multline}
+S^\bigcirc_3(x)=\frac{-\pi L}{a_0}+\left(\mathcal{I}_1(0)-\mathcal{J}_1^N(0)\right)+x\left(\mathcal{I}_2(0)-\mathcal{J}_2^N(0)\right)\\
++x^2\left(\mathcal{I}_3(0)-\mathcal{J}_3^N(0)\right)+\ldots
+\end{multline}
+Note that even if $|a_0|\to\infty$, there is still a constant shift due to $\left(\mathcal{I}_1(0)-\mathcal{J}_1^N(0)\right)$.   
 \begin{table}
-\caption{The coefficients $\mathcal{J}_\alpha^N$ for select values of $N$.  Results are good to the number of decimal points shown. \label{tab:J coefficients}}
+\caption{The coefficients $\mathcal{J}_\alpha^N(0)$ for select values of $N$.  Results are good to the number of decimal points shown. \label{tab:J coefficients}}
 \center
 \begin{tabular}{c||c|c|c}
-$N$ & $\mathcal{J}_1^N$ & $\mathcal{J}_2^N$ &$\mathcal{J}_3^N$ \\
+$N$ & $\mathcal{J}_1^N(0)$ & $\mathcal{J}_2^N(0)$ &$\mathcal{J}_3^N(0)$ \\
 \hline
 10 & -9.25986138777860 & 14.4234798298591 & 8.38095669349515\\
 20 & -9.08747321556999 & 15.4853107114944 & 8.39938622894022\\
@@ -245,14 +244,14 @@ I also provide numerical calculations (black dots) that were determined in the f
 \end{itemize}
 The level of agreement between the black points and the curves suggest that I'm doing something right.  We can now improve on the spherical L\"uscher result by subtracting off this dependence.
 
-\section{Finite range interaction and general corrections}
+\section{Finite range interaction}
 In the previous section a contact interaction was used as the potential and the ensuing corrections to the spherical L\"uscher formula were derived with such an interaction.  Here we consider if such corrections can be applied in general, i.e. to finite-range potentials.
 
 \subsection{Separable Gaussians}
 
 We assume a \emph{God-given} potential of the form
 \begin{align}
-\langle \bm p'|\hat V|\bm b\rangle &=V(p',p)= \frac{4\pi C_0}{m}f(p')f(p)\label{eqn:god potential}\\
+\langle \bm p'|\hat V|\bm b\rangle &=V(p',p)= \frac{2\pi C_0}{\mu}f(p')f(p)\label{eqn:god potential}\\
 f(p)&=\exp\left(-\frac{\pi (pr)^2}{32}\right)\nonumber\\
 C_0^{-1}&=\frac{1}{a_0}-\frac{4}{\pi  r}\nonumber\ ,
 \end{align}
@@ -311,7 +310,7 @@ The system now has a bound state and so Nyquist's theorem says that $\delta(0)=\
 We find the same behavior as in the $^1S_0$ case; namely, spherical L\"uscher is the better approximation to the exact result!
 
 \subsection{Christopher's separable potential}
-I also repeat the analysis using Christopher's potential which a slower falloff in $p^2$ and one can also easily tune a bound state into the expression.  He defines it as
+I also repeat the analysis using Christopher's potential which has a slower falloff in $p^2$ and one can also easily tune a bound state into the expression.  He defines it as
 \begin{equation}\label{eqn:koerber potential}
 V\left(\boldsymbol{p}^{\prime}, \boldsymbol{p}\right)=-g^{*}\left(\boldsymbol{p}^{\prime}\right) g(\boldsymbol{p}), \quad \quad \quad g(\boldsymbol{p})=\overline{g} \sqrt{8 \pi} \frac{M^{3}}{\left(\boldsymbol{p}^{2}+M^{2}\right)^{2}}, \quad M, \overline{g} \in \mathbb{R}\ ,
 \end{equation}
@@ -324,7 +323,7 @@ If one has a target binding energy $B$ (e.g. $B=2.2$ MeV), then one defines $\ga
 p\cot\delta(p) = -\frac{5|\overline{g}|^{2} \mu M-4 M^{2}}{16|\overline{g}|^{2} \mu}+\frac{15|\overline{g}|^{2} \mu+16 M}{16|\overline{g}|^{2} \mu M} p^{2}+\frac{5|\overline{g}|^{2} \mu+24 M}{16|\overline{g}|^{2} \mu M^{3}} p^{4}\\
 +\frac{|\overline{g}|^{2} \mu+16 M}{16|\overline{g}|^{2} \mu M^{5}} p^{6}+\frac{ p^{8}}{4|\overline{g}|^{2} \mu M^{6}}\ .
 \end{multline}
-As opposed to the separable Gaussian potential from the previous section which has an infinite number of shape parameters, Christopher's potential has only a finite number of shape parameters (of to $p^8$).  A little investigation easily shows that the (dimensionless) eigenvalues $x$ of the Schr\"odinger equation with this interaction satisfies this self-consistency equation,
+As opposed to the separable Gaussian potential from the previous section which has an infinite number of shape parameters, Christopher's potential has only a finite number of shape parameters (up to $p^8$).  A little investigation easily shows that the (dimensionless) eigenvalues $x$ of the Schr\"odinger equation with this interaction satisfies this self-consistency equation,
 \begin{equation}
 1-\frac{1}{\pi L}\sum_{\bm n\in\mathrm{B.Z.}}\frac{\frac{\mu}{2\pi}\left|g\left(\frac{2\pi}{L}\bm n\right)\right|^2}{\bm n^2-x}=0\ .
 \end{equation}
@@ -335,12 +334,59 @@ M&=13.6\ \mathrm{ fm}^{-1}\\
 \mu&=2.371678\ \mathrm{ fm}^{-1}\\
 L&=10\ \mathrm{ fm}\ .
 \end{align*}
-and in this case, I have to do calculations with $N=32$ and $N=64$ to get something comparable to the Gaussian results.
+and in this case, I have to do calculations with $N=32$ and $N=64$ to get something comparable to the Gaussian results. \autoref{fig:3s1 koerber} shows our results.
 \begin{figure}
 \includegraphics[width=.5\textwidth]{figs/pcotd_3S1_koerber.pdf}\includegraphics[width=.5\textwidth]{figs/delta_3S1_koerber.pdf}
 \caption{Results using Christopher's potential in eq.~\eqref{eqn:koerber potential}.  Dashed line is exact.  Shown is spherical L\"uscher for $N=32$ (light blue) and $N=64$ (dark blue), and corresponding dispersion L\"uscher for $N=32$ (light red) and $N=64$ (dark red). Again, spherical L\"uscher is closer to the exact solution. \label{fig:3s1 koerber} }
 \end{figure}
 We reach the same conclusion as in the Gaussian case:  spherical L\"uscher is the better approximation.  
+
+\subsection{Corrections to spherical L\"uscher in the case of finite-range interactions}
+As we'll find out, corrections to spherical L\"uscher in the case of finite-range interactions will depend on the details of the interaction, which is unfortunate.  To keep the presentation simple, we'll again assume a separable interaction of the form
+\begin{equation}
+V(\bm p',\bm p)=\frac{2\pi}{\mu} \mathcal{C} f(\bm p')f(\bm p)\ .
+\end{equation}
+We label the discrete box eigenvalues as $x_N$.  They satisfy
+\begin{equation}\label{eqn:x_N}
+1+\frac{\mathcal{C}}{\pi L}\sum_{\bm n\in\mathrm{B.Z.}}\frac{f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_N}=0\ .
+\end{equation}
+Recall that $\bm n\in\mathrm{B.Z.}$ represents $\bm n\in\ (-N/2,N/2]^3$.  Let us now take the continuum limit (while holding $L$ fixed).  This is equivalent to $N\to \infty$.  We label the (continuum) box eigenvalues in this case as $x_\infty$.  They satisfy
+\begin{equation}\label{eqn:x_infinity}
+1+\frac{\mathcal{C}}{\pi L}\sum_{\bm n\in(-\infty,\infty]^3}\frac{f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_\infty}=0\ .
+\end{equation}
+Up to finite-volume corrections, these are the energies that, when be pushed through spherical L\"uscher, provide information on the infinite-volume, continuum phase shifts\footnote{From now on, I make no distinction between \emph{cartesian} and \emph{spherical} L\"uscher.  They are the same thing, i.e. $S^\square_3(x)=S^\bigcirc_3(x)=S_3(x)$.}
+\begin{equation}
+p\cot\delta=\frac{1}{\pi L}S_3(x_\infty)\ .
+\end{equation}
+We now add the spherical L\"uscher equation to both sides of eq.~\eqref{eqn:x_infinity} (and multiply both sides by $L$),
+\begin{equation}\label{eqn:x_infinity 2}
+L+\lim_{N\to\infty}\frac{1}{\pi}\left[\sum_{\bm n\in(-N/2,N/2]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2+1}{\bm n^2-x_\infty}-\mathcal{L}^\square_3\frac{N}{2}\right]=\frac{1}{\pi}S_3(x_\infty)\ .
+\end{equation}
+Now we set $x_\infty=x_N+\delta x$ in the LHS and assume that $|\delta x/x_N|\ll 1$.  We expand the LHS in $\delta x$,
+\begin{multline}
+L+\lim_{N\to\infty}\frac{1}{\pi}\left[\sum_{\bm n\in(-N/2,N/2]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2+1}{\bm n^2-x_N}-\mathcal{L}^\square_3\frac{N}{2}\right]\\
++ \frac{\delta x}{\pi}\sum_{\bm n\in(-\infty,\infty]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2+1}{\left(\bm n^2-x_N\right)^2}+\mathcal{O}(\delta x^2)\\
+=L+\frac{1}{\pi}\sum_{\bm n\in(-\infty,\infty]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_N}+\frac{1}{\pi}S_3(x_N)\\
++ \frac{\delta x}{\pi}\sum_{\bm n\in(-\infty,\infty]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2+1}{\left(\bm n^2-x_N\right)^2}+\mathcal{O}(\delta x^2)=\frac{1}{\pi}S_3(x_\infty)\ .
+\end{multline}
+We now split the first sum into $\sum_{\bm n\in(-\infty,\infty]^3}=\sum_{\bm n\in\mathrm{B.Z.}}+\sum_{\bm n\notin\mathrm{B.Z.}}$ and use eq.~\eqref{eqn:x_N} to get
+\begin{multline}
+S_3(x_\infty)=S_3(x_N)+\sum_{\bm n\notin\mathrm{B.Z.}}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_N}
++ \delta x\sum_{\bm n\in(-\infty,\infty]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2+1}{\left(\bm n^2-x_N\right)^2}\\+\mathcal{O}(\delta x^2)\ .
+\end{multline}
+Using the $\mathcal{I}_\alpha(x)$ coefficients defined earlier, we have
+\begin{multline}
+S_3(x_\infty)=S_3(x_N)+\sum_{\bm n\notin\mathrm{B.Z.}}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_N}
++ \delta x\left(\mathcal{I}_2(x_n)+\sum_{\bm n\in(-\infty,\infty]^3}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2}{\left(\bm n^2-x_N\right)^2}\right)\\+\mathcal{O}(\delta x^2)\ .
+\end{multline}
+The $\delta x$-\emph{independent} correction (second term on the RHS above) is dependent on the details of the interaction.  Introducing dimensionful quantities, this correction is
+\begin{equation}
+\frac{1}{\pi L}\sum_{\bm n\notin\mathrm{B.Z.}}\frac{\mathcal{C}f\left(\frac{2\pi}{L}\bm n\right)^2}{\bm n^2-x_N}
+=-\frac{1}{L^3}\sum_{\bm p_n\notin\mathrm{B.Z.}}\frac{V(\bm p_n,\bm p_n)}{E_N-\frac{\bm p_n^2}{2\mu}}\ ,
+\end{equation}
+where $\bm p_n=\frac{2\pi \bm n}{L}$ and $E_N=\frac{2\pi^2 x_N}{\mu L^2}$. 
+Even though this expression was derived using a separable interaction, I believe it actually holds for general potentials and suggests that the correction is a tadpole diagram. 
+
 
 \appendix
 \section{Phase shift, ERE, and eigenvalues of potential given in eq.~\eqref{eqn:god potential}\label{sect:god potential}}
