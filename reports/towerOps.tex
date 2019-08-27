@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{lipsum}
+\usepackage{authblk}
+%\usepackage{amsaddr}
+\usepackage{epstopdf}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\pagestyle{fancy}
+\rfoot{Compiled on \today\ at \currenttime}
+\cfoot{}
+\lfoot{Page \thepage}
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} % look for '\todo'
+\definecolor{darkred}{rgb}{0.4,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0.0,0.4,0.0}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.4}
+\usepackage[bookmarks,linktocpage,colorlinks,
+    linkcolor = darkred,
+    urlcolor  = darkblue,
+    citecolor = darkgreen]{hyperref}
+
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{
+%\includegraphics[width=4cm]{/Users/tomluu/Research/talks/fzjTemplate/uniBonn_logo.jpg}
+}
+\fancyhead[R]{
+\includegraphics[width=4cm]{figs/fzj_logo.jpg}
+}
+\pagestyle{plain}
+
+\title{Tower of operators}
+\author[1,2]{Thomas Luu}
+\affil[1]{Institute for Advanced Simulation 4\\
+Forschungszentrum J\"ulich, Germany}
+\affil[2]{Rheinische Friedrich-Williams-Universit\"at Bonn, Germany}
+
+%\email{t.luu@fz-juelich.de}
+\date{}                                           % Activate to display a given date or no date
+
+
+\begin{document}
+\maketitle
+\begin{center}
+email: \href{mailto:t.luu@fz-juelich.de}{t.luu@fz-juelich.de}
+\end{center}
+\abstract{
+Here I try to determine the scattering amplitude for an interaction of the type
+\begin{displaymath}
+V(p',p)=C_0+\frac{C_2}{2}\left(p'^2+p^2\right)
+\end{displaymath}
+and I assume a hard-cutoff regulator.
+}
+
+\thispagestyle{fancy}
+
+\clearpage{}
+%\tableofcontents
+%\newpage
+
+\section{Interaction}
+I assume an interaction of the form
+\begin{equation}\label{eqn:potential}
+V(p',p)=\left(C_0+C_2\frac{\left(p'^2+p^2\right)}{2}\right)f_\Lambda(p')f_\Lambda(p)
+\end{equation}
+with an implicit hard-cutoff regulator at some scale $\Lambda$,
+\begin{equation}
+f_\Lambda(p)=\Theta\left(|p|-\Lambda\right)\ .
+\end{equation}
+ Note that this interaction is a sum of separable terms, and there is NO delta function (we are in momentum space).  The coefficients $C_n$ are bare parameters and must be ``renormalized"
+ 
+ \section{T-matrix}
+ The T-matrix is defined as
+ \begin{equation}
+ T(p',p;E)\equiv V(p',p)+\int \frac{d^3q}{(2\pi)^3} V(p',q) G_0(q;E) T(q,p;E)\ ,
+ \end{equation}
+ where
+ \begin{equation}
+ G_0(q;E)=\frac{1}{E-q^2/m+i\epsilon}\ .
+ \end{equation}
+ Another relation, which is actually more useful when deriving the T-matrix, is the expression for the fully interacting propagator, which I write in operator form
+ \begin{equation}\label{eqn:full G}
+ \hat G(E)\equiv \frac{1}{E-\hat H_0-\hat V+i\epsilon}=\hat G_0(E)+\hat G_0(E)\hat T(E)\hat G_0(E)\ .
+ \end{equation}
+ 
+ \subsection{Summing the T-matrix}
+I can sum the T-matrix to all orders in $V(p',p)$ since $V(p',p)$ is a sum of separable terms.   I will present my derivations (based off eq.~\eqref{eqn:full G}) for the full T-matrix in later sections, but only express the result here
+\begin{multline}\label{eqn:T-matrix 1}
+T(p',p;E)=\\
+\frac{\mathbb{C}_0+\mathbb{C}_2\frac{\left(p'^2+p^2\right)}{2}+\mathbb{X}_4\  p'^2p^2}
+{1-C_0I_0(E)-C_2I_2(E)-\frac{1}{4}C^2_2\left[I_0(E)I_4(E)-I_2(E)^2\right]}f_\Lambda(p')f_\Lambda(p)\ ,
+\end{multline}
+where
+\begin{align}
+\mathbb{C}_0&=C_0+\frac{1}{4}C^2_2I_4(E)\\
+\mathbb{C}_2&=C_2-\frac{1}{2}C^2_2I_2(E)\\
+\mathbb{X}_4&=\frac{1}{4}C^2_2I_0(E)\ ,
+\end{align}
+and\footnote{I assume we are in the infinite-volume, continuum limit, and therefore perform the integrals in a spherical basis.}
+\begin{equation}
+I_n(E)\equiv \frac{1}{2\pi^2}\int_0^\Lambda dq\frac{q^{2+n}}{E-q^2/m+i\epsilon}\ .
+\end{equation}
+Note that the solution to the T-matrix has an \emph{induced} higher-order term $\mathbb{X}_4p'^2p^2$.  
+
+We can also relate all terms $I_{n>0}(E)$ to $I_0(E)$,
+\begin{align}
+I_2(E)&=-\frac{m}{6\pi^2}\Lambda^3+[mE]\  I_0(E)\\
+I_4(E)&=-\frac{m}{10\pi^2}\Lambda^5-[mE]\ \frac{m}{6\pi^2}\Lambda^3+[mE]^2\ I_0(E)\ .
+\end{align}
+And finally, we have that
+\begin{equation}
+I_0(E)=-\frac{m}{2\pi^2}\Lambda -i \frac{m}{4\pi}\sqrt{mE}+\frac{m}{2\pi^2\Lambda}mE+\mathcal{O}(\Lambda^{-3})\ .
+\end{equation}
+With these relations, the \emph{denominator} in eq.~\eqref{eqn:T-matrix 1} becomes
+\begin{multline}\label{eqn:denominator}
+1-C_0 I_0(E)-C_2 \left([mE]\ I_0(E) -\frac{\Lambda ^3 m}{6 \pi ^2}\right)\\
++C_2^2 \left(I_0(E) \left(\frac{\Lambda ^5 m}{40 \pi
+   ^2}-\frac{\Lambda ^3 m\ [mE]}{24 \pi ^2}\right)+\frac{\Lambda ^6 m^2}{144 \pi
+   ^4}\right)
+   \end{multline}
+
+\section{Scattering amplitude near threshold}
+Near threshold I set everything on-shell, $p'=p=\sqrt{mE}$.  In this limit, the \emph{numerator} of eq.~\eqref{eqn:T-matrix 1} becomes
+\begin{equation}\label{eqn:numerator}
+C_0+C_2 p^2+C_2^2 \left(\frac{\Lambda ^3 m p^2}{24 \pi ^2}-\frac{\Lambda ^5 m}{40 \pi
+   ^2}\right)\ .
+   \end{equation}
+% and one has that
+%\begin{equation}
+%T(p'=p; E=p^2/m)\equiv T(p)=\frac{4\pi/m}{p\cot \delta -ip}
+%\end{equation}
+%or equivalently
+%\begin{equation}
+%p\cot \delta -ip=\frac{4\pi}{m\ T(p)}\ .
+%\end{equation}
+%Plugging everything in, I get
+%\begin{multline}\label{eqn:matching 1}
+%p\cot \delta -ip=\\
+%\frac{4\pi}{m}\frac{1-(C_0 +C_2 p^2)I_0(E)+C_2 \frac{\Lambda ^3 m}{6 \pi ^2}
+%+C_2^2 \left(I_0(E) \left(\frac{\Lambda ^5 m}{40 \pi
+%   ^2}-\frac{\Lambda ^3 mp^2}{24 \pi ^2}\right)+\frac{\Lambda ^6 m^2}{144 \pi
+%   ^4}\right)}{C_0+C_2 p^2+C_2^2 \left(\frac{\Lambda ^3 m p^2}{24 \pi ^2}-\frac{\Lambda ^5 m}{40 \pi
+%   ^2}\right)}
+%   \end{multline}
+%   
+Now I define the renormalized coefficients,
+\begin{align}
+C_0(\Lambda)&=C_0-C_2^2\frac{\Lambda^5 m}{40 \pi^2}\\
+C_2(\Lambda)&=C_2\left(1+C_2\frac{\Lambda^3 m}{24\pi^2}\right)\ ,
+\end{align}
+which means eq.~\eqref{eqn:numerator} becomes
+\begin{equation}
+\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}\ .
+\end{equation}
+The denominator, eq.~\eqref{eqn:denominator}, becomes
+\begin{multline}
+1-I_0(E)\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}+\frac{\Lambda ^3 m}{6 \pi ^2}C_2 \left(1+
+C_2 \frac{\Lambda ^3 m}{24 \pi
+   ^2}\right)\\
+   =1-I_0(E)\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}+C_2(\Lambda) \frac{\Lambda ^3 m}{6 \pi ^2}\ .
+\end{multline}
+So the full on-shell T-matrix near threshold is
+\begin{equation}
+T(E=p^2/m)=-\frac{4\pi/m}{p\cot \delta -ip}=\frac{\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}}{1-I_0(E)\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}+C_2(\Lambda) \frac{\Lambda ^3 m}{6 \pi ^2}}\ .
+\end{equation}
+This expression is \emph{almost} like eq.(1) of Beane et al. (hep-lat0312004) ``Two-Nucleons on a Lattice",
+\begin{displaymath}
+\mathcal{A}=\frac{\sum C_{2 n}(\mu) p^{2 n}}{1-I_{0} \sum C_{2 n}(\mu) p^{2 n}}\ ,
+\end{displaymath}
+except for the extra \emph{induced} term $C_2(\Lambda) \frac{\Lambda ^3 m}{6 \pi ^2}$ in the denominator.  
+
+\section{So do we have a ``Tower of Interactions"?}
+I \emph{suspect} what happens (this is by no means a proof) is that as we include more terms in our potential, eq.~\eqref{eqn:potential}, the induced term gets pushed to higher and higher order.  One must be consistent in adding more terms into the potential, however (i.e. derivative expansion w/ Galilean invariance, etc. . .--essentially pionless EFT).  
+
+For example, if we include a $C_4$ term into our potential, then I suspect we would get for the scattering amplitude
+ \begin{equation}
+ \frac{\sum_{n=0,1,2}C_{2n}(\Lambda)p^{2n}}{1-I_0(E)\sum_{n=0,1,2}C_{2n}(\Lambda)p^{2n}+C_4(\Lambda) \mathcal{C}\Lambda^5}\ ,
+ \end{equation}
+ where $\mathcal{C}$ is some coefficient.  If this is true (and I'm not going to even attempt to prove this), then only in the limit of an ``infinite tower of interactions" do we recover Beane et al.'s expression,
+\begin{equation}
+\frac{\sum C_{2 n}(\Lambda) p^{2 n}}{1-I_{0}(E) \sum C_{2 n}(\Lambda) p^{2 n}}\ ,
+\end{equation}
+
+\section{Summing the T-matrix}
+Later. . .
+
+%Then eq.~\eqref{eqn:matching 1} becomes
+%\begin{align}\label{eqn:matching 2}
+%p\cot \delta -ip&=
+%\frac{4\pi}{m}\frac{1-I_0(E)\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}+C_2 \frac{\Lambda ^3 m}{6 \pi ^2}\left(1+
+%C_2 \frac{\Lambda ^3 m}{24 \pi
+%   ^2}\right)}{\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}}\\\
+%   &=\frac{4\pi}{m}\left(\frac{1}{\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}}-I_0(E)+\frac{C_2 \frac{\Lambda ^3 m}{6 \pi ^2}\left(1+
+%C_2 \frac{\Lambda ^3 m}{24 \pi
+%   ^2}\right)}{\sum_{n=0,1}C_{2n}(\Lambda)p^{2n}}\right)
+%\end{align}
+%\subsection{}
+
+%\newpage
+%\appendix
+
+%\clearpage
+%\bibliography{references}
+
+\end{document}  
