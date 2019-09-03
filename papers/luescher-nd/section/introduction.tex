@@ -1,0 +1,27 @@
+\section{Introduction}\label{sec:intro}
+
+\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which we can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.
+
+The usual understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
+
+In practice, few results of lattice QCD calculations are zero-temperature- or, more seriously, continuum-extrapolated, but are nevertheless put through \Luscher's formula to get an estimate of the continuum scattering data, assuming thermal and discretization effects to be much smaller than the statistical uncertainties\todo{cite cite cite}.
+In particular, no continuum-limit study of any baryonic channel exists, even at physically heavy pion masses.
+
+While alternatives, including the potential method (see, for example \Refs{Ishii:2006ec,Nemura:2008sp,Aoki:2009ji,Murano:2011nz,Aoki:2012bb,Kurth:2013tua,Sugiura:2017vwo,Yamazaki:2019vid,Aoki:2017yru,Yamazaki:2018qut,Iritani:2017rlk,Iritani:2018zbt,Gongyo:2018gou,Akahoshi:2019klc,Namekawa:2019xiy}) and the imposition of spherical walls\cite{Borasoy:2007vy,Borasoy:2007vi,Lee:2008fa,Epelbaum:2008vj,Epelbaum:2010xt,Elhatisari:2015iga,Elhatisari:2016owd,Elhatisari:2016hby,Klein:2018lqz,Li:2019ldq,Bovermann:2019jbt}, can be used to translate finite-volume physics to infinite-volume observables we focus here on the \Luscher finite-volume formalism.
+
+Here, we construct example Hamiltonians explicitly and diagonalize them exactly.
+This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data, and lets us completely isolate the features of the formalism itself, removing, for example, any finite-temperature effects that should in principle be extrapolated away in any finite-temperature method like Lattice QCD.
+
+We find that it is actually quite difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts seems to produce a more reliable result.
+We also explain how to incorporate lattice artifacts into \Luscher's formula, accounting both for the Brillouin zone of the cubic lattice and the lattice-induced dispersion relation.
+
+This lattice improvement can be quite useful.
+In pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients so as to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
+However, in \Ref{Endres:2012cw} they found that even with a highly-improved construction the states ultimately deviated from a $\pi/2$ phase shift (see, for example, Figure 3).
+We introduce a new continuum-limit prescription for achieving unitarity in lattice simulations by tuning just the simplest contact operator, but taking the discretization effects into account by incorporating the lattice dispersion relation into the finite-volume zeta function, both in the tuning step and in the analysis step.
+By re-tuning the interaction at each lattice spacing we can very easily and smoothly take the continuum limit after applying the lattice-aware finite-volume formula.
+We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum\todo{, in some cases covering as many \Aoneg states exist in the lattice of interest?}
+
+This paper is organized as follow.  In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study.  In \Secref{spherical} we use show that taking a fixed-volume continuum limit with the interaction strength tuned to reproduce the first zero of the traditional zeta function does not yield the expected flat effective range expansion.  In \Secref{cartesian} we reformulate the standard generalized zeta function with integrals defined over the (cubic) Brillouin zone of the lattice.
+In \Secref{dispersion} we explain how to incorporate the single-particle dispersion relation into the \Luscher construction, and show that we can use such a relation to circumvent the need for a continuum limit spectrum in the unitary case.
+We relegate the computation of the various finite-volume counterterms to the Appendix.

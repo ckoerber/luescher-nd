@@ -1,0 +1,28 @@
+\section{The Dispersion \Luscher Finite-Volume Counterterm}\label{sec:counterterm/dispersion}
+
+To evaluate the infinite-volume integral in \eqref{dispersion S},
+\begin{equation}
+    4\pi^2 \int_{-N/2}^{+N/2} \mathrm{d}^Dn\; \PV \frac{1}{N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N} - x}
+    =
+    4\pi^2 \left(\frac{N}{2}\right)^{D-2} \int_{-1}^{+1} \mathrm{d}^D\nu\; \PV \frac{1}{4\sum_{ds} \gamma^{(\nstep)}_s \cos \pi \nu s - \xtilde}
+\end{equation}
+where as in the Cartesian case we rescaled and $\xtilde = x/(N/2)^2$.
+Note that when we replace the sum over dimensions and steps with the exact $p^2$ result $(\pi \nu)^2$ and let $\xtilde$ vanish, we can match the Cartesian integral \eqref{cartesian integral}.
+
+We can use the same trick to isolate the leading behavior in $N/2$, introducing the dispersion relation in the exponent rather than $n^2$.
+One finds
+\begin{equation}
+    \label{eq:dispersion counterterm}
+    4 \pi^2 \left(\frac{N}{2}\right)^{D-2}\int_{0}^{\infty} 2\mu\; \mathrm{d}\mu\; e^{\xtilde\mu^2}\left(\int_{-1}^{+1} \mathrm{d}\nu\; e^{-4\mu^2 \sum_s \gamma_s^{(\nstep)} \cos \pi \nu s}\right)^D
+\end{equation}
+which can be numerically evaluated quickly for $\xtilde\leq0$ where the derivation holds, assuming one has the dispersion relation coefficients in hand.
+The counterterm for the leading divergence $\counterterm_D^{\dispersion (\nstep)}$ is the $\xtilde=0$ value.
+Note that when $\nstep=\infty$ the continuum Cartesian result is obtained.
+In \Figref{nstep counterterm} we show this counterterm and how it differs from the Cartesian counterterm in \eqref{cartesian counterterm}.
+
+\begin{figure}
+    \input{figure/counterterm-nstep.pgf}
+    \caption{In the top panel we show the dispersion counterterm $\counterterm^{\dispersion (\nstep)}_{3}$in \eqref{dispersion counterterm} as a function of $\nstep$, and the $\nstep=\infty$ result, which is the same as the Cartesian result $\counterterm^{\cartesian}_3$ in \eqref{cartesian counterterm}, as a dashed line.  In the bottom panel we show a better view into how the counterterm converges to the Cartesian one.
+    }
+    \label{fig:nstep counterterm}
+\end{figure}
