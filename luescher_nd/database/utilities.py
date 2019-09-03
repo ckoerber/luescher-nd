@@ -274,7 +274,7 @@ def _group_wise_fit(  # pylint: disable=R0914
     error = [delta_x * np.random.uniform(0.8, 1.2, size=1)[0] for _ in x]
     data = (epsilon, gv.gvar(x, error))
 
-    poly = lambda x, p: _poly(x, p, even=not odd_poly)
+    poly = lambda ee, pp: _poly(ee, pp, even=not odd_poly)
 
     if len(x) > 2:
 
