@@ -1,3 +1,5 @@
+https://github.com/ckoerber/luescher-nd/workflows/Run%20tests/badge.svg
+
 # Lüscher n-dim test
 
 Is it possible to extend Lüscher's formalism to discrete volumes? How does this affect the computation of the Bertsch parameter?
