@@ -1,0 +1,47 @@
+\section{Two-particle scattering}
+
+Scattering information of a two-particle system are captured by the scattering-matrix which is related to the $T$-matrix by
+\begin{equation}
+    \hat S(\gamma)
+    =
+    \hat{\mathbbm{1}}
+    -
+    i \frac{\gamma \mu}{\pi} \hat T(\gamma)\, ,
+\end{equation}
+where $\mu$ is the reduced mass of the two-particle system and $\gamma$ the on-shell scattering momentum.
+The off-shell $T$-matrix can be obtained for a two-particle interaction $\hat V$ by solving the Lippmann-Schwinger equation
+\begin{align}
+	T(\vec p', \vec p, E)
+	&=
+	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	&
+	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
+	\, .
+\end{align}
+After projecting the on-shell $T$-matrix onto partial waves,
+\begin{equation}
+    T_{l' m' l m}(p', p, E)
+    =
+    \frac{1}{4\pi}
+    \int \mathrm{d} \hat p' \int \mathrm{d} \hat p \,
+    Y_{l'm'}^*(\hat p') Y_{lm}(\hat p)
+    T(\vec p', \vec p, E)
+    \, ,
+\end{equation}
+the $T$-matrix can be described by scattering phase shifts
+\begin{equation}\label{eq:on-shell-T}
+	T_l(\gamma) \equiv \frac{1}{2l+1} \sum_{-l \leq m \leq l} T_{l m l m}(\gamma, \gamma , E_\gamma)
+    = \frac{2}{\mu}
+    \mathcal F^{(d)}(\gamma) \frac{1}{\cot (\delta_l(\gamma)) - i} \, ,
+\end{equation}
+where $E_\gamma = \gamma^2 / (2 \mu)$ and $\mathcal F^{(d)}(\gamma)$ is a function of the on-shell momentum which depends on the spatial dimension of the two-particle system.
+The expansion of the inverse of eq.~(\ref{eq:on-shell-T}) in scattering momenta $\gamma$ is called the effective range expansion (ERE) and, e.g., the S-wave ($l=0$) component in three-dimensions takes the form
+\begin{equation}
+    \gamma \cot (\delta_0(\gamma)) - i \gamma
+    =
+    - \frac{1}{a_0}  - i \gamma + r_e \gamma^2 + \mathcal{O}(\gamma^4)\,,
+\end{equation}
+where $a_0$ is the so called scattering length and $r_e$ the effective range of the two-particle interactions.
+
+Unitarity is obtained if the scattering is scale invariant, e.g., the ERE is independent of dimensional quantites.
+As an example, for an interaction with zero effective range $r_e = 0$ (and higher terms in the order of scattering momenta equal to zero as well), the scattering length should diverge or equivalently $1/a_0 \to 0$.
