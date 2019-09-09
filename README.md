@@ -1,4 +1,4 @@
-https://github.com/ckoerber/luescher-nd/workflows/Run%20tests/badge.svg
+![](https://github.com/ckoerber/luescher-nd/workflows/Run%20tests/badge.svg)
 
 # Lüscher n-dim test
 
