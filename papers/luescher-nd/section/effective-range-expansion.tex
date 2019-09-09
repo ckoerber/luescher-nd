@@ -1,14 +1,15 @@
 \section{Two-particle scattering}
 
+\subsection{The effective range expansion}
 Scattering information of a two-particle system are captured by the scattering-matrix which is related to the $T$-matrix by
 \begin{equation}
-    \hat S(\gamma)
+    S(\vec p', \vec p, E)
     =
-    \hat{\mathbbm{1}}
-    -
-    i \frac{\gamma \mu}{\pi} \hat T(\gamma)\, ,
+    \delta^{(D)}(\vec p' - \vec p)
+    +
+    2 \pi i  \delta^{(1)}(E_{\vec p'} - E_{\vec p})T(\vec p', \vec p, E)\, ,
 \end{equation}
-where $\mu$ is the reduced mass of the two-particle system and $\gamma$ the on-shell scattering momentum.
+where $\vec p', \vec p$ are the outgoing and incoming relative scattering momenta of the two-body system and $E_{\vec p'}, E_{\vec p}$ the respective energies.
 The off-shell $T$-matrix can be obtained for a two-particle interaction $\hat V$ by solving the Lippmann-Schwinger equation
 \begin{align}
 	T(\vec p', \vec p, E)
@@ -32,9 +33,20 @@ the $T$-matrix can be described by scattering phase shifts
 \begin{equation}\label{eq:on-shell-T}
 	T_l(\gamma) \equiv \frac{1}{2l+1} \sum_{-l \leq m \leq l} T_{l m l m}(\gamma, \gamma , E_\gamma)
     = \frac{2}{\mu}
-    \mathcal F^{(d)}(\gamma) \frac{1}{\cot (\delta_l(\gamma)) - i} \, ,
+    \mathcal F^{D}(\gamma) \frac{1}{\cot (\delta_l(\gamma)) - i} \, ,
 \end{equation}
-where $E_\gamma = \gamma^2 / (2 \mu)$ and $\mathcal F^{(d)}(\gamma)$ is a function of the on-shell momentum which depends on the spatial dimension of the two-particle system.
+where $E_\gamma = \gamma^2 / (2 \mu)$ and
+\begin{equation}\label{eq:spherical FD}
+    \mathcal F^{D}(\gamma)
+    =
+    \begin{cases}
+        \gamma/\pi     & (D=1)\\
+        1       & (D=2)\\
+        \pi/\gamma   & (D=3)
+    \end{cases}
+\end{equation}
+is a dimension-dependent kinematic function of the on-shell momentum.
+
 The expansion of the inverse of eq.~(\ref{eq:on-shell-T}) in scattering momenta $\gamma$ is called the effective range expansion (ERE) and, e.g., the S-wave ($l=0$) component in three-dimensions takes the form
 \begin{equation}
     \gamma \cot (\delta_0(\gamma)) - i \gamma
@@ -43,5 +55,44 @@ The expansion of the inverse of eq.~(\ref{eq:on-shell-T}) in scattering momenta 
 \end{equation}
 where $a_0$ is the so called scattering length and $r_e$ the effective range of the two-particle interactions.
 
+\subsection{Derivative expansion of interactions}
+
+\todo{Here comes some general stuff regarding the ERE and a contact tower...}
+
+\subsection{Tuning to unitarity}
+
+
+\todo{Here comes some stuff regarding the ERE for a contact and a hard cutoff}
+
 Unitarity is obtained if the scattering is scale invariant, e.g., the ERE is independent of dimensional quantites.
 As an example, for an interaction with zero effective range $r_e = 0$ (and higher terms in the order of scattering momenta equal to zero as well), the scattering length should diverge or equivalently $1/a_0 \to 0$.
+
+We concentrate our analysis on a (momentum independent) contact interaction
+\begin{align}
+    \braket{\vec p' }{ V(\Lambda) \;\middle\vert\; \vec p }
+    & =
+    C(\Lambda)
+    \, ,
+    &
+    \braket{\vec r' }{ V(\Lambda) \;\middle\vert\;  \vec r }
+    & =
+    C(\Lambda) \delta^{(D)}(\vec r - \vec r') \delta^{(D)}(\vec r)
+    \, ,
+\end{align}
+
+
+This simplfies the analysis because
+\begin{itemize}
+    \item only S-wave information are not vanishing for a contact interaction
+    \item the corresponding ERE has no effective range (and higher terms).
+\end{itemize}
+Thus, to obtain unitarity, one only has to tune the interaction to the S-wave scattering length.
+
+For this derivation we explicitly utilize a hard cutoff regularization mimicing the UV-regularization of the coordinate space lattice.
+
+In this case, the solution to the LS is
+\begin{align}\label{eq:quantization-contact-physical}
+	T(p', p, E) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_0(E, \Lambda)} \, , &
+	I_0(E) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon)
+	\, .
+\end{align}
