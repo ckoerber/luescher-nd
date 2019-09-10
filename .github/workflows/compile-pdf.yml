@@ -35,6 +35,6 @@ jobs:
         working_directory: papers/luescher-nd/
     - name: Upload pdf
       uses: actions/upload-artifact@master
-         with:
-             name: master.pdf
-             path: papers/luescher-nd/
+      with:
+        name: master.pdf
+        path: papers/luescher-nd/
