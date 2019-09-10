@@ -18,7 +18,7 @@ FIGURES=I0.pdf	\
 all:	$(FIGURES)
 
 I0.pdf:  I0.tex
-	latex I0.tex 1>/dev/null 2>/dev/null
+	latex I0.tex
 	dvips I0.dvi 1>/dev/null 2>/dev/null
 	ps2pdf I0.ps 1>/dev/null 2>/dev/null
 	$(RM) I0.dvi I0.ps I0.aux I0.log
