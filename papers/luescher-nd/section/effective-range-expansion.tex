@@ -1,98 +1,83 @@
 \section{Two-particle scattering}
 
 \subsection{The effective range expansion}
-Scattering information of a two-particle system are captured by the scattering-matrix which is related to the $T$-matrix by
-\begin{equation}
-    S(\vec p', \vec p, E)
-    =
-    \delta^{(D)}(\vec p' - \vec p)
-    +
-    2 \pi i  \delta^{(1)}(E_{\vec p'} - E_{\vec p})T(\vec p', \vec p, E)\, ,
-\end{equation}
-where $\vec p', \vec p$ are the outgoing and incoming relative scattering momenta of the two-body system and $E_{\vec p'}, E_{\vec p}$ the respective energies.
+Scattering information of a two-particle system are captured by the scattering-matrix which is related to the $T$-matrix.
 The off-shell $T$-matrix can be obtained for a two-particle interaction $\hat V$ by solving the Lippmann-Schwinger equation
 \begin{align}
-	T(\vec p', \vec p, E)
+	T_D(\vec p', \vec p, E)
 	&=
-	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^3}{(2\pi)^3} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^D}{(2\pi)^D} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
 	&
 	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
 	\, .
 \end{align}
 After projecting the on-shell $T$-matrix onto partial waves,
-\begin{equation}
-    T_{l' m' l m}(p', p, E)
-    =
-    \frac{1}{4\pi}
-    \int \mathrm{d} \hat p' \int \mathrm{d} \hat p \,
-    Y_{l'm'}^*(\hat p') Y_{lm}(\hat p)
-    T(\vec p', \vec p, E)
-    \, ,
-\end{equation}
-the $T$-matrix can be described by scattering phase shifts
-\begin{equation}\label{eq:on-shell-T}
-	T_l(\gamma) \equiv \frac{1}{2l+1} \sum_{-l \leq m \leq l} T_{l m l m}(\gamma, \gamma , E_\gamma)
-    = \frac{2}{\mu}
-    \mathcal F^{D}(\gamma) \frac{1}{\cot (\delta_l(\gamma)) - i} \, ,
-\end{equation}
-where $E_\gamma = \gamma^2 / (2 \mu)$ and
-\begin{equation}\label{eq:spherical FD}
-    \mathcal F^{D}(\gamma)
-    =
-    \begin{cases}
-        \gamma/\pi     & (D=1)\\
-        1       & (D=2)\\
-        \pi/\gamma   & (D=3)
-    \end{cases}
-\end{equation}
-is a dimension-dependent kinematic function of the on-shell momentum.
+the $T$-matrix is related to scattering phase shifts by
+\begin{align}\label{eq:on-shell-T}
+	\frac{1}{T_{lD}(p)}
+    \equiv
+    \frac{1}{T_{lD}(p, p, E_p)}
+    = \frac{\mu}{2}
+    \frac{1}{\mathcal F_{l D}(p)} \left[\cot (\delta_{l D}(p)) - i\right] \, ,
+\end{align}
+where $E_p = p^2 / (2 \mu)$ and $\mathcal F_{l D}(p)$ is a dimension-dependent kinematic function of the on-shell momentum.
 
-The expansion of the inverse of eq.~(\ref{eq:on-shell-T}) in scattering momenta $\gamma$ is called the effective range expansion (ERE) and, e.g., the S-wave ($l=0$) component in three-dimensions takes the form
-\begin{equation}
-    \gamma \cot (\delta_0(\gamma)) - i \gamma
-    =
-    - \frac{1}{a_0}  - i \gamma + r_e \gamma^2 + \mathcal{O}(\gamma^4)\,,
-\end{equation}
-where $a_0$ is the so called scattering length and $r_e$ the effective range of the two-particle interactions.
-
-\subsection{Derivative expansion of interactions}
-
-\todo{Here comes some general stuff regarding the ERE and a contact tower...}
-
-\subsection{Tuning to unitarity}
-
-
-\todo{Here comes some stuff regarding the ERE for a contact and a hard cutoff}
-
-Unitarity is obtained if the scattering is scale invariant, e.g., the ERE is independent of dimensional quantites.
-As an example, for an interaction with zero effective range $r_e = 0$ (and higher terms in the order of scattering momenta equal to zero as well), the scattering length should diverge or equivalently $1/a_0 \to 0$.
-
-We concentrate our analysis on a (momentum independent) contact interaction
+Unitarity is obtained if the scattering is scale invariant, e.g., the phase shifts are independent of dimensional quantites
 \begin{align}
-    \braket{\vec p' }{ V(\Lambda) \;\middle\vert\; \vec p }
-    & =
-    C(\Lambda)
-    \, ,
-    &
-    \braket{\vec r' }{ V(\Lambda) \;\middle\vert\;  \vec r }
-    & =
-    C(\Lambda) \delta^{(D)}(\vec r - \vec r') \delta^{(D)}(\vec r)
-    \, ,
+    \cot (\delta_{l D}(p)) &= 0
+    \,, &
+    \frac{\partial}{\partial p}\cot (\delta_{l D}(p)) &= 0
+    \, &
+    \, \forall p\,.
 \end{align}
 
+Low energy theories usually consider the expansion of eq.~(\ref{eq:on-shell-T}) in scattering momenta $p$, called the effective range expansion (ERE), which takes the form \cite{Hammer:2010fw}
+\begin{align}
+    \cot \left(\delta_{l D}(p)\right)
+    &=
+    \delta_D \frac{2}{\pi}  \ln \left(p R_{l D}\right)
+    -
+    \frac{1}{a_{l D}} p^{2 - 2 l - D} +\frac{1}{2} r_{l D} p^{4 - 2 l - D} + O\left(p^{6 - 2 l - D}\right)
+    \, , &
+    \delta_D &= \begin{cases}
+        0 & D \;\text{odd} \\ 1 & D \;\text{even}
+    \end{cases}
+    \, .
+\end{align}
+The parameter $R_{l D}$ is an arbitrary length scale.
+The following terms containing $a_{l D}$ (for $l=0$ and $d=3$ called the scattering length), $r_{l D}$, (or $l=0$ and $d=3$ called effective range) and terms coming with higher powers of the scattering momenta correspond to properties of the two-particle interaction.
 
-This simplfies the analysis because
-\begin{itemize}
-    \item only S-wave information are not vanishing for a contact interaction
-    \item the corresponding ERE has no effective range (and higher terms).
-\end{itemize}
-Thus, to obtain unitarity, one only has to tune the interaction to the S-wave scattering length.
-
-For this derivation we explicitly utilize a hard cutoff regularization mimicing the UV-regularization of the coordinate space lattice.
-
-In this case, the solution to the LS is
+\todo{Address cutoff}
+For a contact interaction, all contributions to the ERE for partial waves different than S-wave ($l=0$) vanish
 \begin{align}\label{eq:quantization-contact-physical}
-	T(p', p, E) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_0(E, \Lambda)} \, , &
-	I_0(E) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^3}{(2\pi)^3} G(\vec k, E + i \epsilon)
+	V(\vec p', \vec p) &= c(\Lambda)
+	\, \Rightarrow &
+	T_D(p) = T_{0D}(p) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_D(E_p, \Lambda)}
+	\, , &
+	I_D(E_p, \Lambda) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^D}{(2\pi)^D} G(\vec k, E_p + i \epsilon)
 	\, .
 \end{align}
+In particular, for a contact interaction, one finds
+\begin{align}
+    \cot \left(\delta_{l D}(p)\right)
+    =
+    \delta_{l,0}
+    \cot \left(\delta_{0 D}(p)\right)
+    & =
+    i +
+    \frac{2}{\mu}
+    \frac{1}{\mathcal{F}_{0D}}
+    \left[
+        \frac{1}{c(\Lambda)}
+        -
+        \lim\limits_{\epsilon\to0}{}_2F_1\left(1, \frac{D}{2}, \frac{D+3}{2}, \frac{\Lambda^2}{(p + i \epsilon)^2} \right)
+    \right]
+    \\
+    &=
+    \begin{cases}
+        ... & (D=1)\\
+        ... & (D=2)\\
+        ... & (D=3)
+    \end{cases}
+\end{align}
+\todo{needs to be finalized}
