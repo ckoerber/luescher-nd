@@ -1,3 +1,45 @@
 \section{Analysis in both 3 dimensions and 1 dimension}
 \todo{@CK: Stuff}
-We begin our discussion with L\"uscher's formalism in both three dimensions and one dimension.  Aside from the obvious change in units and reduced dimensionality when going from three to one dimension, the technical aspects of either case are similar enough that there is no reason to discuss them separately.  On the other hand, there are subtle technical issues leading to large differences in two dimensions, and so we reserve the discussion of L\"uscher's formalism in two dimensions in a subsequent section.  
+We begin our discussion with L\"uscher's formalism in both three dimensions and one dimension.  Aside from the obvious change in units and reduced dimensionality when going from three to one dimension, the technical aspects of either case are similar enough that there is no reason to discuss them separately.  On the other hand, there are subtle technical issues leading to large differences in two dimensions, and so we reserve the discussion of L\"uscher's formalism in two dimensions in a subsequent section.
+
+
+\subsection{Numerical Results}
+
+Now we can attempt a numerical characterization of {\color{red} two} fermions at unitarity.
+The interaction strength $C(\epsilon)$ of the Hamiltonian \eqref{p space hamiltonian}, in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$, is tuned such that the ground state energy $E_0$ matches the first zero of $S^{\spherical}_3$.
+The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
+Once the strength is tuned to machine precision, using exact diagonalization we extract the low-lying energy levels, for fixed physical volume and fixed lattice spacing.
+In \Figref{unimproved spherical} we put those (finite-lattice-spacing) energy levels through \eqref{spherical quantization} to convert them to scattering data, and additionally perform a continuum extrapolation according to
+\begin{equation}
+    \text{\todo{Does the extrapolation depend on \nstep?}}
+\end{equation}
+with error bars given by \todo{something meaningful}.  \todo{Add continuum extrapolation as an appendix?  Collect data, provide a script?  Something!}
+
+\begin{figure}[th]
+    \input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
+    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.  In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}. \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
+    \label{fig:unimproved spherical}
+\end{figure}
+
+\begin{figure}[th]
+    \input{figure/continuum-ere_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
+    \caption{Same as \Figref{unimproved spherical} but spectrum was extrapolated to continuum before fed to zeta function.}
+    \label{fig:unimproved spherical continuum extrapolation}
+\end{figure}
+
+One can clearly see that without a continuum extrapolation, the finite-volume spectrum does not agree with the exactly-known flat solution that a contact interaction must provide.
+That is, by foregoing a continuum extrapolation, we induce unphysical effects in the phase shift.
+In the remainder of this paper we improve this result markedly, so that the continuum limit towards unitarity is substantially easier.
+
+\todo{Comment on the continuum-extrapolated results, which I can't do yet since they're not there :D}
+
+In \Figref{finite a spherical} we show the result of tuning the contact interaction so that the ground state, when put through $S^{\spherical}_3$ yields a scattering length of \todo{something}.
+Again, since the interaction is a contact interaction only, we expect a completely flat behavior.
+In constrast, we see \todo{shapes that make us sad / curious}.
+
+\begin{figure}[th]
+    \input{figure/ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
+    \caption{We results like \Figref{unimproved spherical}, but where the contact interaction was tuned so that the ground state matches yields $p\cot\delta = $\todo{some finite scattering length; part of \issue{19}} rather than to 0.  Similar deviation from completely flat behavior is apparent at any finite lattice spacing.}
+    \label{fig:finite a spherical}
+\end{figure}
+ 
