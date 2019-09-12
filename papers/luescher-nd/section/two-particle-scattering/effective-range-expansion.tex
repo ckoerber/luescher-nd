@@ -32,7 +32,7 @@ Low energy theories usually consider the expansion of eq.~(\ref{eq:on-shell-T}) 
     &=
     \delta_D \frac{2}{\pi}  \ln \left(p R_{l D}\right)
     -
-    \frac{1}{a_{l D}} p^{2 - 2 l - D} +\frac{1}{2} r_{l D} p^{4 - 2 l - D} + O\left(p^{6 - 2 l - D}\right)
+    (a_{l D}p)^{2 - 2 l - D} +\frac{1}{2} (r_{l D} p)^{4 - 2 l - D} + O\left(p^{6 - 2 l - D}\right)
     \, , &
     \delta_D &= \begin{cases}
         0 & D \;\text{odd} \\ 1 & D \;\text{even}
@@ -41,4 +41,16 @@ Low energy theories usually consider the expansion of eq.~(\ref{eq:on-shell-T}) 
 \end{align}
 The parameter $R_{l D}$ is an arbitrary length scale.
 The parameters $a_{l D}$, $r_{l D}$ and terms coming with higher powers of the scattering momenta describe to properties of the two-particle interaction.
+Note that our definition of these parameters is chosen to form dimensionless quantities different from \cite{Hammer:2010fw}.
 E.g., in the 3-dimensional S-wave phase shifts, $a_{03}$ is called scattering length and $r_{0 3}$ is the effective range of the interaction.
+
+In particular, for a point like contact interaction one finds
+\begin{equation}
+	\cot \left(\delta_{0}(p)\right)
+	=\begin{cases}
+		-\frac{1}{a_{03} p} & {D=3} \\ 
+		\frac{2}{\pi} \log \left(p R_{02}\right) & {D=2} \\ 
+		a_{01}p & {D=1}
+	\end{cases}
+	\, .
+\end{equation}
