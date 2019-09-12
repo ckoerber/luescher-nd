@@ -25,9 +25,6 @@ where $E_p = p^2 / (2 \mu)$ and $\mathcal F_{l D}(p)$ is a dimension-dependent k
 Unitarity is obtained if the scattering is scale invariant, e.g., the phase shifts are independent of dimensional quantites
 \begin{align}
     \cot (\delta_{l D}(p)) &= 0
-    \,, &
-    \frac{\partial}{\partial p}\cot (\delta_{l D}(p)) &= 0
-    \, &
     \, \forall p\,.
 \end{align}
 
@@ -45,39 +42,5 @@ Low energy theories usually consider the expansion of eq.~(\ref{eq:on-shell-T}) 
     \, .
 \end{align}
 The parameter $R_{l D}$ is an arbitrary length scale.
-The following terms containing $a_{l D}$ (for $l=0$ and $d=3$ called the scattering length), $r_{l D}$, (or $l=0$ and $d=3$ called effective range) and terms coming with higher powers of the scattering momenta correspond to properties of the two-particle interaction.
-
-\todo{Address cutoff}
-For a contact interaction, all contributions to the ERE for partial waves different than S-wave ($l=0$) vanish
-\begin{align}\label{eq:quantization-contact-physical}
-	V(\vec p', \vec p) &= c(\Lambda)
-	\, \Rightarrow &
-	T_D(p) = T_{0D}(p) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_D(E_p, \Lambda)}
-	\, , &
-	I_D(E_p, \Lambda) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^D}{(2\pi)^D} G(\vec k, E_p + i \epsilon)
-	\, .
-\end{align}
-In particular, for a contact interaction, one finds
-\begin{align}
-    \cot \left(\delta_{l D}(p)\right)
-    =
-    \delta_{l,0}
-    \cot \left(\delta_{0 D}(p)\right)
-    & =
-    i +
-    \frac{2}{\mu}
-    \frac{1}{\mathcal{F}_{0D}}
-    \left[
-        \frac{1}{c(\Lambda)}
-        -
-        \lim\limits_{\epsilon\to0}{}_2F_1\left(1, \frac{D}{2}, \frac{D+3}{2}, \frac{\Lambda^2}{(p + i \epsilon)^2} \right)
-    \right]
-    \\
-    &=
-    \begin{cases}
-        ... & (D=1)\\
-        ... & (D=2)\\
-        ... & (D=3)
-    \end{cases}
-\end{align}
-\todo{needs to be finalized}
+The parameters $a_{l D}$, $r_{l D}$ and terms coming with higher powers of the scattering momenta describe to properties of the two-particle interaction.
+E.g., in the 3-dimensional S-wave phase shifts, $a_{03}$ is called scattering length and $r_{0 3}$ is the effective range of the interaction.

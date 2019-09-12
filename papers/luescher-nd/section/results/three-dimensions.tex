@@ -44,4 +44,40 @@ In constrast, we see \todo{shapes that make us sad / curious}.
     \caption{We results like \Figref{unimproved spherical}, but where the contact interaction was tuned so that the ground state matches yields $p\cot\delta = $\todo{some finite scattering length; part of \issue{19}} rather than to 0.  Similar deviation from completely flat behavior is apparent at any finite lattice spacing.}
     \label{fig:finite a spherical}
 \end{figure}
- 
+
+
+All contributions to the ERE for partial waves different than S-wave ($l=0$) vanish for a point like contact interaction (with zero range), and only the scattering parameters $a_{0D}$ and $R_{0 D}$ can be non-zero.
+Because this interaction can be too singular, depending on the dimension of the system, one needs to introduce a regulator.
+Possible regularization schemes in literature are, e.g., dimensional regularization, smearing of the contact interaction or the introduction of a hard theory cutoff, which can be directly related to the lattice spacing of calculations in non-continuous space.
+\begin{align}\label{eq:quantization-contact-physical}
+	V(\vec p', \vec p) &= c(\Lambda)
+	\, \Rightarrow &
+	T_D(p) = T_{0D}(p) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_D(E_p, \Lambda)}
+	\, , &
+	I_D(E_p, \Lambda) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^D}{(2\pi)^D} G(\vec k, E_p + i \epsilon)
+	\, .
+\end{align}
+In particular, for this contact interaction and cutoff regularization scheme one finds
+\begin{align}
+    \cot \left(\delta_{l D}(p)\right)
+    =
+    \delta_{l,0}
+    \cot \left(\delta_{0 D}(p)\right)
+    & =
+    i +
+    \frac{2}{\mu}
+    \frac{1}{\mathcal{F}_{0D}}
+    \left[
+        \frac{1}{c(\Lambda)}
+        -
+        \lim\limits_{\epsilon\to0}{}_2F_1\left(1, \frac{D}{2}, \frac{D}{2} + 1, \frac{\Lambda^2}{(p + i \epsilon)^2} \right)
+    \right]
+    \\
+    &=
+    \begin{cases}
+        ... & (D=1)\\
+        ... & (D=2)\\
+        ... & (D=3)
+    \end{cases}
+\end{align}
+\todo{needs to be finalized}
