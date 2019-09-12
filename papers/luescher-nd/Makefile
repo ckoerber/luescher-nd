@@ -8,10 +8,7 @@ ROOT:=$(shell pwd)
 
 MASTER=master
 TARGET?=$(MASTER)
-SECTIONS = $(shell ls -1 section/ | sed -e 's/^/section\//g')
-
-COUNTERTERMS = $(shell ls -1 section/counterterm/ | sed -e 's/^/section\/counterterm\//g')
-SECTIONS+=$(COUNTERTERMS)
+SECTIONS = $(shell find section -type f)
 
 BIBS = $(find . -name '*.bib')
 
@@ -41,7 +38,7 @@ ifdef SHORTCIRCUIT
 	-$(BIB) $* $(REDIRECT)
 	$(TEX) -jobname=$* "$(OPTIONS)\input{$*}" $(REDIRECT)
 	$(TEX) -jobname=$* "$(OPTIONS)\input{$*}" $(REDIRECT)
-	$(MAKE) tidy
+	# $(MAKE) tidy
 else
 %.pdf: figures $(SECTIONS) $(BIBS) macros.tex %.tex
 	SHORTCIRCUIT=1 OPTIONS="$(OPTIONS)" git latexdiff --whole-tree --main $(TARGET).tex --prepare "rm -rf repo; ln -s $(ROOT)/repo" -o $(TARGET).pdf $(OLD) $(NEW)
