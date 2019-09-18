@@ -1,0 +1,123 @@
+\section{Discretized Hamiltonian}\label{sec:hamiltonian}
+
+We consider a cubic finite volume (FV) of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
+
+The contact interaction is implemented on the lattice as an entirely local operator, vanishing everywhere except at the origin where it is of strength $C$.
+The contact interaction is not smeared.
+The Hamiltonian is given by
+\begin{equation}
+    \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
+    \rightarrow
+    H_{\vec{r}',\vec{r}}
+    =
+    - \frac{1}{2\mu} K_{\vec{r}',\vec{r}} + \frac{1}{\epsilon^D} C(\epsilon) \delta_{\vec{r}',\vec{r}} \delta_{\vec{r},\vec{0}}
+\end{equation}
+where $K$ is a discretized Laplacian, implementing the kinetic energy.
+
+To ensure we control the discretization effects in generality, we study a variety of kinetic operators $K_{xy}$.
+An often-used set of finite-difference operators are constructed from the one-dimensional finite-difference Laplacian
+\begin{equation}
+    \Laplacian^{(\nstep)}_{r'r} = \frac{1}{\epsilon^2}\sum_{s=-\nstep}^{\nstep} \gamma_{\abs{s}}^{(\nstep)} \delta_{r',r+\epsilon s}
+\end{equation}
+where the spatial indices are understood modulo the periodic boundary conditions of the lattice.
+In $D$ dimensions we simply take on-axis finite differences, so that the Laplacian is a $(1+2\nstep D)$-point stencil.
+In momentum space the one-dimensional Laplacian may be written
+\begin{equation}
+    \label{eq:laplacian}
+    \Laplacian^{(\nstep)}_{p'p}
+    =
+    \frac{1}{\epsilon^2}
+    \delta_{p'p}
+    \sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos(s p \epsilon)
+\end{equation}
+while in $D$ dimensions we just sum the same expression over the different components of momentum.
+Note that this is a specialization, in the sense that it contains no off-axis differencing (in position space) or products of different components (in momentum space).
+
+The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
+\begin{equation}
+    \label{eq:gamma determination}
+    \Laplacian^{\nstep}_{p'p}
+    \overset{!}{=}
+    \delta_{p'p} \;
+    p^2 \left[
+        1 + \order{(\epsilon p)^{2\nstep}}
+    \right].
+\end{equation}
+The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and in \Appref{coefficients} we collect the required $\gamma$ coefficients.
+
+\begin{figure}
+    \input{figure/dispersion.pgf}
+    \caption{We show the continuum dispersion relation of energy as a function of momentum for different one-dimensional $\nstep$ derivatives.  For a finite number of lattice points $N$, the allowed momenta are evenly-spaced in steps of $2\pi/N$.
+    As additional steps are incorporated into the finite difference, the dispersion relation more and more faithfully reproduces the desired $p^2$~behavior of $\nstep=\infty$.
+    }
+    \label{fig:dispersion relation}
+\end{figure}
+
+Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in momentum space, can be implemented to multiplying by $p^2$ directly,
+\begin{equation}
+    \Laplacian^{(\infty)}_{p'p}
+    =
+    \delta_{p'p} p^2,
+\end{equation}
+including at the edge of the Brillouin zone, the Laplacian implementation of the ungauged SLAC derivative.
+Including the edge of the Brillouin zone does not introduce a discontinuity at the boundary.
+We also call this kinetic operator the \emph{exact-$p^2$} operator.
+The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and
+in \Appref{coefficients} we collect the required $\gamma$ coefficients.
+
+We can easily fourier transform the Hamiltonian into momentum space, so that
+\begin{equation}
+    \label{eq:p space hamiltonian}
+    \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
+    \rightarrow
+    H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
+    =
+    \frac{1}{2\mu} K_{\vec{p}'p}
+    +\frac{1}{L^D}C(\epsilon)
+\end{equation}
+where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{s}^{(\nstep)}$ are determined as described above.
+\todo{CHECK SIGNS}
+
+
+\subsection{Reduction to \Aoneg}
+
+Because we are interested in contact interactions, infinite-volume arguments suggest that only the s-wave will feel the interaction.
+Since the s-wave is most like \Aoneg we will focus on the spectrum in that irreducible representation of the cubic symmetry group $O_h$ in three dimensions, of the symmetry group of the square $D_{4h}$ in two dimensions, or $Z_2$ in one dimension, where an \Aoneg restriction amounts to focusing on parity-even states.
+
+With a projection operator $P_{\Aoneg}$ we can raise the energy of all the other states an arbitrary amount $\alpha$ by supplementing the Hamiltonian
+\begin{equation}
+    H(\alpha) = H + \alpha (\one - P_{\Aoneg}) \, ,
+\end{equation}
+Because $P_{\Aoneg}$ commutes with $H$, $H$ and $H(\alpha)$ have the same spectrum within the $\Aoneg$ irrep.
+If $\alpha$ is much larger than the expected energies of the Hamiltonian, the \Aoneg states remain low-lying and all other states are shifted to much higher energies.
+Then, exact diagonalization for low-lying eigenvalues of $H(\alpha)$ provides an easier extraction of \Aoneg eigenenergies.
+
+Because of the simplicity of \Aoneg we can also easily construct the Hamiltonian directly in that sector.
+In momentum space we can label plane wave states by a vector on integers $\vec{n}$.
+In the \Aoneg basis we can use on plane wave label and understand that we intend a normalized unweighted average of every plane wave state.
+That is,
+\begin{equation}
+    \ket{\Aoneg\; \vec{n}} = \frac{1}{\sqrt{\normalization}} \sum_{g \in G} \ket{ g\vec{n}}
+\end{equation}
+where $g$ is an element of the group $G$, the sum is over all inequivalent states, and $\normalization$ the normalization.
+When $\vec{n}$ is large we should be careful not to double-count states that live right on the edge of the Brillouin zone.
+The states may be labeled by symmetry-inequivalent vectors with components all as large as $N/2$.
+
+Formulated in this basis, the kinetic energy operator remains diagonal and proportional to $n^2$.
+Reading off the momentum-state potential matrix element from \eqref{p space hamiltonian}, the contact interaction is given by
+\begin{equation}
+    \braMket{\Aoneg\; \vec{n}'}{V}{\Aoneg\; \vec{n}}
+    =
+    \sum_{g'g \in G}
+        \frac{1}{\sqrt{\normalization'}\sqrt{\normalization}} \braMket{g'\vec{n}'}{V}{g\vec{n}}
+    =
+    \frac{C(\epsilon)}{L^D} \sqrt{\normalization'\normalization},
+\end{equation}
+so that every \Aoneg state can talk to every other.
+So, the Hamiltonian is
+\begin{equation}
+    H_{\vec{n}'\vec{n}} = \frac{1}{2\mu} K_{\vec{n'}\vec{n}} + \frac{C}{L^D} \sqrt{\normalization'\normalization}
+\end{equation}
+where the kinetic piece is understood with appropriate factors of $2\pi/L$.
+
+We have implemented both this \Aoneg-only Hamiltonian and the general Hamiltonian with an energy penalty for non-\Aoneg states and verified that the spectra match where expected to as much precision as desired.

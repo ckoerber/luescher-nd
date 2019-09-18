@@ -35,7 +35,7 @@
 
 \begin{document}
 
-\title{L\"{u}scher's Formalism in 1-, 2- and 3-dimensions\\--the unitary limit on the lattice and it's caveats}
+\title{How to Tune a Contact Interaction}
 \input{authors}
 
 
@@ -44,29 +44,26 @@
 \date{\today}
 
 \begin{abstract}
-Studies of strongly interacting many-fermion systems at unitarity, defined invariance under scaling, require tuning the two-fermion subsystem such that phase shifts vanish.
-While Finite Volume (FV) lattice descriptions allow access to systems with large numbers of fermions, FV lattice observables need to be transported to the Infinite Volume (IV) and continuum.
-Possible complications with the extrapolation procedure make it difficult to study the unitary limit in three-dimensions, while for a two-dimensional system it is currently unknown how to describe the unitary limit.
-In particular, L\"{u}scher's formalism directly converts FV continuum energy levels to IV continuum phase shifts at the two-body level.
-Applying L\"{u}scher's formalism can be difficult because it is not always practically and sometimes even not possible to perform a continuum limit at fixed volumes.
-In this paper we concentrate on the interplay of lattice discretization and FV effects.
-We describe how to tune one-, two- and three-dimensional two-fermion systems to unitarity while highlighting possible difficulties.
-We find that tuning to the two-dimensional unitary limit requires a simultaneous continuum and FV extrapolation.
-In the three-dimensional case discretization artifacts induce finite range interactions which can be systematically removed.
-These findings may help to systematically improve lattice computations of strongly interacting many-fermion observables at unitarity in two- and three-dimensional systems.
+We explain how to tune the coefficient of a contact interaction between nonrelativistic particles on a discretized space in 1, 2, and 3 spatial dimensions.  By taking advantage of a latticized \Luscher zeta function, we can achieve a momentum-independent scattering amplitude at any finite lattice spacing.
 \end{abstract}
 
 \maketitle
 
-
 \input{section/introduction}
 \input{section/two-particle-scattering}
-\input{section/results}
+\input{section/hamiltonian}
+\input{section/luescher}
+\input{section/one-dimension}
+\input{section/three-dimensions}
+\input{section/two-dimensions}
+% \input{section/results}
 \input{section/conclusion}
 \input{section/acknowledgements}
 
 \appendix
-\input{section/appendix}
+\input{section/dispersion-coefficients}
+\input{section/counterterm/spherical}
+\input{section/counterterm/dispersion}
 
 \bibliography{master}
 
