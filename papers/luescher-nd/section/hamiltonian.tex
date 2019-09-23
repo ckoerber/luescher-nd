@@ -10,9 +10,9 @@ The Hamiltonian is given by
     \rightarrow
     H_{\vec{r}',\vec{r}}
     =
-    - \frac{1}{2\mu} K_{\vec{r}',\vec{r}} + \frac{1}{\epsilon^D} C(\epsilon) \delta_{\vec{r}',\vec{r}} \delta_{\vec{r},\vec{0}}
+    \frac{1}{2\mu} K_{\vec{r}',\vec{r}} + \frac{1}{\epsilon^D} C(\epsilon) \delta_{\vec{r}',\vec{r}} \delta_{\vec{r},\vec{0}}
 \end{equation}
-where $K$ is a discretized Laplacian, implementing the kinetic energy.
+where $K$ is a discretized Laplacian, implementing the momentum squared.
 
 To ensure we control the discretization effects in generality, we study a variety of kinetic operators $K_{xy}$.
 An often-used set of finite-difference kinetic operators are constructed from the one-dimensional finite-difference Laplacian
@@ -20,10 +20,19 @@ An often-used set of finite-difference kinetic operators are constructed from th
     \Laplacian^{(\nstep)}_{r'r} = \frac{1}{\epsilon^2}\sum_{s=-\nstep}^{\nstep} \gamma_{\abs{s}}^{(\nstep)} \delta_{r',r+\epsilon s}
 \end{equation}
 where the spatial indices are understood modulo the periodic boundary conditions of the lattice.
-In $D$ dimensions we simply take on-axis finite differences, so that the Laplacian is a $(1+2\nstep D)$-point stencil.
-In momentum space the one-dimensional Laplacian may be written
+In $D$ dimensions we simply take on-axis finite differences, so that the Laplacian is a $(1+2\nstep D)$-point stencil
+\begin{equation}
+    K_{\vec{r}',\vec{r}}
+    =
+    - \sum_{d=1}^D \Laplacian_{r_d'r_d^{}}^{(\nstep)}
+    \, .
+\end{equation}
+
+In the Fourier transformed space, momentum space, the one-dimensional Laplacian may be written
 \begin{equation}
     \label{eq:laplacian}
+    -\Laplacian_{r'r^{}}^{(\nstep)}
+    \overset{\text{F.T.}}{\longleftrightarrow}
     \Laplacian^{(\nstep)}_{p'p}
     =
     \frac{1}{\epsilon^2}
@@ -36,7 +45,7 @@ Note that this is a specialization, in the sense that it contains no off-axis di
 The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
 \begin{equation}
     \label{eq:gamma determination}
-    \Laplacian^{\nstep}_{p'p}
+    \Laplacian^{(\nstep)}_{p'p}
     \overset{!}{=}
     \delta_{p'p} \;
     p^2 \left[
@@ -65,18 +74,17 @@ We also call this kinetic operator the \emph{exact-$p^2$} operator.
 The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and
 in \Appref{coefficients} we collect the required $\gamma$ coefficients.
 
-We can easily fourier transform the Hamiltonian into momentum space, so that
+The Hamiltonian in momentum space reads
 \begin{equation}
     \label{eq:p space hamiltonian}
     \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
     \rightarrow
-    H_{\vec{p}',\vec{p}}^{(L,\epsilon,\nstep)}
+    H_{\vec{p}',\vec{p}}
     =
     \frac{1}{2\mu} K_{\vec{p}'p}
     +\frac{1}{L^D}C(\epsilon)
 \end{equation}
 where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{s}^{(\nstep)}$ are determined as described above.
-\todo{CHECK SIGNS}
 
 
 \subsection{Reduction to \Aoneg}
