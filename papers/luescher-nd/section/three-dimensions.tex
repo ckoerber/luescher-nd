@@ -3,7 +3,7 @@
 
 Now we can attempt a numerical characterization of two fermions at unitarity (and finite for finite scattering).
 We implement the Hamiltonian in \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$.
-The interaction strength $C(\Lambda)$ is tuned such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (see also \figref{tuning}).
+The interaction strength $C(\Lambda)$ is tuned such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (eq.~\eqref{spherical quantization} and see also \figref{tuning}) and dispersion zeta function (eq.~\eqref{dispersion quantization}).
 In our computations, the low-lying energy levels for fixed physical volume and fixed lattice spacing are extracted using numeric exact diagonalization after the strength is tuned to machine precision.
 The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
 
@@ -13,21 +13,19 @@ Therefore the strength has to be retuned for each lattice implementation.
 This lattice dependence has the consequence that each lattice observable, e.g., the energy spectrum (besides the input ground state), has to extrapolated to the continuum limit first to extract \textit{pure} FV energy levels.
 These FV energy levels can be used in Lüscher's formalism to extract infinite volume scattering data.
 
-In practice, it is not always possible to compute a continuum limit before inserting the FV spectrum into Lüscher's formalism.
-We therefore attempt both approaches, performing a continuum limit before (as intended) and after applying Lüscher (as happens in practice) to the obtained spectrum.
-
-
-
 \begin{figure}
 \center
 \includegraphics[width=.7\textwidth]{figure/tuning.pdf}
 \caption{\label{fig:tuning}
-    The Finite Volume energy spectrum is extracted by computing the intersections of the Lüscher Zeta function (modulo factors) with the phase shifts (see \eqref{spherical quantization}).
-    The first intersection $x_0$, which corresponds to the binding energy $E_0 < 0$, is used to tune the interaction $c^{(n_s)}(\epsilon)$.
+    Constant phase shifts (colored lines) described by a contact interaction and the three-dimensional zeta function $\frac{1}{\pi L} S^{\spherical}_3$ (dashed line).
+    The Finite Volume energy spectrum is extracted by computing the intersections of the zeta function with the phase shifts (see \eqref{spherical quantization}).
+    The first intersection $x_0$, which corresponds to the binding energy $E_0 < 0$, is used to tune the interaction $c^{(n_s)}(\epsilon)$ for a given lattice implementation.
     This treatment allows to determine $c^{(n_s)}(\epsilon)$ independent of volume sizes.
 }
 \end{figure}
 
+In practice, it is not always possible to compute a continuum limit before inserting the FV spectrum into Lüscher's formalism.
+We therefore attempt both approaches, performing a continuum limit before (as intended) and after applying Lüscher (as happens in practice) to the obtained spectrum.
 
 \input{section/three-dimensions/regular-luescher}
 \input{section/three-dimensions/dispersion}
