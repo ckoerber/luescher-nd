@@ -13,7 +13,7 @@ To construct such a lattice-aware function we return to the derivation of \Lusch
 Starting from $I_0$ expressed in relative coordinates \eqref{I0 in relative coordinates} we replace $\vec{q}^2/2\mu$ with the lattice dispersion relation,
 \begin{align}
     \label{eq:dispersion I0}
-    I_0^{\dispersion}(E)
+    I_D^{\dispersion}(\sqrt{2 \mu E})
     &=\frac{1}{(2\pi)^D}
     \int_{-\Lambda}^{+\Lambda}
         \mathrm{d}^D \vec{q}
@@ -30,24 +30,24 @@ We adopt a $\dispersion$ superscript to indicate the quantity is defined account
 
 Defining the finite-spacing T-matrix to take the same form as \eqref{cot delta} with a lattice-spacing sensitivity and following the same procedure as before, we need to solve
 \begin{equation}
-    \frac{\mu}{2\F_D^\epsilon}(\cot \delta_0^\epsilon(E) - i) = I_0^{\dispersion \epsilon}(E) - I_{0,\FV}^{\dispersion \epsilon}(E),
+    \frac{\mu}{2\F_D^\epsilon(\sqrt{2 \mu E})}(\cot \delta_D^\epsilon(\sqrt{2 \mu E}) - i) = I_D^{\dispersion \epsilon}(\sqrt{2 \mu E}) - I_{D,\FV}^{\dispersion \epsilon}(\sqrt{2 \mu E}),
 \end{equation}
 where we have suppressed each quantity's dependence on the form of the finite-difference Laplacian.
 Demanding the seemingly-miraculous cancellation of the imaginary parts, one finds, identifying the cutoff $\Lambda$ with $\pi/\epsilon$,
 \begin{align}
-    \frac{1}{\F_D^\epsilon(2\mu E)} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D}\
+    \frac{1}{\F_D^\epsilon(\sqrt{2 \mu E})} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D}\
     \delta\left(2\mu E - K_{qq}\right)
 \end{align}
-and we see that $\F_D^\epsilon(2\mu E)$ depends on the energy, and the discretization through $K$, so that it lattice-spacing aware.
+and we see that $\F_D^\epsilon(\sqrt{2 \mu E})$ depends on the energy, and the discretization through $K$, so that it lattice-spacing aware.
 In contrast, it does not depend on the size of the finite volume, which is encouraging because it is appears in the finite-spacing infinite-volume T-matrix.
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
 Unfortunately, achieving a closed-form expression for $\F_D^\epsilon$ is quite challenging but it is numerically tractable.
 
 With $\F_D^\epsilon$ so determined, we solve the quantization condition for the finite-spacing phase shift,
 \begin{align}
-    \cot \delta_0^\epsilon(2\mu E)
+    \cot \delta_0^\epsilon(\sqrt{2 \mu E})
     =
-    \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}}
+    \frac{\F_D^\epsilon(\sqrt{2 \mu E})}{\pi^2 L^{D-2}}
     \left(\int \mathrm{d}^D n\; \PV - \sum_n \right)_{-N/2}^{+N/2}\  \frac{1}{\frac{2\mu E L^2}{4\pi^2} - \frac{L^2}{4\pi^2} K_{nn}}
 \end{align}
 where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to \eqref{spherical quantization}.
@@ -58,7 +58,7 @@ We can construct, therefore, a \Luscher-like formalism,
 \todo{It doesn't make sense to write the integral in a way that knows about N---it knows about epsilon only because it is at infinite volume!  Review the dispersion counterterm appendix and make sure the integral is as claimed.  This counterterm isn't a large-N thing, but it's exact.}
 \begin{align}
     \label{eq:dispersion quantization}
-    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
+    \cot \delta_D^{\epsilon}( \sqrt{2 \mu E} ) &= \frac{\F_D^\epsilon(\sqrt{2 \mu E})}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
     \\
     \label{eq:dispersion S}
     S^{\dispersion N}_{D}( x )
