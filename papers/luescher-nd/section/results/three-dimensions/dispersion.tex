@@ -67,25 +67,25 @@ Assuming the T-matrix takes the same form as \eqref{cot delta} with a lattice-sp
 where we have suppressed an $\nstep$ label on each quantity.
 Demanding the seemingly-miraculous cancellation of the imaginary parts, one finds, identifying the cutoff $\Lambda$ with $\pi/\epsilon$,
 \begin{align}
-    \frac{1}{\F_D^\epsilon(2\mu E)} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D}\
+    \frac{1}{\F_D^\epsilon(\sqrt{2\mu E})} &= 4\pi \int_{-\pi/\epsilon}^{+\pi/\epsilon} \frac{\mathrm{d}^D q}{(2\pi)^D}\
     \delta\left(2\mu E - \sum_d \omega^{(\nstep)}(q_d,\epsilon)\right)
 \end{align}
-and we see that $\F_D^\epsilon(2\mu E)$ depends on the energy, the discretization \nstep, and the lattice spacing, but not, for example, the size of the finite volume, which is encouraging because it is appears in the infinite-volume T-matrix.
+and we see that $\F_D^\epsilon(\sqrt{2\mu E})$ depends on the energy, the discretization \nstep, and the lattice spacing, but not, for example, the size of the finite volume, which is encouraging because it is appears in the infinite-volume T-matrix.
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
 Unfortunately, achieving a closed-form expression for $\F_D^\epsilon$ is quite challenging.
 
 With $\F_D^\epsilon$ so determined, we solve the quantization condition for the finite-spacing phase shift,
 \begin{align}
-    \cot \delta_0^\epsilon(2\mu E)
+    \cot \delta_0^\epsilon(\sqrt{2\mu E})
     =
-    \frac{4\F_D^\epsilon(2\mu E)}{L^{D-2}}
+    \frac{4\F_D^\epsilon(\sqrt{2\mu E})}{L^{D-2}}
     \left(\sum_n - \int \mathrm{d}^D n\; \PV \right)_{-N/2}^{+N/2}\  \frac{1}{2\mu E L^2 - N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N}}
 \end{align}
 where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to \eqref{spherical quantization} and \eqref{cartesian quantization}.  The seemingly-mismatched numerical coefficients are due to the fact that there is a $2\pi$ in the cosine in the denominator of the dispersion function.
 Were we to expand the denominator around large $N$ the quadratic term in $n_d$ would have an extra $(2\pi)^2$ compared to the integers that appear in $S^\spherical_D$ \eqref{spherical S} or $S^\cartesian_D$ \eqref{cartesian S}.  We can force superficial similarity, putting those factors in by hand, to arrive at
 \begin{align}
     \label{eq:dispersion quantization}
-    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(2\mu E)}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
+    \cot \delta_0^{\epsilon}( 2\mu E ) &= \frac{\F_D^\epsilon(\sqrt{2\mu E})}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
     \\
     \label{eq:dispersion S}
     S^{\dispersion N}_{D}( x )
