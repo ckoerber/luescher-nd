@@ -1,30 +1,43 @@
 \subsubsection{Cutoff artifacts induce effective range}
 
-Now we can attempt a numerical characterization of two fermions at unitarity.
-The interaction strength $C(\epsilon)$ of the Hamiltonian \eqref{p space hamiltonian}, in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$, is tuned such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$.
-The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
-The low-lying energy levels for fixed physical volume and fixed lattice spacing are extracted using exact diagonalization after the strength is tuned to machine precision.
-In \Figref{unimproved spherical} we use those (finite-lattice-spacing) energy levels through \eqref{spherical quantization} to convert them to scattering data, and additionally perform a continuum extrapolation according to
+After tuning the contact interactio to the first zero of the spherical zeta function, we compute the spectrum of the hamiltonian.
+Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon \to 0$ using a polynomial fit
 \begin{equation}
-    \text{\todo{Does the extrapolation depend on \nstep?}}
+    E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-with error bars given by \todo{something meaningful}.  \todo{Add continuum extrapolation as an appendix?  Collect data, provide a script?  Something!}
+We employ the following strategies and model selection criteria to estimate the continuum energy $E_i^{(n_s)}$ (which should be $n_s$ independent):
+\begin{enumerate}
+    \item Individual fits for each $n_s$ and compare $E_i^{(n_s)}$.
+    \item A constraint fit for all $n_s$ simultaniously with $E_i^{(n_s)} = E_i$ fixed but different $e_{i,n}^{(n_s)}$.
+\end{enumerate}
+We vary the fits over a range of $n_\mathrm{max}=1, \cdots 8$ and employ bayesian information criteria (comparison of bayes factors) to select the best fit meta parameter $n_\mathrm{max}$ using \cite{peter_lepage_2016_60221}.
+Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for even $n$ or $n < n_s$ as the dispersion suggests.
+Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for larger $n_s$.
+We present the best fit to our spectrum in \figref{spectrum-fit} and a summary of other results in table \tabref{spectrum-fit-gable}.
+Also, we provide access to the raw data and fitting scripts onlie at \cite{repo}.
+
 
 \begin{figure}[th]
-    \input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
-    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.  In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}. \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
-    \label{fig:unimproved spherical}
-\end{figure}
-
-\begin{figure}[th]
-    \input{figure/continuum-ere_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
+    \scalebox{0.9}{\input{figure/continuum-ere_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
     \caption{Same as \Figref{unimproved spherical} but spectrum was extrapolated to continuum before fed to zeta function.}
     \label{fig:unimproved spherical continuum extrapolation}
 \end{figure}
 
-One can clearly see that without a continuum extrapolation, the finite-volume spectrum does not agree with the exactly-known flat solution that a contact interaction must provide.
-That is, by foregoing a continuum extrapolation, we induce unphysical effects in the phase shift.
-In the remainder of this paper we improve this result markedly, so that the continuum limit towards unitarity is substantially easier.
+\begin{figure}[th]
+    \scalebox{0.9}{\input{figure/continuum-ere_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
+    \caption{Same as \Figref{unimproved spherical} but spectrum was extrapolated to continuum before fed to zeta function.}
+    \label{fig:unimproved spherical continuum extrapolation}
+\end{figure}
+
+\Figref{unimproved spherical}
+
+\begin{figure}[th]
+    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
+    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.  In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}. \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
+    \label{fig:unimproved spherical}
+\end{figure}
+
+
 
 \todo{Comment on the continuum-extrapolated results, which I can't do yet since they're not there :D}
 
@@ -33,44 +46,9 @@ Again, since the interaction is a contact interaction only, we expect a complete
 In constrast, we see \todo{shapes that make us sad / curious}.
 
 \begin{figure}[th]
-    \input{figure/ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}
+    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
     \caption{We results like \Figref{unimproved spherical}, but where the contact interaction was tuned so that the ground state matches yields $p\cot\delta = $\todo{some finite scattering length; part of \issue{19}} rather than to 0.  Similar deviation from completely flat behavior is apparent at any finite lattice spacing.}
     \label{fig:finite a spherical}
 \end{figure}
 
-
-All contributions to the ERE for partial waves different than S-wave ($l=0$) vanish for a point like contact interaction (with zero range), and only the scattering parameters $a_{0D}$ and $R_{0 D}$ can be non-zero.
-Because this interaction can be too singular, depending on the dimension of the system, one needs to introduce a regulator.
-Possible regularization schemes in literature are, e.g., dimensional regularization, smearing of the contact interaction or the introduction of a hard theory cutoff, which can be directly related to the lattice spacing of calculations in non-continuous space.
-\begin{align}\label{eq:quantization-contact-physical}
-	V(\vec p', \vec p) &= c(\Lambda)
-	\, \Rightarrow &
-	T_D(p) = T_{0D}(p) &= \frac{c(\Lambda)}{1 - c(\Lambda) I_D(E_p, \Lambda)}
-	\, , &
-	I_D(E_p, \Lambda) = \lim\limits_{\epsilon \to 0} \int\limits_{|\vec k| < \Lambda} \frac{d \vec k^D}{(2\pi)^D} G(\vec k, E_p + i \epsilon)
-	\, .
-\end{align}
-In particular, for this contact interaction and cutoff regularization scheme one finds
-\begin{align}
-    \cot \left(\delta_{l D}(p)\right)
-    =
-    \delta_{l,0}
-    \cot \left(\delta_{0 D}(p)\right)
-    & =
-    i +
-    \frac{2}{\mu}
-    \frac{1}{\mathcal{F}_{0D}}
-    \left[
-        \frac{1}{c(\Lambda)}
-        -
-        \lim\limits_{\epsilon\to0}{}_2F_1\left(1, \frac{D}{2}, \frac{D}{2} + 1, \frac{\Lambda^2}{(p + i \epsilon)^2} \right)
-    \right]
-    \\
-    &=
-    \begin{cases}
-        ... & (D=1)\\
-        ... & (D=2)\\
-        ... & (D=3)
-    \end{cases}
-\end{align}
-\todo{needs to be finalized}
+\clearpage
