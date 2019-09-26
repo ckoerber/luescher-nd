@@ -1,4 +1,4 @@
-\subsubsection{Continuum extrapolation of the spectrum before Lüscher}
+\subsubsection{Continuum extrapolation before infinite volume limit}
 
 After tuning the contact interaction to the first zero of the spherical zeta function, we compute the spectrum of the hamiltonian.
 Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon \to 0$ using a polynomial fit
@@ -13,12 +13,12 @@ Because our numerical uncertainties have an estimated relative error at the orde
 For this reason we add further epsilon values
 \begin{equation}
 	\left\{
-		\epsilon \, [\mathrm{fm}] = 
+		\epsilon \, [\mathrm{fm}] =
 		\frac{1}{4}, \frac{1}{5}, \frac{1}{10},
 		\frac{1}{15}, \frac{1}{20}, \frac{1}{25},
 		\frac{1}{ 30}, \frac{1}{ 35}, \frac{1}{ 40},
 		\frac{1}{ 41}, \frac{1}{ 42}, \frac{1}{ 43},
-		\frac{1}{ 44}, \frac{1}{45}, \frac{1}{ 46}, 
+		\frac{1}{ 44}, \frac{1}{45}, \frac{1}{ 46},
 		\frac{1}{ 47}, \frac{1}{ 48}, \frac{1}{ 49}, \frac{1}{ 50}
 	\right\}
 	\, .
@@ -47,7 +47,7 @@ Because the zeta function is relatively steep, uncertainties in the continuum li
 We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ discretization come with significant uncertainties.
 
 
-\begin{figure}[th]
+\begin{figure}[htb]
 \scalebox{1.0}{\input{figure/continuum-extrapolation.pgf}}
 \caption{
     \label{fig:continuum-extrapolation-spectrum}
@@ -63,7 +63,7 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
 \end{figure}
 
 
-\begin{figure}[th]
+\begin{figure}[hbt]
     \scalebox{1.0}{\input{figure/continuum-extrapolation-ere.pgf}}
     \caption{
         \label{fig:continuum-extrapolation-ere}
@@ -79,24 +79,32 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
 We emphasize that these findings are not unique to the unitary case, we obtain similar results for a non-zero scattering length.
 We present data for the non-unitarity scenario, e.g., $a_{30} = - 5 \, [\mathrm{fm}]$ in our repository \cite{repo}.
 
-\subsubsection{Cutoff artifacts induce effective range}
+\subsubsection{Infinite volume limit before continuum extrapolation}
+Next we want to discuss what effects finite discretization artifacts have when applying Lüscher's formalism to a spectrum for finite lattice spacings.
+We insert the energy levels presented in \figref{continuum-extrapolation-spectrum} before taking the continuum limit and present results in figure \figref{unimproved spherical}.
 
 \begin{figure}[th]
     \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
-    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.  In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}. \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
+    \caption{We show the result of tuning the contact interaction so that the ground state matches the first zero of $S^{\spherical}_3$.
+    In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different finite differences as described in \eqref{p space hamiltonian}, \eqref{gamma definition}, and \eqref{gamma determination}.
+    \todo{WHAT DO THESE UNITS MEAN?  I would advocate just making things non-dimensional by using factors of $m$ or something?}}
     \label{fig:unimproved spherical}
 \end{figure}
 
+We note that the phase shifts for $x > 10$ start to oscillate widely.
+This is the case because energy values are close to the poles of the zeta function, e.g., close to the frame boundaries in \figref{continuum-extrapolation-spectrum}.
+
+Furthermore it seems like the small $x$ $n_s = 2$ results seem to be closer to the expected flat result as other discretization schemes.
+This behavior can be explained by \figref{continuum-extrapolation-spectrum}.
+While other discretization schemes for $x < 8$ monotonously converge against the continuum limit, $n_s = 2$ data points converge non-monotonously and are therefore closer to the continuum by accident.
 
 
-In \Figref{finite a spherical} we show the result of tuning the contact interaction so that the ground state, when put through $S^{\spherical}_3$ yields a scattering length of \todo{something}.
-Again, since the interaction is a contact interaction only, we expect a completely flat behavior.
-In constrast, we see \todo{shapes that make us sad / curious}.
+For small energies, better discretization schemes or small lattice spacings, we observe that the phase shifts do not oscillate and monotonously increase in $x$ with no or small curvature.
+This non-flat $x$-dependence seems to depend less on the employed discretization scheme but certainly on the value of the lattice spacing.
+This suggests that artifacts of the imperfect Kinetic operator are negligible compared to cutoff effects of the lattice spacing itself.
+The non-zero lattice spacing induces effective range like effects.
 
-\begin{figure}[th]
-    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
-    \caption{We results like \Figref{unimproved spherical}, but where the contact interaction was tuned so that the ground state matches yields $p\cot\delta = $\todo{some finite scattering length; part of \issue{19}} rather than to 0.  Similar deviation from completely flat behavior is apparent at any finite lattice spacing.}
-    \label{fig:finite a spherical}
-\end{figure}
+We try to fit the extrapolate the slope of the small $x$-dependence and extrapolate such results to $\epsilon \to 0$ in \figref{iv-continuum}.
+
 
 \clearpage
