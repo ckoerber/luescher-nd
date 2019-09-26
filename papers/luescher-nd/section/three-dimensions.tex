@@ -1,14 +1,14 @@
 \section{Three Dimensions}\label{sec:3D}
 
 
-Now we can attempt a numerical characterization of two fermions at unitarity (and finite for finite scattering).
+Now we can attempt a numerical characterization of two fermions at unitarity (and for finite scattering length).
 We implement the Hamiltonian in \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$.
 The interaction strength $C(\Lambda)$ is tuned such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (eq.~\eqref{spherical quantization} and see also \figref{tuning}) and dispersion zeta function (eq.~\eqref{dispersion quantization}).
 In our computations, the low-lying energy levels for fixed physical volume and fixed lattice spacing are extracted using numeric exact diagonalization after the strength is tuned to machine precision.
 The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
 
 This tuning procedure ensures that the FV effects are incorporated in the energy levels and thus the contact interaction strength is independent of the volume length $L$.
-However, the interaction strength still depends on the implementation of the Kinetic operator and the lattice spacing, $C(\Lambda)\to C^{(n_s)}(\epsilon)$.
+However, the interaction strength still depends on the implementation of the Kinetic operator and the lattice spacing, $C(\Lambda)\to C^{(n_s)}(\pi/\epsilon)$.
 Therefore the strength has to be retuned for each lattice implementation.
 This lattice dependence has the consequence that each lattice observable, e.g., the energy spectrum (besides the input ground state), has to extrapolated to the continuum limit first to extract \textit{pure} FV energy levels.
 These FV energy levels can be used in Lüscher's formalism to extract infinite volume scattering data.
