@@ -3,7 +3,7 @@
 
 Now we can attempt a numerical characterization of two fermions at unitarity (and for finite scattering length).
 We implement the Hamiltonian in \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with lattice spacing $\epsilon$.
-The interaction strength $C(\Lambda)$ is tuned such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (eq.~\eqref{spherical quantization} and see also \figref{tuning}) and dispersion zeta function (eq.~\eqref{dispersion quantization}).
+At first, we concentrate on tuning the interaction strength $C(\Lambda)$ such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (eq.~\eqref{spherical quantization} and see also \figref{tuning}).
 In our computations, the low-lying energy levels for fixed physical volume and fixed lattice spacing are extracted using numeric exact diagonalization after the strength is tuned to machine precision.
 The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
 
@@ -25,10 +25,9 @@ These FV energy levels can be used in Lüscher's formalism to extract infinite v
 \end{figure}
 
 In practice, it is not always possible to compute a continuum limit before inserting the FV spectrum into Lüscher's formalism.
-We therefore attempt both approaches, performing a continuum limit before (as intended) and after applying Lüscher (as happens in practice) to the obtained spectrum.
+We therefore attempt both approaches, performing a continuum limit before and after inserting energy levels in Lüscher's zeta function to the obtained spectrum.
 
-In the following section we present results obtained for the spherical and dispersion quantization conditions computed for the following parameters.
-We performed computations for the following set of parameters
+In the following section we present results obtained for the spherical and dispersion quantization conditions computed for the following parameters
 \begin{equation}
     \{ L \,[\mathrm{fm}]= 1, 2 \}
     \times \left\{ \epsilon \,[\mathrm{fm}] = \frac{1}{4}, \frac{1}{5}, \frac{1}{10}, \frac{1}{20}, \frac{1}{40}, \frac{1}{50} \right\}
