@@ -1,0 +1,30 @@
+\subsubsection{Dispersion L\"{u}scher removes induced artifacts}
+
+In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the \Luscher zeta function.
+However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion N}_D$, leveraging the dispersion relation for that derivative.
+Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \todo{eqref} using the same $S$ function.\footnote{We actually make the replacement $\F_D^\epsilon\goesto\F_D$ to avoid numerically evaluating $F_D^\epsilon$.  With a controlled continuum limit the error from this change obviously vanishes.}
+The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
+Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
+Moreover, comparing the scale to that in, for example, \Figref{unimproved spherical}, there the deviations were of order~1, while here the results remain within $10^{-8}$ of zero, with the value entirely reflecting how well the contact interaction was tuned.
+
+\begin{figure}[htb]
+    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \caption{The same as \Figref{unimproved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.
+    Note that results are presented at a log scale.
+    }
+    \label{fig:unimproved dispersion}
+\end{figure}
+
+In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale.  According to \todo{something we know} it should be \todo{some formula that depends on cutoff}.
+
+\begin{figure}
+    \scalebox{0.8}{\input{figure/contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \caption{
+        Scaling of the contact interaction strength $C(\epsilon)$ fitted using the dispersion method at unitarity.
+        Data points are fitted values, solid lines are analytical scaling predictions following $C(\epsilon) = \frac{2}{\mu} \frac{1}{\mathcal L^{\dispersion n_\mathrm{step}}} \epsilon $ and the dashed line corresponds to the spherical predictions.
+        Bar diagrams below present the absolute error between prediction and extracted value.
+    }
+    \label{fig:dispersion running of strength}
+\end{figure}
+
+\clearpage
