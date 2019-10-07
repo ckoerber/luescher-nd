@@ -1,3 +1,4 @@
+%!TEX root =  ../master.tex
 \subsubsection{The dispersion method in three dimensions}
 In this section we want to highlight that specifically for a contact interaction, it is possible to tune the contact strength parameter at FV for a given discretization scheme in such a way that one directly obtains continuum infinite volume results -- without any further extrapolation -- when using the dispersion formalism.
 We first present an analytic derivation, which may help to generalize this formalism to other interactions, and display results in the section afterwards.
@@ -45,7 +46,7 @@ In particular, because the limit of $\Lambda \to \infty$ is well defined for thi
 	\, .
 \end{equation}
 
-We know want to find an equivalent expression to the FV zeta functions in presence of a discretization scheme $\dispersion$.
+We now want to find an equivalent expression to the FV zeta functions in presence of a discretization scheme $\dispersion$.
 In particular, the discretization scheme depends on the implementation of the kinetic operator $K^{(n_s)}$ and thus depends on the $n_s$ parameter.
 The lattice spacing can be identified with the hard momentum cutoff $\Lambda = \pi / \epsilon$.
 E.g., the expectation value of the dispersion scales as $\hat K^{(n_s)}(\epsilon) \ket{p} = p^2 [1 + \mathcal O(\epsilon p)^{2 n_s}]\ket{p}$.
@@ -124,15 +125,15 @@ which defines the dispersion zeta function
 	\frac{1}{K_{nn}^{(n_s)} - x_i} - \mathcal{L}_3^{(n_s)} \frac{N}{2}
 	\, ,
 	\qquad
-	\mathcal{L}_3^{(n_s)}
+	\mathcal{L}_3^{(n_s)}=15.348248444887464047104634
 	=
 	? \times
 	I_3^{(n_s)}\left(0, \Lambda = \frac{\pi}{\epsilon}\right)
 	\, .
 \end{equation}
-\todo{I am to tired to find out the factor now...}
+\todo{I am to tired to find out the factor now...}\todo{I put in the factor, but it is valid for $n_s\mapsto\infty$.  I don't know how to determine this factor as a function of $n_s$.--T.L.}
 It furthermore explains why we expect results computed with this modified zeta function to directly match the continuum, infinite volume phase shifts.
-This might not be generally true for other interactions, e.g., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
+This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
 We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
 This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
 
@@ -167,3 +168,5 @@ In \Figref{dispersion running of strength} we show how the strength of the conta
 \end{figure}
 
 We note that even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^{(n_s)}_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
+
+\todo{Do we discuss \emph{corrections} to spherical L\"uscher in the case of a contact interaction?  I.e., do we show how to fix the linear behavior found in figures 7 and 8 and Amy's paper?--T.L.}

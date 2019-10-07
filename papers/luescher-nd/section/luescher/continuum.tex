@@ -50,7 +50,7 @@ accounts for the angular integration in $D$ dimensions.
     \center
     \includegraphics[width=.5\columnwidth]{figure/I0.pdf}
     \caption{
-        Loop diagram contributing to the bubble sum.
+        Loop diagram contributing to the bubble sum\todo{We need to get rid of the tower of interactions and just replace with $C(\Lambda)$, right?--T.L.}.
     }
     \label{fig:I0}
 \end{figure}
@@ -67,9 +67,7 @@ In the $s$-wave, the momentum-dependent $T$-matrix is related to the phase shift
         \vdots  & \vdots
 \end{cases}
 \end{equation}
-is a dimension-dependent kinematic factor.
-
-Because all angular contributions are coming from the S-wave, we specialize the the expressions $\F_{D} = \F_{D0}$ and $\delta_{D} = \delta_{D0}$
+is a dimension-dependent kinematic factor. Because all angular contributions come from the S-wave, we specialize the the expressions $\F_{D} = \F_{D0}$ and $\delta_{D} = \delta_{D0}$
 
 This fixes the coefficients $C(\Lambda)$ as a function of the scattering data,
 \begin{equation}\label{eq:IV pole}
@@ -106,7 +104,7 @@ Plugging our results for the integrals in, one finds
     \frac{1}{2\F_{D}(\sqrt{2\mu E})}\left(\cot \delta_{D}(\sqrt{2\mu E}) - i\right) = \frac{2}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right) \right]
 \end{equation}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
-In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right,\footnote{Actually, the cancellation is not \emph{so} miraculous---demanding it occur is essentially how $\F_D$ is determined.} and we are left with
+In a seemingly miraculous (but required) cancellation, the imaginary part on the left hand side exactly cancels the last term in the sum on the right,\footnote{Actually, the cancellation is not \emph{so} miraculous---demanding it occur is essentially how $\F_D$ is determined.}\todo{Hmmm. . . I would prefer not to use the word miraculous, and definitely not use a footnote that later states that it is \emph{not so miraculous}--T.L.} and we are left with
 \begin{equation}
     \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
@@ -133,7 +131,7 @@ Finally,
     \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
 \end{equation}
 where we traded the energy dependence for momentum on the left-hand side.
-This is the usual \Luscher finite-volume quantization condition, and continuum energy levels should be fed through it to produce continuum scattering data.
+This is the usual \Luscher finite-volume quantization condition, and finite-volume energy levels should be fed through it to produce continuum scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion, as mentioned in \eqref{ere}.
 In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.
 
