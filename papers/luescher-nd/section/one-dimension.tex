@@ -4,7 +4,7 @@ For completeness we also provide a discussion for L\"uscher's formula in one dim
 \begin{align} 
 C(\Lambda)&=-\frac{1}{\mu a_{10}}\\
 \frac{a_{10}}{L} &=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-\left(\frac{p L}{2 \pi}\right)^{2}} \\ 
-& \equiv \frac{1}{2 \pi^{2}} S_{1}\left(\left(\frac{p L}{2 \pi^{2}}\right)^{2}\right)\ .
+& \equiv \frac{1}{2 \pi^{2}} S^\bigcirc_{1}\left(\left(\frac{p L}{2 \pi^{2}}\right)^{2}\right)\ .
 \end{align}
 In one dimension the sum in the zeta function is well behaved and has a compact form,
 \begin{equation}
@@ -25,6 +25,30 @@ Since no cutoff is required in one dimension, the dispersion form of L\"uscher's
 Eigenvalues $p^2/m$ of Schr\"odinger's equation on a discretized torus will satisfy the relation in eq.~\eqref{1d dispersion}.  As stressed in the previous section, only continuum extracted eigenvalues should be used in eq.~\eqref{1d luscher}, otherwise induced momentum-dependent terms will occur.  For example, in \autoref{fig:luescher1d} we show  the effects of the induced momentum-dependent terms when non-continuum eigenvalues are inserted into $S^\bigcirc_1(x)$ (colored points) for lattice sizes of $N=10$, 12, and 14.  The non-flat behavior expected of a momentum-dependent interaction is apparent.  Included in the figure are also the points determined from the $S^{\dispersion}_1(x)$ (black points), and these all lie on a flat line, as expected.  
 \begin{figure}
 \center
-\includegraphics[width=.6\textwidth]{figure/luescher1d.pdf}
-\caption{Results using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 12, and 14.  The interaction was tuned such that $a_{10}/L=.1$.  The non-black points are obtained using $S^\bigcirc_1(x)$ with $N=10$ being furthest from a flat line and $N=14$ being closest.  The black points are obtained using $S^{\dispersion}_1(x)$  and exhibit the correct flat-line behavior.  Notice the offset between the colored and black points $x\le 0$.\label{fig:luescher1d}}
+\includegraphics[width=.65\textwidth]{figure/luescher1d.pdf}
+\caption{Results using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 12, and 14.  The interaction was tuned such that $a_{10}/L=.1$.  The non-black points are obtained using $S^\bigcirc_1(x)$ with $N=10$ being furthest from a flat line and $N=14$ being closest.  The black points are obtained using $S^{\dispersion}_1(x)$  and exhibit the correct flat-line behavior.  In addition to momentum-dependent terms, there is a constant offset, as is apparent when comparing the colored points with the black points.  The colored dashed lines are the derived induced momentum-dependent terms (see text).\label{fig:luescher1d}}
 \end{figure}
+
+We can derive the functional form of these induced momentum-dependent terms by extracting the contribution to the dispersion L\"uscher from the continuum L\"uscher.  Assuming a non-continuum $x=\left(\frac{pL}{2\pi}\right)^2$, we have
+\begin{align*}
+ \frac{1}{2 \pi^{2}} S^\bigcirc_{1}\left(\left(\frac{p L}{2 \pi^{2}}\right)^{2}\right)=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x} &=\frac{1}{2 \pi^{2}} \sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x} +\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \\
+&=\frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \ .
+\end{align*}
+In the second term the sum is restricted to values of $n$ outside the Brillouin zone.  Assuming $n^2\gg x$, we can expand in powers or $x$,
+\begin{align*}
+\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x} &=\frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \\
+&=\frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \left(\frac{1}{n^2}+\frac{x}{n^4}+\frac{x^2}{n^6}+\mathcal{O}(x^3)\right)
+\end{align*}
+We make the replacement $\sum_{n\notin\operatorname{B.Z.}}\mapsto\left(\sum_{n=-\infty}^\infty-\sum_{n\in\operatorname{B.Z.}}\right)$, which allows each summation in the expansion to be determined term by term to arbitrary precision.  
+\begin{table}
+\caption{The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_1(x)$ as a function of discretization $N$.  Here $x=\left(\frac{pL}{2\pi}\right)^2$ is a non-continuum eigenenergy.  \label{tab:induced terms in 1 d}}
+\begin{tabular}{c|c}
+$N$ & $\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \left(\frac{1}{n^2}+\frac{x}{n^4}+\frac{x^2}{n^6}\right)$\\
+\hline
+10 &$0.020398280 + 0.00028079187 x + 7.1106444\times10^{-6} x^2$\\
+12 &$0.016964618 + 0.00016064496 x + 2.7825342\times10^{-6} x^2$ \\
+14 &$0.014523490 + 0.00010045521 x + 1.2660940\times10^{-6} x^2$ \\
+\hline
+\end{tabular}
+\end{table}
+\autoref{tab:induced terms in 1 d} shows these terms for $N=10$, 12, and 14.  The colored dashed lines in \autoref{fig:luescher1d} correspond to the functions given in this table.  In the limit $N\mapsto\infty$ all terms vanish and one recovers the flatline behavior.  
