@@ -62,7 +62,7 @@ The resulting dispersion relations are presented in \Figref{dispersion relation}
     \label{fig:dispersion relation}
 \end{figure}
 
-Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in momentum space, can be implemented to multiplying by $p^2$ directly,
+Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in momentum space, can be implemented by multiplying by $p^2$ directly,
 \begin{equation}
     \Laplacian^{(\infty)}_{p'p}
     =
@@ -102,7 +102,7 @@ Then, exact diagonalization for low-lying eigenvalues of $H(\alpha)$ provides an
 
 Because of the simplicity of \Aoneg we can also easily construct the Hamiltonian directly in that sector.
 In momentum space we can label plane wave states by a vector on integers $\vec{n}$.
-In the \Aoneg basis we can use on plane wave label and understand that we intend a normalized unweighted average of every plane wave state.
+In the \Aoneg basis we can use one plane wave label and understand that we intend a normalized unweighted average of every plane wave state.
 That is,
 \begin{equation}
     \ket{\Aoneg\; \vec{n}} = \frac{1}{\sqrt{\normalization}} \sum_{g \in G} \ket{ g\vec{n}}
@@ -110,6 +110,7 @@ That is,
 where $g$ is an element of the group $G$, the sum is over all inequivalent states, and $\normalization$ the normalization.
 When $\vec{n}$ is large we should be careful not to double-count states that live right on the edge of the Brillouin zone.
 The states may be labeled by symmetry-inequivalent vectors with components all as large as $N/2$.
+As a simple example, in three dimensions the $N/2(1,1,1)$ plane wave state in one corner of the Brillouin zone is invariant under all the $O_h$ operations modulo periodicity in momentum space.
 
 Formulated in this basis, the kinetic energy operator remains diagonal and proportional to $n^2$.
 Reading off the momentum-state potential matrix element from \eqref{p space hamiltonian}, the contact interaction is given by
