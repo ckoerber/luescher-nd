@@ -1,6 +1,6 @@
 %!TEX root =  ../master.tex
 \section{One Dimension}\label{sec:1D}
-For completeness we also provide a discussion for L\"uscher's formula in one dimension with a contact interaction.  Plugging in $D=1$ into eqs.~\eqref{general luscher}, \eqref{I0 FV}, and~\eqref{spherical FD}, and noting that $\mathcal{L}_{D=1}^\bigcirc=0$, one finds 
+For completeness we also provide a discussion for L\"uscher's formula in one dimension with a contact interaction.  Plugging in $D=1$ into eqs.~\eqref{general luscher}, \eqref{I0 FV}, and~\eqref{spherical FD}, and noting that $\mathcal{L}_{D=1}^\bigcirc=0$, one finds\todo{Need more steps and description.-T.L.}
 \begin{align} 
 C(\Lambda)&=-\frac{1}{\mu a_{10}}\\
 \frac{a_{10}}{L} &=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-\left(\frac{p L}{2 \pi}\right)^{2}} \\ 
@@ -26,12 +26,13 @@ Eigenvalues $p^2/m$ of Schr\"odinger's equation on a discretized torus will sati
 \begin{figure}
 \center
 \includegraphics[width=.65\textwidth]{figure/luescher1d.pdf}
-\caption{Results using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 12, and 14.  The interaction was tuned such that $a_{10}/L=.1$.  The non-black points are obtained using $S^\bigcirc_1(x)$ with $N=10$ being furthest from a flat line and $N=14$ being closest.  The black points are obtained using $S^{\dispersion}_1(x)$  and exhibit the correct flat-line behavior.  In addition to momentum-dependent terms, there is a constant offset, as is apparent when comparing the colored points with the black points.  The colored dashed lines are the derived induced momentum-dependent terms (see text).\label{fig:luescher1d}}
+\caption{Results in 1-D using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 12, and 14.  The interaction was tuned such that $a_{10}/L=.1$.  The non-black points are obtained using $S^\bigcirc_1(x)$ with $N=10$ being furthest from a flat line and $N=14$ being closest.  The black points are obtained using $S^{\dispersion}_1(x)$  and exhibit the correct flat-line behavior.  In addition to momentum-dependent terms, there is a constant offset, as is apparent when comparing the colored points with the black points.  The colored dashed lines are the derived induced momentum-dependent terms (see text).\todo{Need better figure.-T.L.}\label{fig:luescher1d}}
 \end{figure}
 
 We can derive the functional form of these induced momentum-dependent terms by extracting the contribution to the dispersion L\"uscher from the continuum L\"uscher.  Assuming a non-continuum $x=\left(\frac{pL}{2\pi}\right)^2$, we have
 \begin{align*}
- \frac{1}{2 \pi^{2}} S^\bigcirc_{1}\left(\left(\frac{p L}{2 \pi^{2}}\right)^{2}\right)=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x} &=\frac{1}{2 \pi^{2}} \sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x} +\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \\
+ \frac{1}{2 \pi^{2}} S^\bigcirc_{1}\left(x\right)=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x} &=\frac{1}{2 \pi^{2}} \sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x} +\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \\
+ &= \frac{1}{2 \pi^{2}} S^{\dispersion}_{1}\left(x\right)+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x}\\
 &=\frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \ .
 \end{align*}
 In the second term the sum is restricted to values of $n$ outside the Brillouin zone.  Assuming $n^2\gg x$, we can expand in powers or $x$,
