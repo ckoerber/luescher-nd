@@ -49,7 +49,7 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
             The database to read from
 
         zeta: str = "spherical"
-            If ERE should be computed using dispersion, cartesian or spherical Lüscher.
+            If ERE should be computed using dispersion, cartesian or spherical L\"{u}scher.
 
         a_inv: float = 0.0
             The expected offset of the ERE
@@ -69,7 +69,7 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
     df["y"] -= a_inv
     df = df.query(f"y > {Y_BOUNDS[0]} and y < {Y_BOUNDS[1]}")
 
-    title = f"{zeta.capitalize()} Lüscher"
+    title = f"{zeta.capitalize()} L\"{u}scher"
     title += " fitted contact interaction"
     title += (
         " at unitarity"

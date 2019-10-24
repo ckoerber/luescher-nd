@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Creates grid plot of effective range expansions using standard Lüscher extracted by
+"""Creates grid plot of effective range expansions using standard L\"{u}scher extracted by
 extrapolating lattice spacing to to zero.
 """
 import os
