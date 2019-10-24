@@ -5,7 +5,7 @@ Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon 
 \begin{equation}
     E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for even $n$ or $n < n_s$ as the dispersion suggests.
+Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
 Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for smaller $n_s$: $e_{i,n}^{(n_{s_1})} < e_{i,n}^{(n_{s_2})}$ on average for $n_{s_1} > n_{s_2}$.
 
 We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \cite{peter_lepage_2016_60221}.
@@ -128,4 +128,3 @@ However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-con
         Note that both axis have a log scale and thus on these scales, a linear epsilon dependency of the phase shifts suggests that the values extrapolate to zero.
     }
 \end{figure}
-
