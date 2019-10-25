@@ -102,7 +102,7 @@ def export_grid_plot(
     )
     df = df[df.epsilon * 1.0e4 % 2 == 0]
 
-    title = f"{zeta.capitalize()} L\"{u}scher"
+    title = f"{zeta.capitalize()}"+" L\"{u}scher"
     title += " fitted contact interaction"
     title += (
         " at unitarity"
