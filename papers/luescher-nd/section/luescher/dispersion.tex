@@ -12,16 +12,22 @@ In contrast, in our setup the masses are set by hand and their interactions may 
 A continuum limit of QCD could, in principle, be taken along a line of constant deuteron-channel scattering length, but practical issues abound, even if simpler scattering channels like $I=2$ $\pi\pi$ scattering are picked instead.
 
 Knowing that we must readjust the strength of our contact interaction as a function of lattice spacing raises the question of exactly what to tune to.
-As mentioned at the end of \Secref{continuum}, on approach is to require the lowest energy state, when put through $S^{\spherical}$, match the desired scattering amplitude, an approach taken in, for example, \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}.
+As mentioned at the end of \Secref{continuum}, one approach is to require the lowest energy state, when put through $S^{\spherical}$, match the desired scattering amplitude, an approach taken in, for example, \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}.
 Tuned this way, one finds induced momentum dependence in the phase shift (see the $N_\mathcal{O}=1$ behavior of the left panel of Figure 2 of \Ref{Endres:2011er}, for example).
 
-Here, we construct at each spacing a lattice-aware function $S^{\dispersion}$ and tune the lowest energy at that spacing to the desired amplitude.
+Here, we construct at each spacing a lattice-aware function generalized \Luscher zeta function $S^{\dispersion}$ and tune the lowest energy at that spacing to the desired amplitude.
 With that tuning accomplished, other finite-volume same-spacing energy levels may be extracted and analyzed using the spacing-appropriate $S^{\dispersion}$.
 We will show that tuning and analysis with $S^{\dispersion}$ yields momentum-independent scattering for the simple lattice contact interaction described in \Secref{hamiltonian}.
 
 To construct such a lattice-aware function we return to the derivation of \Luscher's finite-volume formalism and, recognizing that we're interested in incorporating lattice artifacts from the start, replace the continuum dispersion relation with the lattice dispersion relation in the propagators and require that the integrals are cut off in the same way---with a momentum cutoff that corresponds to that imposed by the lattice.
 The derivation provided in the previous section matched two $T$-matrices together---the finite- and infinite-volume matrices both in the continuum.
 However, the spirit of our renormalization procedure is to ensure that the finite-spacing finite-volume $T$-matrix matches the continuum infinite-volume $T$-matrix as best it can.
+
+Put another way, we can match the lattice finite volume spectrum to the continuum finite volume spectrum, and replace $I_{D,FV}$ in the quantization condition \eqref{spherical zeta} with a lattice-aware substitute.
+Because we study such a simple interaction, when we match the finite-spacing ground state to the continuum ground state (which is traded for the scattering length), every further state matches.
+With other interactions with additional parameters, one may match additional finite-spacing ground states to match the scattering length, effective range, and higher-order shape parameters.
+Holding those fixed while taking a continuum limit requires retuning the potential's parameters for each lattice spacing.
+So tuned, further states (and shape parameters) may deviate from the continuum result, but these deviations should vanish in the continuum limit.
 
 To match the $T$-matrices together we need to solve
 \begin{equation}
@@ -48,13 +54,14 @@ where $\F_D$ is the usual continuum kinematic factor \eqref{spherical FD}, $I_D^
         \right]
 \end{align}
 where $K_{qq}$ is a momentum-space matrix element of the Laplacian (which, of course, is diagonal in momentum space), and the integral's cutoff $\Lambda$ in \eqref{I0 in relative coordinates} is taken to be $\pi/\epsilon$, matching the lattice's Brillouin zone.
-We adopt a $\dispersion$ superscript to indicate the quantity is defined accounting for the lattice data---the dispersion relation given by $K$ and the range of momenta in the Brillouin zone (on a square lattice, each momentum component cut off independently).
+We adopt cartesian $\cartesian$ and dispersion $\dispersion$ superscripts to indicate the quantity is defined in a continuum cube and accounting for the lattice data, respectively.
+Dispersion quantities need not only the range of momenta in the Brillouin zone (on a square lattice, each momentum component cut off independently), but also the spacing-aware dispersion relation $K$ (from \eqref{kinetic}, for example, though we emphasize other kinetic operators can be used).
 That $\F_D$ appears in \eqref{finite spacing matching} reflect the fact that the infinite volume $I_D^{\cartesian}$ is in the continuum limit, so that the imaginary part of \eqref{dispersion I0} matches the continuum result from \eqref{I0 in relative coordinates}.
 
 One may calculate a spacing-aware $\F_D^\epsilon$ by simply considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
 Unfortunately, achieving a closed-form expression for $\F_D^\epsilon$ is quite challenging though it is numerically tractable.
-Anyway, since we aim to match a lattice $T$ matrix to a continuum $T$ matrix, the $\F$ that appears is from the continuum.
+Anyway, since we aim to match a lattice $T$ matrix to a continuum $T$ matrix, the $\F$ that appears is from the continuum; were we matching to the scattering data from a physical crystal, we would need the spacing-dependent $\F_D^\epsilon$.
 
 We can solve the quantization condition for the finite-spacing phase shift,
 \begin{align}
@@ -65,10 +72,8 @@ We can solve the quantization condition for the finite-spacing phase shift,
 \end{align}
 where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to the usual quantization condition \eqref{spherical quantization}, and the Brillouin zone (\BZ) runs over all the finite-volume lattice modes.
 The $n$-dependent piece of the denominator goes to $n^2$ in the continuum limit (fixed $L$, $N\goesto\infty$), but even at finite spacing actually only depends on $N$ rather than $L$, which is clear from considering the particular Laplacians we study numerically \eqref{laplacian} and the elimination of the dimensionful scale effected by the rescaling from $q$ to $n$.
-Note that the momentum-dependent term in the denominator goes to $n^2$ when $N$ is large.
 
 We can construct, therefore, a \Luscher-like formalism,
-\todo{It doesn't make sense to write the integral in a way that knows about N---it knows about epsilon only because it is at infinite volume!  Review the dispersion counterterm appendix and make sure the integral is as claimed.  This counterterm isn't a large-N thing, but it's exact.} \todo{actually, this is fine---it shouldn't know about L either!  The dependences exactly cancel.}
 \begin{align}
     \label{eq:dispersion quantization}
     \cot \delta_D^{\epsilon}( \sqrt{2 \mu E} ) &= \frac{\F_D(\sqrt{2 \mu E})}{\pi^2 L^{D-2}} S^{\dispersion N}_{D}\left(\frac{2\mu E L^2}{(2\pi)^2}\right)
@@ -76,13 +81,16 @@ We can construct, therefore, a \Luscher-like formalism,
     \label{eq:dispersion S}
     S^{\dispersion N}_{D}( x )
     &=
-    \left(\sum_{n\in\BZ} - \lim_{N\goesto\infty}\int \mathrm{d}^D n\; \PV \right)_{-N/2}^{+N/2}\  \frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} = \sum_{n\in\BZ}\frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} - \counterterm_D^{\cartesian}N^{D-2}
+    \left(\sum_{n\in\BZ} - \lim_{N\goesto\infty}\int_{-N/2}^{+N/2} \mathrm{d}^D n\; \PV \right)\  \frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} = \sum_{n\in\BZ}\frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} - \counterterm_D^{\cartesian}N^{D-2}
 \end{align}
-where the dispersion zeta function $S^{\dispersion N}_{D}$ knows about the particular finite-differencing Laplacian or the dispersion relation as well as the discretization of the box into $N$ sites.
+where the dispersion zeta function $S^{\dispersion N}_{D}$ knows about the particular finite-differencing Laplacian or the dispersion relation as well as the discretization of the box into $N$ sites; a careful tracking through of factors shows that $S^{\dispersion}$ does not need the box size $L$ or the lattice spacing $\epsilon$ but just their ratio $N$.
 In contrast, in the usual finite-volume procedure, no UV details of the box infect the zeta function.
-On the left-hand side of the quantization condition \eqref{dispersion quantization} we get the infinite-volume $A_1^+$ phase shift at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its discretization $N$ (which determines the lattice spacing $\epsilon=L/N$), as well as the finite-volume spectrum.
-There is, strictly speaking, no divergence in the generalized zeta function, because we are always interested in a real calculation performed with finite $N$.
-However, as the number of sites grows, we can approximate the integral by its terms leading in $N$, recovering the usual UV-agnostic formula where the integral cancels an actual divergence in the sum.
+On the left-hand side of the quantization condition \eqref{dispersion quantization} we get the infinite-volume $A_1^+$ phase shift at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its discretization $N$ (which determines the lattice spacing $\epsilon=L/N$), as well as the finite-volume finite-spacing spectrum.
+
+Unlike the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{dispersion S}, because we are always interested in a real calculation performed with finite $N$.
+In three dimensions, as the number of sites $N$ grows the sum grows larger and larger, and in the continuum limit $N\goesto\infty$ the counter term provided by the divergent part of the integral exactly cancels the this growth; in one dimension there is no divergence to cancel, and we defer the discussion of two dimensions to \Secref{2D}.
+Were we to match to scattering data from a physical crystal the integral would contribute additional momentum-dependent terms that are down by powers of $N^2$; matching to the continuum eliminates all of these contributions.
+
 
 In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the scattering momentum $p$.  However, with a finite lattice spacing the on-shell condition is not so simple to invert.
 In fact, there are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
@@ -95,7 +103,7 @@ The quantization condition \eqref{dispersion quantization} can be thought of as 
 To arrive at formulas for nonzero center of mass momentum is substantially more complicated, because only at zero center of mass momentum does the change from single-particle coordinates in \eqref{particle hamiltonian} to center-of-mass coordinates in \eqref{hamiltonian} commute with performing the spatial discretization, yielding the same dispersion relation in the effective one-body problem as in the two-body problem.
 The ordering matters, as in a realistic many-body calculation (and in physical crystals!), each individual particle sees the lattice discretization.\footnote{
 We note in passing that when $\nstep=\infty$ and the dispersion relation is exactly $p^2$ all the way to the edge of the Brillouin zone, the change to Jacobi coordinates seems to again commute with the discretization.}
-To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than \eqref{dispersion I0}, to an equation more like \eqref{I0 in two particle language} before the energy integral is performed, replacing the single-particle dispersion relations there and changing the domain of integration to match the Brillouin zone.
+To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than the effective one-body integral \eqref{dispersion I0}, to an equation more like the two-body loop diagram that determines $I_0$ \eqref{I0 in two particle language} before the energy integral is performed, replacing the single-particle dispersion relations there and changing the domain of integration to match the Brillouin zone.
 We leave such a construction to future work.
 
 In the following sections we leverage the dispersion quantization condition to tune a lattice finite-volume contact interaction, and show that, in three dimensions, we get a completely flat $p \cot \delta$ when we feed finite-volume finite-spacing energy levels through the finite-spacing quantization condition \eqref{dispersion quantization}.
