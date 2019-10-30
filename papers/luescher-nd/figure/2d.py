@@ -365,7 +365,7 @@ axs[1][1].set_xlim([-2,10])
 axs[1][1].set_ylim([-.025,.14])
 axs[1][1].grid(True)
 
-axs[1][1].set_title(r'$\tilde a_2/L=\frac{1}{2}\pi$')
+axs[1][1].set_title(r'$\tilde a_2/L=\frac{1}{2\pi}$')
 axs[1][1].set_xlabel(r'$x$')
 axs[1][1].set_ylabel(r'$\cot\left(\delta_2\right)-\frac{2}{\pi}\log\left(\sqrt{x}\right)$')
 
