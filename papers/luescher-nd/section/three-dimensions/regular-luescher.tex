@@ -5,10 +5,10 @@ Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon 
 \begin{equation}
     E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
+Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole} \todo{\@CK can you point me to the right equation? -- EB}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
 Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for smaller $n_s$: $e_{i,n}^{(n_{s_1})} < e_{i,n}^{(n_{s_2})}$ on average for $n_{s_1} > n_{s_2}$.
 
-We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \cite{peter_lepage_2016_60221}.
+We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \Ref{peter_lepage_2016_60221}.
 Because our numerical uncertainties have an estimated relative error at the order $~10^{-13}$, we must in principle fit the energy for relatively high values of $n_\mathrm{max}$ which would require having many data points over different scales of $\epsilon$.
 For this reason we add further epsilon values
 \begin{equation}
@@ -99,24 +99,25 @@ We insert the energy levels presented in \figref{continuum-extrapolation-spectru
     }
 \end{figure}
 
-We note that the phase shifts for $x > 10$ start to oscillate widely.
+We note that the phase shifts for $x > 10$ start to oscillate wildly.
 This is the case because energy values are close to the poles of the zeta function, e.g., close to the frame boundaries in \figref{continuum-extrapolation-spectrum}.
 
-Furthermore it seems like the small $x$ results for $n_s = 2$ seem to be closer to the expected flat result as other discretization schemes.
+Furthermore it seems like the small $x$ results for $n_s = 2$ seem to be closer to the expected flat result than other discretization schemes.
 This behavior can be explained by \figref{continuum-extrapolation-spectrum}.
-While other discretization schemes for $x < 8$ monotonously converge against the continuum limit, $n_s = 2$ data points converge non-monotonously and are therefore closer to the continuum by accident.
-In this sense it is possible to select a discretization scheme which in principle converges slower against the continuum, but has an accidental good good agreement with the continuum even though it is discrete.
+While other discretization schemes for $x < 8$ monotonically converge against the continuum limit, $n_s = 2$ data points converge non-monotonically and are therefore closer to the continuum by accident.
+In this sense it is possible to select a discretization scheme which in principle converges slower against the continuum, but has an accidental good agreement with the continuum even though it is discrete.
 
-For small energies, better discretization schemes or small lattice spacings, we observe that the phase shifts do not oscillate and monotonously increase in $x$ with no or small curvature.
+For small energies, better discretization schemes or small lattice spacings, we observe that the phase shifts do not oscillate and monotonically increase in $x$ with no or small curvature.
 This non-flat $x$-dependence seems to depend less on the employed discretization scheme but certainly on the value of the lattice spacing.
-This suggests that artifacts of the imperfect Kinetic operator are negligible compared to cutoff effects of the lattice spacing itself.
-The non-zero lattice spacing induces effective range like effects.
+This suggests that artifacts of the imperfect kinetic operator are negligible compared to cutoff effects of the lattice spacing itself.
+The non-zero lattice spacing induces effective-range-like effects.
+As we will show in the next section, this effect arises from using the continuum $S^{\spherical}$ rather than the lattice-aware $S^{\dispersion}$.
 
 We visualize the continuum limit of phase shift points in \figref{iv-continuum}.
-Similar to the case where we first extrapolated the spectrum to the continuum and computed phase shifts afterwards, the best discretization allows to also extrapolate higher excited states to zero--visible by the linear dependency of the phase shifts in epsilon.
+Similar to the case where we first extrapolated the spectrum to the continuum and computed phase shifts afterwards, the best discretization allows to also extrapolate higher excited states to zero--visible by the linear dependence of the phase shifts on epsilon.
 We note that similar to the case where we first extrapolated the spectrum to the continuum, the extrapolation of the phase shifts seems to work best for the same discretization schemes in the similar energy range.
 For example, while we find a linear log-log scaling region in \figref{iv-continuum} for $n_s = 2$ and $x<6$, uncertainties of the $n_s =2$ extrapolation also start to increase in \figref{continuum-extrapolation-spectrum} after $x>6$.
-However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related tot eh $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
+However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related to the $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
 
 
 \begin{figure}[th]
@@ -124,7 +125,7 @@ However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-con
     \caption{
         \label{fig:iv-continuum}
         Continuum limit of different phase shift points computed by inserting finite lattice spacing eigenstates in $S^{\spherical}_3$ (see \figref{unimproved spherical}).
-        Each column represents a different implementation of the Kinetic operator and each row tracks a different eigenvalue of the discrete FV hamiltonian.
-        Note that both axis have a log scale and thus on these scales, a linear epsilon dependency of the phase shifts suggests that the values extrapolate to zero.
+        Each column represents a different kinetic operator and each row tracks a different eigenvalue of the discrete finite-volume hamiltonian.
+        Note that both axis have a log scale and thus on these scales, a linear trend for the phase shifts suggests that they extrapolate to zero.
     }
 \end{figure}
