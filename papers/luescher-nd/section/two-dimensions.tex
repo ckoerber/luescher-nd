@@ -1,6 +1,6 @@
 %!TEX root =  ../master.tex
 %\section{Finite-range interactions in Two Dimensions}\label{sec:two-d}
-\section{Two-dimensions}
+\section{Two-dimensions}\label{sec:2D}
 In two dimensions, assuming a contact interaction, it is convenient to express eq.~\eqref{ere} as
 \begin{equation}
 \cot \left(\delta_{20}(p)\right)=\frac{2}{\pi}  \ln \left(p \tilde a_{20}\right)\ ,
@@ -56,7 +56,7 @@ where
 \begin{equation}
 \mathcal{L}_{\square}=\exp \left(\log (2)-G \frac{2}{\pi}\right)=1.116306393581637659468497 \ldots
 \end{equation}
-and $G$ is Catalan's constant.  
+and $G$ is Catalan's constant.
 
 Given a contact interaction with coefficient appropriately tuned to the continuum scattering length $\tilde a_{20}$ and accounts for the discretization $\epsilon=N/L$ (see \autoref{sec:counterterm/dispersion}),
 \begin{equation}
@@ -74,11 +74,11 @@ As was done in the 3-D\todo{still needs to be done.-T.L.} and 1-D cases, we can 
 \begin{align*}
  \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)&=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+ \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)- \frac{1}{ \pi^{2}} S^{\dispersion}_{2}\left(x\right)\\
  &=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\frac{1}{\pi^{2}} \left(\lim_{\eta\to\infty}\sum_{n\notin \operatorname{B.Z.}}^{|n|\le\frac{\eta}{2}} \frac{1}{n^{2}-x} -2\pi\log\left(\frac{\eta}{\mathcal{L}_\square N}\right)\right)\\
-&=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\frac{1}{\pi^{2}} \left(\lim_{\eta\to\infty}\sum_{n\notin \operatorname{B.Z.}}^{|n|\le\frac{\eta}{2}}  \frac{1}{n^{2}} -2\pi\log\left(\frac{\eta}{\mathcal{L}_\square N}\right)\right) 
+&=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\frac{1}{\pi^{2}} \left(\lim_{\eta\to\infty}\sum_{n\notin \operatorname{B.Z.}}^{|n|\le\frac{\eta}{2}}  \frac{1}{n^{2}} -2\pi\log\left(\frac{\eta}{\mathcal{L}_\square N}\right)\right)
 +\frac{1}{\pi^{2}}\sum_{n\notin \operatorname{B.Z.}} \frac{x}{n^{4}} +\frac{1}{\pi^{2}}\sum_{n\notin \operatorname{B.Z.}} \frac{x^2}{n^{6}}+\mathcal{O}(x^3)\\
 &\equiv\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2 +\mathcal{O}(x^3) \ .
 \end{align*}
-The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and thus require no acceleration techniques.  We provide  
+The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and thus require no acceleration techniques.  We provide
 \begin{table}
 \caption{The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_2(x)$ as a function of discretization $N$.  Here $x=\left(\frac{pL}{2\pi}\right)^2$ is a non-continuum eigenenergy.  \label{tab:induced terms in 2 d}}
 \begin{tabular}{c|c}
@@ -122,7 +122,7 @@ the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for 
 %Without loss of generality, we trade the dimensionless coefficient $\mathcal{C}$ with a dimensional (length) parameter $a_0$ via the relation
 %\begin{equation}
 %-\frac{1}{\mathcal{C}}=\frac{2}{\pi}\log(a_0\Lambda)\ .
-%\end{equation} 
+%\end{equation}
 %Equation~\eqref{eqn:first phase shift} becomes
 %\begin{equation}
 %\cot\delta(p)=\frac{2}{\pi}\log(a_0p)+\frac{p^2}{2}\left[\frac{4\log(a_0\Lambda)}{\pi\Lambda^2}\right]\ .
@@ -142,7 +142,7 @@ the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for 
 %\includegraphics[width=.4925\textwidth]{figure/cotd1.pdf}\includegraphics[width=.5075\textwidth]{figure/cotd4.pdf}
 %\caption{Dashed line is the exact result, the red dots are numerical results.  The potential in this case is given by eq.~\eqref{eqn:potential1}.  Left panel does not support a negative energy solution ($2\pi a_0/L>1$), right panel does ($2\pi a_0/L<1$).\label{fig:cotd1}}
 %\end{figure}
-%The agreement between L\"uscher and exact is pretty good.  We have confirmed that as I increase $N$, the points converge to the exact line.  
+%The agreement between L\"uscher and exact is pretty good.  We have confirmed that as I increase $N$, the points converge to the exact line.
 %
 %Our second example uses
 %\begin{equation}\label{eqn:potential2}
@@ -152,7 +152,7 @@ the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for 
 %\begin{equation}
 %\frac{-1}{\mathcal{C}}=\frac{2 \log (a \Lambda )}{\pi }-\frac{11}{6 \pi }\ ,
 %\end{equation}
-%we find 
+%we find
 %\begin{equation}
 %\cot \delta(p)=\frac{2 \log (a p)}{\pi }+\frac{p^2 (24 \log (a \Lambda )-13)}{3 \pi  \Lambda ^2}+\frac{p^4 (24 \log (a \Lambda )-19)}{2 \pi  \Lambda
 %   ^4}

@@ -1,5 +1,5 @@
 %!TEX root =  ../master.tex
-\subsubsection{The dispersion method in three dimensions}
+\subsubsection{The dispersion method in three dimensions}\label{sec:3D dispersion}
 In this section we want to highlight that specifically for a contact interaction, it is possible to tune the contact strength parameter at FV for a given discretization scheme in such a way that one directly obtains continuum infinite volume results -- without any further extrapolation -- when using the dispersion formalism.
 We first present an analytic derivation, which may help to generalize this formalism to other interactions, and display results in the section afterwards.
 
@@ -23,7 +23,7 @@ with the solution for the integral
 	\right]
 \end{equation}
 Because the contact interaction does not have any momentum dependence, it is only possible to absorb momentum independent regulator terms when renormalizing the contact interaction.
-Thus, it is still possible to completely renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing 
+Thus, it is still possible to completely renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing
 \begin{equation}
 	\frac{2 \pi}{\mu} \frac{1}{C_R(\Lambda)} + \frac{2 \Lambda}{\pi} \equiv p \cot \delta_3(p) = - \frac{1}{a_3} \, .
 \end{equation}
@@ -83,7 +83,7 @@ This sequence is determined by matching the against the dispersion integral for 
 \end{equation}
 It is possible to make this choice since both terms do not depend on any external momentum $p$.
 This is specific for the contact interaction.
-One can view this choice as the renormalization equation for contact interaction in presence of lattice discretization which, by definition, trivially satisfy 
+One can view this choice as the renormalization equation for contact interaction in presence of lattice discretization which, by definition, trivially satisfy
 \begin{equation}
 	- \frac{1}{a_3}
 	=
@@ -101,7 +101,7 @@ For any lattice implementation of a contact interaction with strength $\tilde c$
 \begin{equation}
 	0 = 1 - \tilde c I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E_i}, \Lambda = \frac{\pi}{\epsilon}\right) \, ,
 \end{equation}
-where $E_i \equiv E_i^{(n_s)}(L, \epsilon, \tilde c)$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $\tilde c$. 
+where $E_i \equiv E_i^{(n_s)}(L, \epsilon, \tilde c)$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $\tilde c$.
 The finite volume sum $I_{3, \FV}^{(n_s)}(p, \pi/\epsilon)$ is obtained by replacing the integral $d^3 \vec q$ in $I_3^{(n_s)}(p, \Lambda)$ with a sum  over vectors $\vec q = 2 \pi \vec n / L$.
 Because the above equation is true for any value of $\tilde c$ and it's corresponding spectrum, it is especially true for $\tilde c = C_R^{(n_s)}(\Lambda)$.
 This means that
