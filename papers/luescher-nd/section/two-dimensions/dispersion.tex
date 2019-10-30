@@ -1,26 +1,54 @@
 \subsection{Dispersion L\"uscher in 2 dimensions}
-The discussion above is valid only in the continuum.  For a discretized lattice, an additional length scale is introduced that must be accounted for.  As is the case in both 3-D and 1-D, there exists a dispersion L\"uscher equation that is valid for the contact interaction and accounts for the discretization.  In \autoref{sec:counterterm/dispersion} we derive this dispersion L\"uscher formula for 2-D and only state the result here.  Identifying the lattice spacing $\epsilon=N/L$, we have
+
+The discussion above is valid only in the continuum.
+For a discretized lattice, an additional length scale is introduced that must be accounted for.
+As is the case in both 3-D and 1-D, there exists a dispersion L\"uscher equation that is valid for the contact interaction and accounts for the discretization.
+In \Appref{counterterm/dispersion} we derive this dispersion L\"uscher formula for 2D and only state the result here.
+
+Identifying the lattice spacing $\epsilon=N/L$, we have
 \begin{align}
-\frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{20}}{L}\right)&=\frac{1}{\pi^2}\left( \sum_{n_x,n_y=-\frac{N}{2}}^{\frac{N}{2}-1}\frac{1}{\vec{n}^2-\left(\frac{pL}{2\pi}\right)^2}-2\pi \log \left(\mathcal{L}_\square\frac{N}{2}\right)\right)\nonumber\\
-&=\frac{1}{\pi^2}S^{\dispersion}_2\left(\left(\frac{pL}{2\pi}\right)^2\right)\ ,\label{eq:2d dispersion luscher}
+    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{20}}{L}\right)
+    &=
+    \frac{1}{\pi^2}
+    \left(
+        \sum_{n_x,n_y=-\frac{N}{2}}^{\frac{N}{2}-1}\frac{1}{\frac{L^2}{4\pi}K_{nn}-x}
+        -2\pi \log \left(\mathcal{L}_\square\frac{N}{2}\right)
+    \right)
+    \nonumber\\
+    &\equiv\frac{1}{\pi^2}S^{\dispersion}_2\left(x\right)\ ,\label{eq:2d dispersion luscher}
 \end{align}
-where
+where $x$ is defined as usual,
 \begin{equation}
-\mathcal{L}_{\square}=\exp \left(\log (2)-G \frac{2}{\pi}\right)=1.116306393581637659468497 \ldots
+    \mathcal{L}_{\square}
+    =
+    \exp \left(\log (2)-G \frac{2}{\pi}\right)
+    =
+    1.116306393581637659468497 \ldots
 \end{equation}
 and $G$ is Catalan's constant.
 
-Given a contact interaction with coefficient appropriately tuned to the continuum scattering length $\tilde a_{20}$ and accounts for the discretization $\epsilon=N/L$ (see \autoref{sec:counterterm/dispersion}),
+Given a contact interaction with coefficient appropriately tuned to the continuum scattering length $\tilde a_{20}$ and accounts for the discretization $\epsilon=N/L$ (see \Appref{counterterm/dispersion}),
 \begin{equation}
 C(N/L)=-\frac{2 \pi}{m \log \left(\tilde a_{20} \mathcal{L}_\square \frac{N}{L}\pi\right)}\ ,
 \end{equation}
-the eigenvalues $x=\left(\frac{pL}{2\pi}\right)^2$ of Schr\"odinger's equation on a \emph{discretized} square lattice will exactly satisfy eq.~\eqref{2d dispersion luscher}.
+the finite-spacing finite-volume energy eigenvalues of Schr\"odinger's equation on a square lattice will exactly satisfy the quantization condition \eqref{2d dispersion luscher}.
+
+\todo{\@TOM: was this tuned using $S^{\spherical}$ or $S^{\dispersion}$? Am I getting your procedure right?}
+To demonstrate the success of this formula we tuned lattices with $N=10$, 20, and 40 to $\tilde a_{20}/L = .1$, which allows for a bound state, using $S^{\dispersion}$.
+In \Figref{luescher2d} the black points were analyzed through $S^\dispersion_2$, and lie on a flat line, indicating that our dispersion \Luscher formula has correctly accounted for discretization effects.
+On the other hand, if we use the same energies but analyze them with the usual continuum \Luscher function $S^{\spherical}_2$, shown as colored points, we see induced momentum-dependence and the flat line behavior is lost.
+
 \begin{figure}
-\center
-\includegraphics[width=.65\textwidth]{figure/luescher2d.pdf}
-\caption{Results in 2-D using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 20, and 40.  The interaction was tuned such that $\tilde a_{20}/L=.1$.  The colored points are obtained using $S^\bigcirc_2(x)$ with $N=10$ being furthest from a flat line and $N=40$ being closest.  The black points are obtained using $S^{\dispersion}_2(x)$  and exhibit the correct flat-line behavior.  The colored dashed lines are the derived induced momentum-dependent terms (see text) \todo{Need better figure. -T.L.}\label{fig:luescher2d}}
+    \center
+    \includegraphics[width=.65\textwidth]{figure/luescher2d.pdf}
+    \caption{
+        Results in 2-D using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 20, and 40.
+        The interaction was tuned such that $\tilde a_{20}/L=.1$.
+        The colored points are obtained using $S^\spherical_2(x)$ with $N=10$ being furthest from a flat line and $N=40$ being closest.
+        The black points are obtained using $S^{\dispersion}_2(x)$ and exhibit the correct flat-line behavior.
+        The colored dashed lines are the derived induced momentum-dependent terms (see text) \todo{Need better figure. -T.L.}}
+    \label{fig:luescher2d}
 \end{figure}
-This is depicted in \autoref{fig:luescher2d} by the black points which were calculated with $N=10$, 20, and 40.  Here the scattering length was set to $\tilde a_{20}/L = .1$, which allows for a bound state.  All black points lie on a flat line, indicating that our dispersion L\"uscher has correctly accounted for discretization effects.  On the other hand, if we use the same energies but insert them into continuum L\"uscher (eq.~\eqref{2d luscher}), as depicted by the colored points, momentum-dependent terms are induced and the flat line behavior is lost.
 
 As was done in the 3-D\todo{still needs to be done.-T.L.} and 1-D cases, we can derive the functional form of the induced momentum-dependent terms.  The steps are identical to those done in the 3-D and 1-D cases, and so for conciseness we show only the end result.  Assuming an $x=\left(\frac{pL}{2\pi}\right)^2$ calculated on a \emph{discretized} lattice with lattice spacing $\epsilon=N/L$, we have
 \begin{align*}
