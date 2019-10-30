@@ -2,7 +2,7 @@
 
 We consider a cubic finite volume (FV) of linear size $L$ with periodic boundary conditions and lattice spacing $\epsilon$ so that $N=L/\epsilon$ is an even integer that counts the number of sites in one spatial direction.
 
-The contact interaction is implemented on the lattice as an entirely local operator, vanishing everywhere except at the origin where it is of strength $C$.
+The contact interaction Hamiltonian \eqref{hamiltonian} is implemented on the lattice as an entirely local operator, vanishing everywhere except at the origin where it is of strength $C$.
 The contact interaction is not smeared.
 The Hamiltonian is given by
 \begin{equation}
@@ -15,7 +15,7 @@ The Hamiltonian is given by
 where $K$ is a discretized Laplacian, implementing the momentum squared.
 
 To ensure we control the discretization effects in generality, we study a variety of kinetic operators $K_{xy}$.
-An often-used set of finite-difference kinetic operators are constructed from the one-dimensional finite-difference Laplacian
+An often-used set of finite-difference kinetic operators are constructed from the one-dimensional finite-difference Laplacian that reaches $\nstep$ nearest neighbors,
 \begin{equation}
     \Laplacian^{(\nstep)}_{r'r} = \frac{1}{\epsilon^2}\sum_{s=-\nstep}^{\nstep} \gamma_{\abs{s}}^{(\nstep)} \delta_{r',r+\epsilon s}
 \end{equation}
@@ -41,6 +41,7 @@ In the Fourier transformed space, momentum space, the one-dimensional Laplacian 
 \end{equation}
 while in $D$ dimensions we just sum the same expression over the different components of momentum.
 Note that this is a specialization, in the sense that it contains no off-axis differencing (in position space) or products of different components (in momentum space).
+However, since our numerical formalism is valid for every $\nstep$, we believe it holds for every possible kinetic operator.
 
 The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
 \begin{equation}
@@ -69,10 +70,11 @@ Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in moment
     \delta_{p'p} p^2,
 \end{equation}
 including at the edge of the Brillouin zone, the Laplacian implementation of the ungauged SLAC derivative.
-Including the edge of the Brillouin zone does not introduce a discontinuity at the boundary.
-We also call this kinetic operator the \emph{exact-$p^2$} operator.
-The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and
-in \Appref{coefficients} we collect the required $\gamma$ coefficients.
+Including the edge of the Brillouin zone does not introduce a discontinuity at the boundary, nor does including the corners pose any problem.
+In addition to the $\nstep=\infty$ operator, we also call this kinetic operator the \emph{exact-$p^2$} operator.
+The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and in \Appref{coefficients} we collect the required $\gamma$ coefficients.
+In \Refs{Endres:2011er,Endres:2012cw} the exact dispersion relation is cut off by a LEGO sphere in momentum space (see equation (6) and the discussion after (9) in those references, respectively).
+The formalism we develop here should work for these cut off operators, though the analytic results are harder to extract and we do not discuss such operators further.
 
 The Hamiltonian in momentum space reads
 \begin{equation}
@@ -89,10 +91,10 @@ where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, 
 
 \subsection{Reduction to \Aoneg}
 
-Because we are interested in contact interactions, infinite-volume arguments suggest that only the s-wave will feel the interaction.
+Because we are interested in contact interactions, infinite-volume arguments suggest that only the s-wave will feel the interaction; such arguments translate to the lattice relatively cleanly.
 Since the s-wave is most like \Aoneg we will focus on the spectrum in that irreducible representation of the cubic symmetry group $O_h$ in three dimensions, of the symmetry group of the square $D_{4h}$ in two dimensions, or $Z_2$ in one dimension, where an \Aoneg restriction amounts to focusing on parity-even states.
 
-With a projection operator $P_{\Aoneg}$ we can raise the energy of all the other states an arbitrary amount $\alpha$ by supplementing the Hamiltonian
+With a projection operator to the \Aoneg sector $P_{\Aoneg}$ we can raise the energy of all the other states an arbitrary amount $\alpha$ by supplementing the Hamiltonian
 \begin{equation}
     H(\alpha) = H + \alpha (\one - P_{\Aoneg}) \, ,
 \end{equation}
@@ -123,7 +125,7 @@ Reading off the momentum-state potential matrix element from \eqref{p space hami
     \frac{C(\epsilon)}{L^D} \sqrt{\normalization'\normalization},
 \end{equation}
 so that every \Aoneg state can talk to every other.
-So, the Hamiltonian is
+So, the Hamiltonian is in this sector is
 \begin{equation}
     H_{\vec{n}'\vec{n}} = \frac{1}{2\mu} K_{\vec{n'}\vec{n}} + \frac{C}{L^D} \sqrt{\normalization'\normalization}
 \end{equation}
