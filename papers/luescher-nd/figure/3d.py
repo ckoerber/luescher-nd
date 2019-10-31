@@ -388,7 +388,7 @@ fig, axs = plt.subplots(2,1,tight_layout=True)
 axs[1].set_xlim(x_lim)
 axs[1].set_ylim([-15,15])
 axs[1].set_xlabel(r'$x$')
-axs[1].set_ylabel(r'$\frac{1}{\pi}S$')
+axs[1].set_ylabel(r'$\frac{1}{\pi}S_3$')
 axs[1].set_xticks(free_x)
 axs[1].grid(axis='both')
 
