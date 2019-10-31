@@ -29,7 +29,7 @@ and $G$ is Catalan's constant.
 
 Given a contact interaction with coefficient appropriately tuned to the continuum scattering length $\tilde a_{20}$ and accounts for the discretization $\epsilon=N/L$ (see \Appref{counterterm/dispersion}),
 \begin{equation}
-C(N/L)=-\frac{2 \pi}{m \log \left(\tilde a_{20} \mathcal{L}_\square \frac{N}{L}\pi\right)}\ ,
+C(N/L)=-\frac{ \pi}{\mu \log \left(\tilde a_{20} \mathcal{L}_\square \frac{N}{L}\pi\right)}\ ,
 \end{equation}
 the finite-spacing finite-volume energy eigenvalues of Schr\"odinger's equation on a square lattice will exactly satisfy the quantization condition \eqref{2d dispersion luscher}.
 
@@ -40,7 +40,7 @@ On the other hand, if we use the same energies but analyze them with the usual c
 
 \begin{figure}
     \center
-    \includegraphics[width=.65\textwidth]{figure/luescher2d.pdf}
+    \includegraphics[width=.65\textwidth]{figure/2d.pdf}
     \caption{
         Results in 2-D using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 20, and 40.
         The interaction was tuned such that $\tilde a_{20}/L=.1$.
@@ -64,6 +64,7 @@ The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums
 \begin{tabular}{c|c}
 $N$ & $\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2$\\
 \hline
+4 &   $0.020914726 + 0.07357781209 x + 0.00949485783 x^2$\\
 10 &$0.003446926 + 0.01065059589 x + 0.00018852319 x^2$\\
 20 &$0.000862459 + 0.00261909878 x + 0.00001122531 x^2$ \\
 40 &$0.000212552 + 0.00065179064 x + 6.92648\times10^{-7} x^2$ \\
