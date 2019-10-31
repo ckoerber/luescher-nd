@@ -2,6 +2,14 @@ import sys
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.lines as lines
+
+from luescher_nd.plotting.styles import setup
+from luescher_nd.plotting.styles import EXPORT_OPTIONS
+from luescher_nd.plotting.styles import LINE_STYLE
+from luescher_nd.plotting.styles import MARKERS
+from luescher_nd.plotting.styles import finalize
 
 # here is data for a/L = .1 in x, S(x) pairs
 
@@ -116,7 +124,7 @@ s1 = np.array([-3.5, 0.0850732, -3.49, 0.085195, -3.48, 0.0853174, -3.47, 0.0854
                0.181989, 3.47, 0.185782, 3.48, 0.18971, 3.49, 0.19378, 3.5, 0.198002, 3.51, 0.202385, 3.52, 0.206939, 3.53, 0.211674, 3.54, 0.216604, 3.55, 0.221741, 3.56, 0.227098, 3.57, 0.232693, 3.58, 0.238541, 3.59, 0.244662, 3.6, 0.251075, \
                3.61, 0.257804, 3.62, 0.264874, 3.63, 0.272312, 3.64, 0.28015, 3.65, 0.288421, 3.66, 0.297163, 3.67, 0.306421, 3.68, 0.316242, 3.69, 0.326681, 3.7, 0.337799, 3.71, 0.349668, 3.72, 0.362368, 3.73, 0.375991, 3.74, 0.390644, \
                3.75, 0.40645, 3.76, 0.423554, 3.77, 0.442126, 3.78, 0.462366, 3.79, 0.484512, 3.8, 0.508849, 3.81, 0.535725, 3.82, 0.565563, 3.83, 0.598886, 3.84, 0.636346, 3.85, 0.678772, 3.86, 0.727229, 3.87, 0.783107, 3.88, 0.848263, \
-               3.89, 0.925227, 3.9, 1.01754, 3.91, 1.13032, 3.92, 1.27125, 3.93, 1.45238, 3.94, 1.69383, 3.95, 2.03176, 3.96, 2.53857, 3.97, 3.38311, 3.98, 5.072, 3.99, 10.1383, 4., 
+               3.89, 0.925227, 3.9, 1.01754, 3.91, 1.13032, 3.92, 1.27125, 3.93, 1.45238, 3.94, 1.69383, 3.95, 2.03176, 3.96, 2.53857, 3.97, 3.38311, 3.98, 5.072, 3.99, 10.1383, 4.,
                np.nan, 4.01, -10.1256, 4.02, -5.05934, 4.03, -3.37045, 4.04, -2.52592, 4.05, -2.01912, 4.06, -1.68119, 4.07, \
                -1.43976, 4.08, -1.25863, 4.09, -1.11772, 4.1, -1.00495, 4.11, -0.91265, 4.12, -0.835703, 4.13, -0.770566, 4.14, -0.714707, 4.15, -0.666272, 4.16, -0.623869, 4.17, -0.586433, 4.18, -0.553136, 4.19, -0.523326, 4.2, -0.496478, 4.21, \
                -0.472171, 4.22, -0.450057, 4.23, -0.429851, 4.24, -0.411314, 4.25, -0.394246, 4.26, -0.378477, 4.27, -0.363864, 4.28, -0.350282, 4.29, -0.337625, 4.3, -0.3258, 4.31, -0.314727, 4.32, -0.304335, 4.33, -0.294563, 4.34, -0.285356, 4.35, \
@@ -154,7 +162,7 @@ s1 = np.array([-3.5, 0.0850732, -3.49, 0.085195, -3.48, 0.0853174, -3.47, 0.0854
                8.46, 0.185314, 8.47, 0.188955, 8.48, 0.192731, 8.49, 0.196652, 8.5, 0.200725, 8.51, 0.20496, 8.52, 0.209367, 8.53, 0.213958, 8.54, 0.218743, 8.55, 0.223737, 8.56, 0.228952, 8.57, 0.234406, 8.58, 0.240114, 8.59, 0.246096, 8.6, \
                0.252371, 8.61, 0.258964, 8.62, 0.265898, 8.63, 0.273201, 8.64, 0.280904, 8.65, 0.289042, 8.66, 0.297653, 8.67, 0.30678, 8.68, 0.31647, 8.69, 0.32678, 8.7, 0.33777, 8.71, 0.349512, 8.72, 0.362085, 8.73, 0.375582, 8.74, 0.39011, \
                8.75, 0.405792, 8.76, 0.422774, 8.77, 0.441223, 8.78, 0.461341, 8.79, 0.483366, 8.8, 0.507583, 8.81, 0.53434, 8.82, 0.56406, 8.83, 0.597264, 8.84, 0.634608, 8.85, 0.676918, 8.86, 0.725258, 8.87, 0.781022, 8.88, 0.846063, 8.89, \
-               0.922914, 8.9, 1.01512, 8.91, 1.12779, 8.92, 1.2686, 8.93, 1.44962, 8.94, 1.69096, 8.95, 2.02879, 8.96, 2.53548, 8.97, 3.37992, 8.98, 5.06869, 8.99, 10.1348, 9., 
+               0.922914, 8.9, 1.01512, 8.91, 1.12779, 8.92, 1.2686, 8.93, 1.44962, 8.94, 1.69096, 8.95, 2.02879, 8.96, 2.53548, 8.97, 3.37992, 8.98, 5.06869, 8.99, 10.1348, 9.,
                np.nan, 9.01, -10.1292, 9.02, -5.06306, 9.03, -3.37429, 9.04, -2.52986, 9.05, -2.02316, 9.06, -1.68533, 9.07, -1.444, \
                9.08, -1.26298, 9.09, -1.12217, 9.1, -1.0095, 9.11, -0.917303, 9.12, -0.840456, 9.13, -0.775418, 9.14, -0.719659, 9.15, -0.671322, 9.16, -0.629017, 9.17, -0.591679, 9.18, -0.558479, 9.19, -0.528766, 9.2, -0.502015, 9.21, -0.477803, \
                9.22, -0.455785, 9.23, -0.435674, 9.24, -0.417231, 9.25, -0.400257, 9.26, -0.384583, 9.27, -0.370063, 9.28, -0.356574, 9.29, -0.344009, 9.3, -0.332277, 9.31, -0.321296, 9.32, -0.310996, 9.33, -0.301315, 9.34, -0.292198, 9.35, -0.283598, \
@@ -184,109 +192,98 @@ def func14(x):
         x*0.0001004552114043984060805705987202112767100388726600526728 + \
         x*x*1.266093966360560056694551e-6
 
+N = [10, 12, 14]
+x_lim=[-3.0,10]
+free_x=[0,1,4,9]
 
-fig, axs = plt.subplots(2,2,tight_layout=True)
-axs[0][0].plot(s1[0::2],s1[1::2],'--',color='grey',markersize=3,alpha=0.5)
+correction = {
+    10: func10,
+    12: func12,
+    14: func14,
+}
 
-axs[0][0].plot(aL_0p1_disp10[0::2], aL_0p1_disp10[1::2],'o',color='black',markersize=4)
-axs[0][0].plot(aL_0p1_disp12[0::2], aL_0p1_disp12[1::2],'o',color='black',markersize=4)
-axs[0][0].plot(aL_0p1_disp14[0::2], aL_0p1_disp14[1::2],'o',color='black',markersize=4)
+color = {
+    10: 'red',
+    12: 'green',
+    14: 'blue',
+}
 
-axs[0][0].plot(aL_0p1_spher10[0::2], aL_0p1_spher10[1::2],'or',markersize=4)
-axs[0][0].plot(aL_0p1_spher12[0::2], aL_0p1_spher12[1::2],'og',markersize=4)
-axs[0][0].plot(aL_0p1_spher14[0::2], aL_0p1_spher14[1::2],'ob',markersize=4)
+marker = {
+    10: 's',
+    12: 'd',
+    14: 'h',
+}
 
-# not add the analytic lines
-x = np.arange(-3.5, 10, 0.1)
-axs[0][0].plot(x, .1+func10(x),'r--',markersize=4)
-axs[0][0].plot(x, .1+func12(x),'g--',markersize=4)
-axs[0][0].plot(x, .1+func14(x),'b--',markersize=4)
+aL_0p1_disp = {
+    10: aL_0p1_disp10,
+    12: aL_0p1_disp12,
+    14: aL_0p1_disp14,
+}
 
+aL_0p1_spher = {
+    10: aL_0p1_spher10,
+    12: aL_0p1_spher12,
+    14: aL_0p1_spher14,
+}
 
-axs[0][0].plot(x, np.array([.1 for i in range(len(x))]),'--',color='black',markersize=4)
+aL_0_disp = {
+    10: aL_0_disp10,
+    12: aL_0_disp12,
+    14: aL_0_disp14,
+}
 
-axs[0][0].set_xlim([-3.5,10])
-axs[0][0].set_ylim([-.01,.13])
-#axs[0].grid(True)
-
-#axs[0][0].set_title(r'$\tilde a_2/L=\frac{1}{10}$')
-axs[0][0].set_xlabel(r'$x$')
-axs[0][0].set_ylabel(r'$\left(pL\right)^{-1}\cot\left(\delta_1\right)$')
-
-# this is the figure set at "unitary point"
-
-axs[0][0].plot(aL_0_disp10[0::2], aL_0_disp10[1::2],'o',color='black',markersize=4)
-axs[0][0].plot(aL_0_disp12[0::2], aL_0_disp12[1::2],'o',color='black',markersize=4)
-axs[0][0].plot(aL_0_disp14[0::2], aL_0_disp14[1::2],'o',color='black',markersize=4)
-
-axs[0][0].plot(aL_0_spher10[0::2], aL_0_spher10[1::2],'or',markersize=4)
-axs[0][0].plot(aL_0_spher12[0::2], aL_0_spher12[1::2],'og',markersize=4)
-axs[0][0].plot(aL_0_spher14[0::2], aL_0_spher14[1::2],'ob',markersize=4)
-
-# not add the analytic lines
-x = np.arange(-3.5, 10, 0.1)
-axs[0][0].plot(x, 0+func10(x),'r--',markersize=4)
-axs[0][0].plot(x, 0+func12(x),'g--',markersize=4)
-axs[0][0].plot(x, 0+func14(x),'b--',markersize=4)
-
-axs[0][0].plot(x, np.array([0 for i in range(len(x))]),'--',color='black',markersize=4)
-
-axs[0][1].plot(s1[0::2],s1[1::2],'--',color='black',markersize=3)
-axs[0][1].set_xlim([-3,10])
-axs[0][1].set_ylim([-5,5])
-axs[0][1].set_xlabel(r'$x$')
-axs[0][1].set_ylabel(r'$\frac{1}{2\pi^2}S_1^\bigcirc(x)$')
-axs[0][1].set_xticks([-3,0,1,4,9])
-axs[0][1].grid(True)
-
-axs[1][0].plot(aL_0p1_disp10[0::2], aL_0p1_disp10[1::2],'o',color='black',markersize=4)
-axs[1][0].plot(aL_0p1_disp12[0::2], aL_0p1_disp12[1::2],'o',color='black',markersize=4)
-axs[1][0].plot(aL_0p1_disp14[0::2], aL_0p1_disp14[1::2],'o',color='black',markersize=4)
-
-axs[1][0].plot(aL_0p1_spher10[0::2], aL_0p1_spher10[1::2],'or',markersize=4)
-axs[1][0].plot(aL_0p1_spher12[0::2], aL_0p1_spher12[1::2],'og',markersize=4)
-axs[1][0].plot(aL_0p1_spher14[0::2], aL_0p1_spher14[1::2],'ob',markersize=4)
-
-# not add the analytic lines
-x = np.arange(-3, 10, 0.1)
-axs[1][0].plot(x, .1+func10(x),'r--',markersize=4)
-axs[1][0].plot(x, .1+func12(x),'g--',markersize=4)
-axs[1][0].plot(x, .1+func14(x),'b--',markersize=4)
+aL_0_spher = {
+    10: aL_0_spher10,
+    12: aL_0_spher12,
+    14: aL_0_spher14,
+}
 
 
-axs[1][0].plot(x, np.array([.1 for i in range(len(x))]),'--',color='black',markersize=4)
+setup()
+fig, axs = plt.subplots(2,1,tight_layout=True)
 
-axs[1][0].set_xlim([-3,10])
-axs[1][0].set_ylim([.09,.13])
-axs[1][0].grid(True)
+# Plot of the zeta functions
+axs[1].set_xlim(x_lim)
+axs[1].set_ylim([-2,2])
+axs[1].set_xlabel(r'$x$')
+axs[1].set_ylabel(r'$\frac{1}{2\pi^2}S_1$')
+axs[1].set_xticks(free_x)
+axs[1].set_yticks([-1,0,1])
+axs[1].grid(axis='both')
 
-axs[1][0].set_title(r'$a_1/L=\frac{1}{10}$')
-axs[1][0].set_xlabel(r'$x$')
-axs[1][0].set_ylabel(r'$\left(pL\right)^{-1}\cot\left(\delta_1\right)$')
+# axs[1].plot(s2d[0::2],  s2d[1::2],  '--',   color=color[4], alpha=1.0, label=r'$\boxplus\ N=4, n_s=\infty$')
+axs[1].plot(s1[0::2],   s1[1::2],   '--',   color='grey',   alpha=0.5, label=r'$\bigcirc$')
+axs[1].legend(frameon=False)
 
-# this is the figure set at "unitary point"
-axs[1][1].plot(aL_0_disp10[0::2], aL_0_disp10[1::2],'o',color='black',markersize=4)
-axs[1][1].plot(aL_0_disp12[0::2], aL_0_disp12[1::2],'o',color='black',markersize=4)
-axs[1][1].plot(aL_0_disp14[0::2], aL_0_disp14[1::2],'o',color='black',markersize=4)
+# Spherical zeta
+axs[0].plot(s1[0::2],s1[1::2],'--',color='grey',markersize=3,alpha=0.5)
 
-axs[1][1].plot(aL_0_spher10[0::2], aL_0_spher10[1::2],'or',markersize=4)
-axs[1][1].plot(aL_0_spher12[0::2], aL_0_spher12[1::2],'og',markersize=4)
-axs[1][1].plot(aL_0_spher14[0::2], aL_0_spher14[1::2],'ob',markersize=4)
+# Analytic lines
+x = np.arange(min(x_lim), max(x_lim), 0.1)
+for exact in [0.0,+0.1]:
+    # Exact result, no momentum dependence, found with dispersion zeta function.
+    axs[0].plot(x, exact+0*x,color='black',linewidth=0.5)
 
-# not add the analytic lines
-x = np.arange(-3, 10, 0.1)
-axs[1][1].plot(x, 0+func10(x),'r--',markersize=4)
-axs[1][1].plot(x, 0+func12(x),'g--',markersize=4)
-axs[1][1].plot(x, 0+func14(x),'b--',markersize=4)
+    # Whoops!  You used the spherical zeta, you need the correction.
+    for n in N:
+        axs[0].plot(x, exact+correction[n](x), '-', color=color[n], linewidth='0.5')
 
-axs[1][1].plot(x, np.array([0 for i in range(len(x))]),'--',color='black',markersize=4)
+# Data points
+for n in N:
+    # WARNING: the data variables are all named for the opposite case!
+    # non-unitary simulations
+    axs[0].plot(aL_0p1_disp[n][0::2],       aL_0p1_disp[n][1::2],   marker=marker[n],    color='black', markersize=4, linestyle="None")
+    axs[0].plot(aL_0p1_spher[n][0::2],      aL_0p1_spher[n][1::2],  marker=marker[n],    color=color[n],markersize=4, linestyle="None")
+    # unitary simulations
+    axs[0].plot(aL_0_disp[n][0::2],     aL_0_disp[n][1::2], marker=marker[n],    color='black', markersize=4, linestyle="None", markerfacecolor="None")
+    axs[0].plot(aL_0_spher[n][0::2],    aL_0_spher[n][1::2],marker=marker[n],    color=color[n],markersize=4, linestyle="None", markerfacecolor="None")
 
-axs[1][1].set_xlim([-3,10])
-axs[1][1].set_ylim([-.01,.03])
-axs[1][1].grid(True)
 
-axs[1][1].set_title(r'$a_1/L=0$')
-axs[1][1].set_xlabel(r'$x$')
-axs[1][1].set_ylabel(r'$\left(pL\right)^{-1}\cot\left(\delta_1\right)$')
+axs[0].set_xlim(x_lim)
+axs[0].set_ylim([-0.05,.15])
+axs[0].set_ylabel(r'$\left(pL\right)^{-1}\cot\left(\delta_1\right)$')
+axs[0].set_xticks(free_x)
+axs[0].grid(axis='x')
 
-plt.show()
+finalize()
+fig.savefig("1d.pdf", bbox_inches='tight')
