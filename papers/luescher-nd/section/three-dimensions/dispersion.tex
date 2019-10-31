@@ -116,21 +116,23 @@ This means that
 	\, ,
 \end{equation}
 which defines the dispersion zeta function
-\begin{equation}\label{eq:dispersion-zeta-contact}
+\begin{align}\label{eq:dispersion-zeta-contact}
 	S^{\dispersion}(x_i)
-	=
+	&=
 	S^{(n_s)}(x_i)
 	=
 	\sum\limits_n^N
-	\frac{1}{K_{nn}^{(n_s)} - x_i} - \mathcal{L}_3^{(n_s)} \frac{N}{2}
+	\frac{1}{K_{nn}^{(n_s)} - x_i} - \mathcal{L}_3^{\dispersion (n_s)} \frac{N}{2}
 	\, ,
-	\qquad
-	\mathcal{L}_3^{(n_s)}=15.348248444887464047104634
-	=
-	? \times
-	I_3^{(n_s)}\left(0, \Lambda = \frac{\pi}{\epsilon}\right)
+	\\
+	\mathcal{L}_3^{(n_s)}
+	&=
+	\frac{2 \pi^2 L}{\mu}
+	I_3^{(n_s)}\left(p=0, \Lambda = \frac{\pi}{\epsilon}\right)
+	\overset{n_s \to \infty}{\longrightarrow}
+	15.348248444887464047104634
 	\, .
-\end{equation}
+\end{align}
 \todo{I am to tired to find out the factor now...}\todo{I put in the factor, but it is valid for $n_s\mapsto\infty$.  I don't know how to determine this factor as a function of $n_s$.--T.L.}
 It furthermore explains why we expect results computed with this modified zeta function to directly match the continuum, infinite volume phase shifts.
 This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
