@@ -539,3 +539,4 @@ axs[1].grid(True)
 #axs[1][1].set_ylabel(r'$\cot\left(\delta_2\right)-\frac{2}{\pi}\log\left(\sqrt{x}\right)$')
 
 plt.show()
+fig.savefig("2d.pdf", bbox_inches='tight')
