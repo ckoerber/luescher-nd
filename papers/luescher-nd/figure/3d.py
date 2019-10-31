@@ -2,6 +2,14 @@ import sys
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.lines as lines
+
+from luescher_nd.plotting.styles import setup
+from luescher_nd.plotting.styles import EXPORT_OPTIONS
+from luescher_nd.plotting.styles import LINE_STYLE
+from luescher_nd.plotting.styles import MARKERS
+from luescher_nd.plotting.styles import finalize
 
 # here is data for a/L = .1 in x, S(x) pairs
 
@@ -327,60 +335,98 @@ def func40(x):
         x*(16.532315959761669643893 - 16.0097506821086) + \
         x*x*(8.4019239748275399931461 - 8.40160941170844))/np.pi
 
-fig, axs = plt.subplots(1,2,tight_layout=True)
+N = [10, 20, 40]
+x_lim=[-5.0,10.]
+free_x=[0,1,2,3,4,5,6,8,9,10]
+
+correction = {
+    10: func10,
+    20: func20,
+    40: func40,
+}
+
+color = {
+    10: 'red',
+    20: 'green',
+    40: 'blue',
+}
+
+marker = {
+    10: 's',
+    20: 'd',
+    40: 'h',
+}
+
+aL_0p1_disp = {
+    10: aL_0p1_disp10,
+    20: aL_0p1_disp20,
+    40: aL_0p1_disp40,
+}
+
+aL_0p1_spher = {
+    10: aL_0p1_spher10,
+    20: aL_0p1_spher20,
+    40: aL_0p1_spher40,
+}
+
+aL_0_disp = {
+    10: aL_0_disp10,
+    20: aL_0_disp20,
+    40: aL_0_disp40,
+}
+
+aL_0_spher = {
+    10: aL_0_spher10,
+    20: aL_0_spher20,
+    40: aL_0_spher40,
+}
+
+setup()
+fig, axs = plt.subplots(2,1,tight_layout=True)
+
+# Plot of the zeta functions
+axs[1].set_xlim(x_lim)
+axs[1].set_ylim([-15,15])
+axs[1].set_xlabel(r'$x$')
+axs[1].set_ylabel(r'$\frac{1}{\pi}S$')
+axs[1].set_xticks(free_x)
+axs[1].grid(axis='both')
+
+# axs[1].plot(s2d[0::2],  s2d[1::2],  '--',   color=color[4], alpha=1.0, label=r'$\boxplus\ N=4, n_s=\infty$')
+axs[1].plot(s3[0::2],   s3[1::2],   '--',   color='grey',       alpha=0.5,  label=r'$\bigcirc$')
+axs[1].plot(s3d[0::2],  s3d[1::2],  '--',   color=color[10],    alpha=1.0,  label=r'$\boxplus\ N=10, n_s=\infty$')
+axs[1].legend(frameon=False)
+
+# Spherical zeta
 axs[0].plot(s3[0::2],s3[1::2],'--',color='grey',markersize=3,alpha=0.5)
 
-axs[0].plot(aL_0p1_disp10[0::2], aL_0p1_disp10[1::2],'o',color='black',markersize=4)
-axs[0].plot(aL_0p1_disp20[0::2], aL_0p1_disp20[1::2],'v',color='black',markersize=4)
-axs[0].plot(aL_0p1_disp40[0::2], aL_0p1_disp40[1::2],'^',color='black',markersize=4)
+# Analytic lines
+x = np.arange(min(x_lim), max(x_lim), 0.1)
+for exact in [0.0,-10]:
+    # Exact result, no momentum dependence, found with dispersion zeta function.
+    axs[0].plot(x, exact+0*x,color='black',linewidth=0.5)
 
-axs[0].plot(aL_0p1_spher10[0::2], aL_0p1_spher10[1::2],'or',markersize=4)
-axs[0].plot(aL_0p1_spher20[0::2], aL_0p1_spher20[1::2],'vg',markersize=4)
-axs[0].plot(aL_0p1_spher40[0::2], aL_0p1_spher40[1::2],'^b',markersize=4)
+    # Whoops!  You used the spherical zeta, you need the correction.
+    for n in N:
+        axs[0].plot(x, exact+correction[n](x), '-', color=color[n], linewidth='0.5')
 
-# not add the analytic lines
-x = np.arange(-5.5, 10, 0.1)
-axs[0].plot(x, -10+func10(x),'r--',markersize=4)
-axs[0].plot(x, -10+func20(x),'g--',markersize=4)
-axs[0].plot(x, -10+func40(x),'b--',markersize=4)
+# Data points
+for n in N:
+    # WARNING: the data variables are all named for the opposite case!
+    # non-unitary simulations
+    axs[0].plot(aL_0p1_disp[n][0::2],       aL_0p1_disp[n][1::2],   marker=marker[n],    color='black', markersize=4, linestyle="None")
+    axs[0].plot(aL_0p1_spher[n][0::2],      aL_0p1_spher[n][1::2],  marker=marker[n],    color=color[n],markersize=4, linestyle="None")
+    # unitary simulations
+    axs[0].plot(aL_0_disp[n][0::2],     aL_0_disp[n][1::2], marker=marker[n],    color='black', markersize=4, linestyle="None", markerfacecolor="None")
+    axs[0].plot(aL_0_spher[n][0::2],    aL_0_spher[n][1::2],marker=marker[n],    color=color[n],markersize=4, linestyle="None", markerfacecolor="None")
 
 
-axs[0].plot(x, np.array([-10. for i in range(len(x))]),'--',color='black',markersize=4)
-
-axs[0].set_xlim([-5,10])
+axs[0].set_xlim(x_lim)
 axs[0].set_ylim([-15,5])
-#axs[0].grid(True)
-
+axs[0].set_xticks(free_x)
+axs[0].grid(axis='x')
 axs[0].set_xlabel(r'$x$')
 axs[0].set_ylabel(r'$pL\ \cot\left(\delta_{30}\right)$')
 
-# this is the figure set at "unitary point"
-
-axs[0].plot(aL_0_disp10[0::2], aL_0_disp10[1::2],'o',color='black',markersize=4)
-axs[0].plot(aL_0_disp20[0::2], aL_0_disp20[1::2],'v',color='black',markersize=4)
-axs[0].plot(aL_0_disp40[0::2], aL_0_disp40[1::2],'^',color='black',markersize=4)
-
-axs[0].plot(aL_0_spher10[0::2], aL_0_spher10[1::2],'or',markersize=4)
-axs[0].plot(aL_0_spher20[0::2], aL_0_spher20[1::2],'vg',markersize=4)
-axs[0].plot(aL_0_spher40[0::2], aL_0_spher40[1::2],'^b',markersize=4)
-
-# not add the analytic lines
-x = np.arange(-5.5, 10, 0.1)
-axs[0].plot(x, 0+func10(x),'r--',markersize=4)
-axs[0].plot(x, 0+func20(x),'g--',markersize=4)
-axs[0].plot(x, 0+func40(x),'b--',markersize=4)
-
-axs[0].plot(x, np.array([0 for i in range(len(x))]),'--',color='black',markersize=4)
-
-axs[1].plot(s3[0::2],s3[1::2],'--',color='black',markersize=3,label=r'$\frac{1}{\pi}S_3^\bigcirc(x)$')
-axs[1].plot(s3d[0::2],s3d[1::2],'--',color='blue',markersize=3,alpha=.5,label=r'$\frac{1}{\pi}S_3^{\boxplus}(x)$')
-axs[1].set_xlim([-5,10])
-axs[1].set_ylim([-15,15])
-axs[1].set_xlabel(r'$x$')
-axs[1].legend()
-axs[1].set_xticks([-5,0,1,2,3,4,5,6,8,9,10])
-axs[1].grid(True)
-
-
-plt.show()
-#fig.savefig("3d.pdf", bbox_inches='tight')
+finalize()
+fig.savefig("3d.pdf", bbox_inches='tight')
