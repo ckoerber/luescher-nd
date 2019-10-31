@@ -379,10 +379,10 @@ correction = {
 }
 
 color = {
-    4: 'purple',
-    10: 'red',
-    12: 'green',
-    14: 'blue',
+    4:  'red',
+    10: 'green',
+    12: 'blue',
+    14: 'purple',
 }
 
 marker = {
