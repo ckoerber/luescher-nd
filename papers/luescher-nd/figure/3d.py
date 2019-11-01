@@ -381,7 +381,7 @@ aL_0_spher = {
     40: aL_0_spher40,
 }
 
-setup()
+setup(pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"})
 fig, axs = plt.subplots(2,1,tight_layout=True)
 
 # Plot of the zeta functions
@@ -428,5 +428,5 @@ axs[0].grid(axis='x')
 axs[0].set_xlabel(r'$x$')
 axs[0].set_ylabel(r'$pL\ \cot\left(\delta_{30}\right)$')
 
-finalize()
-fig.savefig("3d.pdf", bbox_inches='tight')
+finalize(fig)
+fig.savefig("3d.pgf", **EXPORT_OPTIONS)

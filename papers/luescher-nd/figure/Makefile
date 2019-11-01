@@ -14,7 +14,7 @@ FIGURES=I0.pdf	\
 		continuum-spectrum_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	\
 		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
 		a1g-state-overlap.pgf														\
-		3d.pdf																		\
+		3d.pgf																		\
 		2d.pgf																		\
 		1d.pgf
 
@@ -32,7 +32,7 @@ I0.pdf:  I0.tex
 2d.pgf:	2d.py
 	python3 2d.py
 
-3d.pdf: 3d.py
+3d.pgf: 3d.py
 	python3 3d.py
 
 dispersion.pgf: dispersion.py
