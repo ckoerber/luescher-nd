@@ -58,6 +58,7 @@ As was done in the three-\todo{still needs to be done.-T.L.} and one-dimensional
 The derivation is identical to those cases; for concision we show only the end result.
 Expanded around small $x$ one finds
 \begin{equation}
+    \label{eq:2D corrections}
     \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)
     =
     \frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)
@@ -69,15 +70,15 @@ Expanded around small $x$ one finds
 The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and thus require no acceleration techniques.  We provide the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for the discretizations shown in \autoref{fig:luescher2d}.  They were also used to calculate the dashed colored lines in \autoref{fig:luescher2d}.
 
 \begin{table}
-    \caption{The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_2(x)$ as a function of discretization $N$, assuming $\nstep=\infty$, with $x=2\mu E L^2/4\pi^2$ and $E$ is a finite-spacing finite-volume eigenenergy.
+    \caption{The induced momentum-dependent terms to order $x^2$ in \eqref{2D corrections} due to a contact interaction using $S^\bigcirc_2(x)$ as a function of discretization $N$, assuming $\nstep=\infty$, with $x=2\mu E L^2/4\pi^2$ and $E$ is a finite-spacing finite-volume eigenenergy.
     }
     \label{tab:induced terms in 2 d}
-    \begin{tabular}{c|c}
-    $N$ & $\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2$\\
+    \begin{tabular}{c|ccc}
+    $N$ &   $\alpha_0$      &   $\alpha_1$      & $\alpha_2$                \\
     \hline
-    4   &   $0.020914726 + 0.07357781209 x + 0.00949485783 x^2$\\
-    10  &   $0.003446926 + 0.01065059589 x + 0.00018852319 x^2$\\
-    20  &   $0.000862459 + 0.00261909878 x + 0.00001122531 x^2$ \\
-    40  &   $0.000212552 + 0.00065179064 x + 6.92648\times10^{-7} x^2$ \\
+    4   &   $0.020914726$   &   $0.07357781209$ & $0.00949485783$           \\
+    10  &   $0.003446926$   &   $0.01065059589$ & $0.00018852319$           \\
+    20  &   $0.000862459$   &   $0.00261909878$ & $0.00001122531$           \\
+    40  &   $0.000212552$   &   $0.00065179064$ & $6.92648\times10^{-7}$    \\
 \end{tabular}
 \end{table}
