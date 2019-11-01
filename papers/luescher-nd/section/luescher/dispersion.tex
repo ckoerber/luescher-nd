@@ -1,9 +1,12 @@
 \subsection{The Dispersion Method}\label{sec:dispersion}
 
-To correctly tune an interaction, we must insist that long-distance observables such as scattering data are correctly reproduced; the potential itself is not observable.
-To take a sensible continuum limit, we must hold these observables fixed while sending the lattice spacing to zero.
+To correctly tune an interaction, we must insist that any observable such as, e.g, scattering data are correctly reproduced in the physical limit; the potential itself is not observable.
+One sensible idea for taking the continuum limit is to tune interaction parameters such that some lattice observables are constant and at their continuum value for all lattice spacings.
+By definition, these fixed observables recover their continuum value when sending the lattice spacing to zero.
 Of course, observables will be infected by lattice artifacts, and so we must adjust the parameters of the potential as we take the limit.
 Put another way, our renormalization scheme is to hold scattering data like the scattering length fixed as a function of lattice spacing.
+Note that one cannot generally expect that non-fixated observables will be at their continuum value for finite lattice spacing.
+But if this tuning prescription is well defined, these additional observables will converge against their continuum value in the continuum limit.
 
 This tuning distinguishes our setup from, for example, lattice QCD.
 In a usual lattice calculation, the continuum limit is sought by finding a line of constant physics where some parts of the single-hadron spectrum are held fixed as the continuum is approached.
@@ -12,15 +15,18 @@ In contrast, in our setup the masses are set by hand and their interactions may 
 A continuum limit of QCD could, in principle, be taken along a line of constant deuteron-channel scattering length, but practical issues abound, even if simpler scattering channels like $I=2$ $\pi\pi$ scattering are picked instead.
 
 Knowing that we must readjust the strength of our contact interaction as a function of lattice spacing raises the question of exactly what to tune to.
-As mentioned at the end of \Secref{continuum}, one approach is to require the lowest energy state, when put through $S^{\spherical}$, match the desired scattering amplitude, an approach taken in, for example, \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}.
+As mentioned at the end of \Secref{continuum}, one approach is to require the lowest energy state matches the desired scattering amplitude, when put through $S^{\spherical}$ (see \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}).
 Tuned this way, one finds induced momentum dependence in the phase shift (see the $N_\mathcal{O}=1$ behavior of the left panel of Figure 2 of \Ref{Endres:2011er}, for example).
 
-Here, we construct at each spacing a lattice-aware function generalized \Luscher zeta function $S^{\dispersion}$ and tune the lowest energy at that spacing to the desired amplitude.
-With that tuning accomplished, other finite-volume same-spacing energy levels may be extracted and analyzed using the spacing-appropriate $S^{\dispersion}$.
+In general, a lattice implementation which ensures that all observables approach their continuum value more rapidly---or even are at their continuum value for each lattice spacing---is of great desire.
+In this work, we aim to derive such a procedure for the contact interaction.
+At each spacing we construct a lattice-aware generalized \Luscher zeta function $S^{\dispersion}$ and tune the lowest energy at that spacing to the desired amplitude.
+With that tuning accomplished, other finite-volume energy levels at the same spacing are extracted and analyzed using the spacing-appropriate $S^{\dispersion}$.
 We will show that tuning and analysis with $S^{\dispersion}$ yields momentum-independent scattering for the simple lattice contact interaction described in \Secref{hamiltonian}.
 
 To construct such a lattice-aware function we return to the derivation of \Luscher's finite-volume formalism and, recognizing that we're interested in incorporating lattice artifacts from the start, replace the continuum dispersion relation with the lattice dispersion relation in the propagators and require that the integrals are cut off in the same way---with a momentum cutoff that corresponds to that imposed by the lattice.
-The derivation provided in the previous section matched two $T$-matrices together---the finite- and infinite-volume matrices both in the continuum.
+The derivation provided in the previous section matched the interaction parameters of the potential together---the finite- and infinite-volume matrices both in the continuum.
+Independent of the interaction this can be generalized as matching finite and infinite $T$-matrices.
 However, the spirit of our renormalization procedure is to ensure that the finite-spacing finite-volume $T$-matrix matches the continuum infinite-volume $T$-matrix as best it can.
 
 Put another way, we can match the lattice finite volume spectrum to the continuum finite volume spectrum, and replace $I_{D,FV}$ in the quantization condition \eqref{spherical zeta} with a lattice-aware substitute.
