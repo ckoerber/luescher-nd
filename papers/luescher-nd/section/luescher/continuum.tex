@@ -1,7 +1,7 @@
 \subsection{Continuum Procedure}\label{sec:continuum}
 The starting point is a contact interaction\footnote{This derivation generalizes to a tower of contact interactions where $C(\Lambda)$ is replaced by $\sum_n C_{2n}(\Lambda) p^{2n}$ \cite{Kaplan:1998we,Beane:2003da} and dimensional regularization is used to absorb power-law divergencies.} such that the tree amplitude in the center of mass frame is given by
 \begin{equation}
-    \mathcal A = + i C(\Lambda)
+    \mathcal A(\Lambda) = + i C(\Lambda)
 \end{equation}
 where $p$ denotes the relative momentum of incoming nucleons and the interaction strengths $ C(\Lambda)$ depend on the regulator $\Lambda$ and carry dimension-dependent units.
 The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSum}.
@@ -19,9 +19,10 @@ The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSu
 This bubble sum is a geometric series and, restricting our attention to the contact interaction causes all other partial wave than the s-wave to vanish.
 This restriction gives for the standard on-shell $T$-matrix
 \begin{equation}\label{eq:T matrix}
-T_{D\l}(p) = \delta_{\l 0} \frac{C(\Lambda)}{1-I_D(p,\Lambda) C(\Lambda)},
+T_{D\l}(p, \Lambda) = \delta_{\l 0} \frac{C(\Lambda)}{1-I_D(p,\Lambda) C(\Lambda)},
 \end{equation}
 where $p$ is the relative on-shell momentum, $\Lambda$ the dimensional regularization scale.
+The physical result for the T-matrix is recovered once the parameter $C$ is chosen such that one can remove the regularization scale, e.g., in the limit of $\Lambda \to \infty$ for a hard momentum cutoff.
 
 $I_D(p,\Lambda)$ is a $D$-dependent function that arises from integrating the loop shown in the right panel of \Figref{bubbleSum},
 \begin{align}
@@ -65,18 +66,18 @@ Dropping the $\l$ dependence in \eqref{on-shell-T}, the momentum-dependent $T$-m
 is a dimension-dependent kinematic factor determined by requiring the imaginary parts of \eqref{T matrix} from \eqref{I0 in relative coordinates} exactly matches the imaginary part in \eqref{on-shell-T}.
 This fixes the coefficients $C(\Lambda)$ as a function of the scattering data,
 \begin{equation}\label{eq:IV pole}
-    \frac{1}{C(\Lambda)}
+    \frac{\mu}{2 \F_{D}(p)}\left(\cot \delta_{D}(p) - i\right)
     =
-    I_D(p) - \frac{\mu}{2 \F_{D}(p)}\left(\cot \delta_{D}(p) - i\right).
+    \lim\limits_{\Lambda \to \infty} \left[ I_D(p, \Lambda) - \frac{1}{C(\Lambda)} \right].
 \end{equation}
 
 In a finite volume, the energy eigenstates $E$ appear at poles of the $T$-matrix, so that
 \begin{equation}\label{eq:FV pole}
-    \frac{1}{2\mu E C(\Lambda) } - I_{D, \FV}(\sqrt{2\mu E},L) = 0
+    \frac{1}{2\mu E C_\FV(\Lambda) } - I_{D, \FV}(\sqrt{2\mu E}, \Lambda) = 0
 \end{equation}
-and the infinite-volume integral $I_D$ has been replaced by the matching finite-volume sum,
+and the infinite-volume integral $I_D$ has been replaced by the matching finite-volume sum which introduces another scale $L$,
 \begin{align}
-I_{D,\FV}(\sqrt{2\mu E},L)
+I_{D,\FV}(\sqrt{2\mu E}, \Lambda)
     &=-i\int \frac { \mathrm {d}q_0}{2\pi} \frac{1}{L^D}\sum_{\vec{q}}^{q < \Lambda} \left( \frac { i } { \frac{E}{2} + q _ { 0 } - \frac{\vec{q}^2}{2m_1} + i \epsilon } \right) \left( \frac { i } { \frac{E}{2} - q _ { 0 } - \frac{\vec{q}^2}{2m_2} + i \epsilon } \right)
     \\
     \label{eq:I0 FV}
@@ -88,19 +89,33 @@ I_{D,\FV}(\sqrt{2\mu E},L)
 \end{align}
 Combining the infinite-volume and finite-volume relations \eqref{IV pole} and \eqref{FV pole} yields
 \begin{equation}\label{eq:spherical zeta}
-    \frac{\mu}{2\F_{D}(\sqrt{2\mu E})}(\cot\delta_{D}(\sqrt{2\mu E})-i) = I_D(\sqrt{2\mu E}) - I_{D,\FV}(\sqrt{2\mu E}),
+    \frac{\mu}{2\F_{D}(\sqrt{2\mu E})}(\cot\delta_{D}(\sqrt{2\mu E})-i)
+    =
+    \lim\limits_{\Lambda \to \infty} \left[ I_D(\sqrt{2\mu E}) - I_{D,\FV}(\sqrt{2\mu E}) \right] \, ,
 \end{equation}
 the finite-volume quantization condition.
-Note that both equations are explicitly evaluated for the same interactions using the same regulator and furthermore \eqref{spherical zeta} is only valid if evaluated at momenta corresponding to finite-volume eigenenergies $E$.
+Note that both equations are explicitly evaluated for the same interactions $C_\FV(\Lambda) = C(\Lambda)$ independent of the volume $L$ and using the same regulator.
+Furthermore \eqref{spherical zeta} is only valid if evaluated at momenta corresponding to finite-volume eigenenergies $E$.
 
 Plugging our results for the integrals in, one finds
 \begin{equation}
-    \frac{1}{2\F_{D}(\sqrt{2\mu E})}\left(\cot \delta_{D}(\sqrt{2\mu E}) - i\right) = \frac{2}{(2\pi)^2 L^{D-2}}\left[ \left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} + \frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right) \right]
+    \frac{1}{2\F_{D}(\sqrt{2\mu E})}\left(\cot \delta_{D}(\sqrt{2\mu E}) - i\right)
+    =
+    \frac{2}{(2\pi)^2 L^{D-2}}
+    \lim\limits_{\Lambda \to \infty}
+    \left[ 
+    	\left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} +
+		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right) 
+	\right]
 \end{equation}
-where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$, and the integral implicitly carries a factor of $\Omega_D n^{D-1}$.
+where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$,
+The integral corresponds to the principle value integration and implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
 The imaginary part on the left hand side exactly cancels the last term on the right---demanding this cancellation is how the kinematic factor $\F_D$ of the $T$ matrix is determined----and we are left with
 \begin{equation}\label{eq:general luscher}
-    \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} \left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
+    \cot \delta_{D}(p)
+    =
+    \frac{\F_{D}(p)}{\pi^2 L^{D-2}}
+    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
 with $x$ as in \eqref{I0 FV} and we switched the sign of the sum and integral as well as the sign of the denominator.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_D$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
