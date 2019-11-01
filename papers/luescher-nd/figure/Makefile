@@ -15,8 +15,8 @@ FIGURES=I0.pdf	\
 		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
 		a1g-state-overlap.pgf														\
 		3d.pdf																		\
-		2d.pdf																		\
-		1d.pdf
+		2d.pgf																		\
+		1d.pgf
 
 all:	$(FIGURES)
 
@@ -26,10 +26,10 @@ I0.pdf:  I0.tex
 	ps2pdf I0.ps 1>/dev/null 2>/dev/null
 	$(RM) I0.dvi I0.ps I0.aux I0.log
 
-1d.pdf:	1d.py
+1d.pgf:	1d.py
 	python3 1d.py
 
-2d.pdf:	2d.py
+2d.pgf:	2d.py
 	python3 2d.py
 
 3d.pdf: 3d.py

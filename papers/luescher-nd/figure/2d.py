@@ -487,7 +487,8 @@ marker={
     40: 'h'
 }
 
-setup()
+setup(pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"})
+
 fig, axs = plt.subplots(2,1,tight_layout=True)
 
 # Plot of the zeta functions
@@ -540,6 +541,6 @@ axs[0].set_ylabel(r'$\cot\left(\delta_2\right)-\frac{2}{\pi}\log\left(\sqrt{x}\r
 axs[0].set_xticks(free_x)
 axs[0].grid(axis='x')
 
-finalize()
+finalize(fig)
 # plt.show()
-fig.savefig("2d.pdf", bbox_inches='tight')
+fig.savefig("2d.pgf", bbox_inches='tight')

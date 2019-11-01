@@ -421,7 +421,7 @@ aL_0_spher = {
 }
 
 
-setup()
+setup(pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"})
 fig, axs = plt.subplots(2,1,tight_layout=True)
 
 # Plot of the zeta functions
@@ -467,5 +467,5 @@ axs[0].set_ylabel(r'$\left(pL\right)^{-1}\cot\left(\delta_1\right)$')
 axs[0].set_xticks(free_x)
 axs[0].grid(axis='x')
 
-finalize()
-fig.savefig("1d.pdf", bbox_inches='tight')
+finalize(fig)
+fig.savefig("1d.pgf", bbox_inches='tight')
