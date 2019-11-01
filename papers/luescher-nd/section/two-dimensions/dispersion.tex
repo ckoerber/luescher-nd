@@ -42,33 +42,42 @@ On the other hand, if we use the same energies but analyze them with the usual c
     \center
     \input{figure/2d.pgf}
     \caption{
-        Results in 2-D using non-continuum eigenvalues $x=p^2L^2/4\pi^2$ of the Schr\"odinger equation with $N=10$, 20, and 40.
-        The interaction was tuned such that $\tilde a_{20}/L=.1$.
-        The colored points are obtained using $S^\spherical_2(x)$ with $N=10$ being furthest from a flat line and $N=40$ being closest.
-        The black points are obtained using $S^{\dispersion}_2(x)$ and exhibit the correct flat-line behavior.
-        The colored dashed lines are the derived induced momentum-dependent terms (see text) \todo{Need better figure. -T.L.}}
+        (Top panel)
+        Results in 2-D using finite-spacing eigenvalues $x=2\mu EL^2/4\pi^2$ of the Schr\"odinger equation with $N=4$, 10, 20, and 40, tuned so that $\tilde a_{20}/L=.1$ (closed symbols) and $\tilde a_{20}/L=0$ (open symbols).
+        The colored points are obtained using $S^\spherical_2(x)$ for analysis; red, green, blue, and purple corresponding to $N=4$, 10, 20, and 40 respectively.
+        The thin colored lines are the derived induced momentum-dependent terms for each $N$ as given in \Tabref{induced terms in 2 d}.
+        The black points are obtained using the $N$-appropriate $S^{\dispersion}_2(x)$ and exhibit the correct flat-line behavior.
+        The dashed gray line is $S_2^\spherical$, as in the bottom panel.
+        (Bottom panel)
+        Two two-dimensional zeta functions, the spherical function $S_2^{\spherical}$ (light gray) given in \eqref{2d luscher} and $S_2^{\dispersion}$ (red) given in \eqref{2d dispersion luscher} with $N=4$ and $\nstep=\infty$.
+        }
     \label{fig:luescher2d}
 \end{figure}
 
-As was done in the 3-D\todo{still needs to be done.-T.L.} and 1-D cases, we can derive the functional form of the induced momentum-dependent terms.  The steps are identical to those done in the 3-D and 1-D cases, and so for conciseness we show only the end result.  Assuming an $x=\left(\frac{pL}{2\pi}\right)^2$ calculated on a \emph{discretized} lattice with lattice spacing $\epsilon=N/L$, we have
-\begin{align*}
- \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)&=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+ \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)- \frac{1}{ \pi^{2}} S^{\dispersion}_{2}\left(x\right)\\
- &=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\frac{1}{\pi^{2}} \left(\lim_{\eta\to\infty}\sum_{n\notin \operatorname{B.Z.}}^{|n|\le\frac{\eta}{2}} \frac{1}{n^{2}-x} -2\pi\log\left(\frac{\eta}{\mathcal{L}_\square N}\right)\right)\\
-&=\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\frac{1}{\pi^{2}} \left(\lim_{\eta\to\infty}\sum_{n\notin \operatorname{B.Z.}}^{|n|\le\frac{\eta}{2}}  \frac{1}{n^{2}} -2\pi\log\left(\frac{\eta}{\mathcal{L}_\square N}\right)\right)
-+\frac{1}{\pi^{2}}\sum_{n\notin \operatorname{B.Z.}} \frac{x}{n^{4}} +\frac{1}{\pi^{2}}\sum_{n\notin \operatorname{B.Z.}} \frac{x^2}{n^{6}}+\mathcal{O}(x^3)\\
-&\equiv\frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)+\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2 +\mathcal{O}(x^3) \ .
-\end{align*}
-The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and thus require no acceleration techniques.  We provide
+As was done in the three-\todo{still needs to be done.-T.L.} and one-dimensional cases, we can derive the functional form of the induced momentum-dependent terms.
+The derivation is identical to those cases; for concision we show only the end result.
+Expanded around small $x$ one finds
+\begin{equation}
+    \frac{1}{ \pi^{2}} S^\bigcirc_{2}\left(x\right)
+    =
+    \frac{2}{\pi}\log\left(2\pi \frac{\tilde a_{20}}{L}\right)
+    + \alpha_0(N)
+    + \alpha_1(N) x
+    + \alpha_2(N) x^2
+    + \mathcal{O}(x^3).
+\end{equation}
+The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and thus require no acceleration techniques.  We provide the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for the discretizations shown in \autoref{fig:luescher2d}.  They were also used to calculate the dashed colored lines in \autoref{fig:luescher2d}.
+
 \begin{table}
-\caption{The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_2(x)$ as a function of discretization $N$.  Here $x=\left(\frac{pL}{2\pi}\right)^2$ is a non-continuum eigenenergy.  \label{tab:induced terms in 2 d}}
-\begin{tabular}{c|c}
-$N$ & $\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2$\\
-\hline
-4 &   $0.020914726 + 0.07357781209 x + 0.00949485783 x^2$\\
-10 &$0.003446926 + 0.01065059589 x + 0.00018852319 x^2$\\
-20 &$0.000862459 + 0.00261909878 x + 0.00001122531 x^2$ \\
-40 &$0.000212552 + 0.00065179064 x + 6.92648\times10^{-7} x^2$ \\
-\hline
+    \caption{The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_2(x)$ as a function of discretization $N$, assuming $\nstep=\infty$, with $x=2\mu E L^2/4\pi^2$ and $E$ is a finite-spacing finite-volume eigenenergy.
+    }
+    \label{tab:induced terms in 2 d}
+    \begin{tabular}{c|c}
+    $N$ & $\alpha_0(N)+\alpha_1(N) x+\alpha_2(N) x^2$\\
+    \hline
+    4   &   $0.020914726 + 0.07357781209 x + 0.00949485783 x^2$\\
+    10  &   $0.003446926 + 0.01065059589 x + 0.00018852319 x^2$\\
+    20  &   $0.000862459 + 0.00261909878 x + 0.00001122531 x^2$ \\
+    40  &   $0.000212552 + 0.00065179064 x + 6.92648\times10^{-7} x^2$ \\
 \end{tabular}
 \end{table}
-the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for the discretizations shown in \autoref{fig:luescher2d}.  They were also used to calculate the dashed colored lines in \autoref{fig:luescher2d}.
