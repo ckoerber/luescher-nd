@@ -8,45 +8,48 @@ The Hamiltonian is given by
 \begin{equation}
     \left\langle \vec{r}' \middle| H \middle| \vec{r} \right\rangle
     \rightarrow
-    H_{\vec{r}',\vec{r}}
+    H_{\vec{r}',\vec{r}}^\dispersion
     =
-    \frac{1}{2\mu} K_{\vec{r}',\vec{r}} + \frac{1}{\epsilon^D} C(\epsilon) \delta_{\vec{r}',\vec{r}} \delta_{\vec{r},\vec{0}}
+    \frac{1}{2\mu} K_{\vec{r}',\vec{r}}^\dispersion + \frac{1}{\epsilon^D} C^\dispersion \delta_{\vec{r}',\vec{r}} \delta_{\vec{r},\vec{0}}
 \end{equation}
 where $K$ is a discretized Laplacian, implementing the momentum squared.
+The $\dispersion$ symbol indicates that quantities depend on the box volume $L$, the lattice spacing $\epsilon$ and the explicit implementation of discretization effects like derivatives.
 
-To ensure we control the discretization effects in generality, we study a variety of kinetic operators $K_{xy}$.
+To ensure we control the discretization effects in generality, we study a variety of kinetic operators $K_{xy}^\dispersion$.
 An often-used set of finite-difference kinetic operators are constructed from the one-dimensional finite-difference Laplacian that reaches $\nstep$ nearest neighbors,
 \begin{equation}
-    \Laplacian^{(\nstep)}_{r'r} = \frac{1}{\epsilon^2}\sum_{s=-\nstep}^{\nstep} \gamma_{\abs{s}}^{(\nstep)} \delta_{r',r+\epsilon s}
+    \Laplacian^\dispersion_{r'r} = \frac{1}{\epsilon^2}\sum_{s=-\nstep}^{\nstep} \gamma_{\abs{s}}^{(\nstep)} \delta_{r',r+\epsilon s}^{(L)}
 \end{equation}
-where the spatial indices are understood modulo the periodic boundary conditions of the lattice.
+where the $(L)$ index of the Kronecker delta indicates that the spatial indices are understood modulo the periodic boundary conditions of the lattice.
 In $D$ dimensions we simply take on-axis finite differences, so that the Laplacian is a $(1+2\nstep D)$-point stencil
 \begin{equation}\label{eq:kinetic}
-    K_{\vec{r}',\vec{r}}
+    K_{\vec{r}',\vec{r}}^\dispersion(\epsilon)
     =
-    - \sum_{d=1}^D \Laplacian_{r_d'r_d^{}}^{(\nstep)}
+    - \sum_{d=1}^D \Laplacian_{r_d'r_d^{}}^\dispersion
     \, .
-\end{equation}
+\end{equation} 
 
 In the Fourier transformed space, momentum space, the one-dimensional Laplacian may be written
 \begin{equation}
     \label{eq:laplacian}
-    -\Laplacian_{r'r^{}}^{(\nstep)}
+    -\Laplacian_{r'r^{}}^\dispersion
     \overset{\text{F.T.}}{\longleftrightarrow}
-    \Laplacian^{(\nstep)}_{p'p}
+    \Laplacian^\dispersion
     =
     \frac{1}{\epsilon^2}
     \delta_{p'p}
     \sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos(s p \epsilon)
+    \, , \qquad p = \frac{2 \pi}{L} n \, 
 \end{equation}
-while in $D$ dimensions we just sum the same expression over the different components of momentum.
+where $n$ is an integer.
+In $D$ dimensions we just sum the same expression over the different components of momentum.
 Note that this is a specialization, in the sense that it contains no off-axis differencing (in position space) or products of different components (in momentum space).
 However, since our numerical formalism is valid for every $\nstep$, we believe it holds for every possible kinetic operator.
 
 The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
 \begin{equation}
     \label{eq:gamma determination}
-    \Laplacian^{(\nstep)}_{p'p}
+    \Laplacian^\dispersion_{p'p}
     \overset{!}{=}
     \delta_{p'p} \;
     p^2 \left[
@@ -65,7 +68,8 @@ The resulting dispersion relations are presented in \Figref{dispersion relation}
 
 Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in momentum space, can be implemented by multiplying by $p^2$ directly,
 \begin{equation}
-    \Laplacian^{(\infty)}_{p'p}
+    \lim\limits_{n_s \to \infty}
+    \Laplacian^\dispersion_{p'p}
     =
     \delta_{p'p} p^2,
 \end{equation}
@@ -81,10 +85,10 @@ The Hamiltonian in momentum space reads
     \label{eq:p space hamiltonian}
     \left\langle \vec{p}' \middle| H \middle| \vec{p} \right\rangle
     \rightarrow
-    H_{\vec{p}',\vec{p}}
+    H_{\vec{p}',\vec{p}}^\dispersion
     =
-    \frac{1}{2\mu} K_{\vec{p}'p}
-    +\frac{1}{L^D}C(\epsilon)
+    \frac{1}{2\mu} K_{\vec{p}'p}^\dispersion
+    +\frac{1}{L^D}C^\dispersion
 \end{equation}
 where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{s}^{(\nstep)}$ are determined as described above.
 
