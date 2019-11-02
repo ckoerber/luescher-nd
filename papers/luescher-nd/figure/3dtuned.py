@@ -411,7 +411,7 @@ axs[1].plot(s3[0::2],s3[1::2],'--',color='grey',markersize=3,alpha=0.5)
 # Analytic lines
 x1 = np.arange(min(x_lim1), max(x_lim1), 0.1)
 x2 = np.arange(min(x_lim2), max(x_lim2), 0.01)
-for exact in [-0.04589457314929,-0.02338147667656,-0.01174563198533]:
+for exact in [-0.04589457314929,-0.02338147667656,-0.01174563198533, -0.00587969815119]:
     # Exact result, no momentum dependence, found with dispersion zeta function.
     axs[0].plot(x1, exact+0*x1,color='black',linewidth=0.5)
     axs[1].plot(x2, exact+0*x2,color='black',linewidth=0.5)
