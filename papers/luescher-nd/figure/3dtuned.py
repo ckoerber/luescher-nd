@@ -337,9 +337,9 @@ def func80(x):
 
 N = [10, 20, 40, 80]
 x_lim1=[-1,17]
-x_lim2=[-.2,1]
+x_lim2=[-.15,1]
 free_x1=[0,1,2,3,4,5,6,8,9,10,11,12,13,14,16,17]
-free_x2=[0,1]#,2]#,3,4,5,6,8,9,10]
+free_x2=[-.15,0,1]#,2]#,3,4,5,6,8,9,10]
 
 correction = {
     10: func10,
@@ -442,7 +442,7 @@ axs[0].set_xlabel(r'$x$')
 axs[0].set_ylabel(r'$pL\ \cot\left(\delta_{30}\right)$')
 
 axs[1].set_xlim(x_lim2)
-axs[1].set_ylim([-.1,.1])
+axs[1].set_ylim([-.06,.1])
 axs[1].set_xticks(free_x2)
 axs[1].grid(axis='x')
 axs[1].set_xlabel(r'$x$')
