@@ -359,7 +359,7 @@ marker = {
     10: 's',
     20: 'd',
     40: 'h',
-    80: 'v'
+    80: 'o'
 }
 
 #aL_0p1_disp = {
@@ -449,4 +449,4 @@ axs[1].set_xlabel(r'$x$')
 axs[1].set_ylabel(r'$pL\ \cot\left(\delta_{30}\right)$')
 
 finalize(fig)
-fig.savefig("3dtuned.pdf", **EXPORT_OPTIONS)
+fig.savefig("3dtuned.pgf", **EXPORT_OPTIONS)

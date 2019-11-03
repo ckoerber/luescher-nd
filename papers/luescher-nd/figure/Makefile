@@ -15,6 +15,7 @@ FIGURES=I0.pdf	\
 		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
 		a1g-state-overlap.pgf														\
 		3d.pgf																		\
+		3dtuned.pgf																	\
 		2d.pgf																		\
 		1d.pgf
 
@@ -34,6 +35,9 @@ I0.pdf:  I0.tex
 
 3d.pgf: 3d.py
 	python3 3d.py
+
+3dtuned.pgf: 3dtuned.py
+	python3 3dtuned.py
 
 dispersion.pgf: dispersion.py
 	./dispersion.py
