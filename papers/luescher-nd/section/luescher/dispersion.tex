@@ -85,7 +85,7 @@ Anyway, since we aim to match a lattice $T$ matrix to a continuum $T$ matrix, th
 We can solve the quantization condition
 \begin{align}
     \cot \delta_D(\sqrt{2 \mu E})
-    =
+    &=
     \frac{\F_D(\sqrt{2 \mu E})}{\pi^2 L^{D-2}}
     \lim_{N\goesto\infty}
     \left[
@@ -94,7 +94,13 @@ We can solve the quantization condition
     		\int\limits_{-N/2}^{+N/2}
     		\mathrm{d} n_i
     	\right)\; \PV 
-	\right]\  \frac{1}{\frac{L^2}{4\pi^2} K_{nn}-\frac{2\mu E L^2}{4\pi^2}}
+	\right]\  \frac{1}{\tilde K_{nn}^{N}-\frac{2\mu E L^2}{4\pi^2}}
+	\, , \\
+	\tilde K_{nn}^{N}
+	&= \frac{L^2}{4\pi^2} K_{qq}^{\dispersion} \bigg|_{q=\frac{2\pi n}{L}}
+	= \frac{N^2}{4\pi^2}
+    \sum_{i=1}^{D}\sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos\left(\frac{2 \pi s n_i}{N}\right)
+    \overset{N \to \infty}{\longrightarrow} \vec n^2
 \end{align}
 where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to the usual quantization condition \eqref{spherical quantization}, and the Brillouin zone (\BZ) runs over all the finite-volume lattice modes.
 The $n$-dependent piece of the denominator goes to $n^2$ in the continuum limit (fixed $L$, $N\goesto\infty$), but even at finite spacing actually only depends on $N$ rather than $L$, which is clear from considering the particular Laplacians we study numerically \eqref{laplacian} and the elimination of the dimensionful scale effected by the rescaling from $q$ to $n$.
@@ -116,7 +122,7 @@ We can construct, therefore, a \Luscher-like formalism,
     		\mathrm{d} n_i
     	\right)\; \PV 
 	\right]\  
-	\frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} = \sum_{n\in\BZ}\frac{1}{ \frac{L^2}{4\pi^2}K_{nn} - x} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)^{D-2}
+	\frac{1}{ \tilde K_{nn}^{N} - x} = \sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)^{D-2}
 	+ \mathcal O\left(\frac{x}{N}\right) \, ,
 \end{align}
 where the dispersion zeta function $S^{\dispersion N}_{D}$ knows about the particular finite-differencing Laplacian or the dispersion relation as well as the discretization of the box into $N$ sites; a careful tracking through of factors shows that $S^{\dispersion}$ does not need the box size $L$ or the lattice spacing $\epsilon$ but just their ratio $N$.
