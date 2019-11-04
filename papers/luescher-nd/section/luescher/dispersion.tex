@@ -95,14 +95,9 @@ We can solve the quantization condition
     		\mathrm{d} n_i
     	\right)\; \PV 
 	\right]\  \frac{1}{\tilde K_{nn}^{N}-\frac{2\mu E L^2}{4\pi^2}}
-	\, , \\
-	\tilde K_{nn}^{N}
-	&= \frac{L^2}{4\pi^2} K_{qq}^{\dispersion} \bigg|_{q=\frac{2\pi n}{L}}
-	= \frac{N^2}{4\pi^2}
-    \sum_{i=1}^{D}\sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos\left(\frac{2 \pi s n_i}{N}\right)
-    \overset{N \to \infty}{\longrightarrow} \vec n^2
+	\, ,
 \end{align}
-where we rescaled $q\goesto 2\pi n/L$, the limits are understood for each spatial direction independently, and which can be compared to the usual quantization condition \eqref{spherical quantization}, and the Brillouin zone (\BZ) runs over all the finite-volume lattice modes.
+where we rescaled $q\goesto 2\pi n/L$, replaced the dimension full hamiltonian with the normalized version \eqref{normalized-kinetic-hamitlonian}, the limits are understood for each spatial direction independently, and the Brillouin zone (\BZ) runs over all the finite-volume lattice modes.
 The $n$-dependent piece of the denominator goes to $n^2$ in the continuum limit (fixed $L$, $N\goesto\infty$), but even at finite spacing actually only depends on $N$ rather than $L$, which is clear from considering the particular Laplacians we study numerically \eqref{laplacian} and the elimination of the dimensionful scale effected by the rescaling from $q$ to $n$.
 
 We can construct, therefore, a \Luscher-like formalism,
