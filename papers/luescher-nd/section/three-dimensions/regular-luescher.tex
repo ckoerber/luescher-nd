@@ -5,7 +5,7 @@ Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon 
 \begin{equation}
     E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-Because the contact interaction is expected to scale linear with $\frac{1}{\epsilon}$ (see \eqref{FV pole} \todo{\@CK can you point me to the right equation? -- EB}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
+Because the contact interaction is expected to scale linear with the momentum cutoff and thus linear in $\frac{1}{\epsilon}$ (see \eqref{three-d-counterterm}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
 Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for smaller $n_s$: $e_{i,n}^{(n_{s_1})} < e_{i,n}^{(n_{s_2})}$ on average for $n_{s_1} > n_{s_2}$.
 
 We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \Ref{peter_lepage_2016_60221}.
@@ -26,7 +26,7 @@ For this reason we add further epsilon values
 However, we still obtain $\chi^2_{\mathrm{d.o.f}} \gg 1$ up to the point where it is computationally not feasible to add new data points for even smaller lattice spacings as the dimension of the hamiltonian scales with $(L/\epsilon)^3$.
 
 For this reason, we have decided to fit multiple fit models over the span of $n_\mathrm{max} = \{2, 3, 4, 5\}$ and compare their results to estimate a systematic extrapolation uncertainty (unweighted average and standard deviation of results over models).
-We repeat this procedure for each discretization and compare different continuum energies to decide wether the fits are consitent.
+We repeat this procedure for each discretization and compare different continuum energies to decide wether the fits are consistent.
 These values are compared to the spectrum predicted by Lüscher's formalism.
 
 We present the model average over best fits of the spectrum in \figref{continuum-extrapolation-spectrum}.
