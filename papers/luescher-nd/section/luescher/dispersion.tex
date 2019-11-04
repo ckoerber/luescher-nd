@@ -146,7 +146,24 @@ We note in passing that when $\nstep=\infty$ and the dispersion relation is exac
 To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than the effective one-body integral \eqref{dispersion I0}, to an equation more like the two-body loop diagram that determines $I_0$ \eqref{I0 in two particle language} before the energy integral is performed, replacing the single-particle dispersion relations there and changing the domain of integration to match the Brillouin zone.
 We leave such a construction to future work.
 
-As we will show in the next section, it is possible to tune the contact interaction in three dimensions and hence the set of energy levels in the box $x_i$ in such a way that even for finite $N$ the dispersion zeta function $S^{\dispersion N}_{3}( x_i )$ is constant and the $\mathcal O (x/N)$ corrections do not contribute\todo{CK: I am not happy about this statement. It is actually more tricky as discussed in the three-d section. Do you have a better way to formulate this.} when we feed finite-volume finite-spacing energy levels through the finite-spacing quantization condition \eqref{dispersion quantization}.
+As we will show in the next section, it is possible to tune the contact interaction in three dimensions and hence the set of energy levels in the box $x_i$ in such a way that even for finite $N$ the dispersion zeta function $S^{\dispersion N}_{3}( x_i )$ is constant
+\begin{equation}
+	\frac{1}{\pi L}
+	\lim_{N\goesto\infty}
+	\left[
+		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x}
+		- \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)
+		+ \mathcal O\left(\frac{x}{N}\right)
+	\right]
+	=
+	\frac{1}{\pi L}
+	\left[
+		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)
+	\right]
+	=
+	const
+	\, .
+\end{equation}
 For this reason one is allowed to extract physical phase shift information even at finite $N$.
 Thus, unlike in the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{dispersion S}, because we are always interested in a real calculation performed with finite $N$.
 Therefore, for the contact interaction, one can use this prescription to tune interactions and extract energy levels with higher precision compared to the spherical case.
