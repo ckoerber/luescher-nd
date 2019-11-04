@@ -150,7 +150,7 @@ def export_grid_plot(
         ylabels = (
             r"$\left| p \cot(\delta_0(p)) + \frac{1}{a_0} \right|\,[\mathrm{fm}^{-1}]$"
         )
-    grid.set_ylabels()
+    grid.set_ylabels(ylabels)
     grid.set_titles(
         row_template=r"${row_var} = {row_name}\, [\mathrm{{fm}}]$",
         col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",

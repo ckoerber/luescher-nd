@@ -152,7 +152,7 @@ Moreover, comparing the scale to that in, for example, \Figref{unimproved spheri
 \begin{figure}[htb]
     \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
     \caption{The same as \Figref{unimproved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.
-    We emphasize the results are on a log scale.
+    We emphasize the results are on a log scale, and the tuning was to $-1/a_0 = 0$.
     }
     \label{fig:unimproved dispersion}
 \end{figure}
@@ -175,4 +175,15 @@ Again, this difference depends on the accuracy of the tuning.
 We note that even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^{(n_s)}_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
 The issue is that at any finite $N$ the spherical integral and cartesian integrals differ---if the radius of the sphere is $N/2$, the corners of the lattice's Brillouin zone are absent; the cartesian integral matches the Brillouin zone correctly, critical for any finite-$N$ result.
 
-\todo{Do we discuss \emph{corrections} to spherical L\"uscher in the case of a contact interaction?  I.e., do we show how to fix the linear behavior found in figures 7 and 8 and Amy's paper?--T.L.}
+\begin{figure}
+    \input{figure/3dtuned.pgf}
+    \caption{caption}
+    \label{fig:3d-corrections}
+\end{figure}
+
+In \Figref{3d-corrections} we show the result of tuning a finite-spacing contact interaction to the first zero of the continuum zeta function $S^\spherical_3$.
+At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion \todo{equation}.
+The same spectrum is also fed through the spacing-appropriate dispersion zeta $S^\dispersion$, resulting in the flat black lines.
+Shown in detail in the bottom panel, it's clear that the continuum limit taken this way results in any finite spacing having a nonzero scattering length that vanishes with the continuum limit.
+In contrast, tuning to the dispersion function directly, as in \Figref{unimproved dispersion}, is flat and nearly zero at each individual lattice spacing.
+We expect that this difference explains the induced momentum dependence of, for example, \Refs{Endres:2011er,Endres:2012cw}.
