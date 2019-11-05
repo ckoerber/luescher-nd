@@ -5,7 +5,7 @@ One sensible idea for taking the continuum limit is to tune interaction paramete
 By definition, these fixed observables recover their continuum value when sending the lattice spacing to zero.
 Of course, observables will be infected by lattice artifacts, and so we must adjust the parameters of the potential as we take the limit.
 Put another way, our renormalization scheme is to hold scattering data like the scattering length fixed as a function of lattice spacing.
-Note that one cannot generally expect that non-fixated observables will be at their continuum value for finite lattice spacing.
+Note that one cannot generally expect that other observables will be at their continuum value for finite lattice spacing.
 But if this tuning prescription is well defined, these additional observables will converge against their continuum value in the continuum limit.
 
 This tuning distinguishes our setup from, for example, lattice QCD.
@@ -15,7 +15,7 @@ In contrast, in our setup the masses are set by hand and their interactions may 
 A continuum limit of QCD could, in principle, be taken along a line of constant deuteron-channel scattering length, but practical issues abound, even if simpler scattering channels like $I=2$ $\pi\pi$ scattering are picked instead.
 
 Knowing that we must readjust the strength of our contact interaction as a function of lattice spacing raises the question of exactly what to tune to.
-As mentioned at the end of \Secref{continuum}, one approach is to require the lowest energy state matches the desired scattering amplitude, when put through $S^{\spherical}$ (see \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}).
+As mentioned at the end of \Secref{continuum}, one approach is to require the lowest energy state match the desired scattering amplitude, when put through $S^{\spherical}$ (see \Refs{Endres:2011er,Lee:2007ae,Endres:2012cw}).
 Tuned this way, one finds induced momentum dependence in the phase shift (see the $N_\mathcal{O}=1$ behavior of the left panel of Figure 2 of \Ref{Endres:2011er}, for example).
 
 In general, a lattice implementation which ensures that all observables approach their continuum value more rapidly---or even are at their continuum value for each lattice spacing---is of great desire.
@@ -29,6 +29,7 @@ The derivation provided in the previous section matched the interaction paramete
 Independent of the interaction this can be generalized as matching finite and infinite $T$-matrices.
 However, the spirit of our renormalization procedure is to ensure that the finite-spacing finite-volume $T$-matrix matches the continuum infinite-volume $T$-matrix as best it can.
 
+\todo{I wrote this but it's not right, right?  We don't actually match FV spectra, but amplitudes.--Evan}
 Put another way, we can match a subset of the lattice finite volume spectrum to the continuum finite volume spectrum, and replace $I_{D,FV}$ in the quantization condition \eqref{spherical zeta} with a lattice-aware substitute.
 Because we study such a simple interaction, the matched subset of the finite-volume finite-spacing spectrum reduces to matching the ground state to the finite-volume continuum ground state computed using the physical scattering length.
 Every further state reproduces consistent scattering information.
@@ -37,7 +38,7 @@ With other interactions with additional parameters, one may match additional fin
 Holding those fixed while taking a continuum limit requires retuning the potential's parameters for each lattice spacing.
 So tuned, further states (and shape parameters) may deviate from the continuum result, but these deviations should vanish in the continuum limit.
 
-Matching the $T$-matrices for the contact interaction results in 
+Matching the $T$-matrices for the contact interaction results in
 \begin{equation}
     \label{eq:finite spacing matching}
     \frac{\mu}{2 \F_D(\sqrt{2\mu E})}\left(\cot\delta_D(\sqrt{2\mu E})-i\right)
@@ -93,7 +94,7 @@ We can solve the quantization condition
 		\left(\prod_{i=1}^D
     		\int\limits_{-N/2}^{+N/2}
     		\mathrm{d} n_i
-    	\right)\; \PV 
+    	\right)\; \PV
 	\right]\  \frac{1}{\tilde K_{nn}^{N}-\frac{2\mu E L^2}{4\pi^2}}
 	\, ,
 \end{align}
@@ -115,8 +116,8 @@ We can construct, therefore, a \Luscher-like formalism,
 		\left(\prod_{i=1}^D
     		\int\limits_{-N/2}^{+N/2}
     		\mathrm{d} n_i
-    	\right)\; \PV 
-	\right]\  
+    	\right)\; \PV
+	\right]\
 	\frac{1}{ \tilde K_{nn}^{N} - x} = \sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)^{D-2}
 	+ \mathcal O\left(\frac{x}{N}\right) \, ,
 \end{align}
