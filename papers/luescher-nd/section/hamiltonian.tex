@@ -27,7 +27,7 @@ In $D$ dimensions we simply take on-axis finite differences, so that the Laplaci
     =
     - \sum_{d=1}^D \Laplacian_{r_d'r_d^{}}^\dispersion
     \, .
-\end{equation} 
+\end{equation}
 
 In the Fourier transformed space, momentum space, the one-dimensional Laplacian may be written
 \begin{equation}
@@ -39,12 +39,20 @@ In the Fourier transformed space, momentum space, the one-dimensional Laplacian 
     \frac{1}{\epsilon^2}
     \delta_{p'p}
     \sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos(s p \epsilon)
-    \, , \qquad p = \frac{2 \pi}{L} n \, 
+    \, , \qquad p = \frac{2 \pi}{L} n \,
 \end{equation}
 where $n$ is an integer.
 In $D$ dimensions we just sum the same expression over the different components of momentum.
 Note that this is a specialization, in the sense that it contains no off-axis differencing (in position space) or products of different components (in momentum space).
 However, since our numerical formalism is valid for every $\nstep$, we believe it holds for every possible kinetic operator.
+
+\begin{figure}
+    \input{figure/dispersion.pgf}
+    \caption{We show the continuum dispersion relation of energy as a function of momentum for different one-dimensional $\nstep$ derivatives.  For a finite number of lattice points $N$, the allowed momenta are evenly-spaced in steps of $2\pi/N$.
+    As additional steps are incorporated into the finite difference, the dispersion relation more and more faithfully reproduces the desired $p^2$~behavior of $\nstep=\infty$.
+    }
+    \label{fig:dispersion relation}
+\end{figure}
 
 The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispersion relation be as quadratic as possible,
 \begin{equation}
@@ -56,16 +64,6 @@ The coefficients $\gamma_{s}^{(\nstep)}$ are determined by requiring the dispers
         1 + \order{(\epsilon p)^{2\nstep}}
     \right].
 \end{equation}
-The resulting dispersion relations are presented in \Figref{dispersion relation} for a variety of $\nstep$s and in \Appref{coefficients} we collect the required $\gamma$ coefficients.
-
-\begin{figure}
-    \input{figure/dispersion.pgf}
-    \caption{We show the continuum dispersion relation of energy as a function of momentum for different one-dimensional $\nstep$ derivatives.  For a finite number of lattice points $N$, the allowed momenta are evenly-spaced in steps of $2\pi/N$.
-    As additional steps are incorporated into the finite difference, the dispersion relation more and more faithfully reproduces the desired $p^2$~behavior of $\nstep=\infty$.
-    }
-    \label{fig:dispersion relation}
-\end{figure}
-
 Additionally, we study a nonlocal operator with $\nstep=\infty$ which, in momentum space, can be implemented by multiplying by $p^2$ directly,
 \begin{equation}
     \lim\limits_{n_s \to \infty}
@@ -91,15 +89,14 @@ The Hamiltonian in momentum space reads
     +\frac{1}{L^D}C^\dispersion
 \end{equation}
 where $\vec{p} = 2\pi \vec{n}/L$ for a $D$-plet of integers $\vec{n} \in (-N/2, +N/2]^D$, and the coefficients $\gamma_{s}^{(\nstep)}$ are determined as described above.
-Furthermore, we replaced the lattice spacing dependent kinetic Hamiltonian with the site dependent version
+Furthermore, we replaced the lattice-spacing-dependent kinetic Hamiltonian with the $N$-dependent
 \begin{equation}\label{eq:normalized-kinetic-hamitlonian}
 	\tilde K_{\vec n \vec n}^{N}
 	= \frac{L^2}{4\pi^2} K_{\vec p \vec p}^{\dispersion} \bigg|_{p=\frac{2\pi \vec n}{L}}
 	= \frac{N^2}{4\pi^2}
     \sum_{i=1}^{D}\sum_{s=0}^{\nstep} \gamma_s^{(\nstep)} \cos\left(\frac{2 \pi s n_i}{N}\right)
-    \overset{N \to \infty}{\longrightarrow} \vec n^2
-    \, .
 \end{equation}
+which goes to $n^2$ in the continuum limit $N\goesto\infty$.
 
 \subsection{Reduction to \Aoneg}
 
@@ -124,9 +121,9 @@ That is,
 where $g$ is an element of the group $G$, the sum is over all inequivalent states, and $\normalization$ the normalization.
 When $\vec{n}$ is large we should be careful not to double-count states that live right on the edge of the Brillouin zone.
 The states may be labeled by symmetry-inequivalent vectors with components all as large as $N/2$.
-As a simple example, in three dimensions the $N/2(1,1,1)$ plane wave state in one corner of the Brillouin zone is invariant under all the $O_h$ operations modulo periodicity in momentum space.
+As a simple example, in three dimensions the $N/2(1,1,1)$ plane wave state in one corner of the Brillouin zone is invariant under all the $O_h$ operations modulo periodicity in momentum space, so $\normalization=1$ for that state.
 
-Formulated in this basis, the kinetic energy operator remains diagonal and proportional to $n^2$.
+Formulated in this basis, the kinetic energy operator remains diagonal and proportional to $n^2$ when $N\goesto\infty$.
 Reading off the momentum-state potential matrix element from \eqref{p space hamiltonian}, the contact interaction is given by
 \begin{equation}
     \braMket{\Aoneg\; \vec{n}'}{V}{\Aoneg\; \vec{n}}
@@ -136,11 +133,19 @@ Reading off the momentum-state potential matrix element from \eqref{p space hami
     =
     \frac{C^\dispersion}{L^D} \sqrt{\normalization'\normalization},
 \end{equation}
-so that every \Aoneg state can talk to every other.
+so that every \Aoneg state talks to every other.
 So, the Hamiltonian is in this sector is
 \begin{equation}
     H_{\vec{n}'\vec{n}}^\dispersion = \frac{4 \pi^2}{2\mu L^2} \tilde K_{\vec n \vec n}^{N} + \frac{C^\dispersion}{L^D} \sqrt{\normalization'\normalization}
 \end{equation}
-where the kinetic piece is understood with appropriate factors of $2\pi/L$.
+and we divide by $4\pi^2/\mu L^2$ to make everything dimensionless.
 
 We have implemented both this \Aoneg-only Hamiltonian and the general Hamiltonian with an energy penalty for non-\Aoneg states and verified that the spectra match where expected to as much precision as desired.
+
+For a given $N$ some $n^2$ shells have multiple solutions.
+When $N=5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$.
+For the contact interaction and $\nstep=\infty$, one linear combination of these \Aoneg states overlaps the $s$-wave and has a nontrivial finite-volume energy, and the other overlaps a higher partial wave and has $x=9$ to machine precision.
+For finite $\nstep$, the non-interacting $x$ are not perfect integers, but the same moral holds.
+In contrast, when $N=4$ there is no $n=(3,0,0)$ state, and the $(2,2,1)$ state is itself an eigenstate.
+When $N$ is very large sometimes there are multiple eigenstates that have no support for the delta function---$n^2=41, 50, 54\ldots$ have two non-interacting states, while $n^2=81, 89, 101\ldots$ have three non-interacting states, and $n^2=146$ is the first shell with four non-interacting states, for example.
+We do not discuss these non-interacting states further.
