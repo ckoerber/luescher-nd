@@ -21,7 +21,7 @@ This restriction gives for the standard on-shell $T$-matrix
 \begin{equation}\label{eq:T matrix}
 T_{D\l}(p, \Lambda) = \delta_{\l 0} \frac{C(\Lambda)}{1-I_D(p,\Lambda) C(\Lambda)},
 \end{equation}
-where $p$ is the relative on-shell momentum, $\Lambda$ the dimensional regularization scale.
+where $p$ is the relative on-shell momentum, $\Lambda$ the regularization scale.
 The physical result for the T-matrix is recovered once the parameter $C$ is chosen such that one can remove the regularization scale, e.g., in the limit of $\Lambda \to \infty$ for a hard momentum cutoff.
 
 $I_D(p,\Lambda)$ is a $D$-dependent function that arises from integrating the loop shown in the right panel of \Figref{bubbleSum},
@@ -63,7 +63,7 @@ Dropping the $\l$ dependence in \eqref{on-shell-T}, the momentum-dependent $T$-m
         \vdots  & \vdots
 \end{cases}
 \end{equation}
-is a dimension-dependent kinematic factor determined by requiring the imaginary parts of \eqref{T matrix} from \eqref{I0 in relative coordinates} exactly matches the imaginary part in \eqref{on-shell-T}.
+is a dimension-dependent kinematic factor determined by requiring the imaginary parts of the $T$-matrix \eqref{T matrix} from the bubble sum \eqref{I0 in relative coordinates} exactly matches the imaginary part of the amplitude \eqref{on-shell-T}.
 This fixes the coefficients $C(\Lambda)$ as a function of the scattering data,
 \begin{equation}\label{eq:IV pole}
     \frac{\mu}{2 \F_{D}(p)}\left(\cot \delta_{D}(p) - i\right)
@@ -103,9 +103,9 @@ Plugging our results for the integrals in, one finds
     =
     \frac{2}{(2\pi)^2 L^{D-2}}
     \lim\limits_{\Lambda \to \infty}
-    \left[ 
+    \left[
     	\left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} +
-		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right) 
+		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right)
 	\right]
 \end{equation}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$,
@@ -141,10 +141,10 @@ Finally,
 \end{equation}
 where we traded the energy dependence for momentum on the left-hand side.
 This is the usual \Luscher finite-volume quantization condition, and finite-volume energy levels should be fed through it to produce continuum scattering data.
-In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion, as mentioned in \eqref{ere}.
+In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion \eqref{ere}.
 In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.
 
-Derived in the zero-temperature continuum, only cold continuum-extrapolated spectra ought to be fed through \eqref{spherical quantization} to extract continuum phase shifts.
+Derived in the zero-temperature continuum, only cold continuum-extrapolated spectra ought to be fed through the quantization condition \eqref{spherical quantization} to extract continuum phase shifts.
 
 To approach the continuum limit, the authors of \Ref{Lee:2007ae} proposed tuning the interaction until the ground state, when fed through $S^\spherical$, produced the desired amplitude that corresponds to the desired scattering length.
 We will show in \Secref{3D} that this procedure induces a momentum dependence in the scattering amplitude sensitive to discretization.
