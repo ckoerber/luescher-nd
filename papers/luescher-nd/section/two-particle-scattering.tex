@@ -1,16 +1,16 @@
 \section{Two-particle scattering}\label{sec:scattering}
 
-Two nonrelativistic particles interacting via a contact interaction of strength $C$ are described by the Hamiltonian
+Two nonrelativistic particles interacting via a contact interaction of strength $C$ in $D$ dimensions are described by the Hamiltonian
 \begin{equation}
     \label{eq:particle hamiltonian}
-    \hat H = \frac{\hat p_1^2}{2 m_1} + \frac{\hat p_2^2}{2 m_2} + C \delta(\hat x_1 - \hat x_2)
+    \hat H = \frac{\hat p_1^2}{2 m_1} + \frac{\hat p_2^2}{2 m_2} + C \delta^D(\hat x_1 - \hat x_2)
     \,,
 \end{equation}
 where the subscripts identify the particle of the position and momentum operators.
 Moving to center-of-mass and relative coordinates, this Hamiltonian may be rewritten
 \begin{equation}
     \label{eq:hamiltonian}
-    \hat H = \frac{\hat P^2}{2 M} + \frac{\hat p^2}{2 \mu} + C\delta(\hat{x})
+    \hat H = \frac{\hat P^2}{2 M} + \frac{\hat p^2}{2 \mu} + C\delta^D(\hat{x})
 \end{equation}
 where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.
 Specializing to the center of mass frame by setting $P=0$ we reduce the problem to an effective one-body quantum mechanics in an external delta-function potential.
@@ -25,7 +25,7 @@ For a general two-body interaction $V$ in $D$ dimensions we can obtain scatterin
 	\, .
 \end{align}
 where $G$ is the free Green's function.
-Projecting onto the $D$ dimensional set of partial waves labelled by $\l$, the $T$ matrix may be re-expressed in terms of phase shifts.
+Projecting onto the set of partial waves in $D$ dimensions labelled by $\l$, the $T$ matrix may be re-expressed in terms of phase shifts.
 For a central interaction like the contact interaction, partial waves do not mix and $\l$ labels the orbital angular momentum, which is conserved.
 In this case, the phase shifts can be extracted from the scattering or $T$-matrix by
 \begin{align}\label{eq:on-shell-T}
@@ -37,7 +37,7 @@ In this case, the phase shifts can be extracted from the scattering or $T$-matri
 \end{align}
 where $E_p = p^2 / (2 \mu)$ and $\mathcal F_{l D}(p)$ is a dimension-dependent kinematic function of the on-shell momentum.
 
-At low energy one often considers the expansion of \eqref{on-shell-T} in scattering momenta $p$, called the effective range expansion (ERE), which takes the form \cite{Hammer:2010fw}
+At low energy one often considers the expansion of \eqref{on-shell-T} in scattering momentum $p$, called the effective range expansion (ERE), which takes the form \cite{Hammer:2010fw}
 \begin{align}
     \label{eq:ere}
     \cot \left(\delta_{D\l}(p)\right)
