@@ -45,7 +45,7 @@ where we explicitly show that the dispersion function $S^{\dispersion}$ depends 
 
 
 As stressed in the previous section, only continuum-extrapolated energies should be used in the quantization condition \eqref{1d luscher}, or induced momentum dependence terms will result.
-For example, in \Figref{luescher1d} we show the induced momentum dependence terms when non-continuum eigenvalues are inserted into $S^{\spherical}_1(x)$ (colored points) for lattice sizes of $N=10$, 12, and 14 and $\nstep=\infty$.
+For example, in \Figref{luescher1d} we show the induced momentum dependence terms when non-continuum eigenvalues are inserted into $S^{\spherical}_1(x)$ (colored points) for lattice sizes of $N=4$, 10, 12, and 14 and $\nstep=\infty$.
 Against expectations for a contact interaction, the extracted amplitude is not flat.
 However, we also show the scattering data determined through $S^{\dispersion}_1(x)$ (black points), and these all lie on a flat line, as expected.
 
@@ -104,6 +104,12 @@ We make the replacement $\sum_{n\notin\operatorname{B.Z.}}\mapsto\left(\sum_{n=-
 \end{table}
 
 \Tabref{induced terms in 1 d} shows these terms for $N=4$, 10, 12, and 14.
-The colored dashed lines in \Figref{luescher1d} correspond to the functions given in this table.  In the limit $N\mapsto\infty$ all terms vanish and one recovers the flat, momentum-independent behavior.
+The colored dashed lines in \Figref{luescher1d} correspond to the functions given in this table.  In the limit $N\goesto\infty$ all states are included in the Brillouin zone so all terms vanish and one recovers the flat, momentum-independent behavior.
 Of course, analyzing the finite-spacing dispersion zeta function $S^{\dispersion}_1$ with $\nstep=\infty$ produces the flat behavior all the way through.
 This demonstrates that it was not the contact operator that caused the momentum dependence, but that the dependence was induced by leveraging the continuum finite-volume formalism itself.
+
+Finally, we draw the reader's attention to the structure of $S^\dispersion$ at any finite $N$ in the bottom panel of \Figref{luescher1d}, where the $N=4$ dispersion zeta is shown.
+Note that any flat function of $x$ can only ever intercept the zeta function three times---which makes sense, as there are only three states in the \Aoneg sector of a one-dimensional $N=4$ lattice, $\ket{0}$, $(\ket{-1}+\ket{+1})/\sqrt{2}$ and $\ket{2}$.
+If one tunes a contact interaction so that the scattering amplitude vanishes, one will see one state with $0<x<1$, one with $1<x<4$, and one state with $\abs{x}$ very large and a sign depending on whether one is slightly above or below zero numerically.
+The finiteness of the \Aoneg sector puts constraints on the interactions that can be faithfully put onto such a small lattice: one cannot create any interaction at all whatsoever where the scattering amplitude intersects $S^{\dispersion}$ four times, because that would entail too many finite-volume states.
+Of course, this is a generic feature in any number of dimensions, and the constraint ultimately vanishes in the continuum limit $N\goesto\infty$, though as $N$ increases the number of accessible $n^2$ shells grows in a dimension-dependent way.
