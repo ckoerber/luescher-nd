@@ -158,13 +158,17 @@ Were we to do that, then we would find
 to be momentum independent.
 
 The structure of the contact interaction is such that it is also possible to incorporate these shifts into the generalized zeta function as well, so that
-\begin{equation}
+\begin{align}
+    \cot \delta_D
+    &=
+    \frac{\F_D(\sqrt{2\mu E})}{\pi^2 L^{D-2}} S^{\dispersion N}_D\left(\frac{2\mu E^{\dispersion} L^2}{4\pi^2}\right)
+    && \text{(No $N\goesto\infty$ limit!)}
+    \\
     \label{eq:finite N}
-	\frac{1}{\pi L}
-	\left[
-		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)
-	\right],
-\end{equation}
+    S^{\dispersion N}_D\left(x^\dispersion\right)
+    &=
+		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right),
+\end{align}
 evaluated at a finite spacing, so that the sum is over a finite $N$ and the lattice energy levels are used to build $x^\dispersion$.
 For this reason one is allowed to extract physical phase shift information even at finite $N$.
 Unlike in the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{finite N}, because we are always interested in a real calculation performed with finite $N$.
