@@ -61,7 +61,7 @@ The fact that $\F_D$ appears in \eqref{finite spacing matching} is reflected by 
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
 
 To match the \Luscher like zeta function we rewrite the quantization condition as
-\begin{align}
+\begin{align}\label{eq:dispersion-counter-integral}
     \cot \delta_D(\sqrt{2 \mu E})
     &=
     \frac{\F_D(\sqrt{2 \mu E})}{\pi^2 L^{D-2}}
@@ -122,7 +122,7 @@ Evaluated at a finite spacing we find
     \label{eq:finite N}
     S^{\dispersion}_D\left(x^\dispersion\right)
     &=
-		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)
+		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)^{D-2}
 	\, ,
 \end{align}
 which is the zeta in \eqref{dispersion quantization} with the subleading $x$ dependence dropped, at finite $N$.
