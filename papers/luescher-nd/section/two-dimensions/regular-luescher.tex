@@ -2,13 +2,13 @@ In two dimensions, assuming a contact interaction, it is convenient to write the
 \begin{equation}
     \cot \left(\delta_{2}(p)\right)
     =
-    \frac{2}{\pi} \ln \left(p \tilde a_{20}\right),
+    \frac{2}{\pi} \ln \left(p \tilde a_{2}\right),
 %
     \hspace{0.5in}
     \text{where}
     \hspace{0.5in}
 %
-    \tilde a_{20}
+    \tilde a_{2}
     =
     R_{20}e^{-\frac{\pi}{2 a_{20}}}
 \end{equation}
@@ -17,11 +17,11 @@ Using the infinite-volume relation \eqref{IV pole} with $p=0$, $D=2$, and a fini
 \begin{equation}\label{eq:C2}
     C(\Lambda)
     =
-    -\frac{\pi}{\mu \log \left(\tilde a_{20} \Lambda\right)}.
+    -\frac{\pi}{\mu \log \left(\tilde a_{2} \Lambda\right)}.
 \end{equation}
 Using this in the finite-volume relation \eqref{FV pole} and quantization condition \eqref{general luscher} yields
 \begin{equation}\label{eq:first 2d}
-    \frac{2}{\pi} \log \left(p\tilde a_{20}\right)
+    \frac{2}{\pi} \log \left(p\tilde a_{2}\right)
     =
     \lim_{\Lambda\to\infty}
     \left(
@@ -30,14 +30,14 @@ Using this in the finite-volume relation \eqref{FV pole} and quantization condit
     \right).
 \end{equation}
 The logarithmic dependence on $p$ makes this relation difficult for analysis, particularly for small $p$.
-Furthermore, for $\tilde a_{20}$ sufficiently small (but positive)\footnote{
-    In 2-d the scattering length $\tilde a_{20}\ge 0$\cite{}.
+Furthermore, for $\tilde a_{2}$ sufficiently small (but positive)\footnote{
+    In 2-d the scattering length $\tilde a_{2}\ge 0$\cite{}.
 } a bound state can occur, i.e. $p\to i\gamma$.
 Then both sides become complex, further complicating the analysis.
 Also, the momentum-\emph{independent} logarithmic counterterm needed to regulate the infinite sum is not manifest in the above expression.
 To make the counterterm manifest, and to address the issue of small $p$ states and bound states, we subtract $\frac{2}{\pi}\log\left(\frac{pL}{2\pi}\right)$ on both sides,
 \begin{align}
-    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{20}}{L}\right)
+    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{2}}{L}\right)
     &=
     \lim_{\Lambda\to\infty}
     \left(
@@ -55,7 +55,7 @@ To make the counterterm manifest, and to address the issue of small $p$ states a
 where $x=2\mu EL^2/4\pi^2$ as always.
 Setting $N=\Lambda L/\pi$ and $\left(\frac{\vec{q}L}{2\pi}\right)^2=\vec{n}^2$ gives
 \begin{equation}
-    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{20}}{L}\right)
+    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{2}}{L}\right)
     =
     \frac{1}{\pi^2}
     \lim_{N\to\infty}
@@ -73,7 +73,7 @@ This matches the general result \eqref{spherical S} as long as we allow the limi
 \end{equation}
 
 Our two-dimensional \Luscher function \eqref{2d luscher} encompasses both bound and scattering states for the contact interaction.
-Note the logarithmic dependence of the scattering length $\tilde a_{20}$ which requires an accompanying scale to render the argument of the logarithm dimensionless---we choose the infrared scale $L$, the linear size of the finite volume.
+Note the logarithmic dependence of the scattering length $\tilde a_{2}$ which requires an accompanying scale to render the argument of the logarithm dimensionless---we choose the infrared scale $L$, the linear size of the finite volume.
 Finally, we note that for general finite-range interactions, the general L\"uscher formula in 2-D is
 \begin{equation}\label{eq:full 2d luescher}
 \cot(\delta_{2}(p))-\frac{2}{\pi}\log\left(\frac{pL}{2\pi}\right) = \frac{1}{\pi^2}S^\bigcirc_2\left(\left(\frac{pL}{2\pi}\right)^2\right)\ .

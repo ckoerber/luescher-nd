@@ -6,9 +6,9 @@ Since the sum in the quantization condition \eqref{general luscher}or the one-lo
 \begin{align}
     C(\Lambda)
         &=
-            -\frac{1}{\mu a_{10}}
+            -\frac{1}{\mu a_{1}}
     &
-    \frac{a_{10}}{L}
+    \frac{a_{1}}{L}
         &=
             \frac{1}{2 \pi^{2}}
             \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x}
@@ -27,13 +27,13 @@ S^\bigcirc_{1}(x) \equiv \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x}=-\pi \frac{
 \end{equation}
 which gives a closed form expression for L\"uscher's formula,
 \begin{equation}\label{eq:1d luscher}
-\frac{a_{10}}{L} =-\frac{1}{pL}\cot\left(\frac{pL}{2}\right),
+\frac{a_{1}}{L} =-\frac{1}{pL}\cot\left(\frac{pL}{2}\right),
 \end{equation}
 consistent with those found in \cite{}.
 
 Since there is no counterterm in one dimension, the dispersion form of L\"uscher's formula is straightforward to obtain.  If one identifies the lattice spacing as the cutoff, then the sum in the zeta function is restricted to the Brillouin zone and one has
 \begin{equation}
-    \frac{a_{10}}{L}
+    \frac{a_{1}}{L}
     =
     \frac{1}{2 \pi^{2}} \sum_{n=-\frac{N}{2}}^{\frac{N}{2}-1} \frac{1}{\tilde{K}^N_{nn}-x}
     =
@@ -45,9 +45,9 @@ where we explicitly show that the dispersion function $S^{\dispersion}$ depends 
 
 
 As stressed in the previous section, only continuum-extrapolated energies should be used in the quantization condition \eqref{1d luscher}, or induced momentum dependence terms will result.
-For example, in \Figref{luescher1d} we show the induced momentum dependence terms when non-continuum eigenvalues are inserted into $S^{\spherical}_1(x)$ (colored points) for lattice sizes of $N=4$, 10, 12, and 14 and $\nstep=\infty$.
+For example, in \Figref{luescher1d} we show the induced momentum dependence terms when non-continuum eigenvalues $x^\dispersion$ are inserted into $S^{\spherical}_1$ (colored points) for lattice sizes of $N=4$, 10, 12, and 14 and $\nstep=\infty$.
 Against expectations for a contact interaction, the extracted amplitude is not flat.
-However, we also show the scattering data determined through $S^{\dispersion}_1(x)$ (black points), and these all lie on a flat line, as expected.
+However, we also show the scattering data determined through $S^{\dispersion}_1(x^\dispersion)$ (black points), and these all lie on a flat line, as expected.
 
 \begin{figure}
 \center
@@ -68,38 +68,38 @@ However, we also show the scattering data determined through $S^{\dispersion}_1(
         \label{fig:luescher1d}
 \end{figure}
 
-We can derive the functional form of these induced momentum-dependent terms by extracting the contribution to the dispersion L\"uscher from the continuum L\"uscher.
+We can derive the functional form of these induced momentum-dependent terms following the exact steps taken in \autoref{sect:3d induced momenta},
 \begin{align*}
- \frac{1}{2 \pi^{2}} S^\bigcirc_{1}\left(x\right)=\frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x} &=\frac{1}{2 \pi^{2}} \sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x} +\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \\
- &= \frac{1}{2 \pi^{2}} S^{\dispersion}_{1}\left(x\right)+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x}\\
-&=\frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x} \ .
+S^\bigcirc_{1}\left(x^\dispersion\right)&=S^{\dispersion}_{1}\left(x^\dispersion\right)+\left(S^\bigcirc_{1}\left(x^\dispersion\right)  -S^{\dispersion}_{1}\left(x^\dispersion\right)\right) %\sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x^\dispersion} &=\sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion} +\sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion} \\
+ %&=  S^{\dispersion}_{1}\left(x^\dispersion\right)+\sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion}\\
+=\frac{2\pi^2 a_{1}}{L}+ \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion} \\
+&=\frac{2\pi^2 a_{1}}{L}+\alpha_1(N)+ \alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2+\ldots\ .
 \end{align*}
-where the energy in $x$ is a finite-spacing finite-volume $\nstep=\infty$ energy.
-In the second term the sum is restricted to values of $n$ outside the Brillouin zone.
-Assuming $n^2\gg x$, we can expand in powers or $x$,
-\begin{equation}
-    \frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x}
-        =
-    \frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x}
-        =
-    \frac{a_{10}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \left(\frac{1}{n^2}+\frac{x}{n^4}+\frac{x^2}{n^6}+\mathcal{O}(x^3)\right)
-\end{equation}
-We make the replacement $\sum_{n\notin\operatorname{B.Z.}}\mapsto\left(\sum_{n=-\infty}^\infty-\sum_{n\in\operatorname{B.Z.}}\right)$, which allows each summation in the expansion to be determined term by term to arbitrary precision.
+where again we assume $\nstep=\infty$ energy.
+In the second term we assumed $n^2\gg x^\dispersion$ since the sum is restricted to values of $\bm{n}$ outside the Brillouin zone.
+%Assuming $n^2\gg x^\dispersion$, we can expand in powers or $x^\dispersion$,
+%\begin{equation}
+%    \frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x^\dispersion}
+%        =
+%    \frac{a_{1}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion}
+%        =
+%    \frac{a_{1}}{L}+\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \left(\frac{1}{n^2}+\frac{x^\dispersion}{n^4}+\frac{(x^\dispersion)^2}{n^6}+\mathcal{O}((x^\dispersion)^3)\right)
+%\end{equation}
+%We make the replacement $\sum_{n\notin\operatorname{B.Z.}}\mapsto\left(\sum_{n=-\infty}^\infty-\sum_{n\in\operatorname{B.Z.}}\right)$, which allows each summation 
+The coefficients $\alpha_i(N)$ can be determined to arbitrary precision.
 
 \begin{table}
     \caption{
-    The induced momentum-dependent terms to order $x^2$ due to a contact interaction using $S^\bigcirc_1(x)$ as a function of discretization $N$.
-    Here $x$ is determined by a finite-spacing finite-volume $\nstep=\infty$ eigenenergy.}
+    The coefficients $\alpha_i(N)$ of the induced momentum-dependent terms to order $(x^\dispersion)^2$ due to a contact interaction using $S^\bigcirc_1(x^\dispersion)$ as a function of discretization $N$.
+    Here $x^\dispersion$ is determined by a finite-spacing finite-volume $\nstep=\infty$ eigenenergy.}
     \label{tab:induced terms in 1 d}
-    \begin{tabular}{c|c}
-    $N$
-        &
-            $\frac{1}{2 \pi^{2}} \sum_{n\notin \operatorname{B.Z.}} \left(\frac{1}{n^2}+\frac{x}{n^4}+\frac{x^2}{n^6}\right)$       \\
-        \hline
-      4 &    $0.052680335 + 0.00517480049 x + 9.6564782\times10^{-4} x^2$\\
-    10  &   $0.020398280 + 0.00028079187 x + 7.1106444\times10^{-6} x^2$    \\
-    12  &   $0.016964618 + 0.00016064496 x + 2.7825342\times10^{-6} x^2$    \\
-    14  &   $0.014523490 + 0.00010045521 x + 1.2660940\times10^{-6} x^2$    \\
+    \begin{tabular}{c|ccc}
+    $N$ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$\\
+                \hline
+      4 &    1.03987& 0.102146 & $0.0190611$\\
+    10  &   0.402646 & 0.00554261 & $ 0.000140358$    \\
+    12  &   0.334868 & 0.003171 &$ 0.000054925$    \\
+    14  &   0.286682 & 0.00198291 &$0.0000249917$    \\
     \end{tabular}
 \end{table}
 
