@@ -1,0 +1,186 @@
+\section{The dispersion method in three dimensions}\label{sec:3D dispersion}
+In this section we derive the validity of the dispersion formalism in three dimensions.
+We show that it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme such that one directly obtains continuum infinite volume results when using the dispersion formalism---without any further extrapolation.
+
+According to \eqref{T matrix}, \eqref{I0} and \eqref{spherical FD}, we find that the phase shifts are related to the contact interaction by
+\begin{equation}
+	p \cot \delta_3(p)
+	= \lim\limits_{\Lambda \to \infty}\frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} + i p
+	= \lim\limits_{\Lambda \to \infty}
+		\frac{2 \pi}{\mu} \left[
+			\frac{1}{C(\Lambda)} - I_3(p, \Lambda)
+		\right]
+	\, ,
+\end{equation}
+with
+\begin{equation}
+	I_3(p, \Lambda)
+	=
+	-\frac{\mu}{2 \pi}
+	\left[
+	\frac{2 \Lambda}{\pi} + \frac{2  p}{\pi} \log \left( \frac{\Lambda - p}{\Lambda + p}\right)
+	\right]
+\end{equation}
+The contact interaction cannot depend on any dynamic momenta; it is only possible to absorb momentum independent regulator terms when renormalizing the contact interaction.
+It is still possible to renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing
+\begin{equation}\label{eq:three-d-counterterm}
+	\frac{2 \pi}{\mu} \frac{1}{C_R(\Lambda)} + \frac{2 \Lambda}{\pi}
+	\equiv
+	- \frac{1}{a_3}
+	=
+	p \cot \delta_3(p)
+	\, .
+\end{equation}
+
+In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction parameter $C_R(\Lambda)$, one is able to evaluate both sides for a given momentum, e.g., for $p=0$
+\begin{equation}
+	- \frac{1}{a_3}
+	=
+	\lim\limits_{p \to 0}\lim\limits_{\Lambda \to \infty}
+		\left[
+			\frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} \bigg|_{C=C_R} + i p
+	\right]
+	=
+	\lim\limits_{\Lambda \to \infty}
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R(\Lambda)} - I_3(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+
+We now want to find an equivalent expression to the finite-volume zeta functions in presence of a discretization scheme.
+In particular, the discretization scheme depends on the implementation of the kinetic operator $K^{(n_s)}$ and thus depends on the $n_s$ parameter.
+The lattice spacing can be identified with the hard momentum cutoff $\Lambda = \pi / \epsilon$.
+That is, the expectation value of the dispersion scales as $\hat K^{(n_s)}(\epsilon) \ket{p} = p^2 [1 + \mathcal O(\epsilon p)^{2 n_s}]\ket{p}$.
+
+If one replaces the continuum momentum dispersion $q^2$ in $I_3$ with the kinetic operator for a given lattice spacing and discretization, one defines a sequence in $n_s$ which converges against $I_3$ in the limit of $n_s \to \infty$
+\begin{equation}
+	\lim\limits_{n_s \to \infty} I^{(n_s)}_3(p, \Lambda) = I_3(p, \Lambda)
+	\, , \qquad
+	I^{(n_s)}_3\left(p, \Lambda=\frac{\pi}{\epsilon} \right)
+	=
+	    \int\limits_{-\pi/\epsilon}^{+\pi/\epsilon}
+        \mathrm{d}^3 \vec{q}
+        \left[
+            \PV \left(
+                \frac{1}{
+                    E - \frac{1}{2\mu} K_{qq}^{(n_s)} }
+                \right)
+            -i \pi \delta\left(E - \frac{1}{2\mu}K_{qq}^{(n_s)}\right)
+        \right]
+        \, .
+\end{equation}
+We furthermore define a sequence for the contact strength parameter depending on the cutoff and the employed discretization scheme which equivalently converges against the continuum result.
+This sequence is determined by matching against the dispersion integral for each value of the cutoff and for each discretization scheme
+\begin{equation}\label{eq:dispersion-renormalization}
+	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
+	\qquad
+	- \frac{1}{a_3}
+	\equiv
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - I_3^{(n_s)}(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+It is possible to make this choice since both terms do not depend on any external momentum $p$.
+This is specific for the contact interaction.
+One can view this choice as the renormalization equation for contact interaction in presence of lattice discretization which, by definition, trivially satisfies
+\begin{equation}
+	- \frac{1}{a_3}
+	=
+	\lim\limits_{\Lambda \to \infty} \lim\limits_{n_s \to \infty}
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - I_3^{(n_s)}(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+In fact, it satisfies this equation even without the limits.
+
+Next we address how this renormalization choice relates to the dispersion zeta function.
+For any lattice implementation of a contact interaction with strength $c^\dispersion$ in finite volume, the Schrödinger equation can be rewritten as
+\begin{equation}
+	\hat G(E) \hat V \ket{\psi} = E\ket{\psi}
+	\quad \Rightarrow \quad
+	0 = 1 - c^\dispersion I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E^\dispersion}, \Lambda = \frac{\pi}{\epsilon}\right) \, ,
+\end{equation}
+where $E^\dispersion$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $c^\dispersion$.
+The finite volume sum $I_{3, \FV}^{(n_s)}(p, \pi/\epsilon)$ is obtained by replacing the integral $d^3 \vec q$ in $I_3^{(n_s)}(p, \Lambda)$ with a sum  over vectors $\vec q = 2 \pi \vec n / L$.
+Because the above equation is true for any value of $c^\dispersion$ and it's corresponding spectrum, it is especially true for $c^\dispersion = C_R^{(n_s)}(\Lambda)$.
+This means that
+\begin{equation}
+	- \frac{1}{a_3}
+	=
+	\frac{2 \pi}{\mu}
+		\left[
+		I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E_i}, \frac{\pi}{\epsilon}\right)
+		- I_3^{(n_s)}\left(0, \frac{\pi}{\epsilon}\right)
+		\right]
+	\, ,
+\end{equation}
+which defines the dispersion zeta function
+\begin{align}\label{eq:dispersion-zeta-contact}
+	S^{\dispersion}(x^\dispersion)
+	=
+	\sum\limits_{n \in \BZ}
+	\frac{1}{K_{nn}^{(n_s)} - x^\dispersion} - &\mathcal{L}_3^{\dispersion} \frac{N}{2}
+	\, ,
+	\\
+	&\mathcal{L}_3^\dispersion
+	=
+	\frac{2 \pi^2 L}{\mu}
+	I_3^{(n_s)}\left(p=0, \Lambda = \frac{\pi}{\epsilon}\right)
+	\, .
+\end{align}
+To evaluate the infinite-volume integral in \eqref{dispersion-zeta-contact},
+\todo{I think there is a $4 \pi^2$ missing in the denominator as $\cos \to 4 \pi^2 n^2$}
+\begin{equation}
+    4\pi^2 \int_{-N/2}^{+N/2} \mathrm{d}^Dn\; \PV \frac{1}{N^2 \sum_{ds} \gamma^{(\nstep)}_s \cos \frac{2\pi n_d s}{N} - x}
+    =
+    4\pi^2 \left(\frac{N}{2}\right)^{D-2} \int_{-1}^{+1} \mathrm{d}^D\nu\; \PV \frac{1}{4\sum_{ds} \gamma^{(\nstep)}_s \cos \pi \nu s - \xtilde}
+\end{equation}
+where as in the Cartesian case we rescaled and $\xtilde = x/(N/2)^2$.
+Note that when we replace the sum over dimensions and steps with the exact $p^2$ result $(\pi \nu)^2$ and let $\xtilde$ vanish, we can match the Cartesian integral \eqref{cartesian integral}.
+
+We can use the same trick to isolate the leading behavior in $N/2$, introducing the dispersion relation in the exponent rather than $n^2$.
+One finds
+\begin{equation}
+    \label{eq:dispersion counterterm}
+    4 \pi^2 \left(\frac{N}{2}\right)^{D-2}\int_{0}^{\infty} 2\mu\; \mathrm{d}\mu\; e^{\xtilde\mu^2}\left(\int_{-1}^{+1} \mathrm{d}\nu\; e^{-4\mu^2 \sum_s \gamma_s^{(\nstep)} \cos \pi \nu s}\right)^D
+\end{equation}
+which can be numerically evaluated quickly for $\xtilde\leq0$ where the derivation holds, assuming one has the dispersion relation coefficients in hand.
+The counterterm for the leading divergence $\counterterm_D^{\dispersion (\nstep)}$ is the $\xtilde=0$ value.
+Note that when $\nstep=\infty$ the continuum Cartesian result is obtained.
+In \Figref{nstep counterterm} we show this counterterm and how it differs from the Cartesian counterterm in \eqref{cartesian counterterm}.
+
+\begin{table}[htb]
+    \input{section/counterterm/diserpersion-zeta-3d-counterterm-table.tex}
+    \caption{
+    	\label{tab:diserpersion-zeta-3d-counterterm-counterterm}
+		Counter term coefficients for the three-dimensional dispersion zeta function defined in \eqref{eq:dispersion quantization}.
+    }
+\end{table}
+
+\begin{figure}[htb]
+    \input{figure/counterterm-nstep.pgf}
+    \caption{
+    	In the top panel we show the dispersion counterterm $\counterterm^{\dispersion}_{3}$ in \eqref{dispersion counterterm} as a function of $\nstep$, and the $\nstep=\infty$ result ($\counterterm^{\cartesian}_3$), as a dashed line.
+	In the bottom panel we show a better view into how the counterterm converges to the Cartesian one.
+    }
+    \label{fig:nstep counterterm}
+\end{figure}
+
+
+
+
+See also table \tabref{diserpersion-zeta-3d-counterterm-counterterm} for more precise counter term coefficients for more $\nstep$ values.
+This explains why we expect results to directly match the continuum infinite volume phase shifts when computed with this modified zeta function.
+Note that This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
+We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
+This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
+
+
+
+
