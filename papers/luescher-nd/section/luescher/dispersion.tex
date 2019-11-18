@@ -5,7 +5,7 @@ In case of a lattice theory, one of theses limiting procedures is the continuum 
 One sensible idea for taking the continuum limit is to tune theory parameters such that some lattice observables are hold fixed at their continuum value for any lattice spacings.
 By definition, these fixed observables recover their continuum value when sending the lattice spacing to zero.
 Of course, observables will be infected by lattice artifacts, and so one must readjust these parameters as one takes the limit.
-If this implementation and tuning prescription is well defined, all additional observables will converge against their continuum value in the continuum limit.
+If this implementation and tuning prescription is well defined, all additional lattice observables will converge in the continuum as well.
 
 For example, in lattice QCD calculations, the continuum limit is sought by finding a line of constant physics where some parts of the single-hadron spectrum are held fixed as the continuum is approached.
 Then, at any finite spacing, the hadron-hadron interactions are already determined by the finite-spacing of QCD itself, and the interaction one measures depends on the lattice spacing and approaches the correct interaction in the continuum.
@@ -57,19 +57,8 @@ where $\F_D$ is the usual continuum kinematic factor \eqref{spherical FD}, $I_D^
 The operator $K_{qq}^\dispersion$ is a momentum-space matrix element of the Laplacian (which, of course, is diagonal in momentum space), and the integral's cutoff $\Lambda$ in \eqref{I0 in relative coordinates} is taken to be $\pi/\epsilon$, matching the lattice's Brillouin zone.
 We adopt dispersion $\dispersion \leftrightarrow (L, \epsilon, \nstep)$ superscripts to indicate the quantities are aware of the lattice (and discretization scheme if relevant).
 Dispersion quantities need not only the range of momenta in the Brillouin zone (on a square lattice, each momentum component cut off independently), but also the spacing-aware dispersion relation $K$ (from \eqref{kinetic}, for example, though we emphasize other kinetic operators can be used).
-That $\F_D$ appears in \eqref{finite spacing matching} reflects the fact that the infinite volume $I_D^{\dispersion}$ is evaluated in the continuum limit, so that the imaginary part of \eqref{dispersion I0} matches the continuum result from \eqref{I0 in relative coordinates}.
+The fact that $\F_D$ appears in \eqref{finite spacing matching} is reflected by evaluating the infinite volume $I_D^{\dispersion}$ in the continuum limit, so that the imaginary part of \eqref{dispersion I0} matches the continuum result from \eqref{I0 in relative coordinates}.
 It is easy to see that when $\epsilon\goesto0$ the dispersion relation goes to the exact $p^2$ relation and the limits of the integral go to infinity so that we may execute the integral spherically and recover the continuum $\F_D$ in \eqref{spherical FD}.
-
-In this context one may define finite-spacing quantization condition through finite-spacing phase shifts according to
-\begin{equation}
-    \frac{\mu}{2 \F_D^\dispersion(\sqrt{2\mu E})}\left(\cot\delta_D^\dispersion(\sqrt{2\mu E})-i\right)
-    =
-    I_D^{\dispersion}(\sqrt{2\mu E}) - I_{D,FV}^{\dispersion}(\sqrt{2\mu E})
-	\, .
-\end{equation}
-On the left-hand side of the quantization condition we get the infinite-volume $A_1^+$ phase shift at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
-One may calculate a spacing-aware $\F_D^\dispersion$ by considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
-Unfortunately, achieving a closed-form expression for $\F_D^\dispersion$ is challenging though it is numerically tractable.
 
 To match the \Luscher like zeta function we rewrite the quantization condition as
 \begin{align}
@@ -125,8 +114,8 @@ Were we to do that, then we would find
 \end{equation}
 to be momentum (or equivalently $x$) independent.
 
-The structure of the contact interaction is such that it is also possible to incorporate these shifts into the generalized zeta function as well.
-We find evaluated at a finite spacing 
+The structure of the contact interaction is such that it is also possible to incorporate these shifts into a dispersion-aware zeta function.
+Evaluated at a finite spacing we find
 \begin{align}
     \cot \delta_D(\sqrt{2\mu E})
     &=
@@ -160,4 +149,14 @@ In fact, there are multiple momenta that all correspond to the same energy, beca
 
 Leaving the dependence on energy alone and not the momentum allows us to account naturally for Umklapp scattering processes and the violation of crystal momentum conservation.
 This would be important for capturing physics of physical crystals, were we need to match to an infinite volume lattice instead.
+In this context one may define finite-spacing quantization condition through finite-spacing phase shifts according to
+\begin{equation}
+    \frac{\mu}{2 \F_D^\dispersion(\sqrt{2\mu E})}\left(\cot\delta_D^\dispersion(\sqrt{2\mu E})-i\right)
+    =
+    I_D^{\dispersion}(\sqrt{2\mu E}) - I_{D,FV}^{\dispersion}(\sqrt{2\mu E})
+	\, .
+\end{equation}
+On the left-hand side of the quantization condition we get the infinite-volume $A_1^+$ phase shift at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
+One may calculate a spacing-aware $\F_D^\dispersion$ by considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
+Unfortunately, achieving a closed-form expression for $\F_D^\dispersion$ is challenging though it is numerically tractable.
 Matching to a real physical crystal requires formulating a spacing-dependent kinematic factor $\F_D^\dispersion$ from \eqref{dispersion I0} and keeping $N$ finite in the integral in the dispersion zeta function \eqref{dispersion quantization}, which introduces a whole tower of terms, each down by $N^2$, that vanish because we are matching to the continuum.
