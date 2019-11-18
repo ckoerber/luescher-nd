@@ -1,12 +1,40 @@
+
 \section{Dispersion Relation Coefficients}\label{sec:coefficients}
 
-In \eqref{gamma definition} and \eqref{gamma determination} we give the definition and how to determine the $\gamma_s^{(\nstep)}$ coefficients that give us finite difference formulas.  Here we collect and list them for convenience.
+In \eqref{laplacian} and \eqref{gamma determination} we give the definition and how to determine the $\gamma_s^{(\nstep)}$ coefficients that give us finite difference formulas.
+This is done by matching the expansion of the cosine to the continuum dispersion
+\begin{align}
+	p^2
+	&\mapsto
+	- \frac{1}{\epsilon^2}\sum_{s=0}^{n_s} \gamma_s^{(n_s)} \cos(s p \epsilon)
+	=
+	\frac{1}{\epsilon^2}\sum_{s=0}^{n_s} \sum_{m=0}^\infty \gamma_s^{(n_s)}\frac{(-)^m}{(2m)!} (s p \epsilon)^{2m}
+	\overset{!}{=}
+	p^2 \left[ 1 + \mathcal O \left( (\epsilon p)^{2 n_s} \right) \right]
+	\, .
+\end{align}
+Matching this expression order by order in $\epsilon p$ or equivalently $m \leq n_s$ effectively results in a matrix equation for the coefficients $\gamma_s^{(n_s)}$
+\begin{align}
+	A_{ms} &\equiv \frac{(-)^m}{(2m)!} s^{2m}
+	\, , &
+	\sum_{s=0}^{n_s} A_{m s} \gamma_s^{(n_s)}
+	\overset{!}{=}
+	v_m
+	&=
+	\begin{cases}
+		1 & m=1 \\ 0 & \text{otherwise}
+	\end{cases}
+	\, , &
+	\vec \gamma^{(n_s)}
+	&= A^{-1} \vec v
+\end{align}
+Results for order $n_s \leq 4$ are displayed in \tabref{dispersion coefficients}.
 
 \begin{table}[ht]
     \caption{Values for $\gamma_s^{(\nstep)}$ for a variety of different $\nstep$s that give the optimal approximation $\omega^{(\nstep)}(p,\epsilon) = (\epsilon p)^2\left[1+ \order{(\epsilon p)^{2 \nstep}}\right]$.}
     \label{tab:dispersion coefficients}
-    \begin{tabular}{cccccc}
-        $\gamma_s^{(\nstep)}$   &   $s=0$   &   $s=1$   &   $s=2$   &   $s=3$       &   $s=4$   \\
+    \begin{tabular}{c | ccccc}
+        $\gamma_s^{(\nstep)}$   &   $s=0$   &   $s=1$   &   $s=2$   &   $s=3$       &   $s=4$   \\ \hline
         $\nstep=1$              &   $2$     &   $-2$    &           &               &           \\
         $\nstep=2$              &   $5/2$   &   $-8/3$  &   $1/6$   &               &           \\
         $\nstep=3$              &   $49/18$ &   $-3$    &   $3/10$  &   $-1/45$     &           \\
