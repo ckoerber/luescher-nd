@@ -94,7 +94,7 @@ We can construct, therefore, a \Luscher-like formalism,
 \end{align}
 where the above expression knows about the particular finite-differencing Laplacian or the dispersion relation as well as the discretization of the box into $N$ sites. 
 In contrast, in the usual finite-volume procedure, no UV details of the box infect the zeta function.
-In three dimensions, the sum is divergent and the counter term exactly cancels the this growth; in one dimension there is no divergence to cancel, and we defer the discussion of two dimensions to \Secref{2D}.
+When taking $N$ to infinity, in three dimensions, the sum is divergent and the counter term exactly cancels the this growth; in one dimension there is no divergence to cancel, and we defer the discussion of two dimensions to \Secref{2D}.
 
 There are two ways to view this equation.
 Firstly, in the continuum limit both expressions for the zeta function $\frac{1}{\pi L}S^\spherical$ and $\frac{1}{\pi L}S^\dispersion$ are equivalent.
@@ -103,18 +103,15 @@ Secondly, if it was possible to compute the exact error from lattice discretizat
 That is, numerically compute $x^\dispersion$, corresponding to energy level at finite spacing, and adjust it by a known $\delta x^\dispersion(x^\dispersion)$, so that one exactly lands on the continuum value: $x \equiv x^\dispersion + \delta x^\dispersion(x^\dispersion)$.
 Were we to do that, then we would find
 \begin{equation}
-    \frac{1}{\pi L}S^\spherical(x)
+    \frac{1}{\pi L}S^\spherical_D(x)
     =
-    \frac{1}{\pi L}S^\spherical(x^\dispersion+\delta x^\dispersion(x^\dispersion))
-    =
-    \lim_{N\to \infty}
-    \frac{1}{\pi L}\left[
-        \sum_{n\in\BZ}\frac{1}{\tilde{K}^N_{nn}-x^\dispersion+\delta x^\dispersion(x^\dispersion)} - \counterterm^\dispersion_D + \order{\frac{x^\dispersion+\delta x^\dispersion(x^\dispersion)}{N}}
-    \right]
+    \frac{1}{\pi L}S^\spherical_D\left(x^\dispersion+\delta x^\dispersion(x^\dispersion)\right)
+    \equiv
+    \frac{1}{\pi L}S^\dispersion_D\left(x^\dispersion\right)
 \end{equation}
 to be momentum (or equivalently $x$) independent.
 
-The structure of the contact interaction is such that it is also possible to incorporate these shifts into a dispersion-aware zeta function.
+The structure of the contact interaction is such that it is also possible to analytically compute these shifts and incorporate them into a dispersion-aware zeta function.
 Evaluated at a finite spacing we find
 \begin{align}
     \cot \delta_D(\sqrt{2\mu E})
@@ -125,29 +122,31 @@ Evaluated at a finite spacing we find
     \label{eq:finite N}
     S^{\dispersion}_D\left(x^\dispersion\right)
     &=
-		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)
+		\sum_{n\in\BZ}\frac{1}{ \tilde K_{nn}^{N} - x^\dispersion} - \counterterm_D^{\dispersion}\left(\frac{N}{2}\right)^{D-2}
 	\, .
 \end{align}
 The sum is over a finite $N$ and the lattice energy levels are used to build $x^\dispersion$.
 For this reason one is allowed to extract physical phase shift information even at finite $N$.
 Unlike in the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{finite N}, because we are always interested in a real calculation performed with finite $N$.
-\todo{We provide an explicit derivation in three dimensions in the appendix.}
-
 Note that the zeta function we define in \eqref{finite N} differs from the expression derived in \eqref{dispersion quantization}, in that it does not include any $x/N$ effects that disappear in the continuum, and that it is valid to feed finite-spacing eigenenergies $x^\dispersion$ through the finite-$N$ formula \eqref{finite N}.
-In other words, plugging finite-spacing eigenenergies through the continuum formula induces a momentum dependence arising from the $x/N$ dependence in \eqref{dispersion quantization}---accounting for the seen momentum dependence that was shown to vanish towards the continuum in a variety of prior results.  That dependence is calculable for a contact interaction and is subtracted in our finite-spacing zeta function \eqref{finite N}.
+Plugging finite-spacing eigenenergies through the continuum formula induces a momentum dependence arising from the $x/N$ dependence in \eqref{dispersion quantization}---accounting for the seen momentum dependence that was shown to vanish towards the continuum in a variety of prior results.
+That dependence is calculable for a contact interaction and is subtracted in our finite-spacing zeta function \eqref{finite N}.
+we provide an explicit derivation in three dimensions in \todo{We provide an explicit derivation in three dimensions in the appendix.}.
 
-The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects.
+We want to add further remarks:
+\begin{itemize}
+\item The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects.
 To arrive at formulas for nonzero center of mass momentum is substantially more complicated, because only at zero center of mass momentum does the change from single-particle coordinates in \eqref{particle hamiltonian} to center-of-mass coordinates in \eqref{hamiltonian} commute with performing the spatial discretization, yielding the same dispersion relation in the effective one-body problem as in the two-body problem.
 The ordering matters, as in a realistic many-body calculation (and in physical crystals!), each individual particle sees the lattice discretization.\footnote{
 We note in passing that when $\nstep=\infty$ and the dispersion relation is exactly $p^2$ all the way to the edge of the Brillouin zone, the change to Jacobi coordinates seems to again commute with the discretization.}
 To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than the effective one-body integral \eqref{dispersion I0}, to an equation more like the two-body loop diagram that determines $I_0$ \eqref{I0 in two particle language} before the energy integral is performed, replacing the single-particle dispersion relations there and changing the domain of integration to match the Brillouin zone.
 We leave such a construction to future work.
 
-In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the scattering momentum $p$.
+\item In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the scattering momentum $p$.
 However, with a finite lattice spacing the on-shell condition is not so simple to invert.
 In fact, there are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
 
-Leaving the dependence on energy alone and not the momentum allows us to account naturally for Umklapp scattering processes and the violation of crystal momentum conservation.
+\item Leaving the dependence on energy alone and not the momentum allows us to account naturally for Umklapp scattering processes and the violation of crystal momentum conservation.
 This would be important for capturing physics of physical crystals, were we need to match to an infinite volume lattice instead.
 In this context one may define finite-spacing quantization condition through finite-spacing phase shifts according to
 \begin{equation}
@@ -160,3 +159,4 @@ On the left-hand side of the quantization condition we get the infinite-volume $
 One may calculate a spacing-aware $\F_D^\dispersion$ by considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
 Unfortunately, achieving a closed-form expression for $\F_D^\dispersion$ is challenging though it is numerically tractable.
 Matching to a real physical crystal requires formulating a spacing-dependent kinematic factor $\F_D^\dispersion$ from \eqref{dispersion I0} and keeping $N$ finite in the integral in the dispersion zeta function \eqref{dispersion quantization}, which introduces a whole tower of terms, each down by $N^2$, that vanish because we are matching to the continuum.
+\end{itemize}
