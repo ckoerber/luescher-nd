@@ -1,5 +1,176 @@
-%!TEX root =  ../master.tex
+%!TEX root =  ../../master.tex
+\subsubsection{The dispersion method in three dimensions}\label{sec:3D dispersion}
+In this section we want to highlight that specifically for a contact interaction, it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme in such a way that one directly obtains continuum infinite volume results -- without any further extrapolation -- when using the dispersion formalism.
+We first present an analytic derivation, which may help to generalize this formalism to other interactions, and display results in the section afterwards.
 
+According to \eqref{T matrix}, \eqref{I0} and \eqref{spherical FD}, we find that the phase shifts are related to the contact interaction by
+\begin{equation}
+	p \cot \delta_3(p)
+	= \lim\limits_{\Lambda \to \infty}\frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} + i p
+	= \lim\limits_{\Lambda \to \infty}
+		\frac{2 \pi}{\mu} \left[
+			\frac{1}{C(\Lambda)} - I_3(p, \Lambda)
+		\right]
+	\, ,
+\end{equation}
+with the solution for the integral
+\begin{equation}
+	I_3(p, \Lambda)
+	=
+	-\frac{\mu}{2 \pi}
+	\left[
+	\frac{2 \Lambda}{\pi} + \frac{2  p}{\pi} \log \left( \frac{\Lambda - p}{\Lambda + p}\right)
+	\right]
+\end{equation}
+Because the contact interaction does not have any momentum dependence, it is only possible to absorb momentum independent regulator terms when renormalizing the contact interaction.
+Thus, it is still possible to completely renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing
+\begin{equation}\label{eq:three-d-counterterm}
+	\frac{2 \pi}{\mu} \frac{1}{C_R(\Lambda)} + \frac{2 \Lambda}{\pi} \equiv p \cot \delta_3(p) = - \frac{1}{a_3} \, .
+\end{equation}
+
+
+In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction strength $C_R(\Lambda)$, one is able to evaluate both sides for a given momentum, e.g., for $p=0$
+\begin{equation}
+	- \frac{1}{a_3}
+	=
+	\lim\limits_{p \to 0}\lim\limits_{\Lambda \to \infty}
+		\left[
+			\frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} \bigg|_{C=C_R} + i p
+	\right]
+	=
+	\lim\limits_{\Lambda \to \infty}
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R(\Lambda)} - I_3(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+
+We now want to find an equivalent expression to the finite-volume zeta functions in presence of a discretization scheme.
+In particular, the discretization scheme depends on the implementation of the kinetic operator $K^{(n_s)}$ and thus depends on the $n_s$ parameter.
+The lattice spacing can be identified with the hard momentum cutoff $\Lambda = \pi / \epsilon$.
+That is, the expectation value of the dispersion scales as $\hat K^{(n_s)}(\epsilon) \ket{p} = p^2 [1 + \mathcal O(\epsilon p)^{2 n_s}]\ket{p}$.
+
+If one replaces the continuum momentum dispersion $q^2$ in $I_3$ with the kinetic operator for a given lattice spacing and discretization, one defines a sequence in $n_s$ which converges against $I_3$ in the limit of $n_s \to \infty$
+\begin{equation}
+	\lim\limits_{n_s \to \infty} I^{(n_s)}_3(p, \Lambda) = I_3(p, \Lambda)
+	\, , \qquad
+	I^{(n_s)}_3\left(p, \Lambda=\frac{\pi}{\epsilon} \right)
+	=
+	    \int\limits_{-\pi/\epsilon}^{+\pi/\epsilon}
+        \mathrm{d}^3 \vec{q}
+        \left[
+            \PV \left(
+                \frac{1}{
+                    E - \frac{1}{2\mu} K_{qq}^{(n_s)} }
+                \right)
+            -i \pi \delta\left(E - \frac{1}{2\mu}K_{qq}^{(n_s)}\right)
+        \right]
+        \, .
+\end{equation}
+We furthermore define a sequence for the contact strength parameter depending on the cutoff and the employed discretization scheme which equivalently converges against the continuum result.
+This sequence is determined by matching the against the dispersion integral for each value of the cutoff and for each discretization scheme
+\begin{equation}\label{eq:dispersion-renormalization}
+	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
+	\qquad
+	- \frac{1}{a_3}
+	\equiv
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - I_3^{(n_s)}(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+It is possible to make this choice since both terms do not depend on any external momentum $p$.
+This is specific for the contact interaction.
+One can view this choice as the renormalization equation for contact interaction in presence of lattice discretization which, by definition, trivially satisfy
+\begin{equation}
+	- \frac{1}{a_3}
+	=
+	\lim\limits_{\Lambda \to \infty} \lim\limits_{n_s \to \infty}
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - I_3^{(n_s)}(0, \Lambda)
+		\right]
+	\, .
+\end{equation}
+In fact, it satisfies this equation even without the limits.
+
+Next we address how this renormalization choice relates to the dispersion zeta function.
+For any lattice implementation of a contact interaction with strength $\tilde c$ in finite volume, the Schrödinger equation can be rewritten as
+\begin{equation}
+	0 = 1 - \tilde c I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E_i}, \Lambda = \frac{\pi}{\epsilon}\right) \, ,
+\end{equation}
+where $E_i \equiv E_i^{(n_s)}(L, \epsilon, \tilde c)$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $\tilde c$.
+The finite volume sum $I_{3, \FV}^{(n_s)}(p, \pi/\epsilon)$ is obtained by replacing the integral $d^3 \vec q$ in $I_3^{(n_s)}(p, \Lambda)$ with a sum  over vectors $\vec q = 2 \pi \vec n / L$.
+Because the above equation is true for any value of $\tilde c$ and it's corresponding spectrum, it is especially true for $\tilde c = C_R^{(n_s)}(\Lambda)$.
+This means that
+\begin{equation}\label{eq:need a name}
+	- \frac{1}{a_3}
+	=
+	\frac{2 \pi}{\mu}
+		\left[
+		I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E_i}, \frac{\pi}{\epsilon}\right)
+		- I_3^{(n_s)}\left(0, \frac{\pi}{\epsilon}\right)
+		\right]
+	\, ,
+\end{equation}
+which defines the dispersion zeta function
+\begin{align}\label{eq:dispersion-zeta-contact}
+	S^{\dispersion}(x_i)
+	&=
+	S^{(n_s)}(x_i)
+	=
+	\sum\limits_n^N
+	\frac{1}{K_{nn}^{(n_s)} - x_i} - \mathcal{L}_3^{\dispersion (n_s)} \frac{N}{2}
+	\, ,
+	\\
+	\mathcal{L}_3^{(n_s)}
+	&=
+	\frac{2 \pi^2 L}{\mu}
+	I_3^{(n_s)}\left(p=0, \Lambda = \frac{\pi}{\epsilon}\right)
+	\overset{n_s \to \infty}{\longrightarrow}
+	15.348\ldots
+	\, .
+\end{align}
+See also table \tabref{diserpersion-zeta-3d-counterterm-counterterm} for more precise counter term coefficients for more $\nstep$ values.
+It furthermore explains why we expect results computed with this modified zeta function to directly match the continuum, infinite volume phase shifts.
+This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
+We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
+This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
+
+\subsubsection{Momentum-induced terms of $S^\bigcirc_3(x)$ due to discretization\label{sect:3d induced momenta}}
+The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.  As such, it requires continuum energies $x$ for its argument.  If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.  This is particularly evident for the contact interaction as was observed, for example, in \cite{Endres:2012cw}.  To understand the source of these terms, consider
+\begin{multline}
+\frac{1}{\pi L}S^\bigcirc_3(x^\dispersion)=\frac{1}{\pi L}\left(S^{\dispersion}_3(x^\dispersion)+\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\right)=\frac{-1}{a_3}+\frac{1}{\pi L}\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\\
+=\frac{-1}{a_3}+\lim_{\eta \to\infty}\frac{1}{\pi L}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x^\dispersion}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}+\mathcal{L}^\dispersion_3\frac{N}{2}\right)\ .
+\end{multline}
+In the first line we added and subtracted $S^\dispersion_3$ and used eqs.~\eqref{need a name} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.  We assume $n_s=\infty$ for the time being.  In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z., we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
+\begin{align}
+S^\bigcirc_3(x^\dispersion)=&\frac{-\pi L}{a_3}\label{eqn:observable}\\
+&+\mathcal{L}^\dispersion_3\frac{N}{2}+\lim_{\eta \to\infty}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)\label{eqn:constant}\\
+&+x^\dispersion\lim_{\eta \to\infty}\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{4}}\label{eqn:range}\\
+&+(x^\dispersion)^2\lim_{\eta \to\infty}\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{6}}\label{eqn:shape}\\
+&\vdots\\
+\equiv& \frac{-\pi L}{a_3}+\alpha_1(N)+\alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2+\ldots\label{eq:small x}
+\end{align}
+The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the B.Z. in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (e.g. see Appendix B of~\cite{Luu:2011ep}).  We provide values for select cases of $N$ in \autoref{tab:slopes}.
+\begin{table}
+\caption{Coefficients $\alpha_i(N)$ as a function of $N$ in 3-D.\label{tab:slopes}}
+\center
+\begin{tabular}{c|ccc}
+$N$ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ \\
+\hline
+10 & 0.34622847019345 &2.1088361299026 &0.02096728133239\\
+20 & 0.17384029798483 &1.0470052482673 &0.00253774588732\\
+40 & 0.08701147975728 &0.5225652776531 &0.00031456311910\\
+50 & 0.06961796407968 &0.4179620004936 &0.00016089237674\\
+80 & 0.04351717442702 &0.2611651268184 &0.00003923695720\\
+100 &0.03481483765136 &0.2089208128674 &0.00002008418957
+\end{tabular}
+\end{table}
+
+\todo{What do we say here when $n_s\ne\infty$???}
 
 \subsubsection{Results of the dispersion method in three dimensions}
 
@@ -13,7 +184,7 @@ Moreover, comparing the scale to that in, for example, \Figref{unimproved spheri
 \begin{figure}[htb]
     \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
     \caption{The same as \Figref{unimproved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.
-    We emphasize the results are on a log scale, and the tuning was to $-1/a_0 = 0$.
+    We emphasize the results are on a log scale, and the tuning was to $-1/a_3 = 0$.
     }
     \label{fig:unimproved dispersion}
 \end{figure}
@@ -47,8 +218,10 @@ The issue is that at any finite $N$ the spherical integral and cartesian integra
     \label{fig:3d-corrections}
 \end{figure}
 
+
+
 In \Figref{3d-corrections} we show the result of tuning a finite-spacing contact interaction to the first zero of the continuum zeta function $S^\spherical_3$.
-At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion \todo{equation}.
+At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion~\eqref{small x}.
 The same spectrum is also fed through the spacing-appropriate dispersion zeta $S^\dispersion$, resulting in the flat black lines.
 Shown in detail in the bottom panel, it's clear that the continuum limit taken this way results in any finite spacing having a nonzero scattering length that vanishes with the continuum limit.
 In contrast, tuning to the dispersion function directly, as in \Figref{unimproved dispersion}, is flat and nearly zero at each individual lattice spacing.
