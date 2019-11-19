@@ -1,5 +1,5 @@
 \section{The dispersion method in three dimensions}\label{sec:3D dispersion}
-In this section we derive the validity of the dispersion formalism in three dimensions.
+In this section we explicitly derive the the dispersion formalism in three dimensions.
 We show that it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme such that one directly obtains continuum infinite volume results when using the dispersion formalism---without any further extrapolation.
 
 According to \eqref{T matrix}, \eqref{I0} and \eqref{spherical FD}, we find that the phase shifts are related to the contact interaction by
@@ -121,7 +121,10 @@ This means that
 	\, ,
 \end{equation}
 which defines the dispersion zeta function
-\begin{align}
+\begin{align}\label{eq:dispersion-zeta-form}
+	- \frac{1}{a_3}
+	=
+	\frac{1}{\pi L}
 	S^{\dispersion}(x^\dispersion)
 	=
 	\sum\limits_{n \in \BZ}
@@ -136,8 +139,8 @@ which defines the dispersion zeta function
 	\, .
 \end{align}
 
-See also section \ref{sec:dispersion-counterterm} for a derivation of this coefficient.
-This explains why we expect results to directly match the continuum infinite volume phase shifts when computed with this modified zeta function.
+See also section \ref{sec:dispersion-counterterm} for the computation of this coefficient.
+Equation \eqref{dispersion-zeta-form} explains why results directly match the continuum infinite volume phase shifts when computed with this modified zeta function.
 Note that This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
 We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
 This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
