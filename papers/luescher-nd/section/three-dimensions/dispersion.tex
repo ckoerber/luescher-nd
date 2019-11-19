@@ -1,13 +1,13 @@
 %!TEX root =  ../../master.tex
 
 
-\subsubsection{Momentum-induced terms of $S^\bigcirc_3(x)$ due to discretization\label{sect:3d induced momenta}}
+\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x)$}{S3-spherical} due to discretization\label{sect:3d induced momenta}}
 The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.  As such, it requires continuum energies $x$ for its argument.  If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.  This is particularly evident for the contact interaction as was observed, for example, in \cite{Endres:2012cw}.  To understand the source of these terms, consider
 \begin{multline}
 \frac{1}{\pi L}S^\bigcirc_3(x^\dispersion)=\frac{1}{\pi L}\left(S^{\dispersion}_3(x^\dispersion)+\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\right)=\frac{-1}{a_3}+\frac{1}{\pi L}\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\\
 =\frac{-1}{a_3}+\lim_{\eta \to\infty}\frac{1}{\pi L}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x^\dispersion}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}+\mathcal{L}^\dispersion_3\frac{N}{2}\right)\ .
 \end{multline}
-In the first line we added and subtracted $S^\dispersion_3$ and used eqs.~\eqref{need a name} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.  We assume $n_s=\infty$ for the time being.  In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z., we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
+In the first line we added and subtracted $S^\dispersion_3$ and used eqs.~\eqref{}\todo{@TL: which eqn do you want to cite?} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.  We assume $n_s=\infty$ for the time being.  In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z., we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
 \begin{align}
 S^\bigcirc_3(x^\dispersion)=&\frac{-\pi L}{a_3}\label{eqn:observable}\\
 &+\mathcal{L}^\dispersion_3\frac{N}{2}+\lim_{\eta \to\infty}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)\label{eqn:constant}\\
@@ -34,7 +34,7 @@ $N$ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ \\
 
 \todo{What do we say here when $n_s\ne\infty$???}
 
-\subsubsection{Results of the dispersion method in three dimensions}
+\subsection{Results of the dispersion method in three dimensions}
 
 In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the \Luscher zeta function.
 However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_D$, leveraging the dispersion relation for that derivative.
