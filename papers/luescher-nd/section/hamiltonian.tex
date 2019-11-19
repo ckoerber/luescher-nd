@@ -44,7 +44,7 @@ In the Fourier transformed space, momentum space, the one-dimensional Laplacian 
 where $n$ is an integer.
 In $D$ dimensions we just sum the same expression over the different components of momentum.
 Note that this is a specialization, in the sense that it contains no off-axis differencing (in position space) or products of different components (in momentum space).
-However, since our numerical formalism is valid for every $\nstep$, we believe it holds for every possible kinetic operator.
+However, since the numerical formalism we will describe is valid for every $\nstep$, we believe it holds for every possible kinetic operator.
 
 \begin{figure}
     \input{figure/dispersion.pgf}
@@ -145,7 +145,7 @@ and we divide by $4\pi^2/\mu L^2$ to make everything dimensionless.
 We have implemented both this \Aoneg-only Hamiltonian and the general Hamiltonian with an energy penalty for non-\Aoneg states and verified that the spectra match where expected to as much precision as desired.
 
 For a given $N$ some $n^2$ shells have multiple solutions.
-When $N=5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$.
+When $N=5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$, which lives on the edge of the Brillouin zone.
 For the contact interaction and $\nstep=\infty$, one linear combination of these \Aoneg states overlaps the $s$-wave and has a nontrivial finite-volume energy, and the other overlaps a higher partial wave and has $x=9$ to machine precision.
 For finite $\nstep$, the non-interacting $x$ are not perfect integers, but the same moral holds.
 In contrast, when $N=4$ there is no $n=(3,0,0)$ state, and the $(2,2,1)$ state is itself an eigenstate.
