@@ -1,4 +1,4 @@
-\documentclass[aps,superscriptaddress,tightenlines,nofootinbib,floatfix,longbibliography,notitlepage]{revtex4-1}
+\documentclass[aps,superscriptaddress,tightenlines,nofootinbib,floatfix,longbibliography,notitlepage,10pt,pra]{revtex4-1}
 \usepackage[left=18mm,right=19mm,top=23mm,bottom=16mm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{bm,bbm}
@@ -13,8 +13,10 @@
     allcolors=blue
 ]{hyperref}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
 \usepackage{booktabs} % fancy table commands like \midrule
 \usepackage{placeins}
+\usepackage{anyfontsize} % Remove font shape warnings
 
 \newcommand\todo[1]{{\bf\color{red}TODO: #1}}
 
