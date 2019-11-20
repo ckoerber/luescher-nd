@@ -1,9 +1,9 @@
-\section{The dispersion method in three dimensions}\label{sec:3D dispersion}
-In this section we explicitly derive the the dispersion formalism in three dimensions.
+\section{The dispersion method in three and two dimensions}\label{sec:3D dispersion}
+In this section we explicitly derive the the dispersion formalism in both three and two dimensions.
 We show that it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme such that one directly obtains continuum infinite volume results when using the dispersion formalism---without any further extrapolation.
 
 According to \eqref{T matrix}, \eqref{I0} and \eqref{spherical FD}, we find that the phase shifts are related to the contact interaction by
-\begin{equation}
+\begin{equation}\label{eq:blah blah}
 	p \cot \delta_3(p)
 	= \lim\limits_{\Lambda \to \infty}\frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} + i p
 	= \lim\limits_{\Lambda \to \infty}
@@ -100,8 +100,8 @@ One can view this choice as the renormalization equation for contact interaction
 In fact, it satisfies this equation even without the limits.
 
 Next we address how this renormalization choice relates to the dispersion zeta function.
-For any lattice implementation of a contact interaction with strength $c^\dispersion$ in finite volume, the Schrödinger equation can be rewritten as
-\begin{equation}
+For any lattice implementation of a contact interaction with strength $c^\dispersion$ in finite volume, the Schr\"odinger equation can be rewritten as
+\begin{equation}\label{eq:schroe}
 	\hat G(E) \hat V \ket{\psi} = E\ket{\psi}
 	\quad \Rightarrow \quad
 	0 = 1 - c^\dispersion I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E^\dispersion}, \Lambda = \frac{\pi}{\epsilon}\right) \, ,
@@ -125,14 +125,12 @@ which defines the dispersion zeta function
 	- \frac{1}{a_3}
 	=
 	\frac{1}{\pi L}
-	S^{\dispersion}(x^\dispersion)
-	=
-	\sum\limits_{n \in \BZ}
-	\frac{1}{K_{nn}^{(n_s)} - x^\dispersion} - &\mathcal{L}_3^{\dispersion} \frac{N}{2}
+	S^{\dispersion}_3(x^\dispersion)
+	&=\frac{1}{\pi L}\left(\sum\limits_{n \in \BZ}\frac{1}{K_{nn}^{(n_s)} - x^\dispersion} - \mathcal{L}_3^{\dispersion} \frac{N}{2}\right)
 	\, ,
 	\\ \label{eq:dispersion-zeta-contact}
-	&\mathcal{L}_3^\dispersion
-	=
+	\mathcal{L}_3^\dispersion
+	&=
 	\frac{2 \pi^2 L}{\mu}
 	I_3^{(n_s)}\left(0, \Lambda = \frac{\pi}{\epsilon}\right)
 	\overset{n_s\to\infty}{\longrightarrow} 15.348
@@ -141,7 +139,72 @@ which defines the dispersion zeta function
 
 See also section \ref{sec:dispersion-counterterm} for the computation of this coefficient.
 Equation \eqref{dispersion-zeta-form} explains why results directly match the continuum infinite volume phase shifts when computed with this modified zeta function.
-Note that This result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
+Note that this result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
 We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
 This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
+
+In two dimensions the analog of~\eqref{blah blah} is
+\begin{equation}
+\cot \delta_2(p)=\lim_{\Lambda\to\infty}\frac{2}{\mu}\left(\frac{1}{C(\Lambda)}- I_2(p, \Lambda)\right)\ , %\frac{1}{2\pi}\mathcal{P}\int_0^\Lambda  \mathrm { d } q \ q \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)\right)\ ,
+\end{equation}
+with
+\begin{equation}
+I_2(p, \Lambda)=-\frac{\mu}{\pi } \log \left(\frac{p}{\sqrt{\Lambda ^2-p^2}}\right)\ .
+\end{equation}
+Our renormalized coefficient is defined by using the phase shift condition for a contact interaction in 2-D~\eqref{2d contact phase shift} in the $\Lambda\to\infty$ limit,
+\begin{equation}\label{eq:log stuff}
+\frac{2}{\mu}\frac{1}{C_R(\Lambda)}+\frac{2}{\pi } \log \left(\frac{p}{\Lambda}\right)=\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)\ .
+\end{equation}
+With the kinetic operator for a given lattice spacing and discretization, we again define a sequence in $n_s$ which converges against $I_2$ in the limit of $n_s \to \infty$,
+\begin{equation}
+	\lim\limits_{n_s \to \infty} I^{(n_s)}_2(p, \Lambda) = I_2(p, \Lambda)
+	\, , \qquad
+	I^{(n_s)}_2\left(p, \Lambda=\frac{\pi}{\epsilon} \right)
+	=
+	    \int\limits_{-\pi/\epsilon}^{+\pi/\epsilon}
+        \mathrm{d}^2 \vec{q}
+        \left[
+            \PV \left(
+                \frac{1}{
+                    E - \frac{1}{2\mu} K_{qq}^{(n_s)} }
+                \right)
+            -i \pi \delta\left(E - \frac{1}{2\mu}K_{qq}^{(n_s)}\right)
+        \right]
+        \, .
+\end{equation}
+\todo{Tom, check validity of the equation above!!!}
+As was done prior to~\eqref{dispersion-renormalization}, we also define a sequence for the discrete coefficient $C^{(n_s)}_R(\Lambda)$ that is determined by matching against the dispersion integral for each value of the cutoff and for each discretization scheme.  However, in this case, due to the presence of logarithms in~\eqref{log stuff}, we first subtract the expression $\frac{2}{\pi}\log(pL/2\pi)$ prior to setting $p=0$,
+\begin{equation}\label{eq:dispersion-renormalization}
+%	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
+%	\quad
+	\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)-\frac{2}{\pi } \log \left(\frac{pL}{2\pi}\right)=\frac { 2 } { \pi } \log \left(2\pi \frac{\tilde a _ { 2 }}{L} \right)
+	\equiv
+	\frac{2 \pi}{\mu}
+		\left[
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - \left.\left(I_3^{(n_s)}(p, \Lambda)+\frac{\mu}{\pi^2} \log \left(\frac{pL}{2\pi}\right)\right)\right|_{p=0}
+		\right]
+	\, .
+\end{equation}
+\todo{Tom!! The $2\pi$ in the argument of the log seems arbitrary!!! Can we explain this better???}
+Our sequence $\lim_{n_s\to\infty}C^{(n_s)}_R(\Lambda) = C_R(\Lambda)$ is well defined but implicitly depends on an external length scale $L$ due to the presence of the logarithm.  To arrive at the dispersion equation in 2-D one repeats the steps from~\eqref{schroe} leading up to~\eqref{dispersion-zeta-form}, but now~\eqref{dispersion-zeta-form} becomes
+\begin{equation}
+    \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{2}}{L}\right)=\frac{1}{\pi^2}S^{\dispersion}_2\left(x^\dispersion\right)
+    =
+    \frac{1}{\pi^2}
+    \left(
+        \sum_{n_x,n_y=-\frac{N}{2}}^{\frac{N}{2}-1}\frac{1}{\tilde{K}^N_{nn}-x^\dispersion}
+        -2\pi \log \left(\mathcal{L}^\dispersion_2\frac{N}{2}\right)
+    \right)\ .
+\end{equation}
+Here
+\begin{equation}
+    \mathcal{L}^\dispersion_{2}
+    =
+    \exp \left(\log (2)-G \frac{2}{\pi}\right)
+    =
+    1.116306393581637659468497 \ldots
+\end{equation}
+and $G$ is Catalan's constant.  We derive this counterterm in \ref{sec:dispersion-counterterm}.
+
+
 
