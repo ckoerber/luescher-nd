@@ -2,6 +2,8 @@
 In this section we explicitly derive the the dispersion formalism in both three and two dimensions.
 We show that it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme such that one directly obtains continuum infinite volume results when using the dispersion formalism---without any further extrapolation.
 
+\subsection{Three dimensions}
+
 According to \eqref{T matrix}, \eqref{I0} and \eqref{spherical FD}, we find that the phase shifts are related to the contact interaction by
 \begin{equation}\label{eq:blah blah}
 	p \cot \delta_3(p)
@@ -143,6 +145,8 @@ Note that this result does not hold for general finite-range interactions, i.e.,
 We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
 This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
 
+\subsection{Two dimensions}
+
 In two dimensions the analog of~\eqref{blah blah} is
 \begin{equation}
 \cot \delta_2(p)=\lim_{\Lambda\to\infty}\frac{2}{\mu}\left(\frac{1}{C(\Lambda)}- I_2(p, \Lambda)\right)\ , %\frac{1}{2\pi}\mathcal{P}\int_0^\Lambda  \mathrm { d } q \ q \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)\right)\ ,
@@ -153,8 +157,11 @@ I_2(p, \Lambda)=-\frac{\mu}{\pi } \log \left(\frac{p}{\sqrt{\Lambda ^2-p^2}}\rig
 \end{equation}
 Our renormalized coefficient is defined by using the phase shift condition for a contact interaction in 2-D~\eqref{2d contact phase shift} in the $\Lambda\to\infty$ limit,
 \begin{equation}\label{eq:log stuff}
-\frac{2}{\mu}\frac{1}{C_R(\Lambda)}+\frac{2}{\pi } \log \left(\frac{p}{\Lambda}\right)=\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)\ .
+	\frac{2}{\mu}\frac{1}{C_R(\Lambda)} + \frac{2}{\pi } \log \left(\frac{p}{\Lambda}\right)
+	=
+	\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)\ ,
 \end{equation}
+which ensures $C_R(\Lambda)$ is momentum independent.
 With the kinetic operator for a given lattice spacing and discretization, we again define a sequence in $n_s$ which converges against $I_2$ in the limit of $n_s \to \infty$,
 \begin{equation}
 	\lim\limits_{n_s \to \infty} I^{(n_s)}_2(p, \Lambda) = I_2(p, \Lambda)
@@ -177,7 +184,12 @@ As was done prior to~\eqref{dispersion-renormalization}, we also define a sequen
 \begin{equation}\label{eq:dispersion-renormalization}
 %	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
 %	\quad
-	\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)-\frac{2}{\pi } \log \left(\frac{pL}{2\pi}\right)=\frac { 2 } { \pi } \log \left(2\pi \frac{\tilde a _ { 2 }}{L} \right)
+	\lim\limits_{p\to 0}
+	\left[
+		\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)-\frac{2}{\pi } \log \left(\frac{pL}{2\pi}\right)
+	\right]
+	=
+	\frac { 2 } { \pi } \log \left(2\pi \frac{\tilde a _ { 2 }}{L} \right)
 	\equiv
 	\frac{2 \pi}{\mu}
 		\left[
