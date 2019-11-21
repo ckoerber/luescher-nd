@@ -1,33 +1,25 @@
 \section{Three Dimensions}\label{sec:3D}
 
-Now we can attempt a numerical characterization of two fermions with a contact interaction, considering both unitarity and, later, a finite scattering length.
-We implement the Hamiltonian in \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with $N$ sites and lattice spacing $\epsilon=L/N$.
-At first, we concentrate on traditional procedure, tuning the interaction strength $C(\Lambda)$ such that the ground state energy $E_0$ matches the first zero of the spherical zeta function $S^{\spherical}_3$ (eq.~\eqref{spherical quantization} and see also \figref{tuning}).
-In our computations, the low-lying energy levels for fixed physical volume and fixed lattice spacing are extracted using numeric exact diagonalization after the strength is tuned to machine precision.
-The zeta function is evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}.
+In this section we describe a two fermion system with a contact interaction, considering both unitarity and, later, a finite scattering length.
+We implement the Hamiltonian of this system in \eqref{p space hamiltonian} in a three-dimensional cubic box of linear size $L$ with $N$ sites and lattice spacing $\epsilon=L/N$.
+At first, the interaction parameter $C(\Lambda)$ of this system is tuned in the regular way. 
+E.g., this parameter is matched to the ground state energy $E_0$ of the system such that $E_0$ matches the first intersection of the spherical zeta function $S^{\spherical}_3$ (evaluated using software provided by \Refs{Morningstar:2017spu,Morningstar:2hib}) with the physical phase shifts (eq.~\eqref{spherical quantization}).
+After the interaction parameter is tuned to machine precision, the low-lying energy levels for the fixed volume and fixed lattice spacing are extracted using numeric exact diagonalization.
 
-This tuning procedure ensures that the finite-volume effects are incorporated in the energy levels and thus the contact interaction strength is independent of the volume length $L$.
-However, the interaction strength still depends on the implementation of the kinetic operator and the lattice spacing, $C(\Lambda)\to C^{(n_s)}(\pi/\epsilon)$.
-Therefore the strength has to be retuned for each lattice implementation.
-This lattice dependence has the consequence that each lattice observable, for example the energy spectrum (besides the input ground state), has to extrapolated to the continuum limit first to extract \textit{pure} finite-volume energy levels.
-These energy levels can be used in L\"uscher's formalism to extract infinite volume scattering data.
+The tuning procedure to intersections of the zeta function with the physical phase shifts ensures that the finite-volume effects are incorporated in the energy levels and thus the contact interaction parameter is independent of the volume length $L$.
+However, the interaction strength still depends on the implementation of the kinetic operator and the lattice spacing.
+Therefore the strength has to be retuned for each lattice discretization implementation.
+This discretization dependence has the consequence that in order to obtain \textit{pure} finite-volume energy levels which can be used to compute physical phase shifts, each lattice energy level (besides the input ground state), has to extrapolated to the continuum first.
+Only when using these continuum energy levels in \Luscher's formalism, one can expect to extract infinite volume scattering information.
 
-\begin{figure}
-\center
- \scalebox{0.8}{\input{figure/3d.pgf}}
-%\includegraphics[width=.7\textwidth]{figure/3d.pgf}
-\caption{\label{fig:tuning}
-    {\color{red} Caption needs updating!}. Constant phase shifts (colored lines) described by a contact interaction and the three-dimensional zeta function $\frac{1}{\pi L} S^{\spherical}_3$ (dashed line).
-    The Finite Volume energy spectrum is extracted by computing the intersections of the zeta function with the phase shifts (see \eqref{spherical quantization}).
-    The first intersection $x_0$, which corresponds to the binding energy $E_0 < 0$, is used to tune the interaction $c^{(n_s)}(\epsilon)$ for a given lattice implementation.
-    This treatment allows to determine $c^{(n_s)}(\epsilon)$ independent of volume sizes.
-}
-\end{figure}
-
-In practice, it is not always possible to compute a continuum limit before inserting the finite-volume spectrum into L\"{u}scher's formalism.
-We therefore attempt both approaches, performing a continuum limit before and after inserting energy levels in L\"{u}scher's zeta function to the obtained spectrum.
-
-In the following section we present results obtained for the spherical and dispersion quantization conditions computed for the following parameters
+In practice, it is not always possible to compute any energy level in the continuum limit before using it in the finite-volume \Luscher formalism.
+We therefore present consequences of the following scenarios; to obtain physical scattering data, we
+\begin{itemize}
+	\item perform a continuum limit of the spectrum before inserting it in \Luscher's's zeta function
+	\item insert finite energy levels at a finite spacing in the Zeta function and perform a continuum limit afterwards
+	\item utilize the dispersion zeta function to simultaneously perform a continuum and infinite volume limit
+\end{itemize}
+The results for these approaches are obtained for the following parameters
 \begin{equation}
     \{ L \,[\mathrm{fm}]= 1, 2 \}
     \times \left\{ \epsilon \,[\mathrm{fm}] = \frac{1}{4}, \frac{1}{5}, \frac{1}{10}, \frac{1}{20}, \frac{1}{40}, \frac{1}{50} \right\}
