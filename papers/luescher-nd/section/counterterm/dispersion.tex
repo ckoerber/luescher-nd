@@ -22,8 +22,6 @@ The sum over dimensions can be isolated by introducing another integral
 which can be numerically evaluated quickly for $\xtilde\leq0$.
 The counterterm for the leading divergence $\counterterm_D^{\dispersion}$ is the $\xtilde=0$ value.
 For three dimensions, we show this counterterm and how it differs from the $\nstep \to \infty$ counterterm in \Figref{nstep counterterm} and provide precise values in table \tabref{diserpersion-zeta-3d-counterterm-counterterm}.
-
-
 \begin{table}[htb]
     \input{section/counterterm/diserpersion-zeta-3d-counterterm-table.tex}
     \caption{
@@ -40,3 +38,23 @@ For three dimensions, we show this counterterm and how it differs from the $\nst
     }
     \label{fig:nstep counterterm}
 \end{figure}
+
+If we assume $n^{s}=\infty$ we can obtain analytic solutions when $\tilde x=0$.  For $D=3$ we find
+\begin{multline}
+\counterterm_3^{\dispersion}=-8 G-4 i \left\{2 \text{Li}_2\left(1-\sqrt[4]{-1}\right)-2 \text{Li}_2\left(1+(-1)^{3/4}\right)+\text{Li}_2\left(3 i-2 i
+   \sqrt{2}\right)-2 \text{Li}_2\left(\frac{1}{2} \left((-1-i)+\sqrt{2}\right)\right)\right.\\
+   \left.+2 \text{Li}_2\left(\frac{1}{2}
+   \left((-1+i)+\sqrt{2}\right)\right)-2 \text{Li}_2\left(\frac{2}{(1-i)+\sqrt{2}}\right)+2
+   \text{Li}_2\left(\frac{2}{(1+i)+\sqrt{2}}\right)+2 \text{Li}_2\left(\frac{2 i}{(1+3 i)+(1+2 i)
+   \sqrt{2}}\right)\right.\\
+   \left.-\text{Li}_2\left(i \left(-3+2 \sqrt{2}\right)\right)-2 \text{Li}_2\left(\frac{2}{(3+i)+(2+i)
+   \sqrt{2}}\right)\right\}+\pi  \log \left(7880+5572 \sqrt{2}\right)\ ,
+   \end{multline}
+where $G$ is Catalan's constant and $\text{Li}_2$ is a polylogarithm of order 2.  For $D=2$ the dominant $N$ part of~\eqref{rescaled-counterterm-integral} is logarithmic,
+\begin{equation}
+2\pi\log\left(\frac{N}{2}\right)-4\left(G-\frac{\pi }{2}\log(2)\right)=2\pi\log\left(\counterterm_2^{\dispersion}\frac{N}{2}\right)\ ,
+\end{equation}
+with
+\begin{equation}
+\counterterm_2^\dispersion=\exp\left(\log(2)-G\frac{2}{\pi}\right)\ .
+\end{equation}
