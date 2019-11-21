@@ -5,7 +5,7 @@ Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon 
 \begin{equation}
     E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-Because the contact interaction is expected to scale linear with the momentum cutoff and thus linear in $\frac{1}{\epsilon}$ (see \eqref{three-d-counterterm}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
+Because the contact interaction is expected to scale linear with the momentum cutoff and thus linear in $1/\epsilon$ (see \eqref{three-d-counterterm}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
 Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for smaller $n_s$: $e_{i,n}^{(n_{s_1})} < e_{i,n}^{(n_{s_2})}$ on average for $n_{s_1} > n_{s_2}$.
 
 We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \Ref{peter_lepage_2016_60221}.
@@ -38,7 +38,7 @@ We noted that including higher polynomials with $n_\mathrm{max} > 6$ resulted in
 }.
 As expected, the continuum limit becomes more uncertain for excited states.
 Furthermore, the $n_s = \infty$ implementation provides the most precise results.
-Surprisingly it seems like the $n_s = 1$ implementation seems to be more precise on average than some improved implementations -- even though non-extrapolated values are further apart from the continuum as in the other cases.
+Surprisingly a few energy levels in the $n_s = 1$ implementation have a more precise continuum limit on average than some improved implementations -- even though non-extrapolated energy values are further apart from the continuum as in the improved cases.
 This effect is related to the continuum convergence pattern.
 While the $n_s = 1$ (and $n_s = \infty$) energy values seem to converge against the continuum result from below (and respectively from above) for all excited states, the improved derivative eigenvalues change their convergence pattern.
 The slope of the extrapolation function changes it sign from $E_2 \to E_4$ for $n_s = 2$ and from $E_6 \to E_8$ for  $n_s = 4$.
@@ -56,10 +56,10 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
 \caption{
     \label{fig:continuum-extrapolation-spectrum}
     Continuum extrapolation of the discrete finite volume spectrum with $L=1\,[\mathrm{fm}]$.
-    Each column represents a different implementation of the Kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by size.
-    For visualization purposes we present each second eigenvalue starting at $E_2$ because $E_0$ was used to tune the interaction and is thus constant by definition.
+    Each column represents a different implementation of the Kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by value.
+    For visualization purposes we present each second eigenvalue starting at $E_2$ ($E_0$ was used to tune the interaction and is thus constant by definition).
     Black dots are the eigenvalues at different lattice spacings, the green band is the model averaged fit function for best parameters and the blue band parallel to the x-axis is the continuum extrapolated energy.
-    The uncertainty is dominated by the fluctuations over models, the propagated numerical uncertainty is negligible in comparison.
+    The uncertainty is dominated by the fluctuations over models; the propagated numerical uncertainty is negligible in comparison.
     The dashed line corresponds to the expected result obtained by computing the intersection of the zeta function $S^{\spherical}_3$ with the phase shifts.
     The boundary of each frame corresponds to the poles of the zeta function.
     Different energy extrapolations in the continuum agree with Lüscher's prediction within uncertainty.
@@ -114,8 +114,8 @@ The non-zero lattice spacing induces effective-range-like effects.
 As we will show in the next section, this effect arises from using the continuum $S^{\spherical}$ rather than the lattice-aware $S^{\dispersion}$.
 
 We visualize the continuum limit of phase shift points in \figref{iv-continuum}.
-Similar to the case where we first extrapolated the spectrum to the continuum and computed phase shifts afterwards, the best discretization allows to also extrapolate higher excited states to zero--visible by the linear dependence of the phase shifts on epsilon.
-We note that similar to the case where we first extrapolated the spectrum to the continuum, the extrapolation of the phase shifts seems to work best for the same discretization schemes in the similar energy range.
+Similar to the case where we first extrapolated the spectrum to the continuum and computed phase shifts afterwards, the best discretization allows to also extrapolate higher excited states to zero--visible by the linear log-log dependence of the phase shifts on epsilon.
+We note that similar to the case where we first extrapolated the spectrum to the continuum, the extrapolation of the phase shifts seems to work best for the same discretization schemes in the same energy range.
 For example, while we find a linear log-log scaling region in \figref{iv-continuum} for $n_s = 2$ and $x<6$, uncertainties of the $n_s =2$ extrapolation also start to increase in \figref{continuum-extrapolation-spectrum} after $x>6$.
 However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related to the $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
 
