@@ -1,7 +1,7 @@
 \section{The Dispersion Counterterm}
 \label{sec:dispersion-counterterm}
 
-To evaluate the infinite-volume integral in \eqref{dispersion-counter-integral}, we rescale the $n$ integration to extract $N$ out of the integral and rescale and $x \to \xtilde = 4 \pi^2  x/(N/2)^2$
+To evaluate the infinite-volume integral in \eqref{dispersion-counter-integral}, we rescale the $n$ integration to extract $N$ out of the integral and rescale  $x \to \xtilde = 4 \pi^2  x/(N/2)^2$
 \begin{align}\label{eq:rescaled-counterterm-integral}
 	\frac{(2\pi)^2L^{D-2}}{2\mu}
 	I_D^{(n_s)}
@@ -52,7 +52,7 @@ If we assume $n^{s}=\infty$ we can obtain analytic solutions when $\tilde x=0$. 
    \end{multline}
 where $G$ is Catalan's constant and $\text{Li}_2$ is a polylogarithm of order 2.  For $D=2$ the dominant $N$ part of~\eqref{rescaled-counterterm-integral} is logarithmic,
 \begin{equation}
-2\pi\log\left(\frac{N}{2}\right)-4\left(G-\frac{\pi }{2}\log(2)\right)=2\pi\log\left(\counterterm_2^{\dispersion}\frac{N}{2}\right)\ ,
+ \int_{-N/2}^{+N/2} \mathrm{d}^2n\; \PV \frac{1}{\bm n^2 - x}= 2\pi\log\left(\frac{N}{2}\right)-4\left(G-\frac{\pi }{2}\log(2)\right)+\mathcal{O}(N^{-1})=2\pi\log\left(\counterterm_2^{\dispersion}\frac{N}{2}\right)+\mathcal{O}(N^{-1})\ ,
 \end{equation}
 with
 \begin{equation}
