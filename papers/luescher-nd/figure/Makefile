@@ -17,7 +17,9 @@ FIGURES=I0.pdf	\
 		3d.pgf																		\
 		3dtuned.pgf																	\
 		2d.pgf																		\
-		1d.pgf
+		1d.pgf																		\
+		continuum-extrapolation.pgf													\
+		continuum-extrapolation-ere.pgf
 
 all:	$(FIGURES)
 
@@ -57,6 +59,14 @@ a1g-state-overlap.pgf: a1g-state-overlap.ipynb
 	jupyter nbconvert --to notebook --execute --output a1g-state-overlap-run.ipynb a1g-state-overlap.ipynb
 	$(RM) a1g-state-overlap-run.ipynb
 
+continuum-extrapolation: spectrum-continuum-limit-paper.ipynb
+	jupyter nbconvert --to notebook --execute --output spectrum-continuum-limit-paper-run.ipynb spectrum-continuum-limit-paper.ipynb
+	$(RM) aspectrum-continuum-limit-paper-run.ipynb
+	touch continuum-extrapolation
+
+continuum-extrapolation-ere.pgf: continuum-extrapolation
+continuum-extrapolation.pgf: continuum-extrapolation
+
 ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf: ere
 ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pgf: ere
 ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf: ere
@@ -74,6 +84,7 @@ tidy:
 	$(RM) I0.dvi I0.ps I0.aux I0.log
 	$(RM) ere
 	$(RM) continuum
+	$(RM) continuum-extrapolation
 
 clean: tidy
 	$(RM) $(FIGURES)
