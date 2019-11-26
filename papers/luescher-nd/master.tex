@@ -17,7 +17,7 @@
 \usepackage{booktabs} % fancy table commands like \midrule
 \usepackage{placeins}
 \usepackage{anyfontsize} % Remove font shape warnings
-
+\usepackage{float} % Forcing figures to obey the float master
 \newcommand\todo[1]{{\bf\color{red}TODO: #1}}
 
 %%%
@@ -59,7 +59,7 @@ By taking advantage of a latticized \Luscher zeta function, we can achieve a mom
 \input{section/two-particle-scattering}
 \input{section/hamiltonian}
 \input{section/luescher}
-\input{section/three-dimensions}    \FloatBarrier
+\input{section/three-dimensions}   
 \input{section/one-dimension}       \FloatBarrier
 \input{section/two-dimensions}      \FloatBarrier
 % \input{section/results}
@@ -71,6 +71,7 @@ By taking advantage of a latticized \Luscher zeta function, we can achieve a mom
 \input{section/counterterm/spherical}
 \input{section/appendix/three-d}
 \input{section/counterterm/dispersion}
+\input{section/appendix/infinite-volume-before-continuum}
 
 \bibliography{master}
 

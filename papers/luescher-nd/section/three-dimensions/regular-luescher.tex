@@ -1,5 +1,21 @@
 \subsection{Continuum extrapolation before infinite volume limit}
 
+\begin{figure}[!htb]
+\scalebox{1.0}{\input{figure/continuum-extrapolation.pgf}}
+\caption{
+    \label{fig:continuum-extrapolation-spectrum}
+    Continuum extrapolation of the discrete finite volume spectrum with $L=1\,[\mathrm{fm}]$.
+    Each column represents a different implementation of the Kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by value.
+    For visualization purposes we present each second eigenvalue starting at $E_2$ ($E_0$ was used to tune the interaction and is thus constant by definition).
+    Black dots are the eigenvalues at different lattice spacings, the green band is the model averaged fit function for best parameters and the blue band parallel to the x-axis is the continuum extrapolated energy.
+    The uncertainty is dominated by the fluctuations over models; the propagated numerical uncertainty is negligible in comparison.
+    The dashed line corresponds to the expected result obtained by computing the intersection of the zeta function $S^{\spherical}_3$ with the phase shifts.
+    The boundary of each frame corresponds to the poles of the zeta function.
+    Different energy extrapolations in the continuum agree with Lüscher's prediction within uncertainty.
+    For finite discretization implementations ($n_s < \infty$), the uncertainty drastically increases with the number of excited states ($\sim 3$ orders of magnitude from $E_2^{(n_s)}$ to $E_{20}^{(n_s)}$).
+}
+\end{figure}
+
 After tuning the contact interaction to the first zero of the spherical zeta function, we compute the spectrum of the hamiltonian.
 Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon \to 0$ using a polynomial fit
 \begin{equation}
@@ -51,24 +67,9 @@ Because the zeta function is relatively steep, uncertainties in the continuum li
 We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ discretization come with significant uncertainties.
 
 
-\begin{figure}[htb]
-\scalebox{1.0}{\input{figure/continuum-extrapolation.pgf}}
-\caption{
-    \label{fig:continuum-extrapolation-spectrum}
-    Continuum extrapolation of the discrete finite volume spectrum with $L=1\,[\mathrm{fm}]$.
-    Each column represents a different implementation of the Kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by value.
-    For visualization purposes we present each second eigenvalue starting at $E_2$ ($E_0$ was used to tune the interaction and is thus constant by definition).
-    Black dots are the eigenvalues at different lattice spacings, the green band is the model averaged fit function for best parameters and the blue band parallel to the x-axis is the continuum extrapolated energy.
-    The uncertainty is dominated by the fluctuations over models; the propagated numerical uncertainty is negligible in comparison.
-    The dashed line corresponds to the expected result obtained by computing the intersection of the zeta function $S^{\spherical}_3$ with the phase shifts.
-    The boundary of each frame corresponds to the poles of the zeta function.
-    Different energy extrapolations in the continuum agree with Lüscher's prediction within uncertainty.
-    For finite discretization implementations ($n_s < \infty$), the uncertainty drastically increases with the number of excited states ($\sim 3$ orders of magnitude from $E_2^{(n_s)}$ to $E_{20}^{(n_s)}$).
-}
-\end{figure}
 
-
-\begin{figure}[hbt]
+\begin{figure}[H]
+	\centering
     \scalebox{1.0}{\input{figure/continuum-extrapolation-ere.pgf}}
     \caption{
         \label{fig:continuum-extrapolation-ere}
@@ -89,6 +90,7 @@ Next we want to discuss what effects finite discretization artifacts have when a
 We insert the energy levels presented in \figref{continuum-extrapolation-spectrum} before taking the continuum limit and present results in figure \figref{unimproved spherical}.
 
 \begin{figure}[th]
+	\centering
     \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
     \caption{
         \label{fig:unimproved spherical}
@@ -119,13 +121,3 @@ We note that similar to the case where we first extrapolated the spectrum to the
 For example, while we find a linear log-log scaling region in \figref{iv-continuum} for $n_s = 2$ and $x<6$, uncertainties of the $n_s =2$ extrapolation also start to increase in \figref{continuum-extrapolation-spectrum} after $x>6$.
 However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related to the $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
 
-
-\begin{figure}[th]
-    \scalebox{1.0}{\input{figure/ere-continuum-extrapolation.pgf}}
-    \caption{
-        \label{fig:iv-continuum}
-        Continuum limit of different phase shift points computed by inserting finite lattice spacing eigenstates in $S^{\spherical}_3$ (see \figref{unimproved spherical}).
-        Each column represents a different kinetic operator and each row tracks a different eigenvalue of the discrete finite-volume hamiltonian.
-        Note that both axis have a log scale and thus on these scales, a linear trend for the phase shifts suggests that they extrapolate to zero.
-    }
-\end{figure}
