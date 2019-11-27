@@ -17,7 +17,7 @@ ifndef VERBOSE
 	REDIRECT=1>/dev/null 2>/dev/null
 endif
 
-ifdef DRAFT
+ifndef FINAL
 	OPTIONS?=$(shell ./repo/$(REPO).sh $(OLD) $(NEW))
 endif
 
