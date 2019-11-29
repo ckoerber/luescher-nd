@@ -123,12 +123,10 @@ Because we cut off the sum and the integral in exactly the same way, in dimensio
 Let $N=\Lambda L/\pi$.
 Then, with a finite cutoff on magnitude $N/2$, we define
 \begin{equation}\label{eq:spherical cutoff S}
-    S^{\spherical N}_D(x) = \begin{cases}
-    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x) & \text{($D=3,1$)}\\
-    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x} & \text{(D=2)}
-    \end{cases}
+    S^{\spherical N}_D(x) =
+    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x)\ ,
 \end{equation}
-where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.  The expression proportional to the heavyside function in $D=3,1$ in~\eqref{spherical cutoff S} exactly compensates the term proportional to the heavyside function on the LHS of~\eqref{general luscher}.  For $D=2$ there is no such compensating term, and we will return to this later.  By performing the principal value integrals and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
+where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.  The expression proportional to the heavyside function in~\eqref{spherical cutoff S} exactly compensates the term proportional to the heavyside function on the LHS of~\eqref{general luscher}.   By performing the principal value integrals and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
 \begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
@@ -137,7 +135,7 @@ where the $\spherical$ superscript reminds us that we cut off our sum and integr
     \lim_{N\rightarrow\infty} \sum_{\vec{n}}^{n < N/2}
     \begin{cases}
      \frac{1}{n^2-x} - \counterterm_3^\spherical \frac{N}{2}& (D=3)\\
-     \frac{1}{n^2-x} - 2\pi\log\left(\counterterm_2^\spherical\frac{N}{2}|x|^{-1/2}\right)& (D=2)\\
+     \frac{1}{n^2-x} - 2\pi\log\left(\counterterm_2^\spherical\frac{N}{2}x^{-1/2}\right)& (D=2)\\
     \frac{1}{n^2-x} & (D=1)
      \end{cases}
 \end{equation}
@@ -146,12 +144,12 @@ In higher dimensions there will be additional divergences which cancel, for exam
 }
 Finally, combining eq.~\eqref{spherical S} with~\eqref{general luscher} gives
 \begin{equation}\label{eq:spherical quantization}
-    \cot \delta_{D}(p)-i\theta(-E)\delta_{D,2} = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
+    \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
 \end{equation}
 where we traded the energy dependence for momentum on the left-hand side.
 This is the \Luscher finite-volume quantization condition for $D=1-3$ dimensions, and finite-volume energy levels should be fed through it to produce continuum scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion \eqref{ere}.
-In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.  The sum in~\eqref{spherical S} can be analytically done in $D=1$, as we will show in \Secref{1D}.
+In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.  Finally, the sum in~\eqref{spherical S} can be analytically done in $D=1$, as we will show in \Secref{1D}.
 
 %Derived in the zero-temperature continuum, only cold continuum-extrapolated spectra ought to be fed through the quantization condition \eqref{spherical quantization} to extract continuum phase shifts.
 
