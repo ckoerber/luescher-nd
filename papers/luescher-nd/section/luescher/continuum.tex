@@ -98,53 +98,62 @@ Note that both equations are explicitly evaluated for the same interactions $C_\
 Furthermore \eqref{spherical zeta} is only valid if evaluated at momenta corresponding to finite-volume eigenenergies $E$.
 
 Plugging our results for the integrals in, one finds
-\begin{equation}
+\begin{multline}
     \frac{1}{2\F_{D}(\sqrt{2\mu E})}\left(\cot \delta_{D}(\sqrt{2\mu E}) - i\right)
-    =
+    =\\
     \frac{2}{(2\pi)^2 L^{D-2}}
     \lim\limits_{\Lambda \to \infty}
     \left[
-    	\left(\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} +
+    	\left(\mathcal{P}\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} +
 		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right)
 	\right]
-\end{equation}
+\end{multline}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$,
-The integral corresponds to the principle value integration and implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
-The imaginary part on the left hand side exactly cancels the last term on the right---demanding this cancellation is how the kinematic factor $\F_D$ of the $T$ matrix is determined----and we are left with
+The principle value integration implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
+The imaginary part on the left hand side exactly cancels the last term on the right when $E\ge0$.  When $E<0$ the last term on the RHS vanishes and so we have 
+%--demanding this cancellation is how the kinematic factor $\F_D$ of the $T$ matrix is determined----and we are left with
 \begin{equation}\label{eq:general luscher}
-    \cot \delta_{D}(p)
+   \frac{1}{2\F_{D}(\sqrt{2\mu E})}  \left( \cot \delta_{D}(p)-i\theta(-E)\right)
     =
-    \frac{\F_{D}(p)}{\pi^2 L^{D-2}}
-    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\int_{\vec{n}}\right) \frac{1}{n^2-x}
+   \frac{2}{(2\pi)^2 L^{D-2}}
+    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}
 \end{equation}
-with $x$ as in \eqref{I0 FV} and we switched the sign of the sum and integral as well as the sign of the denominator.
+with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_D$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
 Let $N=\Lambda L/\pi$.
-Then, defining, with a finite cutoff on magnitude $N/2$,
+Then, with a finite cutoff on magnitude $N/2$, we define
 \begin{equation}\label{eq:spherical cutoff S}
-    S^{\spherical N}_D(x) = \left(\sum_{\vec{n}}- \int_{\vec{n}}\right) \frac{1}{n^2-x}
+    S^{\spherical N}_D(x) = \begin{cases}
+    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x) & \text{($D=3,1$)}\\
+    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x} & \text{(D=2)}
+    \end{cases}
 \end{equation}
-where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$, we recover the usual \Luscher zeta functions by taking
+where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.  The expression proportional to the heavyside function in $D=3,1$ in~\eqref{spherical cutoff S} exactly compensates the term proportional to the heavyside function on the LHS of~\eqref{general luscher}.  For $D=2$ there is no such compensating term, and we will return to this later.  By performing the principal value integrals and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
 \begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
     \lim_{N\goesto\infty} S^{\spherical N}_D(x)
     =
-    \lim_{N\rightarrow\infty}\left( \sum_{\vec{n}}^{n < N/2} \frac{1}{n^2-x} - \counterterm_D^\spherical \left(\frac{N}{2}\right)^{D-2}\right)
+    \lim_{N\rightarrow\infty} \sum_{\vec{n}}^{n < N/2}
+    \begin{cases}
+     \frac{1}{n^2-x} - \counterterm_3^\spherical \frac{N}{2}& (D=3)\\
+     \frac{1}{n^2-x} - 2\pi\log\left(\counterterm_2^\spherical\frac{N}{2}|x|^{-1/2}\right)& (D=2)\\
+    \frac{1}{n^2-x} & (D=1)
+     \end{cases}
 \end{equation}
-where dimension-dependent counterterm $\counterterm_D^\spherical$ comes from the integral; we evaluate the spherical-cutoff integrals and extract said counterterms in \Appref{counterterm/spherical}.\footnote{
+where the dimension-dependent coefficients $\counterterm_D^\spherical$ of the counterterms come from the principal value integral; we evaluate the spherical-cutoff integrals and extract these coefficients in \Appref{counterterm/spherical}.\footnote{
 In higher dimensions there will be additional divergences which cancel, for example, in five spatial dimensions there will be a cubic and linear divergence.
 }
-Finally,
+Finally, combining eq.~\eqref{spherical S} with~\eqref{general luscher} gives
 \begin{equation}\label{eq:spherical quantization}
-    \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
+    \cot \delta_{D}(p)-i\theta(-E)\delta_{D,2} = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
 \end{equation}
 where we traded the energy dependence for momentum on the left-hand side.
-This is the usual \Luscher finite-volume quantization condition, and finite-volume energy levels should be fed through it to produce continuum scattering data.
+This is the \Luscher finite-volume quantization condition for $D=1-3$ dimensions, and finite-volume energy levels should be fed through it to produce continuum scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion \eqref{ere}.
-In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.
+In two dimensions, it will prove useful to explicitly separate the logarithmic divergence, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.  The sum in~\eqref{spherical S} can be analytically done in $D=1$, as we will show in \Secref{1D}.
 
-Derived in the zero-temperature continuum, only cold continuum-extrapolated spectra ought to be fed through the quantization condition \eqref{spherical quantization} to extract continuum phase shifts.
+%Derived in the zero-temperature continuum, only cold continuum-extrapolated spectra ought to be fed through the quantization condition \eqref{spherical quantization} to extract continuum phase shifts.
 
 To approach the continuum limit, the authors of \Ref{Lee:2007ae} proposed tuning the interaction until the ground state, when fed through $S^\spherical$, produced the desired amplitude that corresponds to the desired scattering length.
 We will show in \Secref{3D} that this procedure induces a momentum dependence in the scattering amplitude sensitive to discretization.
