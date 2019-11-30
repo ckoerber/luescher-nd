@@ -6,15 +6,15 @@
 Welcome to luescher-nd's documentation!
 =======================================
 
+Welcome to the documentation of `luescher-nd`.
+This documentation supports the publication `Renormalization of a Contact Interaction on a Lattice <https://www.arxiv.org>`_.
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+    :caption: Contents:
+    README
+    Usage
+    api/index
