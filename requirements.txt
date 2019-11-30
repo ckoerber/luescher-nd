@@ -11,3 +11,4 @@ tqdm
 blackcellmagic
 lsqfit
 gvar
+sphinx
