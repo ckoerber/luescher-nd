@@ -1,0 +1,193 @@
+\documentclass[aps,superscriptaddress,tightenlines,nofootinbib,floatfix,longbibliography,notitlepage]{revtex4-1}
+\usepackage[left=18mm,right=19mm,top=23mm,bottom=16mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{bm,bbm}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{slashed}
+\usepackage[multidot]{grffile} %because multiple dots in filenames confuse latex
+\usepackage[
+    colorlinks=true,
+    allcolors=blue
+]{hyperref}
+\usepackage{pgfplots}
+%%%%
+%%%%    Document preparation
+%%%%
+
+\begin{document}
+
+\section{Why "truncated" dispersion Lüscher works}
+
+Let's start with infinite volume continuum with a cutoff.
+We know that for a contact interaction, the on-shell $T$-matrix is given by
+\begin{equation}
+	V(p', p) = c(\Lambda) \qquad \Rightarrow \qquad
+	T(p, \Lambda) = \frac{c(\Lambda)}{1 - c(\Lambda) I(p, \Lambda)} \, .
+\end{equation}
+In three-d, we also find that
+\begin{equation}
+	I(p, \Lambda)
+	=
+	\frac{4 \pi}{(2\pi)^3} \lim_{\epsilon \to 0}\int_{0}^{\Lambda} d q q^2 \frac{2 \mu}{p^2 - q^2 + i \epsilon}
+	=
+	-\frac{\mu}{2\pi^2}   \left(2 \Lambda +p \log \left(1-\frac{2 p}{\Lambda +p}\right)\right) + \frac{i \mu p}{2 \pi}
+	\, .
+\end{equation}
+and thus we know that
+\begin{equation}
+	p \cot \delta(p) 
+	= \frac{2 \pi}{\mu}\frac{1}{T(p, \Lambda)} + i p
+	= \frac{2 \pi}{\mu} \frac{1}{c(\Lambda)} + \frac{2 \Lambda}{\pi} + \frac{2 p}{\pi} \log \left( \frac{\Lambda - p}{\Lambda + p}\right)
+\end{equation}
+So if you choose
+\begin{equation}
+	\frac{2 \pi}{\mu} \frac{1}{c(\Lambda)} + \frac{2 \Lambda}{\pi} = - \frac{1}{a_0} \, ,
+\end{equation}
+the limit of $\Lambda \to \infty$ is well defined and reproduces the scattering length $a_0$.
+
+In other words, if you fix your contact interaction properly, you get
+\begin{equation}
+	- \frac{1}{a_0}
+	=
+	\lim\limits_{\Lambda \to \infty} \mathcal R \left( \frac{2 \pi}{\mu} \frac{1}{T(p, \Lambda)} \right)
+	=
+	\lim\limits_{\Lambda \to \infty} \mathcal R \left(\frac{2 \pi}{\mu}   \frac{1 - c(\Lambda) I(p, \Lambda)}{c(\Lambda)} \right)
+	\, .
+\end{equation}
+Note that this expression is constant in $p$.
+
+Now we play a few funny tricks.
+First, let me identify $\Lambda$ with $\frac{\pi}{\epsilon}$.
+This gives
+\begin{equation}
+	- \frac{1}{a_0}
+	=
+	\frac{2 \pi}{\mu}
+	\lim\limits_{\epsilon \to 0} \mathcal R \left(\frac{1 - c\left(\frac{\pi}{\epsilon}\right) I\left(p, \frac{\pi}{\epsilon}\right)}{c\left(\frac{\pi}{\epsilon}\right)} \right)
+	\, .
+\end{equation}
+Next, I introduce this parameter $n_s$ with deforms the $q^2$ inside $I(p, \epsilon/\pi)$ in such a way\footnote{Also I change the integration boundaries to be cubic but that's another story we found to not make a difference in the $\Lambda \to \infty$ limit.} that
+\begin{equation}
+	q^2_{n_s} = \frac{1}{\epsilon^2}\sum_{i=1}^3\sum_{n=0}^{n_s}  \gamma_n^{(n_s)} \cos(\epsilon q_i n \epsilon) \, ,
+\end{equation}
+with coefficients $\gamma_n^{(n_s)}$ such that $\lim\limits_{n_s \to \infty} q^2_{n_s} = q^2$ and $q^2_{n_s} = q^2(1 + \mathcal O(q\epsilon)^{2 n_s})$.
+Note that because $p_\text{max} = \pi / \epsilon$, we actually have to do the $n_s \to \infty$ limit first.
+Though probably one can find an argument why they commute.
+Also, because I am particularly funny today, I also say that $c$ depends on this $n_s$ parameter as well and is smooth in the limit of $n_s \to \infty$.
+
+So we have
+\begin{equation}
+	- \frac{1}{a_0}
+	=
+	\frac{2 \pi}{\mu}
+	\lim\limits_{\epsilon \to 0} \lim\limits_{n_s \to \infty}\mathcal R \left(\frac{1 - c^{(n_s)}\left(\frac{\pi}{\epsilon}\right) I^{(n_s)}\left(p, \frac{\pi}{\epsilon}\right)}{c^{(n_s)}\left(\frac{\pi}{\epsilon}\right)} \right)
+	\, .
+\end{equation}
+Furthermore, one can show that solving the Schrödinger equation on the lattice in finite volume is equal to
+\begin{equation}
+	0 = 1 - c^{(n_s)}\left(\frac{\pi}{\epsilon}\right) I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)
+	\, ,
+\end{equation}
+where $E_i$ is an eigen energy solution to the Schrödinger equation which was solved for a given $c^{(n_s)}\left(\frac{\pi}{\epsilon}\right)$.
+Note the the energies know about finite volume and is independent of the previous $p$!
+The finite volume "integral" $I^{(FV, n_s)}$, now sums over discrete $q_i$ which range from $[0, N)$ where $N = L / \epsilon$ with a momentum lattice spacing of $2\pi/L$.
+
+If one adds this delicate zero, we find that
+\begin{align}
+	- \frac{1}{a_0}
+	&=
+	\frac{2 \pi}{\mu}
+	\lim\limits_{\epsilon \to 0} \lim\limits_{n_s \to \infty}\mathcal R \left(
+		\frac{1 - c^{(n_s)}\left(\frac{\pi}{\epsilon}\right) I^{(n_s)}\left(p, \frac{\pi}{\epsilon}\right)
+		-
+			\left[1 - c^{(n_s)}\left(\frac{\pi}{\epsilon}\right) I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)\right]
+		}
+		{c^{(n_s)}\left(\frac{\pi}{\epsilon}\right)} 
+	\right)
+	\\
+	&= 
+	\frac{2 \pi}{\mu}
+	\lim\limits_{\epsilon \to 0} \lim\limits_{n_s \to \infty}\mathcal R \left(
+		I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)
+		-
+		I^{(n_s)}\left(p, \frac{\pi}{\epsilon}\right)
+	\right)
+\end{align}
+Here comes the thing Evan and I have been discussing today.
+
+If everything is convergent for particular values of $p$, then we also find that
+\begin{align}
+	- \frac{1}{a_0}
+	&= 
+	\frac{2 \pi}{\mu}
+	\lim\limits_{\epsilon \to 0} \lim\limits_{n_s \to \infty}\mathcal R \left(
+		I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)
+		-
+		I^{(n_s)}\left(p=0, \frac{\pi}{\epsilon}\right)
+	\right)
+	\, ,
+\end{align}
+Which I will call (truncated) dispersion Lüscher zeta function from now on (modulo factors)
+\begin{equation}
+	\tilde S^{(FV, n_s)}(E_i^{(FV, n_s)}, \epsilon)
+	\equiv
+	\mathcal R \left(
+		I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)
+		-
+		I^{(n_s)}\left(p=0, \frac{\pi}{\epsilon}\right)
+	\right)
+	\, .
+\end{equation}
+
+Because $I^{(n_s)}\left(p=0, \frac{\pi}{\epsilon}\right)$ is independent off $E_i^{(FV, n_s)}$ and since $I^{(FV, n_s)}\left(\sqrt{2\mu E_i^{(FV, n_s)}}, \frac{\pi}{\epsilon}\right)$ is a constant ($= - 1 / c(\pi / \epsilon)$) if evaluated at eigen energies of the Hamiltonian with contact interaction $c(\pi / \epsilon)$, we know that 
+\begin{equation}
+	\tilde S^{(FV, n_s)}(E_i^{(FV, n_s)}, \epsilon)
+	=
+	- \frac{1}{c^{(n_s)}(\frac{\pi}{\epsilon})} - C^{(n_s)}(\epsilon)
+	\,, \qquad
+	C^{(n_s)}(\epsilon)
+	= 
+	\mathcal R \left[(I^{(n_s)}\left(p=0, \frac{\pi}{\epsilon}\right)\right]
+	\, .
+\end{equation}
+So in other words, if I choose
+\begin{equation}
+	\label{eq:Counterterm-vs-contact}
+	- \frac{1}{c^{(n_s)}(\frac{\pi}{\epsilon})} - C^{(n_s)}(\epsilon) = - \frac{\mu}{2 \pi} \frac{1}{a_0} \, ,
+\end{equation}
+then everything works out.
+
+More particularly, if I fit them in such a way, the dispersion Lüscher zeta function is constant in $\epsilon$ and in $n_s$ (for eigen energies) and thus I actually do not have to run the limits at all: I can simply convert my energy level in discrete finite space to the infinite volume continuum results.
+
+Note that:
+\begin{itemize}
+	\item eq.~\ref{eq:Counterterm-vs-contact} is a prediction -- we can go back and check wether this relation is True!
+	\item @Evan: Everything I said here translates to $p \neq 0$ (as long as not evaluated at poles).
+		Thus you can see that non-truncated dispersion zeta (the above zeta evaluated at $p_i^{(FV, n_s)} = \sqrt{2 \mu E_i^{(FV, n_s)}}$) will cause an additional $f^{(n_s)}(p, \epsilon)$ dependence in the LHS of eq.~\ref{eq:Counterterm-vs-contact}.
+		But since $c^{(n_s)}$ is $p$ independent, this will cause finite $p_\text{fit}^{(FV, n_s)}$ residue:
+		$$
+			- \frac{1}{c^{(n_s)}(\frac{\pi}{\epsilon})} - C^{(n_s)}(\epsilon)  - f^{(n_s)}(p_\text{fit}^{(FV, n_s)}, \epsilon)= - \frac{\mu}{2 \pi} \frac{1}{a_0} \, .
+		$$
+		Thus, evaluating for different energies will cause a shift in the dispersion zeta of kind
+		$$
+			\hat S^{(FV, n_s)}(E_i^{(FV, n_s)}, \epsilon)
+			=
+			\tilde S^{(FV, n_s)}(E_i^{(FV, n_s)}, \epsilon)
+			+
+			\Delta^{(FV, n_s)}(\epsilon, \text{fit}, i)
+		$$
+		with
+		$$
+			\Delta^{(FV, n_s)}(\epsilon, \text{fit}, i)
+			=
+			f^{(n_s)}(p_\text{fit}^{(FV, n_s)}, \epsilon)
+			-
+			f^{(n_s)}(p_i^{(FV, n_s)}, \epsilon)
+		$$
+		I don't see that this generally cancels out.
+\end{itemize}
+
+\end{document}

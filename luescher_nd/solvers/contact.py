@@ -41,6 +41,16 @@ class FitKernel:
         ).x
         return x0 / 2 / (self.h.mass / 2) * (2 * np.pi / self.h.L) ** 2
 
+    def get_zeta_intersection(self, bounds: Tuple[float], **kwargs) -> float:
+        """Computes the intersection of the zeta function and the ERE for given bracket
+        """
+        options = kwargs.pop("options", {"xtol": self.xtol})
+        method = kwargs.pop("method", "bounded")
+        x = minimize_scalar(
+            self._ere_diff_sqrd, bounds=bounds, options=options, method=method, **kwargs
+        ).x
+        return x
+
     def chi2(self, contact_strength: float) -> float:
         """Computes the first eigenvalue and returns the squared difference between with
         expected value.

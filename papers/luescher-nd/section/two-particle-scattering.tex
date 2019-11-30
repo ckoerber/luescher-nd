@@ -1,0 +1,62 @@
+\section{Two-particle scattering}\label{sec:scattering}
+
+Two nonrelativistic particles interacting via a contact interaction of strength $C$ in $D$ dimensions are described by the Hamiltonian
+\begin{equation}
+    \label{eq:particle hamiltonian}
+    \hat H = \frac{\hat p_1^2}{2 m_1} + \frac{\hat p_2^2}{2 m_2} + C \delta^D(\hat x_1 - \hat x_2)
+    \,,
+\end{equation}
+where the subscripts identify the particle of the position and momentum operators.
+Moving to center-of-mass and relative coordinates, this Hamiltonian may be rewritten
+\begin{equation}
+    \label{eq:hamiltonian}
+    \hat H = \frac{\hat P^2}{2 M} + \frac{\hat p^2}{2 \mu} + C\delta^D(\hat{x})
+\end{equation}
+where capital letters represent center-of-mass variables, lower case implies relative coordinates, and $\mu$ is the reduced mass.
+Specializing to the center of mass frame by setting $P=0$ we reduce the problem to an effective one-body quantum mechanics in an external delta-function potential.
+
+For a general two-body interaction $V$ in $D$ dimensions we can obtain scattering data by solving the Lippmann-Schwinger equation,
+\begin{align}
+	T_D(\vec p', \vec p, E)
+	&=
+	V(\vec p', \vec p) + \lim\limits_{\epsilon \to 0}\int \frac{d \vec k^D}{(2\pi)^D} V(\vec p', \vec k) G(\vec k, E + i \epsilon) T(\vec k, \vec p, E) \, ,
+	&
+	G(\vec k, E+ i \epsilon) = \frac{1}{E + i \epsilon - \frac{k^2}{2\mu}}
+	\, .
+\end{align}
+where $G$ is the free Green's function.
+Projecting onto the set of partial waves in $D$ dimensions labelled by $\l$, the $T$ matrix may be re-expressed in terms of phase shifts.
+For a central interaction like the contact interaction, partial waves do not mix and $\l$ labels the orbital angular momentum, which is conserved.
+In this case, the phase shifts can be extracted from the scattering or $T$-matrix by
+\begin{align}\label{eq:on-shell-T}
+	\frac{1}{T_{D\l}(p)}
+    \equiv
+    \frac{1}{T_{D\l}(p, p, E_p)}
+    = \frac{\mu}{2}
+    \frac{1}{\mathcal F_{D\l}(p)} \left[\cot (\delta_{D\l}(p)) - i\right] \, ,
+\end{align}
+where $E_p = p^2 / (2 \mu)$ and $\mathcal F_{l D}(p)$ is a dimension-dependent kinematic function of the on-shell momentum.
+
+At low energy one often considers the expansion of \eqref{on-shell-T} in scattering momentum $p$, called the effective range expansion (ERE), which takes the form \cite{Hammer:2010fw}
+\begin{align}
+    \label{eq:ere}
+    \cot \left(\delta_{D\l}(p)\right)
+    &=
+    \theta_D \frac{2}{\pi}  \ln \left(p R_{D\l}\right)
+    -
+    \frac{1}{a_{D\l}} p^{2 - 2 \l - D} +\frac{1}{2} r_{D\l} p^{4 - 2 \l - D} + \order{p^{6 - 2 \l - D}}
+    \, , &
+    \theta_D &= \begin{cases}
+        0 & D \;\text{odd} \\ 1 & D \;\text{even}
+    \end{cases}
+    \, ,
+\end{align}
+where $R_{D \l}$ is an arbitrary length scale and $a_{D\l}$, $r_{D\l}$ and subsequent higher-order coefficients describe the properties of the two-particle interaction.
+In three spatial dimensions, the S-wave phase shift is described by the \emph{scattering length} $a_{30}$, the \emph{effective range} $r_{30}$ and further shape parameters.
+
+In this paper we refer to $a$ as the scattering length and $r$ the effective range, even when, by simple dimensional analysis, they may not be actual lengths.
+Moreover, in this work we will focus on the S-wave or its $D$-dimensional equivalent partial wave for simplicity, and henceforth suppress the $\l$ label.
+
+Contact interactions, which are analytically tractable, correspond to a momentum-independent amplitudes (as long as the log dependence is handled carefully in even dimensions).
+So, the strength of the contact interaction $C$ may be traded for the scattering length $a$ and all other scattering parameters vanish.
+The lattice interactions we will construct, when analyzed appropriately, will exhibit this momentum independence.

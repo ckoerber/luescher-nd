@@ -1,0 +1,105 @@
+%!TEX root =  ../../master.tex
+
+\subsection{Results of the dispersion method in three dimensions}
+
+In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the zeta function.
+However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_D$, leveraging the dispersion relation for that derivative.
+Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \eqref{dispersion-zeta-contact} using the same $S^{\dispersion}$ function.
+The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
+Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
+Moreover, comparing the scale to that in, for example, \Figref{unimproved spherical}, there the deviations were of order~1, while here the results remain within $10^{-8}$ of zero, with the value entirely reflecting how well the contact interaction was tuned.
+
+\begin{figure}[!htb]
+	\centering
+    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \caption{The same as \Figref{unimproved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.
+    We emphasize the results are on a log scale, and the tuning was to $-1/a_3 = 0$.
+    }
+    \label{fig:unimproved dispersion}
+\end{figure}
+
+In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale according to \eqref{dispersion-renormalization}.
+Note that the lines are not fits to the data; though the difference is down at $10^{-12}$ or better.
+Again, this difference depends on the accuracy of the tuning.
+
+\begin{figure}[!htb]
+	\centering
+    \scalebox{0.8}{\input{figure/contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \caption{
+        Scaling of the contact interaction strength $C_R^{(n_s)}(\epsilon)$ fitted using the dispersion method at unitarity.
+        Data points are values of the contact interaction fitted to the first intersection of the phase shifts with the dispersion zeta function.
+        The solid lines are analytical scaling predictions following \eqref{dispersion-renormalization} and the dashed line corresponds to the spherical counter term $ \mathcal{L}^{\spherical}_3 = 2 \pi$.
+        Bar diagrams below present the absolute error between prediction and extracted value.
+    }
+    \label{fig:dispersion running of strength}
+\end{figure}
+
+We note that even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^\dispersion_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
+At any finite $N$ the spherical integral and cartesian integrals differ---if the radius of the sphere is $N/2$, the corners of the lattice's Brillouin zone are absent; the cartesian integral matches the Brillouin zone correctly, critical for any finite-$N$ result.
+
+\begin{figure}[htb]
+    \scalebox{0.8}{\input{figure/3dtuned.pgf}}
+    \caption{
+        Here we show a contact interaction in three dimensions with the ground state tuned to the first zero of the spherical zeta function $S^{\spherical}_3$ on cubic lattices with $N=10,$ 20, 40, 80 (squares, diamonds, hexagons, and circles, respectively), with the resulting spectrum analyzed with $S^{\spherical}_3$ (colored points) and the $N$-appropriate $S^{\dispersion}_3$ (black points).
+        The gray dashed line is $S^\spherical_3$ and the thin vertical lines are at the non-interacting $x$s where it diverges.
+        The colored lines are the second-order analytic prediction for the difference between the dispersion and spherical analysis as a function of $x$.
+        For clarity of the continuum limit we show, in the bottom panel, a limited range in $x$ and $pL\cot\delta_{30}$, where it is clear that each $N$ hits the zero of $S^\spherical_3$ but that the flat behavior at any finite $N$ is away from an infinite scattering length when analyzed with $S^\dispersion_3$.
+    }
+    \label{fig:3d-corrections}
+\end{figure}
+
+
+
+In \Figref{3d-corrections} we show the result of tuning a finite-spacing contact interaction to the first zero of the continuum zeta function $S^\spherical_3$.
+At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion~\eqref{small x} discussed in the next section.
+The same spectrum is also fed through the spacing-appropriate dispersion zeta $S^\dispersion$, resulting in the flat black lines.
+Shown in detail in the bottom panel, it's clear that the continuum limit taken this way results in any finite spacing having a nonzero scattering length that vanishes with the continuum limit.
+In contrast, tuning to the dispersion function directly, as in \Figref{unimproved dispersion}, is flat and nearly zero at each individual lattice spacing.
+We expect that this difference explains the induced momentum dependence of, for example, \Refs{Endres:2011er,Endres:2012cw}.
+
+
+\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x)$}{S3-spherical} due to discretization\label{sect:3d induced momenta}}
+The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.
+As such, it requires continuum energies $x$ for its argument.
+If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.
+This is particularly evident for the contact interaction as was observed, for example, in \cite{Endres:2012cw}.
+To understand the source of these terms, consider
+\begin{multline}
+\frac{1}{\pi L}S^\bigcirc_3(x^\dispersion)=\frac{1}{\pi L}\left(S^{\dispersion}_3(x^\dispersion)+\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\right)=\frac{-1}{a_3}+\frac{1}{\pi L}\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\\
+=\frac{-1}{a_3}+\lim_{\eta \to\infty}\frac{1}{\pi L}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x^\dispersion}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}+\mathcal{L}^\dispersion_3\frac{N}{2}\right)\ .
+\end{multline}
+In the first line we added and subtracted $S^\dispersion_3$ and used eqs.~\eqref{dispersion-zeta-form} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.
+We assume $n_s=\infty$ for the time being\footnote{
+The logic of the following derivation remains them same also for $n_s < \infty$, but, in this case, the expressions $\bm n^2$ must be replaces with the proper dispersion $\tilde K^{(n_s)}_{\bm n \bm n}$ (see eq.~\eqref{normalized-kinetic-hamitlonian}), which makes it difficult to obtained closed expressions.}.
+In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z., we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
+\begin{align}
+	\label{eqn:observable}
+	S^\bigcirc_3(x^\dispersion)
+	&= 
+	\frac{-\pi L}{a_3}
+	+\mathcal{L}^\dispersion_3\frac{N}{2}
+	+\lim_{\eta \to\infty}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}}
+	-\mathcal{L}^\bigcirc_3\frac{\eta}{2}\right)
+	+x^\dispersion\lim_{\eta \to\infty}\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{4}}
+	+(x^\dispersion)^2\lim_{\eta \to\infty}\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{6}}
+	+ \ldots
+	\\
+	\label{eq:small x}
+	&\equiv \frac{-\pi L}{a_3}+\alpha_1(N)+\alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2
+	+\ldots
+\end{align}
+The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the B.Z. in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (e.g. see Appendix B of~\cite{Luu:2011ep}).  We provide values for select cases of $N$ in \autoref{tab:slopes}.
+\begin{table}
+\caption{Coefficients $\alpha_i(N)$ as a function of $N$ in 3-D.\label{tab:slopes}}
+\center
+\begin{tabular}{c|ccc}
+$N$ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ \\
+\hline
+10 & 0.34622847019345 &2.1088361299026 &0.02096728133239\\
+20 & 0.17384029798483 &1.0470052482673 &0.00253774588732\\
+40 & 0.08701147975728 &0.5225652776531 &0.00031456311910\\
+50 & 0.06961796407968 &0.4179620004936 &0.00016089237674\\
+80 & 0.04351717442702 &0.2611651268184 &0.00003923695720\\
+100 &0.03481483765136 &0.2089208128674 &0.00002008418957
+\end{tabular}
+\end{table}

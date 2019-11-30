@@ -1,0 +1,150 @@
+\usepackage{xspace}
+\usepackage{bbm}
+
+%%%%
+%%%%    Project Specifics
+%%%%
+\newcommand{\Luscher}{L\"{u}scher\xspace}
+% \newcommand{\nstep}{\ensuremath{{n_\text{step}}}\xspace}
+\newcommand{\nstep}{\ensuremath{{n_s}}\xspace}
+\newcommand{\spherical}{\ensuremath{\bigcirc}\xspace}
+\newcommand{\cartesian}{\ensuremath{\square}\xspace}
+\newcommand{\counterterm}{\ensuremath{\mathcal{L}}}
+\newcommand{\dispersion}{\ensuremath{\boxplus}\xspace}
+% \newcommand{\dispersion}{\ensuremath{\sharp}\xspace}
+\newcommand{\PV}{\ensuremath{\mathcal{P}}}
+\newcommand{\normalization}{\ensuremath{\mathcal{N}}\xspace}
+
+\newcommand{\lowEnergyA}{\ensuremath{\mathcal{A}}}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\FV}{\ensuremath{\textrm{FV}}}
+\newcommand{\xtilde}{\ensuremath{\tilde{x}}\xspace}
+\newcommand{\Aoneg}{\ensuremath{A_{1g}}\xspace}
+\renewcommand{\l}{\ensuremath{\ell}\xspace}
+\newcommand{\Laplacian}{\ensuremath{\mathop{}\!\mathbin\bigtriangleup}}
+\newcommand{\BZ}{\text{B.Z.}}
+
+%%%%
+%%%%    Referring to Parts of the Repo
+%%%%
+\newcommand{\repoURL}{https://github.com/ckoerber/luescher-nd}
+\newcommand{\issue}[1]{\href{\repoURL/issues/#1}{Issue #1}}
+\newcommand{\pullrequest}[1]{\href{\repoURL/pulls/#1}{Pull Request #1}}
+
+%%%%
+%%%%    Referring to Parts of the Document
+%%%%
+\newcommand{\secref}[1]{Sec.~\ref{sec:#1}}
+\newcommand{\Secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\appref}[1]{App.~\ref{sec:#1}}
+\newcommand{\Appref}[1]{Appendix~\ref{sec:#1}}
+\newcommand{\tabref}[1]{Tab.~\ref{tab:#1}\xspace}
+\newcommand{\Tabref}[1]{Table~\ref{tab:#1}\xspace}
+\newcommand{\figref}[1]{Fig.~\ref{fig:#1}\xspace}
+\newcommand{\Figref}[1]{Figure~\ref{fig:#1}\xspace}
+\renewcommand{\eqref}[1]{(\ref{eq:#1})\xspace}
+\newcommand{\Eqref}[1]{Equation~\ref{eq:#1}\xspace}
+\newcommand{\Ref}[1]{Ref.~\cite{#1}}
+\newcommand{\Reference}[1]{Reference~\cite{#1}}
+\newcommand{\Refs}[1]{Refs.~\cite{#1}}
+\newcommand{\References}[1]{References~\cite{#1}}
+%%%%
+%%%%    Referring to Other Documents
+%%%%
+
+\renewcommand{\doi}[1]{\href{http://doi.org/#1}{[#1]}}
+\newcommand{\arxiv}[1]{\href{http://www.arxiv.org/abs/#1}{arXiv:#1}}
+
+%%%%
+%%%%    Mathematical Symbols
+%%%%
+
+\newcommand{\goesto}{\ensuremath{\rightarrow}}
+\newcommand{\infinity}{\infty}
+\newcommand{\Integers}{\mathbb{Z}\xspace}
+\newcommand{\integers}{\Integers}
+\newcommand{\one}{\ensuremath{\mathbbm{1}}}
+\newcommand{\order}[1]{\ensuremath{\mathcal{O}\left(#1\right)}\xspace}
+\newcommand{\Rationals}{\mathbb{Q}\xspace}
+\newcommand{\Reals}{\mathbb{R}\xspace}
+\newcommand{\union}{\ensuremath{\cup}}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\erfi}{erfi}
+\renewcommand{\mod}[1]{\ensuremath{\ \left(\text{mod }#1\right)}}
+
+%%%%
+%%%%    Hyperbolic Trig
+%%%%
+
+% Most are already available if you \usepackage{amsmath}.
+% However, those below are missing
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+
+% Additionally, there are some missing trig functions:
+
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%%
+%%%%    Fractions
+%%%%
+
+\newcommand{\oneover}[1]{\ensuremath{\frac{1}{#1}}}                             %   1/[argument]
+\newcommand{\inverse}{\ensuremath{^{-1}}}                                       %   argument^-1
+\newcommand{\half}{\ensuremath{\frac{1}{2}} }                                   %   1/2
+\newcommand{\quarter}{\ensuremath{\frac{1}{4}} }                                %   1/4
+
+
+%%%%
+%%%%    Mathematical Delimiters
+%%%%
+\newcommand{\abs}[1]{\ensuremath{\left| #1 \right|}\xspace}
+\newcommand{\magnitude}{\abs}
+\newcommand{\average}[1]{\ensuremath{\left\langle #1 \right\rangle}\xspace}
+
+% Quantum mechanics bra-ket notation:
+\newcommand{\ket}[1]{\ensuremath{\left|\;#1\;\right\rangle}}
+\newcommand{\bra}[1]{\ensuremath{\left\langle\;#1\;\right|}}
+\newcommand{\bracket}[2]{\ensuremath{\left\langle\;#1\;\middle|\;#2\;\right\rangle}}
+\let\braket\bracket
+\newcommand{\braMket}[3]{\ensuremath{\left\langle\;#1\;\middle|\;#2\;\middle|\;#3\;\right\rangle}}
+
+
+%%%%
+%%%%    Matrices
+%%%%
+
+\newcommand{\identity}{\ensuremath{\mathds{1}}}
+\newcommand{\diag}[1]{\ensuremath{\text{diag}\left(#1\right)}}
+\newcommand{\tr}[1]{\ensuremath{\text{tr}\left[#1\right]}}
+\newcommand{\transpose}{\ensuremath{{}^{\top}}}
+
+%%%%
+%%%%    Physical Quantities and Constants
+%%%%
+
+
+
+
+%%%%
+%%%%    Software
+%%%%
+
+\newcommand{\bash}{\texttt{bash}\xspace}
+\newcommand{\git}{\texttt{git}\xspace}
+\newcommand{\make}{\texttt{make}\xspace}
+\newcommand{\mpi}{\texttt{MPI}\xspace}
+\newcommand{\python}{\texttt{python}\xspace}
+
+% Put an xspace after \LaTeX:
+\let\builtinLaTeX\LaTeX
+\def\LaTeX{\builtinLaTeX\xspace}
