@@ -105,20 +105,23 @@ Plugging our results for the integrals in, one finds
     \lim\limits_{\Lambda \to \infty}
     \left[
     	\left(\mathcal{P}\int_{\vec{n}} - \sum_{\vec{n}}\right) \frac{1}{x-n^2} +
-		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - 2\mu E\right)
+		\frac{-i \pi^2\Omega_D}{L} \int \mathrm{d}n\ n^{D-2} \delta\left(\frac{2\pi}{L}n - \sqrt{2\mu E}\right)
 	\right]
 \end{multline}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$,
 The principle value integration implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
 The imaginary part on the left hand side exactly cancels the last term on the right when $E\ge0$.  When $E<0$ the last term on the RHS vanishes and so we have 
 %--demanding this cancellation is how the kinematic factor $\F_D$ of the $T$ matrix is determined----and we are left with
-\begin{equation}\label{eq:general luscher}
+\begin{multline}\label{eq:general luscher}
    \frac{1}{2\F_{D}(\sqrt{2\mu E})}  \left( \cot \delta_{D}(p)-i\theta(-E)\right)
     =
    \frac{2}{(2\pi)^2 L^{D-2}}
-    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}
-\end{equation}
-with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.
+    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}\\
+    \implies
+      \frac{1}{2\F_{D}(\sqrt{2\mu E})} \cot \delta_{D}(p)= \frac{2}{(2\pi)^2 L^{D-2}}\left[
+    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x)\right]\ ,
+\end{multline}
+with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.  In the second line above we moved the term proportional to the $\theta(-E)$ to the RHS.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_D$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
 Let $N=\Lambda L/\pi$.
 Then, with a finite cutoff on magnitude $N/2$, we define
@@ -126,7 +129,7 @@ Then, with a finite cutoff on magnitude $N/2$, we define
     S^{\spherical N}_D(x) =
     \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x)\ ,
 \end{equation}
-where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.  The expression proportional to the heavyside function in~\eqref{spherical cutoff S} exactly compensates the term proportional to the heavyside function on the LHS of~\eqref{general luscher}.   By performing the principal value integrals and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
+where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.   By performing the principal value integral and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
 \begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
