@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - docs
+      - master
 
 jobs:
   build-and-deploy:
@@ -20,7 +20,7 @@ jobs:
     - name: Build and Deploy
       uses: JacksonMaxfield/github-pages-deploy-action-python@master
       env:
-        BASE_BRANCH: docs
+        BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: docs/_build/html
         BUILD_SCRIPT: python -m pip install . && make docs && touch docs/_build/html/.nojekyll
