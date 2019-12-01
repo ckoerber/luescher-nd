@@ -36,6 +36,10 @@ directory |
 `tests` | Test files for the `luescher_nd` module.
 ```
 
+## More questions?
+
+Feel free to take a look at [the docs](https://ckoerber.github.io/luescher-nd/).
+
 ## Authors
 * [Evan Berkowitz](https://github.com/evanberkowitz)
 * [Christopher Körber](https://github.com/ckoerber)
