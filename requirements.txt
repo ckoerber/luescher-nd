@@ -14,4 +14,5 @@ gvar
 sphinx
 recommonmark
 sphinx-autodoc-typehints
+sphinx-markdown-tables
 pytest
