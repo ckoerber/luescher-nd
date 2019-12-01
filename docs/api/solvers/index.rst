@@ -2,7 +2,7 @@ luescher-nd.solvers
 ====================================
 
 .. autosummary::
-   luescher_nd.solvers
+   luescher_nd.solvers.contact
 
 --------
 

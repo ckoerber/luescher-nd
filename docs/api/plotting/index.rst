@@ -2,7 +2,9 @@ luescher-nd.plotting
 ====================================
 
 .. autosummary::
-   luescher_nd.plotting
+   luescher_nd.plotting.export
+   luescher_nd.plotting.styles
+   luescher_nd.plotting.utilities
 
 --------
 
