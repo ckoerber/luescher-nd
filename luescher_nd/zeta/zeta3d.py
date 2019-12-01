@@ -33,7 +33,7 @@ class DispersionZeta3D:
     def _get_n2(self) -> np.ndarray:
         """Returns all normalized momentum modes allowed on the lattice.
 
-        The shape is [n1d**3, 3] where the second components access nx, ny, nz.
+        The shape is ``[n1d**3, 3]`` where the second components access ``nx, ny, nz``.
         """
         if self.nstep is None:
             n2_disp1d = np.arange(-self.N // 2 + 1, self.N // 2 + 1) ** 2
@@ -143,27 +143,27 @@ class Zeta3D:
     \\sum_{n_i \\in M^A(N)} \\frac{1}{\\vec{n}^2 - x}
     - 2 \\pi^2 N \\mathcal L_A
     $$
-    where $N = \\Lambda L / (2 \\pi)$ is the cutoff of the zeta function, $A$ means
-    either spherical or cartesian
+    where \\(N = \\Lambda L / (2 \\pi)\\) is the cutoff of the zeta function, \\(A\\)
+    means either spherical or cartesian
     $$
     M^A(N) = \\begin{cases}
-        \\left{
-            (n_1, n_2) \\in \\mathbb Z^3
-        \\middle\\vert
-            -N \\leq n_i < N
-        \\right}
-        & A = \\text{cartesian} \\
-        \\left{
-            (n_1, n_2) \\in \\mathbb Z^3
-        \\middle\\vert
-            n_1^2 + n_2^2 < N
-        \\right}
-        & A = \\text{spherical}
+    \\left\\{
+    (n_1, n_2, n_3) \\in \\mathbb Z^3
+    \\middle\\vert
+    -N \\leq n_i < N
+    \\right\\}
+    & A = \\text{cartesian} \\\\\\\\
+    \\left\\{
+    (n_1, n_2, n_3) \\in \\mathbb Z^3
+    \\middle\\vert
+    n_1^2 + n_2^2 = n_3^2 < N
+    \\right\\}
+    & A = \\text{spherical}
     \\end{cases}
     $$
-     and
-    $\\mathcal L_\\text{spherical} = \\frac{2}{\\pi}$ but
-    $\\mathcal L_\\text{cartesian} = 0.77755134963633393039$.
+    and
+    \\(\\mathcal L^{\\bigcirc} = \\frac{2}{\\pi}\\) but
+    \\(\\mathcal L^{\\square} = 0.77755134963633393039\\).
     """
 
     _ndim = 3
@@ -179,9 +179,9 @@ class Zeta3D:
     def _get_n2(self) -> np.ndarray:
         r"""Returns all normalized momentum modes allowed on the lattice.
 
-        This is the list of all $n^2 = n_1^2 + n_2^2$ with
-            * $\\Lambda \leq n_i < \\Lambda$ (cartesian)
-            * $ $n^2 < \\Lambda$ (spherical)
+        This is the list of all \\(n^2 = n_1^2 + n_2^2\\) with
+            * \\(\\Lambda \leq n_i < \\Lambda\\) (cartesian)
+            * \\(n^2 < \\Lambda\\) (spherical)
         """
         n2_disp1d = np.arange(-self.N + 1, self.N + 1) ** 2
 
