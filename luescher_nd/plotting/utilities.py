@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pylab as plt
 import seaborn as sns
 
-from luescher_nd.zeta.zeta3d import DispersionZeta3d
+from luescher_nd.zeta.zeta3d import DispersionZeta3D
 from luescher_nd.zeta.extern import pyzeta
 
 ## Parameters & Files
@@ -95,7 +95,7 @@ def raw_data_to_plot_frame(  # pylint: disable=C0103
         df.epsilon.unique(), df.L.unique(), df.nstep.unique()
     ):
         zeta[(epsilon, L, nstep)] = (
-            DispersionZeta3d(L, epsilon, nstep=(None if nstep < 0 else nstep))
+            DispersionZeta3D(L, epsilon, nstep=(None if nstep < 0 else nstep))
             if dispersion_zeta
             else pyzeta.zeta  # pylint: disable=I1101
         )
