@@ -1,4 +1,4 @@
-connection
+utilities
 =================
 **Module**: :mod:`luescher_nd.database.utilities`
 
