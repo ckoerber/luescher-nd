@@ -12,3 +12,4 @@ blackcellmagic
 lsqfit
 gvar
 sphinx
+pytest
