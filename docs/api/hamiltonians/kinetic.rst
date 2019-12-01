@@ -5,3 +5,4 @@ kinetic
 .. automodule:: luescher_nd.hamiltonians.kinetic
     :members:
     :special-members:
+    :exclude-members: __weakref__
