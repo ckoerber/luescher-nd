@@ -48,6 +48,3 @@ Feel free to take a look at [the docs](https://ckoerber.github.io/luescher-nd/).
 
 ## Contributing
 Feel free to write the authors or file issues on the repository page.
-
-## License
-See [`LICENSE`](LICENSE)
