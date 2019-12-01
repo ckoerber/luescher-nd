@@ -10,6 +10,10 @@ paper:
 install:
 	pip install -e .
 
+.PHONY: test
+test:
+	pytest .
+
 .PHONY: clean
 clean:
 	make -C docs clean
