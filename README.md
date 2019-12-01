@@ -1,21 +1,15 @@
 ![](https://github.com/ckoerber/luescher-nd/workflows/Run%20tests/badge.svg)
 
-# Lüscher n-dim test
+# luescher-nd
 
-Is it possible to extend Lüscher's formalism to discrete volumes? How does this affect the computation of the Bertsch parameter?
+This repository supports the publication [Renormalization of a Contact Interaction on a Lattice](https://www.arxiv.org).
+It contains the scripts which generated the data, the data itself, scripts which generates the plots and the tex files for the paper.
 
-## ToDo
-
-See the [issues](https://github.com/ckoerber/luescher-nd/issues)
-
-## What's going on?
-
-See the [wiki](https://github.com/ckoerber/luescher-nd/wiki)
 
 ## Install
 The modules can be installed via pip:
 ```bash
-pip install -e .
+pip install [--user] [-e] .
 ```
 
 For the exact module versions see `requirements-freeze.txt`.
