@@ -60,17 +60,24 @@ def nsq_degeneracy(n1d, ndim, nsq=None):
 
 
 def projector(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=R0914
-    """ Implements the projection operator that's schematically | A1g > < A1g |.
-    Because A1g is espeically simple, the procedure works in any dimension, specified by ndim.
+    r""" Implements the projection operator \\(\\ket{A_{1g}}\\bra{A_{1g}}\\).
 
-    If you have a wavefunction |psi> written as a sum of plane waves, applying this operator will give you
-        sum_{state j that's in A1g} |j><j|psi>
-    If |psi> isn't already in momentum space, who knows what this will do!
+    Because A1g is espeically simple, the procedure works in any dimension, specified
+    by ndim.
 
-    ** Arguments **
-        n1d: int
+    If you have a wavefunction \\( \\ket{\\psi} \\) written as a sum of plane waves, applying this
+    operator will give you
+
+    $$
+    \\sum_{j \\in A_{1g}} \\ket{j}\\braket{j | \\psi}
+    $$
+
+    If \\( \\ket{\\psi} \\) isn't already in momentum space, who knows what this will do!
+
+    Arguments:
+        n1d:
             Number of points in one direction.
-        ndim: int
+        ndim:
             Number of spatial dimensions.
     """
     ntot = n1d ** ndim
@@ -95,10 +102,10 @@ def projector(n1d: int, ndim: int) -> sp.csr_matrix:  # pylint: disable=R0914
 def complement(n1d: int, ndim: int) -> sp.csr_matrix:
     """Computes one minus `get_projector_to_a1g`
 
-    ** Arguments **
-        n1d: int
+    Arguments:
+        n1d:
             Number of points in one direction.
-        ndim: int
+        ndim:
             Number of spatial dimensions.
     """
     # The A1g_operator should have eigenvalues 1 on A1g states and 0 on non-A1g states.
@@ -110,17 +117,21 @@ def complement(n1d: int, ndim: int) -> sp.csr_matrix:
 
 
 def reducer(n1d: int, ndim: int) -> np.ndarray:  # pylint: disable=R0914
-    """ Implements the projection operator that's schematically | A1g > < A1g |.
+    r"""Implements the projection operator that's  \\(\\ket{A_{1g}}\\bra{A_{1g}}\\).
     Because A1g is espeically simple, the procedure works in any dimension, specified by ndim.
 
-    If you have a wavefunction |psi> written as a sum of plane waves, applying this operator will give you
-        sum_{state j that's in A1g} |j><j|psi>
-    If |psi> isn't already in momentum space, who knows what this will do!
+    If you have a wavefunction \\( \\ket{\\psi} \\) written as a sum of plane waves, applying this operator will give you
 
-    ** Arguments **
-        n1d: int
+    $$
+    \\sum_{j \\in A_{1g}} \\ket{j}\\braket{j | \\psi}
+    $$
+
+    If \\( \\ket{\\psi} \\) isn't already in momentum space, who knows what this will do!
+
+    Arguments:
+        n1d:
             Number of points in one direction.
-        ndim: int
+        ndim:
             Number of spatial dimensions.
     """
     A1g_mat = []

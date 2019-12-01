@@ -81,4 +81,6 @@ katex_inline = [r"\(", r"\)"]
 katex_display = [r"$$", r"$$"]
 katex_options = r"""macros: {
     "\\ket": "\\left|#1\\right\\rangle",
+    "\\bra": "\\left\\langle#1\\right|",
+    "\\braket": "\\left\\langle#1\\right\\rangle",
 }"""
