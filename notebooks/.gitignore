@@ -1,7 +1,0 @@
-qm-luescher-example
-*.err
-*.out
-*.pdf
-*.csv
-*.png
-devel*.ipynb
