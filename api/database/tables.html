@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>tables &#8212; luescher-nd beta documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../../_static/katex_autorenderer.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="connection" href="utilities.html" />
+    <link rel="prev" title="connection" href="connection.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tables">
+<h1>tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
+<p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd.database.tables" title="luescher_nd.database.tables"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd.database.tables</span></code></a></p>
+<span class="target" id="module-luescher_nd.database.tables"></span><p>Implementation of project tables</p>
+<dl class="class">
+<dt id="luescher_nd.database.tables.ContactEnergyEntry">
+<em class="property">class </em><code class="sig-name descname">ContactEnergyEntry</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.ContactEnergyEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Table which stores information about computed energy levels for contact potential.</p>
+<dl class="method">
+<dt id="luescher_nd.database.tables.ContactEnergyEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.ContactEnergyEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code class="docutils literal notranslate"><span class="pre">kwargs</span></code>.</p>
+<p>Only keys that are present as
+attributes of the instance’s class are allowed. These could be,
+for example, any mapped columns or relationships.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="luescher_nd.database.tables.EnergyEntry">
+<em class="property">class </em><code class="sig-name descname">EnergyEntry</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base implementation of energy table entries</p>
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.L">
+<em class="property">property </em><code class="sig-name descname">L</code><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.L" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns length of box edge</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code class="docutils literal notranslate"><span class="pre">kwargs</span></code>.</p>
+<p>Only keys that are present as
+attributes of the instance’s class are allowed. These could be,
+for example, any mapped columns or relationships.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string of self</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descriptive representation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.get_or_create">
+<em class="property">classmethod </em><code class="sig-name descname">get_or_create</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.get_or_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates or returns a EnergyEntry from keywords.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code>) – The database session for querying and adding entries.</p></li>
+<li><p><strong>kwargs</strong> – EnergyEntry creagion arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference internal" href="#luescher_nd.database.tables.EnergyEntry" title="luescher_nd.database.tables.EnergyEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnergyEntry</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.keys">
+<em class="property">classmethod </em><code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns database keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.mu">
+<code class="sig-name descname">mu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.mu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the reduced mass</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.database.tables.EnergyEntry.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#luescher_nd.database.tables.EnergyEntry.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns $2 mu E L^2 / 4 pi^2$</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="luescher_nd.database.tables.LongRangeEnergyEntry">
+<em class="property">class </em><code class="sig-name descname">LongRangeEnergyEntry</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.LongRangeEnergyEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Table which stores information about computed energy levels for LR potential.</p>
+<dl class="method">
+<dt id="luescher_nd.database.tables.LongRangeEnergyEntry.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.LongRangeEnergyEntry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple constructor that allows initialization from kwargs.</p>
+<p>Sets attributes on the constructed instance using the names and
+values in <code class="docutils literal notranslate"><span class="pre">kwargs</span></code>.</p>
+<p>Only keys that are present as
+attributes of the instance’s class are allowed. These could be,
+for example, any mapped columns or relationships.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.tables.create_all_tables">
+<code class="sig-name descname">create_all_tables</code><span class="sig-paren">(</span><em class="sig-param">engine</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.create_all_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates all tables in the database</p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>engine: sqlalchemy.engine.base.Engine</dt><dd><p>Database engine.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.tables.create_database">
+<code class="sig-name descname">create_database</code><span class="sig-paren">(</span><em class="sig-param">database</em>, <em class="sig-param">dtype='sqlite'</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.tables.create_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes connection to database and creates all tables</p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>database: str</dt><dd><p>Adress of the database</p>
+</dd>
+<dt>dtype: str = “sqlite”</dt><dd><p>Type of the database</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">luescher-nd</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">luescher-nd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">How to user luescher-nd</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference of luescher-nd</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">luescher-nd.database</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="connection.html">connection</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.html">connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hamiltonians/index.html">luescher-nd.hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/index.html">luescher-nd.operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/index.html">luescher-nd.plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/index.html">luescher-nd.solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zeta/index.html">luescher-nd.zeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities.html">utilities</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">API Reference of luescher-nd</a><ul>
+  <li><a href="index.html">luescher-nd.database</a><ul>
+      <li>Previous: <a href="connection.html" title="previous chapter">connection</a></li>
+      <li>Next: <a href="utilities.html" title="next chapter">connection</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, C. Koerber, E. Berkowitz, T. Luu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/api/database/tables.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

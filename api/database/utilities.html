@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>connection &#8212; luescher-nd beta documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../../_static/katex_autorenderer.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="luescher-nd.hamiltonians" href="../hamiltonians/index.html" />
+    <link rel="prev" title="tables" href="tables.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="connection">
+<h1>connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h1>
+<p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd.database.utilities" title="luescher_nd.database.utilities"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd.database.utilities</span></code></a></p>
+<span class="target" id="module-luescher_nd.database.utilities"></span><p>Utility functions for database submodule</p>
+<dl class="function">
+<dt id="luescher_nd.database.utilities.get_continuum_extrapolation">
+<code class="sig-name descname">get_continuum_extrapolation</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">n_poly_max=4</em>, <em class="sig-param">delta_x=1.25e-13</em>, <em class="sig-param">include_statistics=True</em>, <em class="sig-param">odd_poly=False</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.utilities.get_continuum_extrapolation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a data frame read in by read tables and runs a continuum extrapolation
+for the spectrum.</p>
+<p>The continuum extrapolation is executed by a even polynomial fit up to order
+<cite>n_poly_max</cite></p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>df: pd.DataFrame</dt><dd><p>DataFrame returend by <cite>read_table</cite>.</p>
+</dd>
+<dt>n_poly_max: int = 4</dt><dd><p>Maximal order of the polynomial used for the spectrum extrapolation.
+The fitter runs fits from 1 to <cite>n_poly_max</cite> even polynomials and picks
+the best one defined by the maximum of the logGBF.</p>
+</dd>
+<dt>delta_x:float=1.0e-8</dt><dd><p>Approximate error for the x-values.</p>
+</dd>
+<dt>include_statistics: bool = True</dt><dd><p>Includes fit statistics like chi2/dof or logGBF.</p>
+</dd>
+<dt>odd_poly: bool = False</dt><dd><p>Allow fits of odd polynomials.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.utilities.get_degeneracy">
+<code class="sig-name descname">get_degeneracy</code><span class="sig-paren">(</span><em class="sig-param">n1d</em>, <em class="sig-param">ndim=3</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.utilities.get_degeneracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes n&#64;n from lattice vectors in [-n1d//2, n1d//2) and counts degeneracy.</p>
+<p>Vectors are gegenerate if there is no permutation such that abs(v1) == abs(v2) but
+still <a class="reference external" href="mailto:v1&#37;&#52;&#48;v1">v1<span>&#64;</span>v1</a> == <a class="reference external" href="mailto:v2&#37;&#52;&#48;v2">v2<span>&#64;</span>v2</a>.</p>
+<p>The dictionary contains equivalency classes for each v&#64;v value.</p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>n1d: int</dt><dd><p>Number of lattice sides in on dimension.</p>
+</dd>
+<dt>ndim: int = 3</dt><dd><p>Number of dimensions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.utilities.get_degeneracy_list">
+<code class="sig-name descname">get_degeneracy_list</code><span class="sig-paren">(</span><em class="sig-param">n1d</em>, <em class="sig-param">ndim=3</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.utilities.get_degeneracy_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes n&#64;n from lattice vectors in [-n1d//2, n1d//2) and counts degeneracy.</p>
+<p>Vectors are gegenerate if there is no permutation such that abs(v1) == abs(v2) but
+still <a class="reference external" href="mailto:v1&#37;&#52;&#48;v1">v1<span>&#64;</span>v1</a> == <a class="reference external" href="mailto:v2&#37;&#52;&#48;v2">v2<span>&#64;</span>v2</a>.</p>
+<p>The returned list returns the n**2 values which are degenerate.</p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>n1d: int</dt><dd><p>Number of lattice sides in on dimension.</p>
+</dd>
+<dt>ndim: int = 3</dt><dd><p>Number of dimensions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.utilities.get_ere">
+<code class="sig-name descname">get_ere</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">zeta='spherical'</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.utilities.get_ere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts data frame of box levels to effective range expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="luescher_nd.database.utilities.read_table">
+<code class="sig-name descname">read_table</code><span class="sig-paren">(</span><em class="sig-param">database</em>, <em class="sig-param">round_digits=2</em>, <em class="sig-param">zeta=None</em>, <em class="sig-param">filter_poles=False</em>, <em class="sig-param">filter_by_nstates=False</em>, <em class="sig-param">filter_degeneracy=False</em>, <em class="sig-param">drop_comment=True</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.database.utilities.read_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads database and returns data frame with table plus additional columns.</p>
+<p>The database must contain an <code class="docutils literal notranslate"><span class="pre">Energy</span></code> table.
+Drops all entries which are at or close to divergencies of the zeta function.</p>
+<dl class="simple">
+<dt><strong>Argumennts</strong></dt><dd><dl class="simple">
+<dt>database: str</dt><dd><p>The sqlite database file.</p>
+</dd>
+<dt>round_digits: int = 2</dt><dd><p>How close an x-value has to be to an integer in order to be dropped.</p>
+</dd>
+<dt>dispersion_zeta: bool = True</dt><dd><p>Use dispersion zeta function to compute the <code class="docutils literal notranslate"><span class="pre">y</span></code> column.
+Else use regular zeta.</p>
+</dd>
+<dt>filter_poles: bool = False</dt><dd><p>Automatically filter out states which are close to zeta poles.</p>
+</dd>
+<dt>filter_by_nstates: bool = False</dt><dd><p>Automatically filter out states which are degenerate.</p>
+</dd>
+<dt>drop_comment: bool = True</dt><dd><p>Drops the comment column.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">luescher-nd</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">luescher-nd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">How to user luescher-nd</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference of luescher-nd</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">luescher-nd.database</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="connection.html">connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tables.html">tables</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hamiltonians/index.html">luescher-nd.hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/index.html">luescher-nd.operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/index.html">luescher-nd.plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/index.html">luescher-nd.solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zeta/index.html">luescher-nd.zeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities.html">utilities</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">API Reference of luescher-nd</a><ul>
+  <li><a href="index.html">luescher-nd.database</a><ul>
+      <li>Previous: <a href="tables.html" title="previous chapter">tables</a></li>
+      <li>Next: <a href="../hamiltonians/index.html" title="next chapter">luescher-nd.hamiltonians</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, C. Koerber, E. Berkowitz, T. Luu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/api/database/utilities.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

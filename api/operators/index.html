@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>luescher-nd.operators &#8212; luescher-nd beta documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../../_static/katex_autorenderer.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="a1g" href="a1g.html" />
+    <link rel="prev" title="longrange" href="../hamiltonians/longrange.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="luescher-nd-operators">
+<h1>luescher-nd.operators<a class="headerlink" href="#luescher-nd-operators" title="Permalink to this headline">¶</a></h1>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="a1g.html#module-luescher_nd.operators.a1g" title="luescher_nd.operators.a1g"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.operators.a1g</span></code></a></p></td>
+<td><p>Implements operators to project on A1g states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="parity.html#module-luescher_nd.operators.parity" title="luescher_nd.operators.parity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.operators.parity</span></code></a></p></td>
+<td><p>Implements operators to project onto parity components</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd.operators" title="luescher_nd.operators"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd.operators</span></code></a></p>
+<span class="target" id="module-luescher_nd.operators"></span><p>Implementation of projection operators</p>
+<p>Naming conventions for operators (projectors):</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">get_projector_to_{space}</span></code> returns an operator with the action
+$$
+\hat{P} \ket{\psi} = \ket{\psi}
+$$
+if \(\ket{\psi}\) is contained in <code class="docutils literal notranslate"><span class="pre">{space}</span></code> and else zero.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">luescher-nd</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">luescher-nd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">How to user luescher-nd</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference of luescher-nd</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../database/index.html">luescher-nd.database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hamiltonians/index.html">luescher-nd.hamiltonians</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">luescher-nd.operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="a1g.html">a1g</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parity.html">parity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/index.html">luescher-nd.plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/index.html">luescher-nd.solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zeta/index.html">luescher-nd.zeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities.html">utilities</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">API Reference of luescher-nd</a><ul>
+      <li>Previous: <a href="../hamiltonians/longrange.html" title="previous chapter">longrange</a></li>
+      <li>Next: <a href="a1g.html" title="next chapter">a1g</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, C. Koerber, E. Berkowitz, T. Luu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/api/operators/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
