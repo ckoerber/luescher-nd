@@ -2,7 +2,12 @@ API Reference of luescher-nd
 ====================================
 
 .. autosummary::
-   luescher_nd
+   luescher_nd.database
+   luescher_nd.hamiltonians
+   luescher_nd.operators
+   luescher_nd.plotting
+   luescher_nd.solvers
+   luescher_nd.zeta
 
 --------
 
@@ -15,3 +20,11 @@ API Reference of luescher-nd
 .. toctree::
    :caption: Contents:
    :hidden:
+
+   database/index
+   hamiltonians/index
+   operators/index
+   plotting/index
+   solvers/index
+   zeta/index
+   utilities
