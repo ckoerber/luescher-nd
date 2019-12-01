@@ -2,8 +2,6 @@
 !.gitignore
 *.egg-info
 
-_sources
-
 build
 data
 docs
