@@ -1,4 +1,4 @@
-"""Implementation of contact Hamiltonians
+"""Implementation of long range separable Hamiltonians
 """
 from dataclasses import dataclass
 from dataclasses import field
@@ -89,7 +89,9 @@ class PhenomLRHamiltonian(MomentumKineticHamiltonian):
         """Hamiltonian on CPU (lazyloaded).
         """
         if self._mat is None:
-            object.__setattr__(self, "_mat", np.diag(self._disp_over_m) + self.potential)
+            object.__setattr__(
+                self, "_mat", np.diag(self._disp_over_m) + self.potential
+            )
         return self._mat
 
     @property
