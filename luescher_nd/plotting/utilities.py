@@ -75,15 +75,15 @@ def raw_data_to_plot_frame(  # pylint: disable=C0103
 
     Adds columns and computes results of zeta function.
 
-    **Arguments**
-        df: pd.DataFrame
+    Arguments:
+        df:
             Raw data input frame.
 
-        dispersion_zeta: bool = True
+        dispersion_zeta:
             Use dispersion zeta function or standard zeta function.
 
-        ycut: float = 2.0
-            Drop data which has larger |y| than ycut.
+        ycut:
+            Drop data which has larger ``|y|`` than ycut.
     """
     zeta = {}
 
