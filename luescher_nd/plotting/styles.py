@@ -45,7 +45,7 @@ def setup(
     sns.set(context="paper", style="ticks", font_scale=font_scale, rc=rc)
 
 
-def mathify(text: "Text") -> "Text":
+def mathify(text: matplotlib.text.Text) -> matplotlib.text.Text:
     """Wraps text instance in latex math envorinment if not already in env.
     """
     string = text.get_text()
