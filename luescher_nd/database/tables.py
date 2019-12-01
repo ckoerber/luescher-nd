@@ -76,11 +76,11 @@ class EnergyEntry(BASE):
     ) -> Tuple["EnergyEntry", bool]:
         """Creates or returns a EnergyEntry from keywords.
 
-        **Arguments**
-            session: Session
+        Arguments:
+            session:
                 The database session for querying and adding entries.
 
-            **kwargs:
+            kwargs:
                 EnergyEntry creagion arguments.
         """
         if cls.keys() != cls.keys().intersection(set(kwargs.keys())):
