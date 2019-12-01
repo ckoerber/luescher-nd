@@ -35,6 +35,7 @@ extensions = [
     # "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "recommonmark",
+    "sphinx-markdown-tables",
     "sphinx.ext.napoleon",
     "sphinx_autodoc_typehints",
     "sphinx.ext.autosummary",
