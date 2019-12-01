@@ -1,19 +1,21 @@
 # pylint: disable=C0301
-"""Implementation of projection operators
+r"""Implementation of projection operators
 
 Naming conventions for operators (projectors):
 
 The method ``p = get_projector_to_{space}`` returns an operator with the action
 $$
-p |psi> = |psi>
+\\hat{P} \\ket{\\psi} = \\ket{\\psi}
 $$
-if $|psi>$ is contained in ``{space}`` and else zero.
+if \\(\\ket{\\psi}\\) is contained in ``{space}`` and else zero.
 """
 import numpy as np
-import luescher_nd.lattice as lattice
 import scipy.sparse as sp
 
 import luescher_nd.operators.parity as parity
+
+import luescher_nd.lattice as lattice
+
 
 # Backwards compatibility:
 from luescher_nd.operators.parity import operator as get_parity_operator

@@ -39,6 +39,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx_autodoc_typehints",
     "sphinx.ext.autosummary",
+    "sphinxcontrib.katex",
 ]
 
 source_suffix = {
@@ -74,3 +75,10 @@ autosummary_generate = True
 add_module_names = False
 todo_include_todos = True
 todo_emit_warnings = True
+
+
+katex_inline = [r"\(", r"\)"]
+katex_display = [r"$$", r"$$"]
+katex_options = r"""macros: {
+    "\\ket": "\\left|#1\\right\\rangle",
+}"""
