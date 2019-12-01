@@ -16,16 +16,16 @@ pip install [--user] [-e] .
 For the exact module versions see `requirements-freeze.txt`.
 
 ## Tests
-Run
+After installing run
 ```bash
-
+pytest .
 ```
 
 ## Content
 
 The repository contains the following directories
 
-directory |
+Directory | Content
 ---|---
 `data` | Data files which are used to generate the figures in the paper.
 `docs` | The documentation configuration for this repository ([`sphinx`](https://www.sphinx-doc.org/en/master/)).
@@ -34,7 +34,7 @@ directory |
 `notes` | Notes created during the development process. We do not give warranty for correctness here.
 `scripts` | Export scripts for tuning the contact interaction and computing the spectrum + effective range expansion.
 `tests` | Test files for the `luescher_nd` module.
-```
+
 
 ## More questions?
 
