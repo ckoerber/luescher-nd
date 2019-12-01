@@ -5,3 +5,4 @@ contact
 .. automodule:: luescher_nd.solvers.contact
     :members:
     :special-members:
+    :exclude-members: __weakref__

@@ -5,3 +5,4 @@ export
 .. automodule:: luescher_nd.plotting.export
     :members:
     :special-members:
+    :exclude-members: __weakref__
