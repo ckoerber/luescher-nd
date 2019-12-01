@@ -7,13 +7,19 @@
     <title>API Reference of luescher-nd &#8212; luescher-nd beta documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="luescher-nd.database" href="database/index.html" />
     <link rel="prev" title="How to user luescher-nd" href="../usage.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -39,14 +45,30 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#module-luescher_nd" title="luescher_nd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="database/index.html#module-luescher_nd.database" title="luescher_nd.database"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.database</span></code></a></p></td>
+<td><p>Database connection and module tables</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hamiltonians/index.html#module-luescher_nd.hamiltonians" title="luescher_nd.hamiltonians"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.hamiltonians</span></code></a></p></td>
+<td><p>Implementations of Hamiltonian operators in a finite volume finite spacing basis</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="operators/index.html#module-luescher_nd.operators" title="luescher_nd.operators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.operators</span></code></a></p></td>
+<td><p>Implementation of projection operators</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plotting/index.html#module-luescher_nd.plotting" title="luescher_nd.plotting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.plotting</span></code></a></p></td>
+<td><p>Submodule to support plotting data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="solvers/index.html#module-luescher_nd.solvers" title="luescher_nd.solvers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.solvers</span></code></a></p></td>
+<td><p>Submodule for tuning the interactions to phase shifts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="zeta/index.html#module-luescher_nd.zeta" title="luescher_nd.zeta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luescher_nd.zeta</span></code></a></p></td>
+<td><p>Implementation of Lüscher’s zeta function and dispersion functions.</p></td>
 </tr>
 </tbody>
 </table>
 <hr class="docutils" />
 <p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd" title="luescher_nd"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd</span></code></a></p>
-<span class="target" id="module-luescher_nd"></span><div class="toctree-wrapper compound">
+<span class="target" id="module-luescher_nd"></span><p>The core module of publication “Renormalization of a Contact Interaction on a Lattice”</p>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -71,7 +93,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../README.html">luescher-nd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">How to user luescher-nd</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference of luescher-nd</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference of luescher-nd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database/index.html">luescher-nd.database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hamiltonians/index.html">luescher-nd.hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/index.html">luescher-nd.operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting/index.html">luescher-nd.plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solvers/index.html">luescher-nd.solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zeta/index.html">luescher-nd.zeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities</a></li>
 </ul>
 </li>
 </ul>
@@ -81,6 +110,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../usage.html" title="previous chapter">How to user luescher-nd</a></li>
+      <li>Next: <a href="database/index.html" title="next chapter">luescher-nd.database</a></li>
   </ul></li>
 </ul>
 </div>
