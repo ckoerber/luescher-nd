@@ -12,4 +12,6 @@ blackcellmagic
 lsqfit
 gvar
 sphinx
+recommonmark
+sphinx-autodoc-typehints
 pytest
