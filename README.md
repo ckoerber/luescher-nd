@@ -9,6 +9,7 @@ It contains the scripts which generated the data, the data itself, scripts which
 ## Install
 The modules can be installed via pip:
 ```bash
+pip install [--user] -r requirements.txt
 pip install [--user] [-e] .
 ```
 
@@ -17,15 +18,32 @@ For the exact module versions see `requirements-freeze.txt`.
 ## Tests
 Run
 ```bash
-python setup.py test
+
 ```
 
+## Content
+
+The repository contains the following directories
+
+directory |
+---|---
+`data` | Data files which are used to generate the figures in the paper.
+`docs` | The documentation configuration for this repository ([`sphinx`](https://www.sphinx-doc.org/en/master/)).
+`luescher_nd` | The module which was used to compute and plot.
+`notebooks` | Development and interface files for the repo. Go here to see how it can be used.
+`notes` | Notes created during the development process. We do not give warranty for correctness here.
+`scripts` | Export scripts for tuning the contact interaction and computing the spectrum + effective range expansion.
+`tests` | Test files for the `luescher_nd` module.
+```
 
 ## Authors
 * [Evan Berkowitz](https://github.com/evanberkowitz)
 * [Christopher Körber](https://github.com/ckoerber)
 * [Tom Luu](https://github.com/luutom)
 
+
+## Contributing
+Feel free to write the authors or file issues on the repository page.
 
 ## License
 See [`LICENSE`](LICENSE)
