@@ -1,4 +1,5 @@
-
+"""Implements operators to project onto parity components
+"""
 
 import numpy as np
 import luescher_nd.lattice as lattice
