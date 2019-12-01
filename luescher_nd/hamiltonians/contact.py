@@ -23,23 +23,24 @@ def get_full_hamiltonian(
     ndim_max: int = 3,
     lattice_spacing: float = 1.0,
 ) -> sp.csr_matrix:
-    r"""Copies kinetic Hamiltonian and adds contact strength from the (0, 0) component.
+    r"""Copies kinetic Hamiltonian and adds contact strength from the ``(0, 0)`` component.
 
-    Computes `H = H0 + V`, where `V = contact_strength * delta(r)` and `nr` is ther
+    Computes \\(H = H_0 + V\\), where \\(V = c * \\delta(r)\\) and ``nr`` is the
     relative distance in the two particle system.
 
     Note that the discrete delta function becomes
+
     $$
-        \frac{\delta_{n_r, 0}}{a_L^n_dim} \, .
+    \\frac{\\delta_{n_r, 0}}{a_L^{n_d}}
     $$
+
     This is implemented in this routine.
 
-    Arguments
-    ---------
-        kinetic_hamiltonian: sparse matrix
+    Arguments:
+        kinetic_hamiltonian:
             The kinetic two-body lattice Hamiltonian.
 
-        contact_strength: float
+        contact_strength:
             The strength of the contact interaction in respective units.
             This depends on the dimension of the problem, e.g., [fm]**(-1 - ndim).
     """
