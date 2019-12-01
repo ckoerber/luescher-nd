@@ -24,19 +24,11 @@ class DatabaseSession:
     ):
         """Initialize DatabaseConnection for connecting to an sqlite database
 
-        **Arguments**
-
-            database: str
-                The database address.
-
-            dtype: str = "sqlite"
-                The type of the databse.
-
-            verbose: bool = False
-                Return extra output.
-
-            commit: bool = True
-                Commit database on exit.
+        Arguments:
+            database: The database address.
+            dtype: The type of the databse.
+            verbose: Return extra output.
+            commit: Commit database on exit.
 
         """
         self.database = database
@@ -53,7 +45,7 @@ class DatabaseSession:
 
     @property
     def connection_string(self):
-        """Returns the connection string `{dtype}:///{database}`
+        """Returns the connection string :code:`{dtype}:///{database}`
         """
         return f"{self.dtype}:///{self.database}"
 
