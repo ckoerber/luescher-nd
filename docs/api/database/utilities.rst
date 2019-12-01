@@ -5,3 +5,4 @@ connection
 .. automodule:: luescher_nd.database.utilities
     :members:
     :special-members:
+    :exclude-members: __weakref__
