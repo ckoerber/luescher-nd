@@ -1,19 +1,20 @@
-.ipynb_checkpoints/
-*.egg
+.*
+!.gitignore
 *.egg-info
-build/
-configure.yaml
-.env
-.luescher-nd
-*.so
-__pycache__
-.DS_Store
 
-# LaTeX
-*.aux
-*.bbl
-*.blg
-.eggs/
+_sources
 
-*.jpg
-*.log
+build
+data
+docs
+luescher_nd
+notebooks
+notes
+paper
+scripts
+tests
+Makefile
+requirements.txt
+README.md
+setup.cfg
+setup.py
