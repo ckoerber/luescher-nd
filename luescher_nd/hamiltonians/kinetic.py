@@ -37,52 +37,55 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
     r"""Computes the kinetic Hamiltonian for a relative two-body system in a 3D box.
 
     The kinetic Hamiltonian is defined by
-        `H0 = - Laplace / 2 /(particle_mass/2)`
+    :code:`H0 = - Laplace / 2 /(particle_mass/2)`
     Where Laplace is the lattice laplace operator with twisted boundary conditions.
 
     The function uses scipy sparse matrices in column format.
 
-    Arguments
-    ---------
-        n1d_max: int
+    Arguments:
+        n1d_max:
             Spatial dimension of lattice in any direction.
 
-        lattice_spacing: float
+        lattice_spacing:
             The lattice spacing in fermi.
 
-        particle_mass: float
+        particle_mass:
             The mass of the particles to be described in inverse fermi.
 
-        ndim_max: float
+        ndim_max:
             The number of spatial dimensions.
 
-        derivative_shifts: Dict[int, float] or None
+        derivative_shifts:
             The implementation of the numerical laplace operator.
             E.g., for a one step derivative
-                `d2f/dx2(n) = sum(
+
+            .. code:
+                d2f/dx2(n) = sum(
                     c_i * f(n + s_i) * exp(1j * twist_angle/n1d_max * s_i)
                 )/lattice_spacing**2`
-            where s_i and c_i are the keys and values of derivative_shifts.
-            If None, the shifts are defaulted to {-1: 1.0, 0: -2.0, 1: 1.0}.
 
-    Long description
-    ----------------
+            where s_i and c_i are the keys and values of derivative_shifts.
+
+            If None, the shifts are defaulted to ``{-1: 1.0, 0: -2.0, 1: 1.0}``.
+
     In the one-dimensional case, a simple discrete 1-step derivative for periodic
     boundary conditions is given by
+
     $$
-        \frac{d^2 f(x = n \epsilon)}{dx^2}
-        \rightarrow \frac{1}{\epsilon^2}
-        \left[
-            f(n\epsilon + \epsilon)
-            - 2 f(n\epsilon)
-            + f(n\epsilon - \epsilon)
-        \right] \, ,
+    \\frac{d^2 f(x = n \\epsilon)}{dx^2}
+    \\rightarrow \\frac{1}{\\epsilon^2}
+    \\left[
+    f(n\\epsilon + \\epsilon)
+    - 2 f(n\\epsilon)
+    + f(n\\epsilon - \\epsilon)
+    \\right]
     $$
-    where $\epsilon$ is the lattice spacing.
+
+    where \\(\\epsilon\\) is the lattice spacing.
 
     For improved discrete derivative implementations (n-steps) see also
-    [Finite difference coefficients]
-    (https://en.wikipedia.org/wiki/Finite_difference_coefficient).
+    `finite difference coefficients
+    <https://en.wikipedia.org/wiki/Finite_difference_coefficient>`_.
 
     The kinetic Hamiltonian in relative coordinates is computed by dividing the above
     expression by two times the reduced mass of the subsystem &mdash;
@@ -91,10 +94,11 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
     The below implementation of the kinetic Hamiltonian is general in the number of
     dimensions and the implementation of the derivative.
     This is achieved by creating a meta index for coordinates:
-    ```python
-    nr = n1 + n2 * n1d_max ** 1 + n3 * n1d_max ** 2 + ...
-    ```
-    where `ni` describe the index in each respective dimension.
+
+    .. code:
+        nr = n1 + n2 * n1d_max ** 1 + n3 * n1d_max ** 2 + ...
+
+    where ``ni`` describe the index in each respective dimension.
 
     Taking the derivative in a respective direction adjusts the `ni` components.
     Because the grid is finite with boundary conditions, all `ni` are identified with
@@ -102,12 +106,13 @@ def get_kinetic_hamiltonian(  # pylint: disable=R0914, R0913
 
     For example, when shifitng the y-coordinate in a three dimensional space by one
     lattice spacing becomes
-    ```
-    nr_yshift = nx + ((ny + 1) % n1d_max) * n1d_max ** 1 + nz * n1d_max ** 2
-    ```
+
+    .. code:
+        nr_yshift = nx + ((ny + 1) % n1d_max) * n1d_max ** 1 + nz * n1d_max ** 2
+
 
     The below kinetic Hamiltonian iterates over all dimensions and shifts to create
-    a `n_max x n_max` matrix with `n_max = n1d_max ** ndim_max`.
+    a ``n_max x n_max`` matrix with ``n_max = n1d_max ** ndim_max``.
     """
     derivative_shifts = derivative_shifts or {-1: 1.0, 0: -2.0, 1: 1.0}
 
