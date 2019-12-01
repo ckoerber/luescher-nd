@@ -2,7 +2,8 @@ luescher-nd.operators
 ====================================
 
 .. autosummary::
-   luescher_nd.operators
+   luescher_nd.operators.a1g
+   luescher_nd.operators.parity
 
 --------
 

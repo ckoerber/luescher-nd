@@ -2,7 +2,9 @@ luescher-nd.zeta
 ====================================
 
 .. autosummary::
-   luescher_nd.zeta
+   luescher_nd.zeta.zeta2d
+   luescher_nd.zeta.zeta3d
+
 
 --------
 
