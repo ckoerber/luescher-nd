@@ -8,6 +8,7 @@ configure.yaml
 *.so
 __pycache__
 .DS_Store
+.pytest_cache
 
 # LaTeX
 *.aux
