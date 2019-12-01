@@ -15,4 +15,5 @@ sphinx
 recommonmark
 sphinx-autodoc-typehints
 sphinx-markdown-tables
+sphinxcontrib-katex
 pytest
