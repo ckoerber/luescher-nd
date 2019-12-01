@@ -1,3 +1,6 @@
+"""Implements operators to project on A1g states
+"""
+
 import numpy as np
 import luescher_nd.lattice as lattice
 import scipy.sparse as sp
