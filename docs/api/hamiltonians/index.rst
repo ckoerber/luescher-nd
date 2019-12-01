@@ -2,7 +2,9 @@ luescher-nd.hamiltonians
 ====================================
 
 .. autosummary::
-   luescher_nd.hamiltonians
+   luescher_nd.hamiltonians.kinetic
+   luescher_nd.hamiltonians.contact
+   luescher_nd.hamiltonians.longrange
 
 --------
 
