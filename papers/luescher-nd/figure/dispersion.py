@@ -40,11 +40,11 @@ def nstepinf(pe):
 DISPERSION = {1: nstep1, 2: nstep2, 3: nstep3, 4: nstep4, -1: nstepinf}
 
 LABEL = {
-    -1: r"$n_{\mathrm{step}}=\infty$",
-    1: r"$n_{\mathrm{step}}=1$",
-    2: r"$n_{\mathrm{step}}=2$",
-    3: r"$n_{\mathrm{step}}=3$",
-    4: r"$n_{\mathrm{step}}=4$",
+    -1: r"$n_{s}=\infty$",
+    1: r"$n_{s}=1$",
+    2: r"$n_{s}=2$",
+    3: r"$n_{s}=3$",
+    4: r"$n_{s}=4$",
 }
 
 
