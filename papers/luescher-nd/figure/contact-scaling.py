@@ -162,7 +162,7 @@ def get_grid_plot(df: pd.DataFrame, m: float):
         legend_data.values(),
         legend_data.keys(),
         frameon=False,
-        title=r"$n_\mathrm{step}$",
+        title=r"$n_s$",
         bbox_to_anchor=(1.1, 0.3),
         loc="upper left",
     )
