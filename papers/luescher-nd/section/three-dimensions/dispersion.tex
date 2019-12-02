@@ -3,7 +3,7 @@
 \subsection{Results of the dispersion method in three dimensions}
 
 In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the zeta function.
-However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_D$, leveraging the dispersion relation for that derivative.
+However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_3$, leveraging the dispersion relation for that derivative.
 Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \eqref{dispersion-zeta-contact} using the same $S^{\dispersion}$ function.
 The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
 Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
@@ -34,8 +34,13 @@ Again, this difference depends on the accuracy of the tuning.
     \label{fig:dispersion running of strength}
 \end{figure}
 
-We note that even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^\dispersion_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
+We note that
+\begin{enumerate}
+	\item when matching the contact interaction parameter using spherical \Luscher data and finite spacing eigenvalues, the data points did not exactly match the analytic spherical contact scaling.
+	E.g., the error at the smallest lattice spacing had a relative error in the percent regime and it got worse for larger lattice spacings.
+	\item even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^\dispersion_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
 At any finite $N$ the spherical integral and cartesian integrals differ---if the radius of the sphere is $N/2$, the corners of the lattice's Brillouin zone are absent; the cartesian integral matches the Brillouin zone correctly, critical for any finite-$N$ result.
+\end{enumerate}
 
 \begin{figure}[htb]
     \scalebox{0.8}{\input{figure/3dtuned.pgf}}
