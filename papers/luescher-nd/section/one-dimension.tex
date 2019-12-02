@@ -3,7 +3,7 @@
 
 Here we consider L\"uscher's formula in one dimension with a contact interaction.
 Since the sum in the quantization condition \eqref{general luscher}or the one-loop finite-volume sum \eqref{I0 FV} with $D=1$ is convergent, the counterterm $\counterterm_{D=1}^\spherical=0$ and we obtain
-\begin{align}
+\begin{align}\label{eq:tuning-1d}
     C(\Lambda)
     = 
     C_R
@@ -56,15 +56,20 @@ However, we also show the scattering data determined through $S^{\dispersion}_1(
     \input{figure/1d.pgf}
 %\includegraphics[width=.65\textwidth]{figure/1d.pdf}
     \caption{
-        (Top panel)
-        Results in 1-D using finite-spacing eigenvalues $x^\dispersion=2\mu E^\dispersion L^2/4\pi^2$ of the Schr\"odinger equation with $N=4$, 10, 12, and 14, (triangles, squares, diamonds, and hexagons, respectively) tuned so that $\tilde a_{20}/L=1/10$ (closed symbols) and $\tilde a_{20}/L=0$ (open symbols).
-        The colored points are obtained using $S^\spherical_1(x^\dispersion)$ for analysis; red, green, blue, and purple corresponding to $N=4$, 10, 12, and 14 respectively.
-        The thin colored lines are the derived induced momentum-dependent terms for each $N$ as given in \Tabref{induced terms in 1 d}.
-        The black points are obtained using the $N$-appropriate $S^{\dispersion}_1(x^\dispersion)$ and exhibit the correct flat-line behavior.
-        The dashed gray line is $S_1^\spherical$, as in the bottom panel.
-        (Bottom panel)
-        Two one-dimensional zeta functions, the spherical function $S_1^{\spherical}$ (light gray) given in \eqref{1d luscher} and $S_1^{\dispersion}$ (red) given in \eqref{1d dispersion luscher} with $N=4$ and $\nstep=\infty$.
-        The difference between the dispersion and spherical curves is responsible for moving the red triangles to the black triangles in the top panel.
+    	Phase shifts and zeta functions in the spherical and dispersion scenario in one dimension.
+		\\
+		\textit{(top)} 
+        	Finite-spacing eigenvalues $x^\dispersion=2\mu E^\dispersion L^2/4\pi^2$ of the Schr\"odinger equation are inserted into respective zeta functions to obtain phase shifts.
+			The eigenvalues are obtained for a contact interaction which fulfills eq.~\eqref{tuning-1d} fixed to $\tilde a_{20}/L=1/10$ (closed symbols) and $\tilde a_{20}/L=0$ (open symbols).
+			Different markers correspond to different discretization; $N=4$ (triangles), 10 (squares), 12 (diamonds), and 14 (hexagons).
+        	For analysis, the colored points are obtained using $S^\spherical_1(x^\dispersion)$; corresponding to $N=4$ (red), 10 (green), 12 (blue), and 14 (purple).
+        	The thin colored lines are the derived induced momentum-dependent terms for each $N$ as given in \Tabref{induced terms in 1 d}.
+        	The black points are obtained using the $N$-appropriate $S^{\dispersion}_1(x^\dispersion)$ and exhibit the correct flat-line behavior.
+        	The dashed gray line is $S_1^\spherical$, as in the bottom panel.
+        \\
+        \textit{(bottom)}
+        	Two one-dimensional zeta functions, the spherical function $S_1^{\spherical}$ (light gray) given in \eqref{1d luscher} and $S_1^{\dispersion}$ (red) given in \eqref{1d dispersion luscher} with $N=4$ and $\nstep=\infty$.
+        	The difference between the dispersion and spherical curves is responsible for moving the red triangles to the black triangles in the top panel.
         }
         \label{fig:luescher1d}
 \end{figure}
