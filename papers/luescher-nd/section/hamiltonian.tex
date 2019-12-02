@@ -144,9 +144,11 @@ and we divide by $4\pi^2/\mu L^2$ to make everything dimensionless.
 We have implemented both this \Aoneg-only Hamiltonian and the general Hamiltonian with an energy penalty for non-\Aoneg states and verified that the spectra match where expected to as much precision as desired.
 
 For a given $N$ some $n^2$ shells have multiple solutions.
-When $N=5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$, which lives on the edge of the Brillouin zone.
+When $N\geq5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$, which live on the edge of the Brillouin zone for $N=5$.
+This $\nstep=\infty$ dispersion degeneracy allows different-momentum eigenstates of the kinetic hamiltonian to form superpositions.
 For the contact interaction and $\nstep=\infty$, one linear combination of these \Aoneg states overlaps the $s$-wave and has a nontrivial finite-volume energy, and the other overlaps a higher partial wave and has $x=9$ to machine precision.
-For finite $\nstep$, the non-interacting $x$ are not perfect integers, but the same moral holds.
+For finite $\nstep$, the non-interacting $x$ are not perfect integers, perturbatively lifting the degeneracy, but the same moral holds.
 In contrast, when $N=4$ there is no $n=(3,0,0)$ state, and the $(2,2,1)$ state is itself an eigenstate.
 When $N$ is very large sometimes there are multiple eigenstates that have no support for the delta function---$n^2=41, 50, 54\ldots$ have two non-interacting states, while $n^2=81, 89, 101\ldots$ have three non-interacting states, and $n^2=146$ is the first shell with four non-interacting states, for example.
+In our numerical computations we identify degenerate states and exclude non-\Aoneg from our analysis.
 We do not discuss these non-interacting states further.
