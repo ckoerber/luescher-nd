@@ -13,11 +13,10 @@ In fact, a contact interaction can be shown to always produce momentum-independe
 
 Such scale-free results must result from peculiar potentials.
 In three dimensions, for example, a delta function potential requires regulation, and to get scale-free dynamics its dimensionful strength must be sent to zero with the removal of the regulator in just such a way as to keep the phase shift at $\pi/2$.
-In one dimension the strength is also dimensionful and a delta function potential needs no regulation, but nevertheless is regulated when space is discretized; the
-In two dimensions the strength of the delta function potential is dimensionless, which entails a more complicated story we discuss in \Secref{2D}.
+In one dimension the strength of the contact interaction is also dimensionful and a delta function potential needs no regulation, but nevertheless is regulated when space is discretized; in two dimensions the strength of the delta function potential is dimensionless, which entails a more complicated story we discuss in \Secref{2D}.
 
 Numerical computations are often performed in discretized boxes with periodic boundary conditions.
-\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which we can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.
+\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which one can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.
 
 The usual understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
 
@@ -30,7 +29,7 @@ Moreover, to our knowledge, no numerical work leveraging these methods is in the
 Here, we construct example Hamiltonians explicitly and diagonalize them exactly, albeit numerically.
 This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data, and lets us completely isolate the features of the formalism itself, removing, for example, any finite-temperature effects that should in principle be extrapolated away in any finite-temperature method like Lattice QCD.
 
-We find that it is in practice actually quite difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts seems to produce a more reliable result.
+We find that it is in practice difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts sometimes can produce a more reliable result.
 
 Our main innovation, however, is to explain how to incorporate lattice artefacts into \Luscher's formula, for systems described by a contact interaction, accounting both for the Brillouin zone of the lattice and the lattice-induced dispersion relation.
 
@@ -48,8 +47,10 @@ In \Secref{luescher} we provide a traditional continuum derivation of \Luscher's
 Then, we leverage our dispersion zeta function, studying concrete examples.
 In \Secref{3D} we study the three-dimensional case.
 First we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
-In \Secref{3D} we tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at zero as accurately as the initial tuning is made.
+In \Secref{3D} we tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.
 We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
 In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where dimensional transmutation and logarithmic singularities require special attention and care.
-We find that our lattice-aware \Luscher function handles this case with no difficulty.  Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.  Our corrections are valid only for the case of a contact interaction.
+We find that our lattice-aware \Luscher function handles this case with no difficulty.
+Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
+Our corrections are valid only for the case of a contact interaction.
 Finally, we recapitulate our findings in \Secref{conclusion} and discuss future directions.
