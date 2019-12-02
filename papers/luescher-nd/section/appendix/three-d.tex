@@ -20,7 +20,7 @@ with
 	=
 	-\frac{\mu}{2 \pi}
 	\left[
-	\frac{2 \Lambda}{\pi} + \frac{2  p}{\pi} \log \left( \frac{\Lambda - p}{\Lambda + p}\right)
+	i p + \frac{2 \Lambda}{\pi} + \frac{2  p}{\pi} \log \left( \frac{\Lambda - p}{\Lambda + p}\right)
 	\right]
 \end{equation}
 The contact interaction cannot depend on any dynamic momenta; it is only possible to absorb momentum independent regulator terms when renormalizing the contact interaction.
@@ -149,11 +149,15 @@ This momentum independence had the consequence that the counter term in \eqref{d
 
 In two dimensions the analog of~\eqref{blah blah} is
 \begin{equation}
-\cot \delta_2(p)=\lim_{\Lambda\to\infty}\frac{2}{\mu}\left(\frac{1}{C(\Lambda)}- I_2(p, \Lambda)\right)\ , %\frac{1}{2\pi}\mathcal{P}\int_0^\Lambda  \mathrm { d } q \ q \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)\right)\ ,
+\cot \delta_2(p) - i =\lim_{\Lambda\to\infty}\frac{2}{\mu}\left(\frac{1}{C(\Lambda)}- I_2(p, \Lambda)\right)\ , %\frac{1}{2\pi}\mathcal{P}\int_0^\Lambda  \mathrm { d } q \ q \left( \frac { 1 } { E - \frac{\vec{q}^2}{m} } \right)\right)\ ,
 \end{equation}
 with
 \begin{equation}
-I_2(p, \Lambda)=-\frac{\mu}{\pi } \log \left(\frac{p}{\sqrt{\Lambda ^2-p^2}}\right)\ .
+I_2(p, \Lambda)
+=
+-\frac{\mu}{\pi } \log \left(\frac{p}{\sqrt{\Lambda ^2-p^2}}\right)
++ i\frac{\mu }{2}
+\ .
 \end{equation}
 Our renormalized coefficient is defined by using the phase shift condition for a contact interaction in 2-D~\eqref{2d contact phase shift} in the $\Lambda\to\infty$ limit,
 \begin{equation}\label{eq:log stuff}
@@ -193,7 +197,7 @@ As was done prior to~\eqref{dispersion-renormalization}, we also define a sequen
 	\equiv
 	\frac{2 \pi}{\mu}
 		\left[
-		\frac{1}{C_R^{(n_s)}(\Lambda)} - \left.\left(I_3^{(n_s)}(p, \Lambda)+\frac{\mu}{\pi^2} \log \left(\frac{pL}{2\pi}\right)\right)\right|_{p=0}
+		\frac{1}{C_R^{(n_s)}(\Lambda)} - \left.\left(I_2^{(n_s)}(p, \Lambda) - i\frac{\mu}{2}+\frac{\mu}{\pi^2} \log \left(\frac{pL}{2\pi}\right)\right)\right|_{p=0}
 		\right]
 	\, .
 \end{equation}
