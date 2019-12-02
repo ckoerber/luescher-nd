@@ -32,7 +32,9 @@ counterterms = np.array(
 )
 
 
-setup(n_colors=1, pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"})
+setup(
+    n_colors=1, pgf=True, rc_kwargs={"pgf.preamble": r"\usepackage{amsmath, amssymb}"}
+)
 
 fig = plt.figure(figsize=(6, 4))
 plt.minorticks_off()
@@ -54,7 +56,7 @@ ax[1].errorbar(
 ax[1].set_ylim(1.0e-3, 5.0e-1)
 ax[1].set_xscale("log")
 ax[1].set_yscale("log")
-ax[1].set_xlabel(r"$n_{\mathrm{step}}$")
+ax[1].set_xlabel(r"$n_s$")
 ax[1].set_ylabel(r"$\frac{\mathcal{L}^{\boxplus}_3}{\mathcal{L}^{\Box}_3} - 1$")
 
 

@@ -74,7 +74,7 @@ def get_spectrum(df: pd.DataFrame) -> "figure":  # pylint: disable=C0103
     grid.set_xlabels(r"$\epsilon [\mathrm{fm}]$")
     grid.set_titles(
         row_template=r"${row_var} = {row_name} [\mathrm{{fm}}]$",
-        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
+        col_template=r"$n_s =$ {col_name}",
     )
 
     plt.subplots_adjust(wspace=0.2, hspace=0.2)
@@ -129,7 +129,7 @@ def get_ere(
         ax.axhline(a_inv, color="black", ls="-", lw=0.5)
         ax.set_ylim(a_inv + Y_BOUNDS[0], a_inv - Y_BOUNDS[0])
 
-    grid.add_legend(title=r"$n_{\mathrm{step}}$", frameon=False)
+    grid.add_legend(title=r"$n_s$", frameon=False)
     grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
     grid.set_ylabels(r"$p \cot (\delta(p)) [\mathrm{fm}^{-1}]$")
     grid.set_titles(col_template=r"${col_var} = {col_name} [\mathrm{{fm}}]$")

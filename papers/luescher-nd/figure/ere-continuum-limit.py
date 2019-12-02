@@ -69,7 +69,7 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
     df["y"] -= a_inv
     df = df.query(f"y > {Y_BOUNDS[0]} and y < {Y_BOUNDS[1]}")
 
-    title = f"{zeta.capitalize()} L\"{u}scher"
+    title = f'{zeta.capitalize()} L"{u}scher'
     title += " fitted contact interaction"
     title += (
         " at unitarity"
@@ -95,7 +95,7 @@ def export_grid_plot(file_name: str, zeta: str = "spherical", a_inv: float = 0.0
     grid.set_ylabels(r"$p \cot(\delta_0(p))$ [fm$^{-1}$]")
     grid.set_titles(
         row_template=r"${row_var} = {row_name}$ [fm]",
-        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
+        col_template=r"$n_s =$ {col_name}",
     )
 
     grid.fig.suptitle(title, y=1.05)
