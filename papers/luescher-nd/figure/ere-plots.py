@@ -102,7 +102,7 @@ def export_grid_plot(
     )
     df = df[df.epsilon * 1.0e4 % 2 == 0]
 
-    title = f"{zeta.capitalize()}"+" L\"{u}scher"
+    title = f"{zeta.capitalize()}" + ' L"{u}scher'
     title += " fitted contact interaction"
     title += (
         " at unitarity"
@@ -145,15 +145,15 @@ def export_grid_plot(
 
     grid.set_xlabels(r"$x = \frac{2 \mu E L^2}{4 \pi^2}$")
     if y_lim is not None:
-        ylabels = r"$p \cot(\delta_0(p)) \,[\mathrm{fm}^{-1}]$"
+        ylabels = r"$p \cot(\delta_3(p)) \,[\mathrm{fm}^{-1}]$"
     else:
         ylabels = (
-            r"$\left| p \cot(\delta_0(p)) + \frac{1}{a_0} \right|\,[\mathrm{fm}^{-1}]$"
+            r"$\left| p \cot(\delta_3(p)) + \frac{1}{a_3} \right|\,[\mathrm{fm}^{-1}]$"
         )
     grid.set_ylabels(ylabels)
     grid.set_titles(
         row_template=r"${row_var} = {row_name}\, [\mathrm{{fm}}]$",
-        col_template=r"$n_{{\mathrm{{step}}}} =$ {col_name}",
+        col_template=r"$n_s =$ {col_name}",
     )
 
     # grid.fig.suptitle(title, y=1.05)
@@ -163,7 +163,8 @@ def export_grid_plot(
     grid.add_legend(title=r"$\epsilon \,[\mathrm{fm}]$", frameon=False)
 
     grid.savefig(
-        "ere-" + file_name.replace(".sqlite", ".pgf").replace("=", "_"), **EXPORT_OPTIONS
+        "ere-" + file_name.replace(".sqlite", ".pgf").replace("=", "_"),
+        **EXPORT_OPTIONS,
     )
 
 
