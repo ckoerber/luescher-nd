@@ -1,19 +1,11 @@
 \section{The Usual Counterterm}\label{sec:counterterm/spherical}
 
-The real part of the principal value of the spherical integrals $I_D$ cut off by a radius of $N/2$ are given by
-\begin{equation}
-    \Re \left[ I_D\left(\sqrt{2\mu E}\right) \right] = \begin{cases}
-        \frac{2 \mu}{L\pi}\left(\sqrt{x}\tanh\inverse\frac{\sqrt{x}}{N/2} - \frac{N}{2}\right)
-            &   (D=3)\\[0.25cm]
-        \frac{\mu}{2\pi} \log \frac{x}{(N/2)^2-x}
-            &   (D=2)\\[0.25cm]
-        \frac{\mu L}{\pi^2} \frac{\tanh\inverse \frac{\sqrt{x}}{N/2}}{\sqrt{x}}                     &   (D=1)
-    \end{cases}.
-\end{equation}
-In \eqref{spherical quantization} a variety of dimensionful parameters are separated from the integral itself.  For convenience, the integral that appears in $S_D^\spherical$ itself is given by
+The spherical integrals $I_D$ are cut off by a radius of $N/2$.
+In \eqref{spherical quantization} a variety of dimensionful parameters are separated from the integral itself.
+For convenience, the integrals that appear in $S_D^\spherical$ for $x>0$ itself are given by
 \begin{equation}
     \label{eq:spherical S improved regulator}
-    \int_0^{N/2} \frac{\Omega_D n^{D-1} \mathrm{d}n}{n^2-x} = \begin{cases}
+     \Omega_D \int_0^{N/2}  \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x} = \begin{cases}
         4\pi\left( \frac{N}{2} - \sqrt{x} \tanh\inverse \frac{\sqrt{x}}{N/2}\right)
             &   (D=3)\\[0.25cm]
         \pi \log\left( \frac{(N/2)^2}{x} - 1\right)
@@ -24,7 +16,7 @@ In \eqref{spherical quantization} a variety of dimensionful parameters are separ
 
 The regulating behavior needed to cancel the divergence in the sum in $S_D^\spherical$ can be found by expanding these integrals around the large-$N$ behavior,
 \begin{equation}
-    \int_0^{N/2} \frac{\Omega_D n^{D-1} \mathrm{d}n}{n^2-x} \goesto \begin{cases}
+     \Omega_D\int_0^{N/2} \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x} \goesto \begin{cases}
         4\pi \left(\frac{N}{2}\right) - \frac{4 \pi x}{N/2} + \order{\left(\frac{N}{2}\right)^{-2}}
             &   (D=3)\\[0.25cm]
         \pi \log \left(\frac{(N/2)^2}{x}\right) - \frac{\pi x}{(N/2)^2} + \order{\left(\frac{N}{2}\right)^{-4}}
@@ -37,7 +29,7 @@ However, rather than including only the leading divergent behavior, one can use 
 
 In two dimensions, we can rewrite separate the large-$N$ behavior of the infinite-volume integral
 \begin{align}
-    \int_0^{N/2} \frac{\Omega_D n^{D-1} \mathrm{d}n}{n^2-x}
+    \Omega_D\int_0^{N/2} \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x}
     &=
     \pi \log \left(\frac{(N/2)^2}{x}\right) + \pi \log\left(1-\frac{x}{(N/2)^2}\right)
     &
