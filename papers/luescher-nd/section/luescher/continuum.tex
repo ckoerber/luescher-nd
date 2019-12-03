@@ -118,8 +118,10 @@ The imaginary part on the left hand side exactly cancels the last term on the ri
    \frac{2}{(2\pi)^2 L^{D-2}}
     \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}\\
     \implies
-      \frac{1}{2\F_{D}(\sqrt{2\mu E})} \cot \delta_{D}(p)= \frac{2}{(2\pi)^2 L^{D-2}}\left[
-    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x)\right]\ ,
+      \cot \delta_{D}(p)= \frac{\F_{D}(\sqrt{2\mu E})}{\pi^2 L^{D-2}}\left[
+    \lim\limits_{\Lambda \to \infty}\left(\sum_{\vec{n}}-\mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}\right]
+    +i\theta(-x)
+    \ ,
 \end{multline}
 with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.  In the second line above we moved the term proportional to the $\theta(-E)$ to the RHS.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_D$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
@@ -127,9 +129,10 @@ Let $N=\Lambda L/\pi$.
 Then, with a finite cutoff on magnitude $N/2$, we define
 \begin{equation}\label{eq:spherical cutoff S}
     S^{\spherical N}_D(x) =
-    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}+i\frac{\pi^2}{\F_D\left(2\pi\sqrt{x}\right)}\theta(-x)\ ,
+    \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}
+    + i \frac{(2\pi)^D}{4 \F_D\left(\sqrt{x}\right)}\theta(-x)\ ,
 \end{equation}
-where the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.   By performing the principal value integral and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
+where it was used that $F_D(p) \sim p^{2-D}$ and the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.   By performing the principal value integral and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
 \begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
