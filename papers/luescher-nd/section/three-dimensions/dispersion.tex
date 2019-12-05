@@ -11,7 +11,7 @@ Moreover, comparing the scale to that in, for example, \Figref{unimproved spheri
 
 \begin{figure}[!htb]
 	\centering
-    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \scalebox{0.8}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
     \caption{The same as \Figref{unimproved spherical}, but tuned and subsequently analyzed using the appropriate latticized \Luscher function, matching the cutoff on the sum to the lattice scale and accounting for the dispersion relation.
     We emphasize the results are on a log scale, and the tuning was to $-1/a_3 = 0$.
     }
@@ -24,7 +24,7 @@ Again, this difference depends on the accuracy of the tuning.
 
 \begin{figure}[!htb]
 	\centering
-    \scalebox{0.8}{\input{figure/contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
+    \scalebox{0.7}{\input{figure/contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
     \caption{
         Scaling of the contact interaction strength $C_R^{(n_s)}(\epsilon)$ fitted using the dispersion method at unitarity.
         Data points are values of the contact interaction fitted to the first intersection of the phase shifts with the dispersion zeta function.
@@ -42,6 +42,13 @@ We note that
 At any finite $N$ the spherical integral and cartesian integrals differ---if the radius of the sphere is $N/2$, the corners of the lattice's Brillouin zone are absent; the cartesian integral matches the Brillouin zone correctly, critical for any finite-$N$ result.
 \end{enumerate}
 
+
+
+\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x)$}{S3-spherical} due to discretization\label{sect:3d induced momenta}}
+The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.
+As such, it requires continuum energies $x$ for its argument.
+If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.
+
 \begin{figure}[htb]
     \scalebox{0.8}{\input{figure/3dtuned.pgf}}
     \caption{
@@ -53,20 +60,6 @@ At any finite $N$ the spherical integral and cartesian integrals differ---if the
     \label{fig:3d-corrections}
 \end{figure}
 
-
-
-In \Figref{3d-corrections} we show the result of tuning a finite-spacing contact interaction to the first zero of the continuum zeta function $S^\spherical_3$.
-At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion~\eqref{small x} discussed in the next section.
-The same spectrum is also fed through the spacing-appropriate dispersion zeta $S^\dispersion$, resulting in the flat black lines.
-Shown in detail in the bottom panel, it's clear that the continuum limit taken this way results in any finite spacing having a nonzero scattering length that vanishes with the continuum limit.
-In contrast, tuning to the dispersion function directly, as in \Figref{unimproved dispersion}, is flat and nearly zero at each individual lattice spacing.
-We expect that this difference explains the induced momentum dependence of, for example, \Refs{Endres:2011er,Endres:2012cw}.
-
-
-\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x)$}{S3-spherical} due to discretization\label{sect:3d induced momenta}}
-The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.
-As such, it requires continuum energies $x$ for its argument.
-If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.
 This is particularly evident for the contact interaction as was observed, for example, in \cite{Endres:2012cw}.
 To understand the source of these terms, consider
 \begin{multline}
@@ -108,3 +101,10 @@ $N$ & $\alpha_1$ & $\alpha_2$ & $\alpha_3$ \\
 100 &0.03481483765136 &0.2089208128674 &0.00002008418957
 \end{tabular}
 \end{table}
+
+In \Figref{3d-corrections} we show the result of tuning a finite-spacing contact interaction to the first zero of the continuum zeta function $S^\spherical_3$.
+At each spacing the spectrum is fed through the continuum zeta for analysis, resulting in an apparent spacing-dependent momentum dependence that matches the small-$x$ expansion~\eqref{small x} discussed in the next section.
+The same spectrum is also fed through the spacing-appropriate dispersion zeta $S^\dispersion$, resulting in the flat black lines.
+Shown in detail in the bottom panel, it's clear that the continuum limit taken this way results in any finite spacing having a nonzero scattering length that vanishes with the continuum limit.
+In contrast, tuning to the dispersion function directly, as in \Figref{unimproved dispersion}, is flat and nearly zero at each individual lattice spacing.
+We expect that this difference explains the induced momentum dependence of, for example, \Refs{Endres:2011er,Endres:2012cw}.
