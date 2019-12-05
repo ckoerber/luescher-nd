@@ -70,7 +70,7 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
 
 \begin{figure}[H]
 	\centering
-    \scalebox{1.0}{\input{figure/continuum-extrapolation-ere.pgf}}
+    \scalebox{0.8}{\input{figure/continuum-extrapolation-ere.pgf}}
     \caption{
         \label{fig:continuum-extrapolation-ere}
         Phase shifts computed by inserting the continuum extrapolated spectrum for different discretization implementations $n_s$ and finite volumes $L$ in the zeta function $S^{\spherical}_3$.
@@ -89,15 +89,25 @@ We present data for the non-unitarity scenario, e.g., $a_{30} = - 5 \, [\mathrm{
 Next we want to discuss what effects finite discretization artifacts have when applying L\"uscher's formalism to a spectrum for finite lattice spacings.
 We insert the energy levels presented in \figref{continuum-extrapolation-spectrum} before taking the continuum limit and present results in figure \figref{unimproved spherical}.
 
-\begin{figure}[th]
+\begin{figure}[H]
 	\centering
-    \scalebox{0.9}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
+    \scalebox{0.8}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf}}
     \caption{
         \label{fig:unimproved spherical}
         We present energy eigenvalues presented in \figref{continuum-extrapolation-spectrum} directly inserted $S^{\spherical}_3$--without a continuum limit.
         In the top row we show results for $L=1.0$~fm, in bottom we show $L=2.0$~fm, while in different columns we show different discretization schemes.
         Even though results for $n_s = 2$ seem to be close to the continuum limit result, they start to drastically oscillate for higher energies.
         While more improved discretization schemes seem to oscillate less, they do not lay on top of the continuum result where the difference is related to the lattice spacing.
+    }
+\end{figure}
+
+\begin{figure}[htb]
+    \scalebox{1.0}{\input{figure/ere-continuum-extrapolation.pgf}}
+    \caption{
+        \label{fig:iv-continuum}
+        Continuum limit of different phase shift points computed by inserting finite lattice spacing eigenstates in $S^{\spherical}_3$ (see \figref{unimproved spherical}).
+        Each column represents a different kinetic operator and each row tracks a different eigenvalue of the discrete finite-volume hamiltonian.
+        Note that both axis have a log scale and thus on these scales, a linear trend for the phase shifts suggests that they extrapolate to zero.
     }
 \end{figure}
 
@@ -120,4 +130,7 @@ Similar to the case where we first extrapolated the spectrum to the continuum an
 We note that similar to the case where we first extrapolated the spectrum to the continuum, the extrapolation of the phase shifts seems to work best for the same discretization schemes in the same energy range.
 For example, while we find a linear log-log scaling region in \figref{iv-continuum} for $n_s = 2$ and $x<6$, uncertainties of the $n_s =2$ extrapolation also start to increase in \figref{continuum-extrapolation-spectrum} after $x>6$.
 However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related to the $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
+
+
+
 
