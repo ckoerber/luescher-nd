@@ -8,7 +8,7 @@ For convenience, the integrals that appear in $S_D^\spherical$ for $x>0$ itself 
      \Omega_D \int_0^{N/2}  \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x} = \begin{cases}
         4\pi\left( \frac{N}{2} - \sqrt{x} \tanh\inverse \frac{\sqrt{x}}{N/2}\right)
             &   (D=3)\\[0.25cm]
-        \pi \log\left( \frac{(N/2)^2}{x} - 1\right)
+        \pi \log\left( \frac{(N/2)^2}{|x|} - 1\right)
             &   (D=2)\\[0.25cm]
         -\frac{2}{\sqrt{x}} \tanh\inverse \frac{\sqrt{x}}{N/2}                     &   (D=1)
     \end{cases}.
@@ -19,7 +19,7 @@ The regulating behavior needed to cancel the divergence in the sum in $S_D^\sphe
      \Omega_D\int_0^{N/2} \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x} \goesto \begin{cases}
         4\pi \left(\frac{N}{2}\right) - \frac{4 \pi x}{N/2} + \order{\left(\frac{N}{2}\right)^{-2}}
             &   (D=3)\\[0.25cm]
-        \pi \log \left(\frac{(N/2)^2}{x}\right) - \frac{\pi x}{(N/2)^2} + \order{\left(\frac{N}{2}\right)^{-4}}
+        \pi \log \left(\frac{(N/2)^2}{|x|}\right) - \frac{\pi x}{(N/2)^2} + \order{\left(\frac{N}{2}\right)^{-4}}
             &   (D=2)\\[0.25cm]
         -\frac{2}{(N/2)} - \frac{2 x}{3 (N/2)^3} + \order{\left(\frac{N}{2}\right)^{-4}}
             &   (D=1)
@@ -31,7 +31,7 @@ In two dimensions, we can rewrite separate the large-$N$ behavior of the infinit
 \begin{align}
     \Omega_D\int_0^{N/2} \mathcal P \frac{ n^{D-1} \mathrm{d}n}{n^2-x}
     &=
-    \pi \log \left(\frac{(N/2)^2}{x}\right) + \pi \log\left(1-\frac{x}{(N/2)^2}\right)
+    \pi \log \left(\frac{(N/2)^2}{|x|}\right) + \pi \log\left(1-\frac{x}{(N/2)^2}\right)
     &
     (D&=2)
 \end{align}
