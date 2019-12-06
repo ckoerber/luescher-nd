@@ -82,9 +82,9 @@ def get_degeneracy_list(n1d: int, ndim: int = 3) -> List[int]:
 
 def read_table(  # pylint: disable=R0913, R0914
     database: str,
-    round_digits: int = 2,
     zeta: Optional[str] = None,
     filter_poles: bool = False,
+    round_digits: int = 2,
     filter_by_nstates: bool = False,
     filter_degeneracy: bool = False,
     drop_comment: bool = True,
@@ -94,19 +94,20 @@ def read_table(  # pylint: disable=R0913, R0914
     The database must contain an ``Energy`` table.
     Drops all entries which are at or close to divergencies of the zeta function.
 
-    **Argumennts**
+    Argumennts:
         database: str
             The sqlite database file.
 
-        round_digits: int = 2
-            How close an x-value has to be to an integer in order to be dropped.
-
-        dispersion_zeta: bool = True
-            Use dispersion zeta function to compute the ``y`` column.
-            Else use regular zeta.
+        zeta: Optional[str] = None
+            Zeta function to use to convert spectrum to phase shifts.
+            Valid options are 'spherical', 'dispersion' or 'cartesian'.
+            Defaults to not converting (if ``None``).
 
         filter_poles: bool = False
             Automatically filter out states which are close to zeta poles.
+
+        round_digits: int = 2
+            How close an x-value has to be to an integer in order to be dropped.
 
         filter_by_nstates: bool = False
             Automatically filter out states which are degenerate.
