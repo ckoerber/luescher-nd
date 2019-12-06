@@ -12,6 +12,7 @@ The modules can be installed via pip:
 pip install [--user] -r requirements.txt
 pip install [--user] [-e] .
 ```
+During the install, the install script will download two files (`source/zeta.h` and `source/zeta.cc`) from https://github.com/cjmorningstar10/TwoHadronsInBox which are needed to compute the three dimensional spherical zeta function.
 
 For the exact module versions see `requirements-freeze.txt`.
 
