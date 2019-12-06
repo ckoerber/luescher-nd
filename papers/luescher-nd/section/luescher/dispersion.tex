@@ -1,17 +1,17 @@
 \subsection{The Dispersion Method}\label{sec:dispersion}
 
 To correctly implement a theory in a finite basis, any observable in this basis must be correctly reproduced in the physical limit.
-In case of a lattice theory, one of theses limiting procedures is the continuum limit.
+In case of a lattice theory, one of these limiting procedures is the continuum limit.
 One sensible idea for taking the continuum limit is to tune theory parameters such that some lattice observables are held fixed at their continuum value for any lattice spacings.
-By definition, these fixed observables recover their continuum value when sending the lattice spacing to zero.
-Of course, observables will be infected by lattice artifacts, and so one must readjust these parameters as one takes the limit.
+By construction, these fixed observables recover their continuum value when sending the lattice spacing to zero.
+Of course, observables will be infected by lattice artifacts, and so one must readjust the input parameters as one takes the limit.
 If this implementation and tuning prescription is well defined, all additional lattice observables will converge in the continuum as well.
 
 For example, in lattice QCD calculations, the continuum limit is sought by finding a line of constant physics where some parts of the single-hadron spectrum are held fixed as the continuum is approached.
 Then, at any finite spacing, the hadron-hadron interactions are already determined by the finite-spacing of QCD itself, and the interaction one measures depends on the lattice spacing and approaches the correct interaction in the continuum.
 A continuum limit of lattice QCD could, in principle, be taken along a line of constant deuteron-channel scattering length, but practical issues abound, even if simpler scattering channels like $I=2$ $\pi\pi$ scattering are picked instead.
 
-In our setup, non-relativistic nucleons interacting through a contact interaction, the masses are set by hand and only the interaction parameters need tuning.
+In our setup, non-relativistic nucleons interacting through a contact interaction, the masses are set by hand and only the interaction parameter needs tuning.
 Knowing that we must readjust the strength of our contact interaction as a function of lattice spacing raises the question of which observables to tune to.
 Such observables can be, e.g, scattering data but the interaction itself is not an observable.
 One renormalization scheme is to hold one part of the scattering data, e.g., the scattering length, fixed and independent of lattice spacing.
@@ -77,7 +77,7 @@ To match the \Luscher like zeta function we rewrite the quantization condition a
 \end{align}
 where we rescaled $q\goesto 2\pi n/L$ and replaced the dimension full hamiltonian with the normalized version \eqref{normalized-kinetic-hamitlonian}.
 The limits of the integration are understood for each spatial direction independently, and the Brillouin zone (\BZ) runs over all the finite-volume lattice modes.
-The $n$-dependent piece of the denominator goes to $n^2$ in the continuum limit (fixed $L$, $N\goesto\infty$).
+The $n$-dependent piece of the denominator goes to $n^2$ in the continuum limit (fixed $L$ with $N\goesto\infty$).
 But even at finite spacing the denominator only depends on $N$ rather than $L$ and $\epsilon$, which follows from the Laplacians we study \eqref{laplacian} and the elimination of the dimensionful scale (the rescaling from $q$ to $n$).
 
 We can construct, therefore, a \Luscher-like formalism,
@@ -127,7 +127,7 @@ Evaluated at a finite spacing we find
 \end{align}
 which is the zeta in \eqref{dispersion quantization} with the subleading $x$ dependence dropped, at finite $N$.
 The sum is over a finite $N$ and the lattice energy levels are used to build $x^\dispersion$.
-Unlike in the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{finite N}, because we are always interested in a real calculation performed with finite $N$.
+Unlike the continuum case, there is, strictly speaking, no divergence in the sum in \eqref{finite N}, because we are always interested in a real calculation performed with finite $N$.
 Note that the zeta function we define in \eqref{finite N} differs from the expression derived in \eqref{dispersion quantization}, in that it does not include any $x/N$ effects that disappear in the continuum, and that it is valid to feed finite-spacing eigenenergies $x^\dispersion$ through the finite-$N$ formula \eqref{finite N}.
 Plugging finite-spacing eigenenergies through the continuum formula induces a momentum dependence arising from the $x/N$ dependence in \eqref{dispersion quantization}---accounting for the seen momentum dependence that was shown to vanish towards the continuum in a variety of prior results.
 That dependence is calculable for a contact interaction and is subtracted in our finite-spacing zeta function \eqref{finite N}.
@@ -135,7 +135,7 @@ We provide an explicit derivation in three dimensions in section \ref{sec:3D dis
 
 We want to add further remarks:
 \begin{itemize}
-\item The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects.
+\item The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects with our particular interaction.
 To arrive at formulas for nonzero center of mass momentum is substantially more complicated, because only at zero center of mass momentum does the change from single-particle coordinates in \eqref{particle hamiltonian} to center-of-mass coordinates in \eqref{hamiltonian} commute with performing the spatial discretization, yielding the same dispersion relation in the effective one-body problem as in the two-body problem.
 The ordering matters, as in a realistic many-body calculation (and in physical crystals!), each individual particle sees the lattice discretization.\footnote{
 We note that the change to Jacobi coordinates commutes with the discretization of momenta if the dispersion relation is exactly equal to $p^2$ all the way up to the edge of the Brillouin zone ($\nstep=\infty$).}
@@ -156,7 +156,7 @@ In this context one may define finite-spacing quantization condition through fin
     I_D^{\dispersion}(\sqrt{2\mu E}) - I_{D,FV}^{\dispersion}(\sqrt{2\mu E})
 	\, .
 \end{equation}
-On the left-hand side of the quantization condition we get the infinite-volume $A_1^+$ phase shift at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
+On the left-hand side of the quantization condition we get the infinite-volume $A_1^+$ phase shift\footnote{For a physical lattice there are UV breaking effects of rotational symmetry, so the irreps still do not carry angular momentum labels.} at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
 One may calculate a spacing-aware $\F_D^\dispersion$ by considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
 Unfortunately, achieving a closed-form expression for $\F_D^\dispersion$ is challenging though it is numerically tractable.
 Matching to a real physical crystal requires formulating a spacing-dependent kinematic factor $\F_D^\dispersion$ from \eqref{dispersion I0} and keeping $N$ finite in the integral in the dispersion zeta function \eqref{dispersion quantization}, which introduces a whole tower of terms, each down by $N^2$, that vanish because we are matching to the continuum.
