@@ -18,3 +18,4 @@ __pycache__
 
 *.jpg
 *.log
+_modules/
