@@ -16,5 +16,5 @@ recommonmark
 sphinx-autodoc-typehints
 sphinx-markdown-tables
 sphinxcontrib-katex
-sphinxcontrib-rtd-theme
+sphinx-rtd-theme
 pytest
