@@ -32,7 +32,7 @@ release = "beta"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    # "sphinx.ext.viewcode",
+    "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "recommonmark",
     "sphinx_markdown_tables",
@@ -40,6 +40,7 @@ extensions = [
     "sphinx_autodoc_typehints",
     "sphinx.ext.autosummary",
     "sphinxcontrib.katex",
+    "sphinx_rtd_theme",
 ]
 
 source_suffix = {
@@ -62,7 +63,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
