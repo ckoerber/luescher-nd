@@ -1,7 +1,7 @@
 \subsection{Continuum extrapolation before infinite volume limit}
 
 \begin{figure}[!htb]
-\scalebox{1.0}{\input{figure/continuum-extrapolation.pgf}}
+\scalebox{1.05}{\input{figure/continuum-extrapolation.pgf}}
 \caption{
     \label{fig:continuum-extrapolation-spectrum}
     Continuum extrapolation of the discrete finite volume spectrum with $L=1\,[\mathrm{fm}]$.
@@ -21,12 +21,12 @@ Next, we extrapolate the obtained energy eigenvalues to the continuum $\epsilon 
 \begin{equation}
     E^{(n_s)}_i(\epsilon) = E_i^{(n_s)} + \sum\limits_{n=1}^{n_\mathrm{max}} e_{i,n}^{(n_s)} \epsilon^n \, .
 \end{equation}
-Because the contact interaction is expected to scale linear with the momentum cutoff and thus linear in $1/\epsilon$ (see \eqref{three-d-counterterm}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$ as the dispersion suggests.
+Because the contact interaction is expected to scale linear with the momentum cutoff and thus linear in $1/\epsilon$ (see \eqref{three-d-counterterm}), one cannot generally expect the fit coefficients $e_{i,n}^{(n_s)}$ to be zero for odd $n$ or $n < n_s$, despite the kinetic improvement~\eqref{gamma determination}.
 Nevertheless, we would expect the small $n$ coefficient for larger $n_s$ to be relatively smaller then small $n$ coefficients for smaller $n_s$: $e_{i,n}^{(n_{s_1})} < e_{i,n}^{(n_{s_2})}$ on average for $n_{s_1} > n_{s_2}$.
 
 We individually fit each discretization implementation to extract the continuum energies $E_i^{(n_s)}$ using the software provided by \Ref{peter_lepage_2016_60221}.
 Because our numerical uncertainties have an estimated relative error at the order $~10^{-13}$, we must in principle fit the energy for relatively high values of $n_\mathrm{max}$ which would require having many data points over different scales of $\epsilon$.
-For this reason we add further epsilon values
+For this reason we add further lattice spacings
 \begin{equation}
 	\left\{
 		\epsilon \, [\mathrm{fm}] =
@@ -130,7 +130,3 @@ Similar to the case where we first extrapolated the spectrum to the continuum an
 We note that similar to the case where we first extrapolated the spectrum to the continuum, the extrapolation of the phase shifts seems to work best for the same discretization schemes in the same energy range.
 For example, while we find a linear log-log scaling region in \figref{iv-continuum} for $n_s = 2$ and $x<6$, uncertainties of the $n_s =2$ extrapolation also start to increase in \figref{continuum-extrapolation-spectrum} after $x>6$.
 However the $n_s = 4$ implementation seems to be stable longer in \figref{iv-continuum} which is related to the $x>9$ state having a relatively larger continuum extrapolation uncertainty while also being close to the continuum value.
-
-
-
-
