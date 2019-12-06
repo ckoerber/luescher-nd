@@ -1,119 +1,91 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>contact &#8212; luescher-nd beta documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/katex-math.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
-    <script type="text/javascript" src="../../_static/katex_autorenderer.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>contact &mdash; luescher-nd beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../../_static/katex_autorenderer.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="luescher-nd.zeta" href="../zeta/index.html" />
-    <link rel="prev" title="luescher-nd.solvers" href="index.html" />
+    <link rel="prev" title="luescher-nd.solvers" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="../../index.html" class="icon icon-home"> luescher-nd
+          
+
+          
+          </a>
+
+          
             
-  <div class="section" id="contact">
-<h1>contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h1>
-<p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd.solvers.contact" title="luescher_nd.solvers.contact"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd.solvers.contact</span></code></a></p>
-<span class="target" id="module-luescher_nd.solvers.contact"></span><p>Interface for fitting LEC of contact interaction to effective range</p>
-<dl class="class">
-<dt id="luescher_nd.solvers.contact.FitKernel">
-<em class="property">class </em><code class="sig-name descname">FitKernel</code><span class="sig-paren">(</span><em class="sig-param">h</em>, <em class="sig-param">zeta</em>, <em class="sig-param">a_inv=0</em>, <em class="sig-param">xtol=1e-16</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Kernel for eigenvalue optimization</p>
-<dl class="method">
-<dt id="luescher_nd.solvers.contact.FitKernel.__post_init__">
-<code class="sig-name descname">__post_init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.__post_init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Init the zeta function</p>
-</dd></dl>
+            
+          
 
-<dl class="method">
-<dt id="luescher_nd.solvers.contact.FitKernel.chi2">
-<code class="sig-name descname">chi2</code><span class="sig-paren">(</span><em class="sig-param">contact_strength</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.chi2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the first eigenvalue and returns the squared difference between with
-expected value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="luescher_nd.solvers.contact.FitKernel.fit_contact_strenth">
-<code class="sig-name descname">fit_contact_strenth</code><span class="sig-paren">(</span><em class="sig-param">bracket=(-100.0</em>, <em class="sig-param">-0.0001)</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.fit_contact_strenth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fits the interaction to match the first excited state of the zeta function</p>
-<dl class="simple">
-<dt><strong>Arguments</strong></dt><dd><dl class="simple">
-<dt>bracket: Tuple[float, float] = (-1.0e2, -1.0e-4)</dt><dd><p>The search interval for the solver (see <cite>scipy.optimize.minimize_scalar</cite>)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="luescher_nd.solvers.contact.FitKernel.get_zeta_intersection">
-<code class="sig-name descname">get_zeta_intersection</code><span class="sig-paren">(</span><em class="sig-param">bounds</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.get_zeta_intersection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the intersection of the zeta function and the ERE for given bracket</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
           
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">luescher-nd</a></h1>
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../README.html">luescher-nd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage.html">How to user luescher-nd</a></li>
@@ -132,55 +104,178 @@ expected value.</p>
 </li>
 </ul>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">API Reference of luescher-nd</a><ul>
-  <li><a href="index.html">luescher-nd.solvers</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">luescher-nd.solvers</a></li>
-      <li>Next: <a href="../zeta/index.html" title="next chapter">luescher-nd.zeta</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">luescher-nd</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">API Reference of luescher-nd</a> &raquo;</li>
+        
+          <li><a href="index.html">luescher-nd.solvers</a> &raquo;</li>
+        
+      <li>contact</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api/solvers/contact.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contact">
+<h1>contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h1>
+<p><strong>Module</strong>: <a class="reference internal" href="#module-luescher_nd.solvers.contact" title="luescher_nd.solvers.contact"><code class="xref py py-mod docutils literal notranslate"><span class="pre">luescher_nd.solvers.contact</span></code></a></p>
+<span class="target" id="module-luescher_nd.solvers.contact"></span><p>Interface for fitting LEC of contact interaction to effective range</p>
+<dl class="class">
+<dt id="luescher_nd.solvers.contact.FitKernel">
+<em class="property">class </em><code class="sig-name descname">FitKernel</code><span class="sig-paren">(</span><em class="sig-param">h</em>, <em class="sig-param">zeta</em>, <em class="sig-param">a_inv=0</em>, <em class="sig-param">xtol=1e-16</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/luescher_nd/solvers/contact.html#FitKernel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kernel for eigenvalue optimization</p>
+<dl class="method">
+<dt id="luescher_nd.solvers.contact.FitKernel.__post_init__">
+<code class="sig-name descname">__post_init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/luescher_nd/solvers/contact.html#FitKernel.__post_init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.__post_init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Init the zeta function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.solvers.contact.FitKernel.chi2">
+<code class="sig-name descname">chi2</code><span class="sig-paren">(</span><em class="sig-param">contact_strength</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/luescher_nd/solvers/contact.html#FitKernel.chi2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.chi2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the first eigenvalue and returns the squared difference between with
+expected value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.solvers.contact.FitKernel.fit_contact_strenth">
+<code class="sig-name descname">fit_contact_strenth</code><span class="sig-paren">(</span><em class="sig-param">bracket=(-100.0</em>, <em class="sig-param">-0.0001)</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/luescher_nd/solvers/contact.html#FitKernel.fit_contact_strenth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.fit_contact_strenth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the interaction to match the first excited state of the zeta function</p>
+<dl class="simple">
+<dt><strong>Arguments</strong></dt><dd><dl class="simple">
+<dt>bracket: Tuple[float, float] = (-1.0e2, -1.0e-4)</dt><dd><p>The search interval for the solver (see <cite>scipy.optimize.minimize_scalar</cite>)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="luescher_nd.solvers.contact.FitKernel.get_zeta_intersection">
+<code class="sig-name descname">get_zeta_intersection</code><span class="sig-paren">(</span><em class="sig-param">bounds</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/luescher_nd/solvers/contact.html#FitKernel.get_zeta_intersection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#luescher_nd.solvers.contact.FitKernel.get_zeta_intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the intersection of the zeta function and the ERE for given bracket</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../zeta/index.html" class="btn btn-neutral float-right" title="luescher-nd.zeta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="luescher-nd.solvers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, C. Koerber, E. Berkowitz, T. Luu
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, C. Koerber, E. Berkowitz, T. Luu.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../../_sources/api/solvers/contact.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

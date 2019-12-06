@@ -1,115 +1,254 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>How to user luescher-nd &#8212; luescher-nd beta documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/katex-math.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
-    <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to user luescher-nd &mdash; luescher-nd beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference of luescher-nd" href="api/index.html" />
-    <link rel="prev" title="luescher-nd" href="README.html" />
+    <link rel="prev" title="luescher-nd" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> luescher-nd
+          
+
+          
+          </a>
+
+          
             
-  <div class="section" id="how-to-user-luescher-nd">
-<h1>How to user luescher-nd<a class="headerlink" href="#how-to-user-luescher-nd" title="Permalink to this headline">¶</a></h1>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
           
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">luescher-nd</a></h1>
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="README.html">luescher-nd</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to user luescher-nd</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to user luescher-nd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#export-energies">Export energies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-in-energies">Read in energies</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference of luescher-nd</a></li>
 </ul>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="README.html" title="previous chapter">luescher-nd</a></li>
-      <li>Next: <a href="api/index.html" title="next chapter">API Reference of luescher-nd</a></li>
-  </ul></li>
-</ul>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">luescher-nd</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>How to user luescher-nd</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usage.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-user-luescher-nd">
+<h1>How to user luescher-nd<a class="headerlink" href="#how-to-user-luescher-nd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="export-energies">
+<h2>Export energies<a class="headerlink" href="#export-energies" title="Permalink to this headline">¶</a></h2>
+<p>The script which was used to generate the data is located <code class="docutils literal notranslate"><span class="pre">export-energies.py</span></code> at</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> luescher-nd/scripts/short-range
+</pre></div>
+</div>
+<p>This script reads in a configuration file, e.g., <code class="docutils literal notranslate"><span class="pre">configuration.yaml</span></code>, fits the contact interaction, computes the resulting spectrum and writes energies to a database file.
+It is adaptive in the sense that it only writes data which does not exists (with the exception that it only queries for <code class="docutils literal notranslate"><span class="pre">n1d=n1d,</span> <span class="pre">epsilon=epsilon,</span> <span class="pre">nstep=nstep</span></code> – if the spectrum is not complete, it will still skip this computation.)</p>
+<p>The script is run by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python export-energies.py configuration.yaml
+</pre></div>
+</div>
+<p>An example configuration file is</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">basis</span><span class="p p-Indicator">:</span>             <span class="c1"># Parameters for the basis</span>
+    <span class="l l-Scalar l-Scalar-Plain">epsilon</span><span class="p p-Indicator">:</span>       <span class="c1"># Lattice spacing in inverse [fm]</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">0.250</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">0.200</span>
+    <span class="l l-Scalar l-Scalar-Plain">L</span><span class="p p-Indicator">:</span>             <span class="c1"># Box length in inverse [fm]</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">nstep</span><span class="p p-Indicator">:</span>         <span class="c1"># Implementation of the derivative</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">null</span>     <span class="c1"># n_step = infty derivative</span>
+<span class="l l-Scalar l-Scalar-Plain">eigenvalues</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">solver</span><span class="p p-Indicator">:</span>        <span class="c1"># Parameters passed to Lanczos solver</span>
+        <span class="l l-Scalar l-Scalar-Plain">k</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>     <span class="c1"># number of eigenvalues</span>
+    <span class="l l-Scalar l-Scalar-Plain">projector</span><span class="p p-Indicator">:</span>     <span class="c1"># Parameters passed to eigenstate projector</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">a1g</span>         <span class="c1"># Type of projector, can be parity or a1g</span>
+        <span class="l l-Scalar l-Scalar-Plain">cutoff</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3.0E+02</span>   <span class="c1"># By how much eigenvalues are shifted</span>
+<span class="l l-Scalar l-Scalar-Plain">physics</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">a_inv</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0</span>     <span class="c1"># Inverse scattering length in [fm]</span>
+<span class="l l-Scalar l-Scalar-Plain">zeta</span><span class="p p-Indicator">:</span>              <span class="c1"># Parameters for the zeta function</span>
+    <span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">spherical</span>  <span class="c1"># kind of zeta function can be spherical, cartesian or dispersion</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-in-energies">
+<h2>Read in energies<a class="headerlink" href="#read-in-energies" title="Permalink to this headline">¶</a></h2>
+<p>See also the example notebook in <code class="docutils literal notranslate"><span class="pre">notebooks/example.ipynb</span></code> on how to read in and plot the data.</p>
+<p>We also provide the scripts used for generating the figures in the paper at <code class="docutils literal notranslate"><span class="pre">paper/luescher-nd/figure</span></code> (see the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for dependency trees).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="API Reference of luescher-nd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="README.html" class="btn btn-neutral float-left" title="luescher-nd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, C. Koerber, E. Berkowitz, T. Luu
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2019, C. Koerber, E. Berkowitz, T. Luu.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/usage.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>
