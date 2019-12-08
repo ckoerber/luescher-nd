@@ -6,6 +6,10 @@ docs:
 paper:
 	make -C paper/luescher-nd
 
+.PHONY: arXiv
+arXiv:
+	make -C paper/luescher-nd arXiv.tgz
+
 .PHONY: install
 install:
 	pip install -r requirements.txt
