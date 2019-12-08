@@ -12,7 +12,6 @@ SECTIONS = $(shell find section -type f)
 
 BIBS = $(find . -name '*.bib')
 
-
 ifndef VERBOSE
 	REDIRECT=1>/dev/null 2>/dev/null
 endif
@@ -58,6 +57,7 @@ tidy:
 	$(RM) section/*.aux
 	$(RM) $(TARGET)Notes.bib
 	$(RM) $(TARGET).{out,log,aux,synctex.gz,blg,toc,fls,fdb_latexmk}
+	$(RM) arxiv.tgz
 
 .PHONY: clean
 clean: tidy
@@ -68,3 +68,18 @@ clean: tidy
 .PHONY: watch
 watch: $(TARGET).pdf
 	when-changed -s -1 -r . make
+
+figure/figure-package.tar.gz:
+	make -C figure package
+
+arXiv.tgz: master.pdf figure/figure-package.tar.gz
+	mkdir -p arXiv/figure
+	cp figure/figure-package.tar.gz arXiv
+	tar -xf arXiv/figure-package.tar.gz --directory arXiv/figure
+	$(RM) arXiv/figure-package.tar.gz
+	cp  -r section arXiv
+	cp  macros.tex arXiv
+	cp *.tex arXiv
+	cp  master.bbl arXiv
+	tar -czf arXiv.tgz arXiv
+	$(RM) -r arXiv

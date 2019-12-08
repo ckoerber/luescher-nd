@@ -14,6 +14,7 @@ FIGURES=I0.pdf	\
 		continuum-spectrum_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	\
 		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
 		a1g-state-overlap.pgf														\
+		bubbleSum.pdf																\
 		3d.pgf																		\
 		3dtuned.pgf																	\
 		2d.pgf																		\
