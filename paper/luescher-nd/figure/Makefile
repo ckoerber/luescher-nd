@@ -4,17 +4,9 @@ TARBALL=figure-package.tar.gz
 FIGURES=I0.pdf	\
  		dispersion.pgf	\
 		counterterm-nstep.pgf					\
-		ere-contact-fitted_a-inv_+0.0_zeta_cartesian_projector_a1g_n-eigs_200.pgf	 \
 		ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	 \
 		ere-contact-fitted_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	 \
-		ere-contact-fitted_a-inv_-5.0_zeta_cartesian_projector_a1g_n-eigs_200.pgf	 \
-		ere-contact-fitted_a-inv_-5.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	 \
-		ere-contact-fitted_a-inv_-5.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	 \
-		continuum-ere_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	\
-		continuum-spectrum_a-inv_+0.0_zeta_spherical_projector_a1g_n-eigs_200.pgf	\
 		contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf	\
-		a1g-state-overlap.pgf														\
-		3d.pgf																		\
 		3dtuned.pgf																	\
 		2d.pgf																		\
 		1d.pgf																		\
