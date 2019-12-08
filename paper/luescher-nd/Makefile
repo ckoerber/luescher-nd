@@ -72,10 +72,11 @@ watch: $(TARGET).pdf
 figure/figure-package.tar.gz:
 	make -C figure package
 
-arXiv.tgz: master.pdf figure/figure-package.tar.gz
+arXiv.tgz: master.pdf figure/figure-package.tar.gz figure/bubbleSum.pdf
 	mkdir -p arXiv/figure
 	cp figure/figure-package.tar.gz arXiv
 	tar -xf arXiv/figure-package.tar.gz --directory arXiv/figure
+	cp figure/bubbleSum.pdf arxiv/figure # is not created during make
 	$(RM) arXiv/figure-package.tar.gz
 	cp  -r section arXiv
 	cp  macros.tex arXiv
