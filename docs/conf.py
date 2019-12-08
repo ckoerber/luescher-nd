@@ -22,7 +22,7 @@ copyright = "2019, C. Koerber, E. Berkowitz, T. Luu"
 author = "C. Koerber, E. Berkowitz, T. Luu"
 
 # The full version, including alpha/beta/rc tags
-release = "beta"
+release = "1.0.0"
 
 
 # -- General configuration ---------------------------------------------------
