@@ -24,7 +24,7 @@ Identifying the lattice spacing $\epsilon=N/L$, we have
     =
     1.116306393581637659468497 \ldots
 \end{align}
-and $G$ is Catalan's constant. %\todo{Hmmm. . . this counterterm has an $N$ dependence, right?}
+where $G$ is Catalan's constant. %\todo{Hmmm. . . this counterterm has an $N$ dependence, right?}
 
 %Given a contact interaction with coefficient appropriately tuned to the continuum scattering length $\tilde a_{2}$ and accounts for the discretization $\epsilon=N/L$ (see \Appref{dispersion-counterterm}),
 %\begin{equation}
@@ -41,11 +41,11 @@ On the other hand, if we use the same energies but analyze them with the usual c
     \center
     \input{figure/2d.pgf}
     \caption{
-    	Phase shifts and zeta functions in the spherical and dispersion scenario in two dimension.
+    	Phase shifts and zeta functions in the spherical and dispersion scenario in two dimensions.
 		\\
-		\textit{(top)} 
+		\textit{(top)}
         	Finite-spacing eigenvalues $x^\dispersion=2\mu E^\dispersion L^2/4\pi^2$ of the Schr\"odinger equation are inserted into respective zeta functions to obtain phase shifts.
-			The eigenvalues are obtained for a contact interaction which fulfills eq.~\eqref{C2} in the spherical case and eq.~\eqref{C2-dispersion} in the dispersion case.
+			The eigenvalues are obtained for a contact interaction analytically determined for the spherical case~\eqref{C2} and the dispersion case~\eqref{C2-dispersion}.
 			Both tunings are fixed to $\tilde a_{2}/L=1/10$ (closed symbols) and $\tilde a_{2}/L=0$ (open symbols).
 			Different markers correspond to different discretizations: $N=4$ (triangles), 10 (squares), 12 (diamonds), and 14 (hexagons).
         	For analysis, the colored points are obtained using $S^\spherical_2(x^\dispersion)$; corresponding to $N=4$ (red), 10 (green), 20 (blue), and 40 (purple).
@@ -73,9 +73,9 @@ Expanded around small $x^\dispersion$ one finds
     + \alpha_3(N) (x^\dispersion)^2
     + \ldots
 \end{equation}
-The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and there exist various techniques for evaluating these sums (see, e.g. Appendix A of~\cite{Fiebig:1994qi}).
-We provide the numerical values of $\alpha_i(N)$ in \autoref{tab:induced terms in 2 d} for the discretizations shown in \autoref{fig:luescher2d}.
-These functions were also used to calculate the thin colored lines in \autoref{fig:luescher2d}, where we see the small-$x$ expansion lose accuracy quickly for $N=4$ (consider the bound state, for example) but hold deeper into the spectrum for larger $N$.
+The coefficients $\alpha_i(N)$ have an implicit dependence on $N$ since the sums are restricted outside of the Brillouin zone.  Further, in 2-D the sums involved in $\alpha_i$ converge sufficiently fast and there exist various techniques for evaluating these sums (see Appendix A of \Ref{Fiebig:1994qi}).
+We provide the numerical values of $\alpha_i(N)$ in \Tabref{induced terms in 2 d} for the discretizations shown in \Figref{luescher2d}.
+These functions were also used to calculate the thin colored lines in \Figref{luescher2d}, where we see the small-$x$ expansion lose accuracy quickly for $N=4$ (consider the bound state, for example) but hold deeper into the spectrum for larger $N$.
 
 \begin{table}
     \caption{The coefficients $\alpha_i$ of the induced momentum-dependent terms in \eqref{2D corrections} due to a contact interaction using $S^\bigcirc_2(x^\dispersion)$ as a function of discretization $N$, assuming $\nstep=\infty$.

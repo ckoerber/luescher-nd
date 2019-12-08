@@ -25,7 +25,7 @@ with
 	\right]
 \end{equation}
 The contact interaction cannot depend on any dynamic momenta; it is only possible to absorb momentum independent regulator terms when renormalizing the contact interaction.
-It is still possible to renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing
+It is still possible to renormalize the interaction such that the phase shifts, in the limit of $\Lambda \to \infty$, are independent of the cutoff by choosing the renormalized strength $C_R$ according to
 \begin{equation}\label{eq:three-d-counterterm}
 	\frac{2 \pi}{\mu} \frac{1}{C_R(\Lambda)} + \frac{2 \Lambda}{\pi}
 	\equiv
@@ -35,7 +35,7 @@ It is still possible to renormalize the interaction such that the phase shifts, 
 	\, .
 \end{equation}
 
-In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction parameter $C_R(\Lambda)$, one is able to evaluate both sides for a given momentum, e.g., for $p=0$
+In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction parameter $C_R(\Lambda)$, one is able to evaluate both sides for a given momentum, such as $p=0$
 \begin{equation}
 	- \frac{1}{a_3}
 	=
@@ -111,7 +111,7 @@ For any lattice implementation of a contact interaction with strength $c^\disper
 \end{equation}
 where $E^\dispersion$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $c^\dispersion$.
 The finite volume sum $I_{3, \FV}^{(n_s)}(p, \pi/\epsilon)$ is obtained by replacing the integral $d^3 \vec q$ in $I_3^{(n_s)}(p, \Lambda)$ with a sum  over vectors $\vec q = 2 \pi \vec n / L$.
-Because the above equation is true for any value of $c^\dispersion$ and it's corresponding spectrum, it is especially true for $c^\dispersion = C_R^{(n_s)}(\Lambda)$.
+Because the above equation is true for any value of $c^\dispersion$ and its corresponding spectrum, it is especially true for $c^\dispersion = C_R^{(n_s)}(\Lambda)$.
 This means that
 \begin{equation}
 	- \frac{1}{a_3}
@@ -139,10 +139,9 @@ which defines the dispersion zeta function
 	\overset{n_s\to\infty}{\longrightarrow} 15.348
 	\, .
 \end{align}
-
-See also section \ref{sec:dispersion-counterterm} for the computation of this coefficient.
+See \Secref{sec:dispersion-counterterm} for the computation of this coefficient.
 Equation \eqref{dispersion-zeta-form} explains why results directly match the continuum infinite volume phase shifts when computed with this modified zeta function.
-Note that this result does not hold for general finite-range interactions, i.e., if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
+Note that this result does not hold for general finite-range interactions if it not possible to make an equivalent choice as in \eqref{dispersion-renormalization}.
 We stress that this derivation uses the analytic  expression for the $T$-matrix and simplifies drastically because the phase shifts for a renormalized contact interaction are momentum independent.
 This momentum independence had the consequence that the counter term in \eqref{dispersion-zeta-contact} is momentum independent as well.
 
@@ -160,13 +159,13 @@ I_2(p, \Lambda)
 + i\frac{\mu }{2}
 \ .
 \end{equation}
-Our renormalized coefficient is defined by using the phase shift condition for a contact interaction in 2-D~\eqref{2d contact phase shift} in the $\Lambda\to\infty$ limit,
+Our renormalized coefficient is defined by using the phase shift condition for a contact interaction in 2D~\eqref{2d contact phase shift} in the $\Lambda\to\infty$ limit,
 \begin{equation}\label{eq:log stuff}
 	\frac{2}{\mu}\frac{1}{C_R(\Lambda)} + \frac{2}{\pi } \log \left(\frac{p}{\Lambda}\right)
 	=
 	\frac { 2 } { \pi } \log \left( p \tilde a _ { 2 } \right)\ ,
 \end{equation}
-which ensures $C_R(\Lambda)$ is momentum independent.
+which ensures the renormalized contact strength $C_R(\Lambda)$ is momentum independent.
 With the kinetic operator for a given lattice spacing and discretization, we again define a sequence in $n_s$ which converges against $I_2$ in the limit of $n_s \to \infty$,
 \begin{equation}
 	\lim\limits_{n_s \to \infty} I^{(n_s)}_2(p, \Lambda) = I_2(p, \Lambda)
