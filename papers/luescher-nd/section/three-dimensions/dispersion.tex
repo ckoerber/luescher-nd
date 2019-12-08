@@ -38,14 +38,14 @@ Again, this difference depends on the accuracy of the tuning.
 We note that
 \begin{enumerate}
 	\item when matching the contact interaction parameter using spherical \Luscher data and finite spacing eigenvalues, the data points did not exactly match the analytic spherical contact scaling.
-	E.g., the error at the smallest lattice spacing had a relative error in the percent regime and it got worse for larger lattice spacings.
+	The error at the smallest lattice spacing had a relative error on the percent scale and it got worse for larger lattice spacings.
 	\item even in the limit of $n_s \to \infty$ the dispersion counter term $\mathcal{L}^\dispersion_3$ will not match the spherical counter term $\mathcal{L}^{\spherical}_3$.
 At any finite $N$ the spherical integral and cartesian integrals differ---if the radius of the sphere is $N/2$, the corners of the lattice's Brillouin zone are absent; the cartesian integral matches the Brillouin zone correctly, critical for any finite-$N$ result.
 \end{enumerate}
 
 
 
-\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x)$}{S3-spherical} due to discretization\label{sect:3d induced momenta}}
+\subsection{Momentum-induced terms of  \texorpdfstring{$S^\bigcirc_3(x^\dispersion)$}{S3-spherical} due to discretization\label{sec:3d induced momenta}}
 The zeta function in L\"uscher's formula, $S^\bigcirc_3(x)$, is derived in the continuum.
 As such, it requires continuum energies $x$ for its argument.
 If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(x)$ then momentum-dependent terms are subsequently induced.
@@ -61,16 +61,16 @@ If one instead feeds discretized energies $x^\dispersion$ through $S^\bigcirc_3(
     \label{fig:3d-corrections}
 \end{figure}
 
-This is particularly evident for the contact interaction as was observed, for example, in \cite{Endres:2012cw}.
+This is particularly evident for the contact interaction as was observed, for example, in \Ref{Endres:2012cw}.
 To understand the source of these terms, consider
 \begin{multline}
 \frac{1}{\pi L}S^\bigcirc_3(x^\dispersion)=\frac{1}{\pi L}\left(S^{\dispersion}_3(x^\dispersion)+\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\right)=\frac{-1}{a_3}+\frac{1}{\pi L}\left(S^\bigcirc_3(x^\dispersion)-S^{\dispersion}_3(x^\dispersion)\right)\\
 =\frac{-1}{a_3}+\lim_{\eta \to\infty}\frac{1}{\pi L}\left(\sum_{\bm n\notin \mathrm{B.Z.}}^{|\bm n|<\eta / 2} \frac{1}{\bm n^{2}-x^\dispersion}-\mathcal{L}^\bigcirc_3\frac{\eta}{2}+\mathcal{L}^\dispersion_3\frac{N}{2}\right)\ .
 \end{multline}
-In the first line we added and subtracted $S^\dispersion_3$ and used eqs.~\eqref{dispersion-zeta-form} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.
-We assume $n_s=\infty$\footnote{
-The logic of the following derivation remains them same also for $n_s < \infty$, but, in this case, the expressions $\bm n^2$ must be replaces with the proper dispersion $\tilde K^{(n_s)}_{\bm n \bm n}$ (see eq.~\eqref{normalized-kinetic-hamitlonian}), which makes it difficult to obtained closed expressions.}.
-In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z., we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
+In the first line we added and subtracted $S^\dispersion_3$ and used the dispersion results~\eqref{dispersion-zeta-form} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.
+For convenience we assume $n_s=\infty$\footnote{
+The logic of the following derivation remains them same also for $n_s < \infty$, but, in this case, the expressions $\bm n^2$ must be replaces with the proper dispersion $\tilde K^{(n_s)}_{\bm n \bm n}$ \eqref{normalized-kinetic-hamitlonian}, which makes it difficult to obtained closed expressions.}.
+In the second line, since $\bm n$ is now restricted to be \emph{outside} the Brillouin zone, we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
 \begin{align}
 	\label{eqn:observable}
 	S^\bigcirc_3(x^\dispersion)
@@ -87,7 +87,7 @@ In the second line, since $\bm n$ is now restricted to be \emph{outside} the B.Z
 	&\equiv \frac{-\pi L}{a_3}+\alpha_1(N)+\alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2
 	+\ldots
 \end{align}
-The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the B.Z. in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (e.g. see Appendix B of~\cite{Luu:2011ep}).  We provide values for select cases of $N$ in \autoref{tab:slopes}.
+The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the Brillouin zone in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (see, for example, Appendix B of~\Ref{Luu:2011ep}).  We provide values for select cases of $N$ in \autoref{tab:slopes}.
 \begin{table}
 \caption{Coefficients $\alpha_i(N)$ as a function of $N$ in 3-D.\label{tab:slopes}}
 \center

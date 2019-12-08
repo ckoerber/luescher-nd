@@ -5,9 +5,7 @@ Here we consider L\"uscher's formula in one dimension with a contact interaction
 Since the sum in the quantization condition \eqref{general luscher}or the one-loop finite-volume sum \eqref{I0 FV} with $D=1$ is convergent we simply have %, the counterterm $\counterterm_{D=1}^\spherical=0$ and we obtain
 \begin{align}\label{eq:tuning-1d}
     C(\Lambda)
-    = 
-    C_R
-        &=
+    &=
             -\frac{1}{\mu a_{1}}
     &
     \frac{a_{1}}{L}
@@ -21,8 +19,9 @@ Since the sum in the quantization condition \eqref{general luscher}or the one-lo
     \Bigg(x
         &=
             \frac{2\mu E L^2}{4\pi^2}\Bigg)
-    \, .
+    \, ,
 \end{align}
+where the contact strength $C(\Lambda)$ does not run.
 The energy $E$ is a finite-volume energy on a torus of circumference $L$.
 In one dimension the sum in the zeta function is well behaved and has a compact form,
 \begin{equation}\label{eq:1d luscher}
@@ -58,9 +57,9 @@ However, we also show the scattering data determined through $S^{\dispersion}_1(
     \caption{
     	Phase shifts and zeta functions in the spherical and dispersion scenario in one dimension.
 		\\
-		\textit{(top)} 
+		\textit{(top)}
         	Finite-spacing eigenvalues $x^\dispersion=2\mu E^\dispersion L^2/4\pi^2$ of the Schr\"odinger equation are inserted into respective zeta functions to obtain phase shifts.
-			The eigenvalues are obtained for a contact interaction which fulfills eq.~\eqref{tuning-1d} fixed to $ a_{1}/L=1/10$ (closed symbols) and $ a_{1}/L=0$ (open symbols).
+			The eigenvalues are obtained for a contact interactions fixed to $ a_{1}/L=1/10$ (closed symbols) and $a_{1}/L=0$ (open symbols) using the analytic result for the interaction strength $C(\Lambda)$ \eqref{tuning-1d} and not by tuning to a zero of any zeta.
 			Different markers correspond to different discretizations: $N=4$ (triangles), 10 (squares), 12 (diamonds), and 14 (hexagons).
         	For analysis, the colored points are obtained using $S^\spherical_1(x^\dispersion)$; corresponding to $N=4$ (red), 10 (green), 12 (blue), and 14 (purple).
         	The thin colored lines are the derived induced momentum-dependent terms for each $N$ as given in \Tabref{induced terms in 1 d}.
@@ -74,7 +73,7 @@ However, we also show the scattering data determined through $S^{\dispersion}_1(
         \label{fig:luescher1d}
 \end{figure}
 
-We can derive the functional form of these induced momentum-dependent terms following the exact steps taken in \autoref{sect:3d induced momenta},
+We can derive the functional form of these induced momentum-dependent terms following the exact steps taken in \Secref{3d induced momenta}, again assuming $\nstep=\infty$,
 \begin{align*}
 S^\bigcirc_{1}\left(x^\dispersion\right)&=S^{\dispersion}_{1}\left(x^\dispersion\right)+\left(S^\bigcirc_{1}\left(x^\dispersion\right)  -S^{\dispersion}_{1}\left(x^\dispersion\right)\right) %\sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x^\dispersion} &=\sum_{n\in \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion} +\sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion} \\
  %&=  S^{\dispersion}_{1}\left(x^\dispersion\right)+\sum_{n\notin \operatorname{B.Z.}} \frac{1}{n^{2}-x^\dispersion}\\
@@ -82,7 +81,7 @@ S^\bigcirc_{1}\left(x^\dispersion\right)&=S^{\dispersion}_{1}\left(x^\dispersion
 &=\frac{2\pi^2 a_{1}}{L}+\alpha_1(N)+ \alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2+\ldots\ .
 \end{align*}
 where again we assume $\nstep=\infty$ energy.
-In the second term we assumed $n^2\gg x^\dispersion$ since the sum is restricted to values of $\bm{n}$ outside the Brillouin zone.
+In the second term we assumed $n^2\gg x^\dispersion$ since the sum is restricted to modes outside the Brillouin zone.
 %Assuming $n^2\gg x^\dispersion$, we can expand in powers or $x^\dispersion$,
 %\begin{equation}
 %    \frac{1}{2 \pi^{2}} \sum_{n=-\infty}^{\infty} \frac{1}{n^{2}-x^\dispersion}
@@ -114,10 +113,10 @@ In the limit $N\goesto\infty$ all states are included in the Brillouin zone so a
 
 
 Analyzing the finite-spacing dispersion zeta function $S^{\dispersion}_1$ with $\nstep=\infty$ produces the flat behavior all the way through.
-This demonstrates that in the one-d case, it was not the contact operator that caused the momentum dependence, but that the dependence was induced by leveraging the continuum finite-volume formalism itself.
+This demonstrates that in the one-dimensional case, it was not the contact operator that caused the momentum dependence, but that the dependence was induced by leveraging the continuum finite-volume formalism itself.
 
 Finally, we draw the reader's attention to the structure of $S^\dispersion$ at any finite $N$ in the bottom panel of \Figref{luescher1d}, where the $N=4$ dispersion zeta is shown.
-Note that any flat function of $x$ can only ever intercept the zeta function three times---which makes sense, as there are only three states in the parity-even sector of a one-dimensional $N=4$ lattice: $\ket{0}$, $(\ket{-1}+\ket{+1})/\sqrt{2}$ and $\ket{2}$.
+Note that any flat function of $x$ can only ever intercept the zeta function three times---which makes sense, as there are only three states in the parity-even sector of a one-dimensional $N=4$ lattice: $\ket{0}$, $(\ket{-1}+\ket{+1})/\sqrt{2}$ and $\ket{2}$ (which, being on the edge of the Brillouin zone, is the same state as $\ket{-2}$).
 If one tunes a contact interaction so that the scattering amplitude vanishes, one will see one state with $0<x<1$, one with $1<x<4$, and one state with $\abs{x}$ very large and a sign depending on whether one is slightly above or below zero numerically.
 The finiteness of the parity-even sector puts constraints on the interactions that can be faithfully put onto such a small lattice: one cannot create any interaction where the scattering amplitude intersects $S^{\dispersion}$ four times, because that would entail too many finite-volume states.
 Of course, this is a generic feature in any number of dimensions, and the constraint ultimately vanishes in the continuum limit $N\goesto\infty$; as $N$ increases the number of accessible $n^2$ shells grows in a dimension-dependent way.

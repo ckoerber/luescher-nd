@@ -64,7 +64,7 @@ In the next step, we use the continuum extrapolated spectrum to convert it to ph
 We present the phase shifts in \figref{continuum-extrapolation-ere}.
 Independent of discretization scheme, we observe that the continuum extrapolated results agree with the constant input phase shifts.
 Because the zeta function is relatively steep, uncertainties in the continuum limit get drastically enhanced when converting to phase shifts (on average more than an order of magnitude).
-We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ discretization come with significant uncertainties.
+We observe that for $x > 5$ all discretizations besides the exact-$p^2$ discretization come with significant uncertainties.
 
 
 
@@ -73,9 +73,9 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
     \scalebox{0.8}{\input{figure/continuum-extrapolation-ere.pgf}}
     \caption{
         \label{fig:continuum-extrapolation-ere}
-        Phase shifts computed by inserting the continuum extrapolated spectrum for different discretization implementations $n_s$ and finite volumes $L$ in the zeta function $S^{\spherical}_3$.
+        Phase shifts computed by inserting the continuum-extrapolated spectrum for different discretization implementations $n_s$ and finite volumes $L$ in the zeta function $S^{\spherical}_3$.
         Data points indicate locations of the eigenvalue.
-        For visualization reasons we express the propagated error associated with continuum extrapolation as an uncertainty band.
+        We show the propagated error associated with continuum extrapolation as an uncertainty band.
         The black dashed line represents physical phase shifts.
         Bands stop at different $x$ values because we stop presenting results after uncertainties become too large (but are still consistent with the physical phase shifts).
         }
@@ -83,7 +83,7 @@ We observe that for for $x > 5$ all discretization besides the $n_s = \infty$ di
 
 
 We emphasize that these findings are not unique to the unitary case, we obtain similar results for a non-zero scattering length.
-We present data for the non-unitarity scenario, e.g., $a_{30} = - 5 \, [\mathrm{fm}]$ in our repository \cite{luescher-nd_201}.
+We present data for the non-unitarity scenario, e.g., $a_{30} = - 5$~fm in our repository \cite{luescher-nd_201}.
 
 \subsection{Using \Luscher's formula before continuum extrapolation}
 Next we want to discuss what effects finite discretization artifacts have when applying L\"uscher's formalism to a spectrum for finite lattice spacings.

@@ -8,8 +8,8 @@ To evaluate the infinite-volume integral in \eqref{dispersion-counter-integral},
     4\pi^2 \left(\frac{N}{2}\right)^{D-2} \int_{-1}^{+1} \mathrm{d}^D\nu\; \PV \frac{1}{4\sum_{ds} \gamma^{(\nstep)}_s \cos \pi \nu s - \xtilde}
     \, ,
 \end{align}
-which is well defined for any $d$ if $\xtilde\neq0$ and for $\xtilde=0$ if $d>2$.
-For $\xtilde\leq0$ The sum over dimensions can be isolated by introducing another integral
+which is well defined for any dimension if $\xtilde\neq0$ and for $\xtilde=0$ if $D>2$.
+For $\xtilde\leq0$ the sum over dimensions can be isolated by introducing another integral
 \begin{equation}
     \label{eq:dispersion counterterm}
     \eqref{rescaled-counterterm-integral}
@@ -17,6 +17,8 @@ For $\xtilde\leq0$ The sum over dimensions can be isolated by introducing anothe
     4 \pi^2 \left(\frac{N}{2}\right)^{D-2}\int_{0}^{\infty} 2y\; \mathrm{d}y\; e^{\xtilde y^2}\left(\int_{-1}^{+1} \mathrm{d}\nu\; e^{-4y^2 \sum_s \gamma_s^{(\nstep)} \cos \pi \nu s}\right)^D
 \end{equation}
 which can be numerically evaluated.
+This trick relies on the Laplacian stencil not coupling momenta in different directions \eqref{kinetic}.
+
 The counterterm for the leading divergence $\counterterm_D^{\dispersion}$ is the $\xtilde=0$ value.
 For three dimensions, we show this counterterm and how it differs from the $\nstep \to \infty$ counterterm in \Figref{nstep counterterm} and provide precise values in table \tabref{diserpersion-zeta-3d-counterterm-counterterm}.
 \begin{table}[htb]
@@ -31,7 +33,7 @@ For three dimensions, we show this counterterm and how it differs from the $\nst
     \scalebox{0.9}{\input{figure/counterterm-nstep.pgf}}
     \caption{
     	In the top panel we show the dispersion counterterm $\counterterm^{\dispersion}_{3}$ in \eqref{dispersion-zeta-contact} as a function of $\nstep$, and the $\nstep=\infty$ result, as a dashed line.
-	In the bottom panel we show a better view into how the counterterm converges to the Cartesian one.
+	In the bottom panel we show an alternate view into how the counterterm converges to the $\nstep=\infty$ value.
     }
     \label{fig:nstep counterterm}
 \end{figure}
