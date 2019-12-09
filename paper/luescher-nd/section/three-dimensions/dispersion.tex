@@ -2,14 +2,6 @@
 
 \subsection{Results of the dispersion method in three dimensions}
 
-In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the zeta function.
-However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_3$, leveraging the dispersion relation for that derivative.
-Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \eqref{dispersion-zeta-contact} using the same $S^{\dispersion}$ function.
-The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
-Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
-Moreover, comparing the scale to that in, for example, \Figref{unimproved spherical}, there the deviations were of order~1, while here the results remain within $10^{-8}$ of zero, with the value entirely reflecting how well the contact interaction was tuned.
-Put another way, we have verified that the dispersion zeta function provides exact finite-spacing energy levels for our contact interaction \eqref{p space hamiltonian}, just as one would hope for a contact interaction in the continuum.
-
 \begin{figure}[!htb]
 	\centering
     \scalebox{0.8}{\input{figure/ere-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
@@ -19,11 +11,15 @@ Put another way, we have verified that the dispersion zeta function provides exa
     \label{fig:unimproved dispersion}
 \end{figure}
 
-In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale according to \eqref{dispersion-renormalization}.
-Note that the lines are not fits to the data; though the difference is down at $10^{-12}$ or better.
-Again, this difference depends on the accuracy of the tuning.
+In this section, we again attempt to tune our contact interaction to unitarity by matching the first zero of the zeta function.
+However, the difference is that at each lattice spacing we tune to that spacing's respective $S^{\dispersion}_3$, leveraging the dispersion relation for that derivative.
+Then, when we extract finite-volume and finite-spacing energy levels, we put them through the dispersion equation \eqref{dispersion-zeta-contact} using the same $S^{\dispersion}$ function.
+The numerical results of said procedure are shown in \Figref{unimproved dispersion}.
+Note that the results for $p\cot\delta$ are now flat across the spectrum, matching the known result for a contact interaction.
+Moreover, comparing the scale to that in, for example, \Figref{unimproved spherical}, there the deviations were of order~1, while here the results remain within $10^{-8}$ of zero, with the value entirely reflecting how well the contact interaction was tuned.
+Put another way, we have verified that the dispersion zeta function provides exact finite-spacing energy levels for our contact interaction \eqref{p space hamiltonian}, just as one would hope for a contact interaction in the continuum.
 
-\begin{figure}[!htb]
+\begin{figure}[!hbt]
 	\centering
     \scalebox{0.7}{\input{figure/contact-scaling-contact-fitted_a-inv_+0.0_zeta_dispersion_projector_a1g_n-eigs_200.pgf}}
     \caption{
@@ -34,6 +30,10 @@ Again, this difference depends on the accuracy of the tuning.
     }
     \label{fig:dispersion running of strength}
 \end{figure}
+
+In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale according to \eqref{dispersion-renormalization}.
+Note that the lines are not fits to the data; though the difference is down at $10^{-12}$ or better.
+Again, this difference depends on the accuracy of the tuning.
 
 We note that
 \begin{enumerate}
