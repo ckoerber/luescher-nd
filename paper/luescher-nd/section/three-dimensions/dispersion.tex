@@ -25,13 +25,13 @@ Put another way, we have verified that the dispersion zeta function provides exa
     \caption{
         Scaling of the contact interaction strength $C_R^{(n_s)}(\epsilon)$ fitted using the dispersion method at unitarity.
         Data points are values of the contact interaction fitted to the first intersection of the phase shifts with the dispersion zeta function.
-        The solid lines are analytical scaling predictions following \eqref{dispersion-renormalization} and the dashed line corresponds to the spherical counter term $ \mathcal{L}^{\spherical}_3 = 2 \pi$.
+        The solid lines are analytic scaling predictions following \eqref{dispersion-renormalization} and the dashed line corresponds to the spherical counter term $ \mathcal{L}^{\spherical}_3 = 2 \pi$.
         Bar diagrams below present the absolute error between prediction and extracted value.
     }
     \label{fig:dispersion running of strength}
 \end{figure}
 
-In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale according to \eqref{dispersion-renormalization}.
+In \Figref{dispersion running of strength} we show how the strength of the contact interaction runs with the lattice scale according to the analytic expectation \eqref{dispersion-renormalization}.
 Note that the lines are not fits to the data; though the difference is down at $10^{-12}$ or better.
 Again, this difference depends on the accuracy of the tuning.
 
@@ -69,7 +69,7 @@ To understand the source of these terms, consider
 \end{multline}
 In the first line we added and subtracted $S^\dispersion_3$ and used the dispersion results~\eqref{dispersion-zeta-form} and~\eqref{dispersion-zeta-contact} to introduce the scattering length in the case of a contact interaction.
 For convenience we assume $n_s=\infty$\footnote{
-The logic of the following derivation remains them same also for $n_s < \infty$, but, in this case, the expressions $\bm n^2$ must be replaces with the proper dispersion $\tilde K^{(n_s)}_{\bm n \bm n}$ \eqref{normalized-kinetic-hamitlonian}, which makes it difficult to obtained closed expressions.  Also, within the Brillouin zone the different dispersion relations cause the two sums differ by \order{x/N^2} term-by-term.}.
+The logic of the following derivation remains them same also for $n_s < \infty$, but, in this case, the expressions $\bm n^2$ must be replaced with the proper dispersion $\tilde K^{(n_s)}_{\bm n \bm n}$ \eqref{normalized-kinetic-hamitlonian}, which makes it difficult to obtained closed expressions.  Also, within the Brillouin zone the different dispersion relations cause the two sums differ by \order{x/N^2} term-by-term.}.
 In the second line, since $\bm n$ is now restricted to be \emph{outside} the Brillouin zone, we can assume that $\bm n^2\gg x^\dispersion$ and expand in small $x^\dispersion$ under the summation,
 \begin{align}
 	\label{eqn:observable}
@@ -87,7 +87,7 @@ In the second line, since $\bm n$ is now restricted to be \emph{outside} the Bri
 	&\equiv \frac{-\pi L}{a_3}+\alpha_1(N)+\alpha_2(N)x^\dispersion+\alpha_3(N)(x^\dispersion)^2
 	+\ldots
 \end{align}
-The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the Brillouin zone in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (see, for example, Appendix B of~\Ref{Luu:2011ep}).  We provide values for select cases of $N$ in \autoref{tab:slopes}.
+The last line above shows explicitly the induced momentum-dependence in $x^\dispersion$ and defines the coefficients $\alpha_i(N)$ in terms of particular lattice summations similar to those of the three-dimensional zeta function.  The dependence of these coefficients on $N$ comes from the \emph{exclusion} of momentum modes within the Brillouin zone in the summation.   The fact that these coefficients do \emph{not} depend on $L$ is a unique feature of the contact interaction.  The numerical values of the coefficients $\alpha_i(N)$ can be determined using standard acceleration techniques (see, for example, Appendix B of~\Ref{Luu:2011ep}).  We provide values for select cases of $N$ in \Tabref{slopes}.
 \begin{table}
 \caption{Coefficients $\alpha_i(N)$ as a function of $N$ in 3-D.\label{tab:slopes}}
 \center

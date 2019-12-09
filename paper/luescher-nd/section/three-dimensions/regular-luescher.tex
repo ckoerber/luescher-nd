@@ -5,13 +5,13 @@
 \caption{
     \label{fig:continuum-extrapolation-spectrum}
     Continuum extrapolation of the discrete finite volume spectrum with $L=1\,[\mathrm{fm}]$.
-    Each column represents a different implementation of the Kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by value.
-    For visualization purposes we present each second eigenvalue starting at $E_2$ ($E_0$ was used to tune the interaction and is thus constant by definition).
-    Black dots are the eigenvalues at different lattice spacings, the green band is the model averaged fit function for best parameters and the blue band parallel to the x-axis is the continuum extrapolated energy.
+    Each column represents a different implementation of the kinetic operator, rows correspond to eigenvalues of the hamiltonian sorted by value.
+    For visualization purposes we present each second eigenvalue starting at $E_2$ ($E_0$ was used to tune the interaction and is thus constant by construction).
+    Black dots are the eigenvalues at different lattice spacings, the green band is the model averaged fit function for best parameters and the blue band parallel to the x-axis is the continuum-extrapolated energy.
     The uncertainty is dominated by the fluctuations over models; the propagated numerical uncertainty is negligible in comparison.
     The dashed line corresponds to the expected result obtained by computing the intersection of the zeta function $S^{\spherical}_3$ with the phase shifts.
     The boundary of each frame corresponds to the poles of the zeta function.
-    Different energy extrapolations in the continuum agree with \Luscher's prediction within uncertainty.
+    Different energy extrapolations in the continuum agree with zeros of the \Luscher zeta within uncertainty.
     For finite discretization implementations ($n_s < \infty$), the uncertainty drastically increases with the number of excited states ($\sim 3$ orders of magnitude from $E_2^{(n_s)}$ to $E_{20}^{(n_s)}$).
 }
 \end{figure}
@@ -50,7 +50,7 @@ Also, we provide access to the raw data and fitting scripts online at \cite{lues
 We observe that the model average for polynomials of degree 2 up to 5 is consistent over different discretization and agrees with the expected continuum results.
 We noted that including higher polynomials with $n_\mathrm{max} > 6$ resulted in overfitting of higher energy levels visible in oscillating fit functions which were generally were more favorable in model selection criteria\footnote{
     A potential cure for overfitting of higher polynomials would have been the marginalization of higher contributions which would cast the contributions of higher neglected epsilon terms into the uncertainty of the data.
-    We eventually settled for an unweighted model average over smaller $n_\mathrm{max}$ because the continuum extrapolated spectrum was more consistent over different $n_s$.
+    We eventually settled for an unweighted model average over smaller $n_\mathrm{max}$ because the continuum-extrapolated spectrum was more consistent over different $n_s$.
 }.
 As expected, the continuum limit becomes more uncertain for excited states.
 Furthermore, the $n_s = \infty$ implementation provides the most precise results.
@@ -60,9 +60,9 @@ While the $n_s = 1$ (and $n_s = \infty$) energy values seem to converge against 
 The slope of the extrapolation function changes it sign from $E_2 \to E_4$ for $n_s = 2$ and from $E_6 \to E_8$ for  $n_s = 4$.
 This suggests that the importance of fit model coefficients $e_{i,n}^{(n_s)}$ changes and thus makes it more difficult to perform the continuum limit.
 
-In the next step, we use the continuum extrapolated spectrum to convert it to phase shifts using the spherical zeta function.
+In the next step, we use the continuum-extrapolated spectrum to convert it to phase shifts using the spherical zeta function.
 We present the phase shifts in \figref{continuum-extrapolation-ere}.
-Independent of discretization scheme, we observe that the continuum extrapolated results agree with the constant input phase shifts.
+Independent of discretization scheme, we observe that the continuum-extrapolated results agree with the constant input phase shifts.
 Because the zeta function is relatively steep, uncertainties in the continuum limit get drastically enhanced when converting to phase shifts (on average more than an order of magnitude).
 We observe that for $x > 5$ all discretizations besides the exact-$p^2$ discretization come with significant uncertainties.
 
@@ -83,7 +83,7 @@ We observe that for $x > 5$ all discretizations besides the exact-$p^2$ discreti
 
 
 We emphasize that these findings are not unique to the unitary case, we obtain similar results for a non-zero scattering length.
-We present data for the non-unitarity scenario, e.g., $a_{30} = - 5$~fm in our repository \cite{luescher-nd_201}.
+We present data for an example non-unitarity scenario with $a_{30} = - 5$~fm in our repository \cite{luescher-nd_201}.
 
 \subsection{Using \Luscher's formula before continuum extrapolation}
 Next we want to discuss what effects finite discretization artifacts have when applying L\"uscher's formalism to a spectrum for finite lattice spacings.
@@ -112,7 +112,7 @@ We insert the energy levels presented in \figref{continuum-extrapolation-spectru
 \end{figure}
 
 We note that the phase shifts for $x > 10$ start to oscillate wildly.
-This is the case because energy values are close to the poles of the zeta function, e.g., close to the frame boundaries in \figref{continuum-extrapolation-spectrum}.  With imperfect kinetic energy, the lattice artifacts in the energy can push energy levels past a pole in the continuum zeta.  This leads to multiple interacting energy levels on a single segment of the zeta function.
+This is the case because energy values are close to the poles of the zeta function (close to the frame boundaries in \figref{continuum-extrapolation-spectrum}).  With an imperfect kinetic operator, the lattice artifacts in the energy can push energy levels past a pole in the continuum zeta.  This leads to multiple interacting energy levels on a single segment of the zeta function.
 
 Furthermore it seems like the small $x$ results for $n_s = 2$ seem to be closer to the expected flat result than other discretization schemes.
 This behavior can be explained by \figref{continuum-extrapolation-spectrum}.
