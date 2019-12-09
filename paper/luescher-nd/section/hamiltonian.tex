@@ -117,9 +117,9 @@ In momentum space we can label plane wave states by a vector on integers $\vec{n
 In the \Aoneg basis we can use one plane wave label and understand that we intend a normalized unweighted average of every plane wave state.
 That is,
 \begin{equation}
-    \ket{\Aoneg\; \vec{n}} = \frac{1}{\sqrt{\normalization}} \sum_{g \in G} \ket{ g\vec{n}}
+    \ket{\Aoneg\; \vec{n}} = \frac{1}{\sqrt{\normalization}} \sum_{g \in O_h} \ket{ g\vec{n}}
 \end{equation}
-where $g$ is an element of the group $G$, the sum is over all inequivalent states, and $\normalization$ the normalization.
+where $g$ is an element of the group $O_h$, the sum is over all inequivalent states, and $\normalization$ the normalization.
 When $\vec{n}$ is large we should be careful not to double-count states that live right on the edge of the Brillouin zone.
 The states may be labeled by symmetry-inequivalent vectors with components all as large as $N/2$.
 As a simple example, in three dimensions the $N/2(1,1,1)$ plane wave state in one corner of the Brillouin zone is invariant under all the $O_h$ operations modulo periodicity in momentum space, so $\normalization=1$ for that state.
@@ -129,7 +129,7 @@ Reading off the momentum-state potential matrix element from \eqref{p space hami
 \begin{equation}
     \braMket{\Aoneg\; \vec{n}'}{V}{\Aoneg\; \vec{n}}
     =
-    \sum_{g'g \in G}
+    \sum_{g'g \in O_h}
         \frac{1}{\sqrt{\normalization'}\sqrt{\normalization}} \braMket{g'\vec{n}'}{V}{g\vec{n}}
     =
     \frac{C^\dispersion}{L^D} \sqrt{\normalization'\normalization},
@@ -143,12 +143,11 @@ and we divide by $4\pi^2/\mu L^2$ to make everything dimensionless.
 
 We have implemented both this \Aoneg-only Hamiltonian and the general Hamiltonian with an energy penalty for non-\Aoneg states and verified that the spectra match where expected to as much precision as desired.
 
-For a given $N$ some $n^2$ shells have multiple solutions.
-When $N\geq5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$, which live on the edge of the Brillouin zone for $N=5$.
-This $\nstep=\infty$ dispersion degeneracy allows different-momentum eigenstates of the kinetic hamiltonian to form superpositions.
-For the contact interaction and $\nstep=\infty$, one linear combination of these \Aoneg states overlaps the $s$-wave and has a nontrivial finite-volume energy, and the other overlaps a higher partial wave and has $x=9$ to machine precision.
-For finite $\nstep$, the non-interacting $x$ are not perfect integers, perturbatively lifting the degeneracy, but the same moral holds.
+For a given $N$ multiple momenta inequivalent under the $O_h$ symmetry may have the same $n^2$.
+For example, when $N\geq5$ there are two $n^2=9$ shells corresponding to $n=(2,2,1)$ and $n=(3,0,0)$, which lives on the edge of the Brillouin zone for $N=5$.
+When $\nstep=\infty$ the corresponding non-interacting eigenstates are degenerate, while with imperfect dispersion relations the degeneracy is, generically, lifted.
+For the contact interaction and $\nstep=\infty$, one linear combination of these \Aoneg states overlaps the $s$-wave and has a nontrivial finite-spacing finite-volume energy, and the other overlaps a higher partial wave and has $x^{\dispersion}=2\mu E^{\dispersion}L^2/4\pi^2=9$ to machine precision, sitting right on a pole of the \Luscher zeta function~\eqref{spherical S}.
 In contrast, when $N=4$ there is no $n=(3,0,0)$ state, and the $(2,2,1)$ state is itself an eigenstate.
 When $N$ is very large sometimes there are multiple eigenstates that have no support for the delta function---$n^2=41, 50, 54\ldots$ have two non-interacting states, while $n^2=81, 89, 101\ldots$ have three non-interacting states, and $n^2=146$ is the first shell with four non-interacting states, for example.
-In our numerical computations we identify degenerate states and exclude non-\Aoneg from our analysis.
-We do not discuss these non-interacting states further.
+After diagonalizing, we exclude these non-interacting \Aoneg states from our analysis.
+We do not discuss these non-interacting states further and omit them from figures without comment.
