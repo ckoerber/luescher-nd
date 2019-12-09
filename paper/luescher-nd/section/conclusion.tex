@@ -2,28 +2,28 @@
 
 We presented a tuning prescription for a two-particle lattice system interacting through a contact interaction in 1-, 2- and 3-dimensions.
 This tuning prescription allows the computation of infinite volume continuum scattering observables from data computed in the finite volume and discrete space.
-Furthermore we derived a \Luscher like formalism which directly converts finite volume finite spacing spectra to infinite volume continuum results.
+Furthermore we derived a \Luscher-like formalism which directly converts finite volume finite spacing spectra to infinite volume continuum results for a contact interaction.
 In 3-dimensions, we analyzed three different approaches in detail:
 \begin{enumerate}
 	\item we tuned the interaction parameter in a finite volume with a finite lattice spacing to the intersections of the \Luscher zeta function and the phase shifts, extracted the spectrum extrapolated it to the continuum and used the same \Luscher zeta function to re-obtain the phase shifts,
 	\item we repeated the same procedure without extrapolating the spectrum to the continuum,
-	\item we derived a dispersion aware zeta function which, tuned the interaction parameter to this function and re-obtained phase shifts for the finite spacing spectrum using this function as well.
+	\item we derived a dispersion-aware zeta function which, tuned the interaction parameter to this function and re-obtained phase shifts for the finite spacing spectrum using this function as well.
 \end{enumerate}
 
 The first approach follows the logic of \Luscher's original work and reproduces the expected phase shifts.
 Even though we had full control over numerical errors, the continuum extrapolation of the spectrum suffered from systematic artifacts and induced significant uncertainties (on a relative scale) when put through the zeta function.
 In general the best discretization allows the best extrapolation and for smaller energy values, continuum results are more precise.
-It is possible to find a discretization in which the finite spacing spectrum is close to its continuum result but the extrapolation uncertainties can be larger because of non-monotonous behaviors.
+It is possible to find a discretization in which the finite spacing spectrum is close to its continuum result but the extrapolation uncertainties can nevertheless be large because of non-monotonic behavior.
 
-The second approach, technically not using \Luscher's original idea, induced discretization artifacts in the phase shift expansion.
+In the second approach, currently leveraged in lattice QCD calculations, finite-spacing effects induced momentum dependence in the phase shift.
 For example, we found induced effective range (and higher order) effects which we were able to analytically estimate.
-These induced terms can be stably extrapolated to zero in the continuum if one only considered energy values in the scaling region.
+These induced terms can be stably extrapolated to zero, taking the continuum limit after using the usual infinite-volume map, if one only considers energy values in the scaling region.
 We provide tables of coefficients which estimate the size of errors in the phase shifts caused by discretization.
 
-The third approach allows to directly convert finite spacing finite volume energy levels to continuum infinite volume phase shifts without any extrapolation.
+The third approach allows to directly convert finite-spacing finite-volume contact-interaction energy levels to continuum infinite-volume phase shifts without any extrapolation.
 Thus it was possible to consistently tune the interaction parameter to high precision.
 This tuning allows one to distinguish between kinetic discretization effects and discretization effects affecting the regulator of the theory and thus allows a determination of the interaction consistently.
-This discretization specific tuning for the contact interaction parameter can be used in many-body computations and we expect, for example, that calculations of the Bertsch parameter should benefit of having a systematically correct tuned interaction.
+This discretization-specific tuning for the contact interaction parameter can be used in many-body computations and we expect, for example, that calculations of the Bertsch parameter should benefit of having a systematically correct tuned interaction.
 
 We extend the analysis of the three-dimensional system to one- and two-dimensional systems as well.
 We present the tuning of such systems using the dispersion formalism and provide tables describing errors coming from prescriptions which do not account for discretization effects.
