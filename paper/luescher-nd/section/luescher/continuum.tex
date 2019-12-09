@@ -132,7 +132,7 @@ Then, with a finite cutoff on magnitude $N/2$, we define
     \left(\sum_{\vec{n}}- \mathcal{P}\int_{\vec{n}}\right) \frac{1}{n^2-x}
     + i \frac{(2\pi)^D}{4 \F_D\left(\sqrt{x}\right)}\theta(-x)\ ,
 \end{equation}
-where it was used that $F_D(p) \sim p^{2-D}$ and the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.   By performing the principal value integral and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
+where it was used that $\F_D(p) \sim p^{2-D}$ and the $\spherical$ superscript reminds us that we cut off our sum and integral in a spherical way, based on the magnitude of $n<N/2$.   By performing the principal value integral and taking the limit $N\to \infty$, we recover the usual \Luscher zeta functions,
 \begin{equation}\label{eq:spherical S}
     S^\spherical_D(x)
     =
@@ -147,11 +147,11 @@ where it was used that $F_D(p) \sim p^{2-D}$ and the $\spherical$ superscript re
 \end{equation}
 where the dimension-dependent coefficients $\counterterm_D^\spherical$ of the counterterms come from the principal value integral; we evaluate the spherical-cutoff integrals and extract these coefficients in \Appref{counterterm/spherical}.\footnote{In higher dimensions there will be additional divergences which cancel, for example, in five spatial dimensions there will be a cubic and linear divergence.
 }
-Finally, combining eq.~\eqref{spherical S} with~\eqref{general luscher} gives
+Finally, we can write the quantization condition~\eqref{general luscher} using the zeta function~\eqref{spherical S},
 \begin{equation}\label{eq:spherical quantization}
     \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
 \end{equation}
-where we traded the energy dependence for momentum on the left-hand side.  Our result is consistent with those given in~\cite{Zhu:2019dho}\footnote{In~\cite{Zhu:2019dho} the zeta functions in eq.~\eqref{spherical cutoff S} were defined \emph{without} the term proportional to the heavyside function.  Thus their zeta functions have a different behavior for $x<0$ as ours.  We note that our definition is more common in the literature.}.
+where we traded the energy dependence for momentum on the left-hand side.  Our result is consistent with those given in~\Ref{Zhu:2019dho}\footnote{In~\Ref{Zhu:2019dho} the zeta functions~\eqref{spherical cutoff S} were defined \emph{without} the term proportional to the heavyside function.  Thus their zeta functions have a different behavior for $x<0$ as ours.  We note that our definition is more common in the literature.}.
 This is the \Luscher finite-volume quantization condition, and finite-volume energy levels calculated in the continuum should be fed through it to produce continuum scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion \eqref{ere}.
 In two dimensions, it will prove useful to explicitly separate the logarithmic divergence as $N\to\infty$ from the logarithmic singularity as $x\to 0$, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.  Finally, the sum in~\eqref{spherical S} can be analytically done in $D=1$, as we will show in \Secref{1D}.
