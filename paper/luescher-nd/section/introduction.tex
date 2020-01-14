@@ -20,17 +20,19 @@ Numerical computations are often performed in discretized boxes with periodic bo
 
 The usual understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
 
+Understanding the continuum limit of observables is important as it is shown in \Ref{Seki:2005ns} that, in the infinite-volume limit, lattice artifacts induce terms in the scattering data.
 In practice, few results of lattice QCD calculations are zero-temperature- or, more seriously, continuum-extrapolated, but are nevertheless put through \Luscher's formula to get an estimate of the continuum scattering data, assuming thermal and discretization effects to be much smaller than the statistical uncertainties.
 In particular, to date no continuum-limit study of any baryonic channel exists, even at unphysically heavy pion masses.
 
 While alternatives, including the potential method (\Refs{Ishii:2006ec,Nemura:2008sp,Aoki:2009ji,Murano:2011nz,Aoki:2012bb,Kurth:2013tua,Sugiura:2017vwo,Yamazaki:2019vid,Aoki:2017yru,Yamazaki:2018qut,Iritani:2017rlk,Iritani:2018zbt,Gongyo:2018gou,Akahoshi:2019klc,Namekawa:2019xiy}), the mapping onto harmonic oscillators (\Ref{McElvain:2019ltw}) and the imposition of spherical walls (\Refs{Borasoy:2007vy,Borasoy:2007vi,Lee:2008fa,Epelbaum:2008vj,Epelbaum:2010xt,Lu:2015riz,Elhatisari:2015iga,Elhatisari:2016owd,Elhatisari:2016hby,Klein:2018lqz,Li:2019ldq,Bovermann:2019jbt,Lahde:2019npb}), can be used to translate finite-volume physics to infinite-volume observables, here we focus on the \Luscher finite-volume formalism.
 Moreover, to our knowledge, no numerical work leveraging these methods is in the continuum, either.
+
 Here, we construct example Hamiltonians explicitly and diagonalize them exactly, albeit numerically.
 This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data, and lets us completely isolate the features of the formalism itself, removing, for example, any finite-temperature effects that should in principle be extrapolated away in any finite-temperature method like Lattice QCD.
 
 We find that it is in practice difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts sometimes can produce a more reliable result.
 
-Our main innovation, however, is to explain how to incorporate lattice artifacts into \Luscher's formula, for systems described by a contact interaction, accounting both for the Brillouin zone of the lattice and the lattice-induced dispersion relation.
+Extending the work of \Ref{Seki:2005ns} to finite volume, our main innovation, however, is to explain how to incorporate lattice artifacts into \Luscher's formula, for systems described by a contact interaction, accounting both for the Brillouin zone of the lattice and the lattice-induced dispersion relation.
 
 While not universal, this lattice improvement can be quite useful for a contact interaction.
 In pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients so as to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
@@ -50,7 +52,7 @@ In \Secref{3D} we study the three-dimensional case.
 First we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
 In \Secref{3D} we tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.
 We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
-In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.  
+In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.
 We find that our lattice-aware \Luscher function handles this case with no difficulty.
 Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
 Our corrections are valid only for the case of a contact interaction.
