@@ -58,6 +58,7 @@ tidy:
 	$(RM) $(TARGET)Notes.bib
 	$(RM) $(TARGET).{out,log,aux,synctex.gz,blg,toc,fls,fdb_latexmk}
 	$(RM) arxiv.tgz
+	$(RM) prc.tgz
 
 .PHONY: clean
 clean: tidy
