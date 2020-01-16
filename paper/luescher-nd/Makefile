@@ -84,3 +84,18 @@ arXiv.tgz: master.pdf figure/figure-package.tar.gz figure/bubbleSum.pdf
 	cp  master.bbl arXiv
 	tar -czf arXiv.tgz arXiv
 	$(RM) -r arXiv
+
+
+prc.tgz: master.pdf figure/figure-package.tar.gz figure/bubbleSum.pdf
+	mkdir -p prc
+	latexpand --makeatletter master.tex > prc/master-prc.tex
+	cp master.bib prc/
+	cp figure/I0.pdf prc/
+	cp figure/bubbleSum.pdf prc/
+	sed -i -e 's/figure\///g' prc/master-prc.tex
+	cd prc/ && $(TEX) master-prc.tex
+	cd prc/ && $(BIB) master-prc.aux
+	$(RM) prc/master-prcNotes.bib
+	$(RM) prc/master-prc.{out,log,aux,synctex.gz,blg,toc,fls,fdb_latexmk,pdf,tex-e}
+	tar -czf prc.tgz prc
+	$(RM) -r prc
