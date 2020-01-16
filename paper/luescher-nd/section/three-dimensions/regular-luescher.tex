@@ -45,6 +45,19 @@ For this reason, we have decided to fit multiple fit models over the span of $n_
 We repeat this procedure for each discretization and compare different continuum energies to decide wether the fits are consistent.
 These values are compared to the spectrum predicted by L\"uscher's formalism.
 
+\begin{figure}[H]
+	\centering
+    \scalebox{0.8}{\input{figure/continuum-extrapolation-ere.pgf}}
+    \caption{
+        \label{fig:continuum-extrapolation-ere}
+        Phase shifts computed by inserting the continuum-extrapolated spectrum for different discretization implementations $n_s$ and finite volumes $L$ in the zeta function $S^{\spherical}_3$.
+        Data points indicate locations of the eigenvalue.
+        We show the propagated error associated with continuum extrapolation as an uncertainty band.
+        The black dashed line represents physical phase shifts.
+        Bands stop at different $x$ values because we stop presenting results after uncertainties become too large (but are still consistent with the physical phase shifts).
+        }
+\end{figure}
+
 We present the model average over best fits of the spectrum in \figref{continuum-extrapolation-spectrum}.
 Also, we provide access to the raw data and fitting scripts online at \cite{luescher-nd_201}.
 We observe that the model average for polynomials of degree 2 up to 5 is consistent over different discretization and agrees with the expected continuum results.
@@ -65,22 +78,6 @@ We present the phase shifts in \figref{continuum-extrapolation-ere}.
 Independent of discretization scheme, we observe that the continuum-extrapolated results agree with the constant input phase shifts.
 Because the zeta function is relatively steep, uncertainties in the continuum limit get drastically enhanced when converting to phase shifts (on average more than an order of magnitude).
 We observe that for $x > 5$ all discretizations besides the exact-$p^2$ discretization come with significant uncertainties.
-
-
-
-\begin{figure}[H]
-	\centering
-    \scalebox{0.8}{\input{figure/continuum-extrapolation-ere.pgf}}
-    \caption{
-        \label{fig:continuum-extrapolation-ere}
-        Phase shifts computed by inserting the continuum-extrapolated spectrum for different discretization implementations $n_s$ and finite volumes $L$ in the zeta function $S^{\spherical}_3$.
-        Data points indicate locations of the eigenvalue.
-        We show the propagated error associated with continuum extrapolation as an uncertainty band.
-        The black dashed line represents physical phase shifts.
-        Bands stop at different $x$ values because we stop presenting results after uncertainties become too large (but are still consistent with the physical phase shifts).
-        }
-\end{figure}
-
 
 We emphasize that these findings are not unique to the unitary case, we obtain similar results for a non-zero scattering length.
 We present data for an example non-unitarity scenario with $a_{30} = - 5$~fm in our repository \cite{luescher-nd_201}.
