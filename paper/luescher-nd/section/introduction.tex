@@ -47,14 +47,16 @@ This paper is organized as follow.  In \Secref{scattering} we give a brief summa
 In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study numerically.
 In \Secref{luescher} we provide a traditional continuum derivation of \Luscher's formula and in \Secref{dispersion} explain how to adapt it to include finite spacing effects by truncating the usual sum to just the momentum modes in the lattice and incorporating the dispersion relation into the appropriate propagators, yielding a lattice-improved generalized \Luscher zeta function.
 
-Then, we leverage our dispersion zeta function, studying concrete examples.
-In \Secref{3D} we study the three-dimensional case.
+Then in \Secref{3D} we leverage our dispersion zeta function to study concrete examples in 3-dimensions.
+%In \Secref{3D} we study the three-dimensional case.
 First we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
-In \Secref{3D} we tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.
-We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
-In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.
-We find that our lattice-aware \Luscher function handles this case with no difficulty.
-Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
-Our corrections are valid only for the case of a contact interaction.
+We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.  Our findings allows us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which %when applied to three dimensions 
+corrects for the deviations found in \Ref{Endres:2012cw}.  Our corrections, however, are valid only for the case of a contact interaction.  
+%We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
+%In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.
+%We find that our lattice-aware \Luscher function handles this case with no difficulty.
+%Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
+%Our corrections are valid only for the case of a contact interaction.
+
 Finally, we recapitulate our findings in \Secref{conclusion} and discuss future directions.
-We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}
+We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.  For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.

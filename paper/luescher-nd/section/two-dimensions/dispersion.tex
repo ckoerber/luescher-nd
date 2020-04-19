@@ -3,10 +3,7 @@
 
 The discussion above is valid only in the continuum.
 For a discretized lattice, an additional length scale is introduced that must be accounted for.
-As is the case in both 3-D and 1-D, there exists a dispersion L\"uscher equation that is valid for the contact interaction and accounts for the discretization.
-In \Appref{3D dispersion} we derive this dispersion L\"uscher formula for 2D and only state the result here.
-
-Identifying the lattice spacing $\epsilon=N/L$, we have
+As is the case in both 3-D and 1-D, there exists a dispersion L\"uscher equation that is valid for the contact interaction and accounts for the discretization,
 \begin{align}
     \frac{2}{\pi} \log \left(\frac{2\pi \tilde a_{2}}{L}\right)
     &=
@@ -24,9 +21,9 @@ Identifying the lattice spacing $\epsilon=N/L$, we have
     =
     1.116306393581637659468497 \ldots
 \end{align}
-where $G$ is Catalan's constant. 
+where the lattice spacing $\epsilon=N/L$ and $G$ is Catalan's constant.  In \Appref{3D dispersion} we derive explicitly the counterterm $\mathcal{L}^\dispersion_{2}$.
 
-To demonstrate the success of this formula we tuned lattices with $N=10$, 20, and 40 to $\tilde a_{2}/L = {1}/{10}$, which allows for a bound state, using $S^{\dispersion}$.
+To demonstrate the validity of this formula we tuned lattices with $N=10$, 20, and 40 to $\tilde a_{2}/L = {1}/{10}$, which allows for a bound state, using $S^{\dispersion}$.
 In \Figref{luescher2d} the black points were analyzed through $S^\dispersion_2$, and lie on a flat line, indicating that our dispersion \Luscher formula has correctly accounted for discretization effects.
 On the other hand, if we use the same energies but analyze them with the usual continuum \Luscher function $S^{\spherical}_2$, shown as colored points, we see induced momentum-dependence and the flat line behavior is lost.
 
@@ -53,8 +50,8 @@ On the other hand, if we use the same energies but analyze them with the usual c
     \label{fig:luescher2d}
 \end{figure}
 
-As was done in the three- and one-dimensional cases, we can derive the functional form of the induced momentum-dependent terms.
-The derivation is identical to those cases; for concision we show only the end result.
+As was done in the previous section, we can derive the functional form of the induced momentum-dependent terms.
+The derivation is identical to the 1-D and 3-D cases; for concision we show only the end result.
 Expanded around small $x^\dispersion$ one finds
 \begin{equation}
     \label{eq:2D corrections}
