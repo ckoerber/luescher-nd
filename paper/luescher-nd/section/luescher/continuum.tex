@@ -16,7 +16,7 @@ The scattering amplitude is given by the bubble sum depicted in \Figref{bubbleSu
 \label{fig:bubbleSum}}
 \end{figure}
 
-This bubble sum is a geometric series and, restricting our attention to the contact interaction causes all other partial wave than the S-wave to vanish.
+This bubble sum is a geometric series and, restricting our attention to the contact interaction causes all other partial waves than the S-wave to vanish.
 This restriction gives for the standard on-shell $T$-matrix
 \begin{equation}\label{eq:T matrix}
 T_{D\l}(p, \Lambda) = \delta_{\l 0} \frac{C(\Lambda)}{1-I_D(p,\Lambda) C(\Lambda)},
@@ -109,8 +109,8 @@ Plugging our results for the integrals in, one finds
 	\right]
 \end{multline}
 where both the sum and integral are cut off by a restriction on the magnitude of $n$, $n^2 < (\Lambda L / 2\pi)^2$,
-The principle value integration implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
-The imaginary part on the left hand side exactly cancels the last term on the right when $E\ge0$.  When $E<0$ the last term on the RHS vanishes and so we have
+The principal value integration implicitly carries a factor of $\Omega_D n^{D-1}$ (see \eqref{I0}).
+The imaginary part on the left-hand side exactly cancels the last term on the right when $E\ge0$.  When $E<0$ the last term on the RHS vanishes and so we have
 %--demanding this cancellation is how the kinematic factor $\F_D$ of the $T$ matrix is determined----and we are left with
 \begin{multline}\label{eq:general luscher}
    \frac{1}{2\F_{D}(\sqrt{2\mu E})}  \left( \cot \delta_{D}(p)-i\theta(-E)\right)
@@ -123,7 +123,7 @@ The imaginary part on the left hand side exactly cancels the last term on the ri
     +i\theta(-x)
     \ ,
 \end{multline}
-with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.  In the second line above we moved the term proportional to the $\theta(-E)$ to the RHS.
+with $x$ as in \eqref{I0 FV}, $\theta(x)$ is the Heavyside function, and we switched the sign of the sum and integral as well as the sign of the denominator.  In the second line above we moved the term proportional to the $\theta(-E)$ to the RHS.
 Because we cut off the sum and the integral in exactly the same way, in dimensions where $I_D$ diverges with $\Lambda$, the divergence cancels against the divergence in the sum.
 Let $N=\Lambda L/\pi$.
 Then, with a finite cutoff on magnitude $N/2$, we define
@@ -151,7 +151,7 @@ Finally, we can write the quantization condition~\eqref{general luscher} using t
 \begin{equation}\label{eq:spherical quantization}
     \cot \delta_{D}(p) = \frac{\F_{D}(p)}{\pi^2 L^{D-2}} S^\spherical_D(x)
 \end{equation}
-where we traded the energy dependence for momentum on the left-hand side.  Our result is consistent with those given in~\Ref{Zhu:2019dho}\footnote{In~\Ref{Zhu:2019dho} the zeta functions~\eqref{spherical cutoff S} were defined \emph{without} the term proportional to the heavyside function.  Thus their zeta functions have a different behavior for $x<0$ as ours.  We note that our definition is more common in the literature.}.
+where we traded the energy dependence for momentum on the left-hand side.  Our result is consistent with those given in~\Ref{Zhu:2019dho}\footnote{In~\Ref{Zhu:2019dho} the zeta functions~\eqref{spherical cutoff S} were defined \emph{without} the term proportional to the Heavyside function.  Thus their zeta functions have a different behavior for $x<0$ as ours.  We note that our definition is more common in the literature.}.
 This is the \Luscher finite-volume quantization condition, and finite-volume energy levels calculated in the continuum should be fed through it to produce continuum scattering data.
 In three dimensions it is common to move the momentum dependence in $\F_{D}$ to the other side, as $p \cot\delta_{D}(p)$ is what appears in the effective range expansion \eqref{ere}.
 In two dimensions, it will prove useful to explicitly separate the logarithmic divergence as $N\to\infty$ from the logarithmic singularity as $x\to 0$, and we will rearrange this equation and slightly redefine $S^\spherical_2$ as needed in \Secref{2D}.  Finally, the sum in~\eqref{spherical S} can be analytically done in $D=1$, as we will show in \Secref{1D}.
