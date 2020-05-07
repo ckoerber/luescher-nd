@@ -1,7 +1,7 @@
 \subsection{The Dispersion Method}\label{sec:dispersion}
 
 To correctly implement a theory in a finite basis, any observable in this basis must be correctly reproduced in the physical limit.
-In case of a lattice theory, one of these limiting procedures is the continuum limit.
+In the case of a lattice theory, one of these limiting procedures is the continuum limit.
 One sensible idea for taking the continuum limit is to tune theory parameters such that some lattice observables are held fixed at their continuum value for any lattice spacings.
 By construction, these fixed observables recover their continuum value when sending the lattice spacing to zero.
 Of course, observables will be infected by lattice artifacts, and so one must readjust the input parameters as one takes the limit.
@@ -94,13 +94,13 @@ We can construct, therefore, a \Luscher-like formalism,
 \end{align}
 where the above expression knows about the particular finite-differencing Laplacian or the dispersion relation as well as the discretization of the box into $N$ sites.
 In contrast, in the usual finite-volume procedure, no UV details of the box infect the zeta function.
-When taking $N$ to infinity, in three dimensions, the sum is divergent and the counter term exactly cancels the this growth; in one dimension there is no divergence to cancel, and we defer the discussion of two dimensions to \Secref{2D}.
+When taking $N$ to infinity, in three dimensions, the sum is divergent and the counter term exactly cancels this growth; in one dimension there is no divergence to cancel, and we defer the discussion of two dimensions to \Secref{2D}.
 
 There are two ways to view this equation.
 First, in the continuum limit both expressions for the zeta function, the continuum-derived \eqref{spherical S} and the lattice-derived \eqref{dispersion quantization} are equivalent.
 So, we simply have another way of approaching this limit.
 Second, if it was possible to compute the exact error from lattice discretization and reincorporate it into the numerically-computed energy levels, one might leverage this difference to directly compute the physical phase shifts.
-That is, numerically compute $x^\dispersion$, corresponding to energy level at finite spacing, and adjust it by a known $\delta x^\dispersion(x^\dispersion)$, so that one exactly lands on the continuum value: $x \equiv x^\dispersion + \delta x^\dispersion(x^\dispersion)$.
+That is, numerically compute $x^\dispersion$, corresponding to the energy level at finite spacing, and adjust it by a known $\delta x^\dispersion(x^\dispersion)$, so that one exactly lands on the continuum value: $x \equiv x^\dispersion + \delta x^\dispersion(x^\dispersion)$.
 Were we to do that, then we would find
 \begin{equation}
     \frac{1}{\pi L}S^\spherical_D(x)
@@ -137,26 +137,26 @@ We want to add further remarks:
 \begin{itemize}
 \item The quantization condition \eqref{dispersion quantization} can be thought of as \Luscher's zero-center-of-mass-momentum finite-volume formula non-perturbatively improved for discretization effects with our particular interaction.
 To arrive at formulas for nonzero center of mass momentum is substantially more complicated, because only at zero center of mass momentum does the change from single-particle coordinates in \eqref{particle hamiltonian} to center-of-mass coordinates in \eqref{hamiltonian} commute with performing the spatial discretization, yielding the same dispersion relation in the effective one-body problem as in the two-body problem.
-The ordering matters, as in a realistic many-body calculation (and in physical crystals!), each individual particle sees the lattice discretization.\footnote{
-We note that the change to Jacobi coordinates commutes with the discretization of momenta if the dispersion relation is exactly equal to $p^2$ all the way up to the edge of the Brillouin zone ($\nstep=\infty$).}
+The ordering matters, as in a realistic many-body calculation (and in physical crystals!), each particle sees the lattice discretization.\footnote{
+We note that the change to Jacobi coordinates commutes with the discretization of momenta if the dispersion relation is exactly equal to $p^2$ up to the edge of the Brillouin zone ($\nstep=\infty$).}
 To construct a lattice-improved finite-volume formula for two particles with finite center-of-mass momentum, one must backtrack even further, earlier than the effective one-body integral \eqref{dispersion I0}, to an equation more like the two-body loop diagram that determines $I_0$ \eqref{I0 in two particle language} before the energy integral is performed, replacing the single-particle dispersion relations there and changing the domain of integration to match the Brillouin zone.
 We leave such a construction to future work.
 
 \item In the usual case, the on-shell condition is leveraged to trade $2\mu E$ for the scattering momentum $p$.
 However, with a finite lattice spacing the on-shell condition is not so simple to invert.
-In fact, there are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
+There are multiple momenta that all correspond to the same energy, because the lattice dispersion relation begins decreasing once the momentum leaves the lattice's first Brillouin zone, and the energy repeats indefinitely so that there are infinitely many momenta that correspond to that energy.
 
 
 \item Leaving the dependence on energy alone and not the momentum allows us to account naturally for Umklapp scattering processes and the violation of crystal momentum conservation.
-This would be important for capturing physics of physical crystals, were we need to match to an infinite volume lattice instead.
-In this context one may define finite-spacing quantization condition through finite-spacing phase shifts according to
+This would be important for capturing the physics of physical crystals, where we need to match to an infinite volume lattice instead.
+In this context, one may define finite-spacing quantization condition through finite-spacing phase shifts according to
 \begin{equation}
     \frac{\mu}{2 \F_D^\dispersion(\sqrt{2\mu E})}\left(\cot\delta_D^\dispersion(\sqrt{2\mu E})-i\right)
     =
     I_D^{\dispersion}(\sqrt{2\mu E}) - I_{D,FV}^{\dispersion}(\sqrt{2\mu E})
 	\, .
 \end{equation}
-On the left-hand side of the quantization condition we get the infinite-volume $A_1^+$ phase shift\footnote{For a physical lattice there are UV breaking effects of rotational symmetry, so the irreps still do not carry angular momentum labels.} at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
+On the left-hand side of the quantization condition, we get the infinite-volume $A_1^+$ phase shift\footnote{For a physical lattice there are UV breaking effects of rotational symmetry, so the irreps still do not carry angular momentum labels.} at scattering energy $E$ while on the right-hand size we need knowledge of the box size $L$, its lattice spacing $\epsilon$, as well as the finite-volume finite-spacing spectrum.
 One may calculate a spacing-aware $\F_D^\dispersion$ by considering the imaginary part of the infinite-volume integral \eqref{dispersion I0}.
 Unfortunately, achieving a closed-form expression for $\F_D^\dispersion$ is challenging though it is numerically tractable.
 Matching to a real physical crystal requires formulating a spacing-dependent kinematic factor $\F_D^\dispersion$ from \eqref{dispersion I0} and keeping $N$ finite in the integral in the dispersion zeta function \eqref{dispersion quantization}, which introduces a whole tower of terms, each down by $N^2$, that vanish because we are matching to the continuum.
