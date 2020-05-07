@@ -1,6 +1,6 @@
 \section{The dispersion method in three and two dimensions}\label{sec:3D dispersion}
 In this section we explicitly derive the dispersion formalism in both three and two dimensions by renormalizing the contact interaction on a lattice.
-This non-perturbative renormalization allows to extract regularization independent observables (see also \Refs{Seki:2005ns, Epelbaum:2018zli}).
+This non-perturbative renormalization allows us to extract regularization independent observables (see also \Refs{Seki:2005ns, Epelbaum:2018zli}).
 We show that it is possible to tune the contact strength parameter in a finite volume for a given discretization scheme such that one directly obtains continuum infinite volume results when using the dispersion formalism---without any further extrapolation.
 
 \subsection{Three dimensions}
@@ -35,7 +35,7 @@ It is still possible to renormalize the interaction such that the phase shifts, 
 	\, .
 \end{equation}
 
-In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction parameter $C_R(\Lambda)$, one is able to evaluate both sides for a given momentum, such as $p=0$
+In particular, because the limit of $\Lambda \to \infty$ is well defined for this choice of the contact interaction parameter $C_R(\Lambda)$, one can evaluate both sides for a given momentum, such as $p=0$
 \begin{equation}
 	- \frac{1}{a_3}
 	=
@@ -52,7 +52,7 @@ In particular, because the limit of $\Lambda \to \infty$ is well defined for thi
 	\, .
 \end{equation}
 
-We now want to find an equivalent expression to the finite-volume zeta functions in presence of a discretization scheme.
+We now want to find an equivalent expression to the finite-volume zeta functions in the presence of a discretization scheme.
 In particular, the discretization scheme depends on the implementation of the kinetic operator $K^{(n_s)}$ and thus depends on the $n_s$ parameter.
 The lattice spacing can be identified with the hard momentum cutoff $\Lambda = \pi / \epsilon$.
 That is, the expectation value of the dispersion scales as $\hat K^{(n_s)}(\epsilon) \ket{p} = p^2 [1 + \mathcal O(\epsilon p)^{2 n_s}]\ket{p}$.
@@ -75,7 +75,7 @@ If one replaces the continuum momentum dispersion $q^2$ in $I_3$ with the kineti
         \, .
 \end{equation}
 We furthermore define a sequence for the contact strength parameter depending on the cutoff and the employed discretization scheme which equivalently converges against the continuum result.
-This sequence is determined by matching against the dispersion integral for each value of the cutoff and for each discretization scheme
+This sequence is determined by matching against the dispersion integral for each value of the cutoff and each discretization scheme
 \begin{equation}\label{eq:dispersion-renormalization}
 	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
 	\qquad
@@ -89,7 +89,7 @@ This sequence is determined by matching against the dispersion integral for each
 \end{equation}
 It is possible to make this choice since both terms do not depend on any external momentum $p$.
 This is specific for the contact interaction.
-One can view this choice as the renormalization equation for contact interaction in presence of lattice discretization which, by definition, trivially satisfies
+One can view this choice as the renormalization equation for contact interaction in the presence of lattice discretization which, by definition, trivially satisfies
 \begin{equation}
 	- \frac{1}{a_3}
 	=
@@ -109,7 +109,7 @@ For any lattice implementation of a contact interaction with strength $c^\disper
 	\quad \Rightarrow \quad
 	0 = 1 - c^\dispersion I_{3, \FV}^{(n_s)}\left(\sqrt{2 \mu E^\dispersion}, \Lambda = \frac{\pi}{\epsilon}\right) \, ,
 \end{equation}
-where $E^\dispersion$ are the finite volume energy levels, which depend on the employed discretization scheme and on the contact interaction of strength $c^\dispersion$.
+where $E^\dispersion$ are the finite volume energy levels, which depend on the employed discretization scheme and the contact interaction of strength $c^\dispersion$.
 The finite volume sum $I_{3, \FV}^{(n_s)}(p, \pi/\epsilon)$ is obtained by replacing the integral $d^3 \vec q$ in $I_3^{(n_s)}(p, \Lambda)$ with a sum  over vectors $\vec q = 2 \pi \vec n / L$.
 Because the above equation is true for any value of $c^\dispersion$ and its corresponding spectrum, it is especially true for $c^\dispersion = C_R^{(n_s)}(\Lambda)$.
 This means that
@@ -183,7 +183,7 @@ With the kinetic operator for a given lattice spacing and discretization, we aga
         \right]
         \, .
 \end{equation}
-As was done prior to~\eqref{dispersion-renormalization}, we also define a sequence for the discrete coefficient $C^{(n_s)}_R(\Lambda)$ that is determined by matching against the dispersion integral for each value of the cutoff and for each discretization scheme.  However, in this case, due to the presence of logarithms in~\eqref{log stuff}, we first subtract the expression $\frac{2}{\pi}\log(pL/2\pi)$ prior to setting $p=0$,
+As was done before~\eqref{dispersion-renormalization}, we also define a sequence for the discrete coefficient $C^{(n_s)}_R(\Lambda)$ that is determined by matching against the dispersion integral for each value of the cutoff and each discretization scheme.  However, in this case, due to the presence of logarithms in~\eqref{log stuff}, we first subtract the expression $\frac{2}{\pi}\log(pL/2\pi)$ before setting $p=0$,
 \begin{equation}
 %	\lim\limits_{n_s \to \infty} C^{(n_s)}_R(\Lambda) = C_R(\Lambda) \, ,
 %	\quad
