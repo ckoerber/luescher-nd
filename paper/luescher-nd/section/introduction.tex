@@ -22,7 +22,7 @@ In practice, few results of lattice QCD calculations are zero-temperature- or, m
 In particular, to date, no continuum-limit study of any baryonic channel exists, even at unphysically heavy pion masses.
 
 It is crucial to utilize zero-temperature continuum observables in \Luscher's formalism, as the authors in \Ref{Seki:2005ns} show that lattice artifacts induce terms in the scattering data in the infinite-volume limit.
-Because of technical difficulties or extensive numerical coasts, improved discretization schemes are employed to negate the effect of finite lattice spacings.
+Because of technical difficulties or extensive numerical costs, improved discretization schemes are employed to negate the effect of finite lattice spacings.
 For example, in \Ref{He:2019ipt}, the lattice implementation was smeared to reduce errors due to discretization.
 Alternatively, in the pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
 However, in \Ref{Endres:2012cw}, they found that even with a highly-improved construction, the states ultimately deviated from an expected $\pi/2$ phase shift (see, for example, Figure 3).
@@ -38,11 +38,15 @@ We introduce a new continuum-limit prescription for achieving unitarity in latti
 By re-tuning the interaction at each lattice spacing, we can smoothly take the continuum limit after applying the lattice-aware finite-volume formula.
 We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum, covering as many \Aoneg states as exist in the lattice of interest.
 
-We organize this paper as follows.  In \Secref{scattering} we give a summary of two-particle scattering in $D$ dimensions.
+We organize this paper as follows.
+In \Secref{scattering} we give a summary of two-particle scattering in $D$ dimensions.
 In \Secref{hamiltonian}, we give specifics about the latticized contact-interaction Hamiltonians we study numerically.
 In \Secref{luescher} we provide a traditional continuum derivation of \Luscher's formula, and in \Secref{dispersion} explain how to adapt it to include finite spacing effects by truncating the usual sum to just the momentum modes in the lattice and incorporating the dispersion relation into the appropriate propagators, yielding a lattice-improved generalized \Luscher zeta function.
 Then in \Secref{3D}, we leverage our dispersion zeta function to study concrete examples in 3-dimensions.
 First, we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
-We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity, the results stay accurately at the expected value, where the only differences come from the propagation of numerical errors and the initial tuning precision.  Our findings allow us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which corrects for the deviations found in \Ref{Endres:2012cw}.  Our corrections, however, are valid only for the case of contact interactions.
+We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity, the results stay accurately at the expected value, where the only differences come from the propagation of numerical errors and the initial tuning precision.
+Our findings allow us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which corrects for the deviations found in \Ref{Endres:2012cw}.
+Our corrections, however, are valid only for the case of contact interactions.
 Finally, we recapitulate our findings in \Secref{conclusion} and discuss future directions.
-We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.  For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.
+We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.
+For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.
