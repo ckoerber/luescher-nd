@@ -1,23 +1,21 @@
 \section{Introduction}\label{sec:intro}
 
 Many physically interesting systems comprise strongly-interacting fermions.
-In three spatial dimensions the scattering of fermions with a short-range interaction can be completely characterized by a scattering length, and when that length diverges the details of the potential are washed out and no dimensionful scales remain.
-Such \emph{unitary fermions} exhibit interactions as strong as can be without forming bound states, and provide an interesting guide for understanding other strong interactions because of their universal behavior.
-For example, the nuclear interaction in the deuteron channel has an extremely long scattering length, and trapped ultracold atoms can be tuned to unitarity by applying external magnetic fields and leveraging Feshbach resonances.
+Of particular interest are systems of unitary fermions where dynamics are independent of interaction details.
+Because of their universal behavior, studying \emph{unitary fermions} helps to analyze the behavior of other strongly interacting systems found in nature.
+For example, the nuclear interaction in the deuteron channel has an extremely strong threshold behavior mimicking unitarity, and trapped ultracold atoms can be tuned to unitarity by applying external magnetic fields and leveraging Feshbach resonances.
 
-By tuning a quantum-mechanical two-body contact interaction, one should be able to completely control the scattering length and, absent other interactions, have that scattering length completely describe the scattering.
-With such an interaction in hand, a variety of interesting many-body problems are unlocked.
-Since all other dimensionful quantities are gone, all observables must be determined by naive dimensional analysis in the density, times some non-perturbative numerical factor, such as the Bertsch parameter\cite{PhysRevC.60.054311} in the case of the energy density.
-
-A contact interaction can be shown to always produce momentum-independent scattering amplitudes (in three dimensions, for example, a momentum-independent $p \cot \delta$), and it ought to be possible to produce any amplitude, unless otherwise restricted by the Wigner bound\cite{Wigner:1955zz,Phillips:1996ae,Hammer:2010fw}.
-
-Such scale-free results must result from peculiar potentials.
-In three dimensions, for example, a delta function potential requires regulation, and to get scale-free dynamics its dimensionful strength must be sent to zero with the removal of the regulator in just such a way as to keep the phase shift at $\pi/2$.
-In one dimension the strength of the contact interaction is also dimensionful and a delta function potential needs no regulation, but is regulated when space is discretized; in two dimensions the strength of the delta function potential is dimensionless, which entails a more complicated story we discuss in \Secref{2D}.
+The scattering of fermions at low energies can be described by an expansion, the effective range expansion, which depends on details of the interaction.
+For example, in three spatial dimensions, the scattering of fermions at threshold (zero energy) is described by the scattering length parameter.
+If the range of the interaction becomes negligible compared to this scattering length, scattering details are energy independent and it is possible to produce any amplitude, unless otherwise restricted by the Wigner bound\cite{Wigner:1955zz, Phillips:1996ae, Hammer:2010fw}.
+When that scattering length diverges, the details of the potential are entirely washed out and no dimensionful scales remain.
+Since all other dimensionful quantities are gone, all observables must be determined by naive dimensional analysis.
+For example, the energy density in the density is described by a non-perturbative numerical factor, such as the Bertsch parameter\cite{PhysRevC.60.054311} .
+Even though scattering details of unitary systems are scale-independent, the interactions describing such systems must fulfill specific requirements.
+For example, to get scale-free dynamics in three dimensions, a delta function potential requires regulation and its dimensionful strength must be sent to zero with the removal of the regulator such that scattering is momentum independent.
 
 Numerical computations are often performed in discretized boxes with periodic boundary conditions.
 \Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which one can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.  Recently there has been an investigation of \Luscher's formalism for continuous scattering within a crystal lattice~\cite{Valiente:2015oya}.
-
 The usual understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
 
 Understanding the continuum limit of observables is important as it is shown in \Ref{Seki:2005ns} that, in the infinite-volume limit, lattice artifacts induce terms in the scattering data.
@@ -52,11 +50,6 @@ Then in \Secref{3D} we leverage our dispersion zeta function to study concrete e
 First we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
 We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.  Our findings allow us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which %when applied to three dimensions
 corrects for the deviations found in \Ref{Endres:2012cw}.  Our corrections, however, are valid only for the case of a contact interaction.
-%We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
-%In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.
-%We find that our lattice-aware \Luscher function handles this case with no difficulty.
-%Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
-%Our corrections are valid only for the case of a contact interaction.
 
 Finally, we recapitulate our findings in \Secref{conclusion} and discuss future directions.
 We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.  For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.
