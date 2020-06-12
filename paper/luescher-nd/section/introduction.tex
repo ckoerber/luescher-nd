@@ -29,7 +29,7 @@ Alternatively, in the pursuit of a lattice formulation of unitary fermions, the 
 However, in \Ref{Endres:2012cw}, they found that even with a highly-improved construction, the states ultimately deviated from an expected $\pi/2$ phase shift (see, for example, Figure 3).
 While alternatives to \Luscher's infinite-volume limit, including the potential method (\Refs{Ishii:2006ec,Nemura:2008sp,Aoki:2009ji,Murano:2011nz,Aoki:2012bb,Kurth:2013tua,Sugiura:2017vwo,Yamazaki:2019vid,Aoki:2017yru,Yamazaki:2018qut,Iritani:2017rlk,Iritani:2018zbt,Gongyo:2018gou,Akahoshi:2019klc,Namekawa:2019xiy}), the mapping onto harmonic oscillators (\Ref{McElvain:2019ltw}), and the imposition of spherical walls (\Refs{Borasoy:2007vy,Borasoy:2007vi,Lee:2008fa,Epelbaum:2008vj,Epelbaum:2010xt,Lu:2015riz,Elhatisari:2015iga,Elhatisari:2016owd,Elhatisari:2016hby,Klein:2018lqz,Li:2019ldq,Bovermann:2019jbt,Lahde:2019npb}), can be used to translate finite-volume physics to infinite-volume observables, to our knowledge, no numerical work leveraging these methods is in the continuum, either.
 
-To address the ongoing debate \todo{\cite{}} about discretization effects in lattice computations with finite lattice spacings, in this work, we focus on analyzing the effects of discretization when approaching the infinite-volume limit.
+To address the ongoing debate about discretization effects in lattice computations with finite lattice spacings, in this work, we focus on analyzing the effects of discretization when approaching the infinite-volume limit.
 We follow \Luscher's finite-volume formalism and present an extension that allows us to exactly trace and cancel effects caused by finite discretizations.
 We construct example Hamiltonians utilizing a contact interaction and diagonalize them exactly, albeit numerically.
 This setup allows us to circumvent issues of statistical uncertainties that accompany Monte Carlo data and lets us isolate the features of the formalism itself entirely, removing, for example, any finite-temperature effects that should, in principle, be extrapolated away in any finite-temperature method like Lattice QCD.
@@ -39,7 +39,7 @@ By re-tuning the interaction at each lattice spacing, we can smoothly take the c
 
 We find that it is in practice difficult to reliably extrapolate the energy spectrum to the continuum limit in a way that reproduces the known exact result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts sometimes can be more reliable.
 Furthermore, we demonstrate that the extension to \Luscher's formalism we introduce in this work allows us to maintain a constant phase shift deep into the spectrum, covering as many \Aoneg states as exist in the lattice of interest.
-While this prescription is not universally applicable to a general interaction, this lattice improvement can be quite useful for interactions dominated by contact terms.
+While this prescription is not universally applicable to a general interaction, learnings from this lattice improvement are transferrable (by perturbation theory) to other interactions with significant contributions from by contact terms--like chiral lattice interactions which are commonly utilized in "\texit{ab-initio}" frameworks.
 
 We organize this paper as follows.
 In \Secref{scattering} we give a summary of two-particle scattering in $D$ dimensions.
