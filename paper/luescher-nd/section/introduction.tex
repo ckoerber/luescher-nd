@@ -1,62 +1,56 @@
 \section{Introduction}\label{sec:intro}
-
 Many physically interesting systems comprise strongly-interacting fermions.
-In three spatial dimensions the scattering of fermions with a short-range interaction can be completely characterized by a scattering length, and when that length diverges the details of the potential are washed out and no dimensionful scales remain.
-Such \emph{unitary fermions} exhibit interactions as strong as can be without forming bound states, and provide an interesting guide for understanding other strong interactions because of their universal behavior.
-For example, the nuclear interaction in the deuteron channel has an extremely long scattering length, and trapped ultracold atoms can be tuned to unitarity by applying external magnetic fields and leveraging Feshbach resonances.
+Of particular interest are systems of \emph{unitary fermions} where dynamics are independent of interaction details.
+Because of their universal behavior, studying \emph{unitary fermions} helps to analyze the behavior of other strongly interacting systems found in nature.
+For example, nuclear interactions in the deuteron channel have an extreme behavior close to the zero-energy threshold mimicking unitarity, and trapped ultracold atoms can be tuned to unitarity by applying external magnetic fields and leveraging Feshbach resonances.
 
-By tuning a quantum-mechanical two-body contact interaction, one should be able to completely control the scattering length and, absent other interactions, have that scattering length completely describe the scattering.
-With such an interaction in hand, a variety of interesting many-body problems are unlocked.
-Since all other dimensionful quantities are gone, all observables must be determined by naive dimensional analysis in the density, times some non-perturbative numerical factor, such as the Bertsch parameter\cite{PhysRevC.60.054311} in the case of the energy density.
+The effective range expansion (ERE), which depends on details of the interaction, describes the scattering of fermions at low energies.
+The leading term of the ERE, the scattering length, dominates the scattering description of fermions close to the zero-energy threshold.
+In three dimensions, if the range of the interaction becomes negligible compared to this scattering length, scattering details are energy independent, and it is possible to produce any amplitude unless otherwise restricted by the Wigner bound\cite{Wigner:1955zz, Phillips:1996ae, Hammer:2010fw}.
+When that scattering length diverges, details of the potential are entirely washed out, and no dimensionful scales remain.
+Since all other dimensionful quantities are gone, all observables are scale-independent as well, and naive dimensional analysis suffices to estimate them.
+As an illustration, the energy density is described by a non-perturbative numerical factor, such as the Bertsch parameter\cite{PhysRevC.60.054311}.
 
-A contact interaction can be shown to always produce momentum-independent scattering amplitudes (in three dimensions, for example, a momentum-independent $p \cot \delta$), and it ought to be possible to produce any amplitude, unless otherwise restricted by the Wigner bound\cite{Wigner:1955zz,Phillips:1996ae,Hammer:2010fw}.
+Even though scattering details of unitary systems are scale-independent, interactions describing such systems must fulfill specific requirements.
+For example, a delta function allows describing unitary systems.
+Because a delta function in three-dimension requires regulation, to get scale-free dynamics, the delta functions dimensionful strength must be renormalized such that, with the removal of the regulator, the ERE is momentum independent.
 
-Such scale-free results must result from peculiar potentials.
-In three dimensions, for example, a delta function potential requires regulation, and to get scale-free dynamics its dimensionful strength must be sent to zero with the removal of the regulator in just such a way as to keep the phase shift at $\pi/2$.
-In one dimension the strength of the contact interaction is also dimensionful and a delta function potential needs no regulation, but is regulated when space is discretized; in two dimensions the strength of the delta function potential is dimensionless, which entails a more complicated story we discuss in \Secref{2D}.
-
-Numerical computations are often performed in discretized boxes with periodic boundary conditions.
-\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which one can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum.  Recently there has been an investigation of \Luscher's formalism for continuous scattering within a crystal lattice~\cite{Valiente:2015oya}.
-
-The usual understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
-
-Understanding the continuum limit of observables is important as it is shown in \Ref{Seki:2005ns} that, in the infinite-volume limit, lattice artifacts induce terms in the scattering data.
+Additional complications in the description of scale-free scattering arise from methodological details of the computations--which introduce additional scales.
+Numerical computations must be performed in a basis; one basis frequently being utilized is a discretized box with periodic boundary conditions.
+\Luscher's finite-volume formalism\cite{Hamber198399,luscher:1986I,luscher:1986II,wiese1989,Luscher1991,Luscher1991237} is the method by which one can extract infinite-volume real-time scattering data from the finite-volume Euclidean spectrum of a theory, taking advantage of the interplay between the physical scattering and the finite-volume boundary conditions in determining the spectrum\footnote{While \Luscher's formalism was derived in a periodic volume, recently, there has been an investigation of \Luscher's formalism for continuous scattering within a crystal lattice~\cite{Valiente:2015oya}.}.
+The common understanding of \Luscher's formalism is that one should find the continuum zero-temperature finite-volume energy levels, holding the physical volume fixed, and put that cold, continuum spectrum through \Luscher's formula to extract continuum scattering data.
 In practice, few results of lattice QCD calculations are zero-temperature- or, more seriously, continuum-extrapolated, but are nevertheless put through \Luscher's formula to get an estimate of the continuum scattering data, assuming thermal and discretization effects to be much smaller than the statistical uncertainties.
-In particular, to date no continuum-limit study of any baryonic channel exists, even at unphysically heavy pion masses.
+In particular, to date, no continuum-limit study of any baryonic channel exists, even at unphysically heavy pion masses.
 
-While alternatives, including the potential method (\Refs{Ishii:2006ec,Nemura:2008sp,Aoki:2009ji,Murano:2011nz,Aoki:2012bb,Kurth:2013tua,Sugiura:2017vwo,Yamazaki:2019vid,Aoki:2017yru,Yamazaki:2018qut,Iritani:2017rlk,Iritani:2018zbt,Gongyo:2018gou,Akahoshi:2019klc,Namekawa:2019xiy}), the mapping onto harmonic oscillators (\Ref{McElvain:2019ltw}) , and the imposition of spherical walls (\Refs{Borasoy:2007vy,Borasoy:2007vi,Lee:2008fa,Epelbaum:2008vj,Epelbaum:2010xt,Lu:2015riz,Elhatisari:2015iga,Elhatisari:2016owd,Elhatisari:2016hby,Klein:2018lqz,Li:2019ldq,Bovermann:2019jbt,Lahde:2019npb}), can be used to translate finite-volume physics to infinite-volume observables, here we focus on the \Luscher finite-volume formalism.
-Moreover, to our knowledge, no numerical work leveraging these methods is in the continuum, either.
+It is crucial to remove basis dependent scales and utilize zero-temperature continuum observables, as the authors in \Ref{Seki:2005ns} show that lattice artifacts induce terms in the scattering data in the infinite-volume limit.
+However, instead of utilizing continuum observables, improved discretization schemes are frequently employed in "\textit{ab-initio}" computations to negate the effect of finite lattice spacings because of technical difficulties or extensive numerical costs.
+For example, in \Ref{He:2019ipt}, the lattice implementation was smeared to reduce errors due to discretization.
+Alternatively, in the pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}--parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators and tuning their coefficients to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
+However, in \Ref{Endres:2012cw}, they found that even with a highly-improved construction, the states ultimately deviated from an expected $\pi/2$ phase shift (see, for example, Figure 3).
+While alternatives to \Luscher's infinite-volume limit, including the potential method (\Refs{Ishii:2006ec,Nemura:2008sp,Aoki:2009ji,Murano:2011nz,Aoki:2012bb,Kurth:2013tua,Sugiura:2017vwo,Yamazaki:2019vid,Aoki:2017yru,Yamazaki:2018qut,Iritani:2017rlk,Iritani:2018zbt,Gongyo:2018gou,Akahoshi:2019klc,Namekawa:2019xiy}), the mapping onto harmonic oscillators (\Ref{McElvain:2019ltw}), and the imposition of spherical walls (\Refs{Borasoy:2007vy,Borasoy:2007vi,Lee:2008fa,Epelbaum:2008vj,Epelbaum:2010xt,Lu:2015riz,Elhatisari:2015iga,Elhatisari:2016owd,Elhatisari:2016hby,Klein:2018lqz,Li:2019ldq,Bovermann:2019jbt,Lahde:2019npb}), can be used to translate finite-volume physics to infinite-volume observables, to our knowledge, no numerical work leveraging these methods is in the continuum, either.
+Without a proper analysis of discretization effects, in contrast with the "\textit{ab-initio}" aspect, the accurcy of computed observables is uncertain.
 
-Here, we construct example Hamiltonians explicitly and diagonalize them exactly, albeit numerically.
-This allows us to circumvent all of the issues of statistical uncertainty that accompanies Monte Carlo data and lets us completely isolate the features of the formalism itself, removing, for example, any finite-temperature effects that should in principle be extrapolated away in any finite-temperature method like Lattice QCD.
+To address the ongoing debate about discretization effects in lattice computations with finite lattice spacings, in this work, we focus on analyzing the effects of discretization when approaching the infinite-volume limit.
+We follow \Luscher's finite-volume formalism and present an extension that allows us to exactly trace and cancel effects caused by finite discretizations.
+We construct example Hamiltonians utilizing a contact interaction and diagonalize them exactly, albeit numerically.
+This setup allows us to circumvent issues of statistical uncertainties that accompany Monte Carlo data and lets us isolate the features of the formalism itself entirely, removing, for example, any finite-temperature effects that should, in principle, be extrapolated away in any finite-temperature method like Lattice QCD.
+Extending the work of \Ref{Seki:2005ns} to finite volume, our primary innovation is to explain how to incorporate lattice artifacts into \Luscher's formula, for systems described by a contact interaction, accounting both for the Brillouin zone of the lattice and the lattice-induced dispersion relation.
+We propose a new continuum-limit prescription for achieving unitarity in lattice simulations by tuning the most straightforward, unsmeared contact operator, but taking the discretization effects into account by incorporating the lattice dispersion relation into the finite-volume zeta function, both in the tuning step and in the analysis step.
+By re-tuning the interaction at each lattice spacing, we can smoothly take the continuum limit after applying the lattice-aware finite-volume formula.
 
-We find that it is in practice difficult to reliably extrapolate the spectrum to the continuum limit in a way that reproduces the exact known result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts sometimes can produce a more reliable result.
+We find that it is in practice difficult to reliably extrapolate the energy spectrum to the continuum limit in a way that reproduces the known exact result, but that taking the continuum limit of the lattice-artifact-contaminated phase shifts sometimes can be more reliable.
+Furthermore, we demonstrate that the extension to \Luscher's formalism we introduce in this work allows us to maintain a constant phase shift deep into the spectrum, covering as many \Aoneg states as exist in the lattice of interest.
+While this prescription is not universally applicable to a general interaction, learnings from this lattice improvement are transferrable (by perturbation theory) to other interactions with significant contributions from by contact terms--like chiral lattice interactions which are commonly utilized in "\texit{ab-initio}" frameworks.
 
-Extending the work of \Ref{Seki:2005ns} to finite volume, our main innovation, however, is to explain how to incorporate lattice artifacts into \Luscher's formula, for systems described by a contact interaction, accounting both for the Brillouin zone of the lattice and the lattice-induced dispersion relation.
-
-While not universal, this lattice improvement can be quite useful for a contact interaction.
-In pursuit of a lattice formulation of unitary fermions, the authors of \Ref{Endres:2011er} followed the tuning procedure of \Ref{Lee:2007ae}, parametrizing the contact interaction as a sum of a tower of Galilean-invariant operators, tuning their coefficients to drive the lowest interacting energy levels to the zeros of the \Luscher finite-volume zeta function.
-However, in \Ref{Endres:2012cw} they found that even with a highly-improved construction the states ultimately deviated from a $\pi/2$ phase shift (see, for example, Figure 3).
-In \Ref{He:2019ipt} the lattice implementation was smeared to reduce errors due to discretization, however, a direct comparison of other methods with theirs was not possible for us since we were not able to identify the discretization parameters for the presented phase shifts (Fig. 7).
-
-We introduce a new continuum-limit prescription for achieving unitarity in lattice simulations by tuning just the simplest, unsmeared contact operator, but taking the discretization effects into account by incorporating the lattice dispersion relation into the finite-volume zeta function, both in the tuning step and in the analysis step.
-By re-tuning the interaction at each lattice spacing we can very easily and smoothly take the continuum limit after applying the lattice-aware finite-volume formula.
-We demonstrate that this allows us to maintain a constant phase shift deep into the spectrum, covering as many \Aoneg states as exist in the lattice of interest.
-
-This paper is organized as follows.  In \Secref{scattering} we give a summary of two-particle scattering in $D$ dimensions.
-In \Secref{hamiltonian} we give specifics about the latticized contact-interaction Hamiltonians we study numerically.
-In \Secref{luescher} we provide a traditional continuum derivation of \Luscher's formula and in \Secref{dispersion} explain how to adapt it to include finite spacing effects by truncating the usual sum to just the momentum modes in the lattice and incorporating the dispersion relation into the appropriate propagators, yielding a lattice-improved generalized \Luscher zeta function.
-
-Then in \Secref{3D} we leverage our dispersion zeta function to study concrete examples in 3-dimensions.
-%In \Secref{3D} we study the three-dimensional case.
-First we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
-We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity the results stay at the expected value as accurately as the initial tuning is made modulo propagated numerical uncertainties.  Our findings allow us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which %when applied to three dimensions
-corrects for the deviations found in \Ref{Endres:2012cw}.  Our corrections, however, are valid only for the case of a contact interaction.
-%We then study the one dimensional case in \Secref{1D}, where the absence of a counterterm makes things particularly simple.
-%In \Secref{2D} we repeat the story for the more intricate two-dimensional case, where here dimensional transmutation and logarithmic singularities require special attention and care.  Such a case was originally considered in~\cite{Fiebig:1994qi}, and subsequently worked out in detail for the s-wave case in~\cite{Beane:2010ny}.
-%We find that our lattice-aware \Luscher function handles this case with no difficulty.
-%Further, in all dimensions considered here we provide correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which when applied to three dimensions corrects for the deviation found in \Ref{Endres:2012cw}.
-%Our corrections are valid only for the case of a contact interaction.
-
+We organize this paper as follows.
+In \Secref{scattering} we give a summary of two-particle scattering in $D$ dimensions.
+In \Secref{hamiltonian}, we give specifics about the latticized contact-interaction Hamiltonians we study numerically.
+In \Secref{luescher} we provide a traditional continuum derivation of \Luscher's formula, and in \Secref{dispersion} explain how to adapt it to include finite spacing effects by truncating the usual sum to just the momentum modes in the lattice and incorporating the dispersion relation into the appropriate propagators, yielding a lattice-improved generalized \Luscher zeta function.
+Then in \Secref{3D}, we leverage our dispersion zeta function to study concrete examples in 3-dimensions.
+First, we compare a continuum-extrapolated energy spectrum fed through the continuum zeta function and the continuum extrapolation of the finite-spacing spectra fed through the continuum zeta.
+We tune and analyze the same problem using our lattice-aware dispersion zeta function, and show that the resulting scattering $p\cot\delta$ remains constant deep into the spectrum; when we tune to unitarity, the results stay accurately at the expected value, where the only differences come from the propagation of numerical errors and the initial tuning precision.
+Our findings allow us to determine correction terms that come about when using energies calculated in a discrete space but fed through continuum \Luscher formula, which corrects for the deviations found in \Ref{Endres:2012cw}.
+Our corrections, however, are valid only for the case of contact interactions.
 Finally, we recapitulate our findings in \Secref{conclusion} and discuss future directions.
-We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.  For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.
+We provide the data used for this publication and the code which generated the data in \Ref{luescher-nd_201}.
+For completeness, we also provide expressions for the dispersion zeta function in 1-D and 2-D in \Secref{1D} and \Secref{2D}, respectively.
