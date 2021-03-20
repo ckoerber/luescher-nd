@@ -21,7 +21,7 @@ importlib-metadata==1.0.0
 ipython==7.10.0
 ipython-genutils==0.2.0
 jedi==0.15.1
-Jinja2==2.10.3
+Jinja2==2.11.3
 kiwisolver==1.1.0
 lsqfit==11.2
 -e git+https://github.com/ckoerber/luescher-nd.git@e7fdb031d0b257a02955ee0488dd4d60178f4424#egg=luescher_nd
