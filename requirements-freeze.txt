@@ -6,7 +6,7 @@ Babel==2.7.0
 backcall==0.1.0
 black==19.10b0
 blackcellmagic==0.0.2
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 commonmark==0.9.1
